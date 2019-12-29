@@ -10,7 +10,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        TabView {
+            MyProjectsView()
+            .tabItem {
+                Image(systemName: "briefcase")
+                .font(.system(size: 24))
+            }.tag(0)
+            
+            SettingsView()
+            .tabItem {
+                Image(systemName: "gear")
+                .font(.system(size: 24))
+            }.tag(1)
+        }.accentColor(.purple)
     }
 }
 
