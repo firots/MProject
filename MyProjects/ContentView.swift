@@ -13,7 +13,7 @@ struct ContentView: View {
         TabView {
             MyProjectsView()
             .tabItem {
-                Image(systemName: "briefcase")
+                Image(systemName: "tray.2")
                 .font(.system(size: 24))
             }.tag(0)
             

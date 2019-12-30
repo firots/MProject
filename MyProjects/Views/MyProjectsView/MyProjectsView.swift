@@ -13,7 +13,9 @@ struct MyProjectsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                AddProjectButton()
+                AddProjectButton() {
+                    self.model.showAddProject = true
+                }
                 Text("No projects so far.")
             }
             .navigationBarTitle("My Projects")
