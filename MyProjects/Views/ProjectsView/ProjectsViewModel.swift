@@ -8,6 +8,6 @@
 
 import Foundation
 
-class MyProjectsViewModel: ObservableObject {
+class ProjectsViewModel: ObservableObject {
     @Published var showAddProject = false
 }

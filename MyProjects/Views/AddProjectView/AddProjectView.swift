@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct AddProjectView: View {
+    @ObservedObject var model = AddTaskViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Add Project")
     }
 }
 

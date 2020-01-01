@@ -11,17 +11,23 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            MyProjectsView()
+            TasksView()
+            .tabItem {
+                Image(systemName: "largecircle.fill.circle")
+                    .font(.system(size: 24))
+            }.tag(0)
+            
+            ProjectsView()
             .tabItem {
                 Image(systemName: "tray.2")
                 .font(.system(size: 24))
-            }.tag(0)
+            }.tag(1)
             
             SettingsView()
             .tabItem {
                 Image(systemName: "gear")
                 .font(.system(size: 24))
-            }.tag(1)
+            }.tag(2)
         }.accentColor(.purple)
     }
 }

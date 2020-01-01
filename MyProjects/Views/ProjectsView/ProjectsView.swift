@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-struct MyProjectsView: View {
-    @ObservedObject var model = MyProjectsViewModel()
+struct ProjectsView: View {
+    @ObservedObject var model = ProjectsViewModel()
     var body: some View {
         NavigationView {
             ZStack {
-                AddProjectButton() {
+                AddButton() {
                     self.model.showAddProject = true
                 }
                 Text("No projects so far.")
@@ -28,6 +28,6 @@ struct MyProjectsView: View {
 
 struct MyProjectsView_Previews: PreviewProvider {
     static var previews: some View {
-        MyProjectsView()
+        ProjectsView()
     }
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */; };
+		76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */; };
+		76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C423BCE16200C1CD11 /* AddTaskView.swift */; };
+		76EF17C723BCE17400C1CD11 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C623BCE17400C1CD11 /* AddTaskViewModel.swift */; };
+		76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C823BCE1AF00C1CD11 /* AddProjectViewModel.swift */; };
 		76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61A523B929AE00D21B21 /* AppDelegate.swift */; };
 		76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61A723B929AE00D21B21 /* SceneDelegate.swift */; };
 		76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61A923B929AE00D21B21 /* MyProjects.xcdatamodeld */; };
@@ -16,13 +21,18 @@
 		76FD61B523B929AE00D21B21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FD61B323B929AE00D21B21 /* LaunchScreen.storyboard */; };
 		76FD61BF23B92A5C00D21B21 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61BE23B92A5C00D21B21 /* SettingsView.swift */; };
 		76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C023B92B3D00D21B21 /* SettingsViewModel.swift */; };
-		76FD61C523B92BCC00D21B21 /* MyProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C423B92BCC00D21B21 /* MyProjectsView.swift */; };
-		76FD61C723B92BDF00D21B21 /* MyProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C623B92BDF00D21B21 /* MyProjectsViewModel.swift */; };
-		76FD61C923B92C4D00D21B21 /* AddProjectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C823B92C4D00D21B21 /* AddProjectButton.swift */; };
+		76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C423B92BCC00D21B21 /* ProjectsView.swift */; };
+		76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C623B92BDF00D21B21 /* ProjectsViewModel.swift */; };
+		76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C823B92C4D00D21B21 /* AddButton.swift */; };
 		76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61CB23B9335100D21B21 /* AddProjectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
+		76EF17C423BCE16200C1CD11 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		76EF17C623BCE17400C1CD11 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
+		76EF17C823BCE1AF00C1CD11 /* AddProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectViewModel.swift; sourceTree = "<group>"; };
 		76FD61A223B929AE00D21B21 /* MyProjects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyProjects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FD61A523B929AE00D21B21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76FD61A723B929AE00D21B21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,9 +44,9 @@
 		76FD61B623B929AE00D21B21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76FD61BE23B92A5C00D21B21 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		76FD61C023B92B3D00D21B21 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		76FD61C423B92BCC00D21B21 /* MyProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProjectsView.swift; sourceTree = "<group>"; };
-		76FD61C623B92BDF00D21B21 /* MyProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProjectsViewModel.swift; sourceTree = "<group>"; };
-		76FD61C823B92C4D00D21B21 /* AddProjectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectButton.swift; sourceTree = "<group>"; };
+		76FD61C423B92BCC00D21B21 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		76FD61C623B92BDF00D21B21 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
+		76FD61C823B92C4D00D21B21 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		76FD61CB23B9335100D21B21 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +61,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76EF17BC23BCE07100C1CD11 /* Reusables */ = {
+			isa = PBXGroup;
+			children = (
+				76EF17BD23BCE07900C1CD11 /* Buttons */,
+			);
+			path = Reusables;
+			sourceTree = "<group>";
+		};
+		76EF17BD23BCE07900C1CD11 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				76FD61C823B92C4D00D21B21 /* AddButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		76EF17BE23BCE09000C1CD11 /* TasksView */ = {
+			isa = PBXGroup;
+			children = (
+				76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */,
+				76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */,
+			);
+			path = TasksView;
+			sourceTree = "<group>";
+		};
+		76EF17C323BCE14D00C1CD11 /* AddTaskView */ = {
+			isa = PBXGroup;
+			children = (
+				76EF17C423BCE16200C1CD11 /* AddTaskView.swift */,
+				76EF17C623BCE17400C1CD11 /* AddTaskViewModel.swift */,
+			);
+			path = AddTaskView;
+			sourceTree = "<group>";
+		};
 		76FD619923B929AE00D21B21 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +138,11 @@
 		76FD61BC23B929D900D21B21 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76EF17C323BCE14D00C1CD11 /* AddTaskView */,
+				76EF17BE23BCE09000C1CD11 /* TasksView */,
+				76EF17BC23BCE07100C1CD11 /* Reusables */,
 				76FD61CA23B9334300D21B21 /* AddProjectView */,
-				76FD61C223B92BAE00D21B21 /* MyProjectsView */,
+				76FD61C223B92BAE00D21B21 /* ProjectsView */,
 				76FD61BD23B92A4A00D21B21 /* SettingsView */,
 			);
 			path = Views;
@@ -110,28 +157,20 @@
 			path = SettingsView;
 			sourceTree = "<group>";
 		};
-		76FD61C223B92BAE00D21B21 /* MyProjectsView */ = {
+		76FD61C223B92BAE00D21B21 /* ProjectsView */ = {
 			isa = PBXGroup;
 			children = (
-				76FD61C323B92BB900D21B21 /* Components */,
-				76FD61C423B92BCC00D21B21 /* MyProjectsView.swift */,
-				76FD61C623B92BDF00D21B21 /* MyProjectsViewModel.swift */,
+				76FD61C423B92BCC00D21B21 /* ProjectsView.swift */,
+				76FD61C623B92BDF00D21B21 /* ProjectsViewModel.swift */,
 			);
-			path = MyProjectsView;
-			sourceTree = "<group>";
-		};
-		76FD61C323B92BB900D21B21 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				76FD61C823B92C4D00D21B21 /* AddProjectButton.swift */,
-			);
-			path = Components;
+			path = ProjectsView;
 			sourceTree = "<group>";
 		};
 		76FD61CA23B9334300D21B21 /* AddProjectView */ = {
 			isa = PBXGroup;
 			children = (
 				76FD61CB23B9335100D21B21 /* AddProjectView.swift */,
+				76EF17C823BCE1AF00C1CD11 /* AddProjectViewModel.swift */,
 			);
 			path = AddProjectView;
 			sourceTree = "<group>";
@@ -208,15 +247,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */,
-				76FD61C723B92BDF00D21B21 /* MyProjectsViewModel.swift in Sources */,
+				76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */,
+				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,
+				76EF17C723BCE17400C1CD11 /* AddTaskViewModel.swift in Sources */,
 				76FD61BF23B92A5C00D21B21 /* SettingsView.swift in Sources */,
+				76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */,
 				76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */,
-				76FD61C523B92BCC00D21B21 /* MyProjectsView.swift in Sources */,
+				76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */,
 				76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */,
+				76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */,
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
-				76FD61C923B92C4D00D21B21 /* AddProjectButton.swift in Sources */,
+				76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
+				76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

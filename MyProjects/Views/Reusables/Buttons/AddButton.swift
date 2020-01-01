@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AddProjectButton: View {
+struct AddButton: View {
     var action: (() -> Void)?
 
     var body: some View {
@@ -37,6 +37,6 @@ struct AddProjectButton: View {
 
 struct AddProjectButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddProjectButton()
+        AddButton()
     }
 }
