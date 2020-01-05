@@ -19,6 +19,14 @@ class AddProjectViewModel: ObservableObject {
     
     init(project: MProject?) {
         self.project = project
+        if let p = project {
+            name = p.wrappedName
+            details = p.wrappedDetails
+            if let deadline = p.deadline {
+                hasDeadline = true
+                self.deadline = deadline
+            }
+        }
     }
     
     /*private var cancellableSet: Set<AnyCancellable> = []
