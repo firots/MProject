@@ -48,11 +48,7 @@ struct AddProjectView: View {
     
     func saveButton() -> some View {
         Button("Save") {
-            if self.model.project == nil {
-                let _ = MProject.create(from: self.model, context: self.moc)
-            } else {
-                self.model.project?.sync(to: self.model)
-            }
+            let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.project)
 
             if self.moc.hasChanges {
                 do {

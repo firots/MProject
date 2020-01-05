@@ -10,17 +10,19 @@ import Foundation
 import CoreData
 
 extension MProject {
-    static func create(from model: AddProjectViewModel, context moc: NSManagedObjectContext) -> MProject {
-        let project = createBase(context: moc)
+    static func createOrSync(from model: AddProjectViewModel, context moc: NSManagedObjectContext, project: MProject?) -> MProject {
+        let p = project ?? createBase(context: moc)
         
-        project.name = model.name
-        project.details = model.details
+        p.name = model.name
+        p.details = model.details
         
         if model.hasDeadline {
-            project.deadline = model.deadline
+            p.deadline = model.deadline
+        } else {
+            p.deadline = nil
         }
         
-        return project
+        return p
     }
     
     static func createBase(context moc: NSManagedObjectContext) -> MProject {
