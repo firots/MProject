@@ -25,6 +25,7 @@ struct AddProjectView: View {
                 mainSection()
             }
             saveButton()
+            Spacer()
         }
     }
     
