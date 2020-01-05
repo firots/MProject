@@ -20,12 +20,16 @@ class AddProjectViewModel: ObservableObject {
     init(project: MProject?) {
         self.project = project
         if let p = project {
-            name = p.wrappedName
-            details = p.wrappedDetails
-            if let deadline = p.deadline {
-                hasDeadline = true
-                self.deadline = deadline
-            }
+            sync(to: p)
+        }
+    }
+    
+    func sync(to project: MProject) {
+        name = project.wrappedName
+        details = project.wrappedDetails
+        if let deadline = project.deadline {
+            hasDeadline = true
+            self.deadline = deadline
         }
     }
     
