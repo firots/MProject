@@ -11,6 +11,7 @@
 		761F244123C1667C008AA2B7 /* MProject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */; };
 		761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */; };
 		761F244623C17238008AA2B7 /* MProject+ProjectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */; };
+		764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30B23C2816600F581BA /* String+Capitalizer.swift */; };
 		765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58223C230E7007F835D /* NotificationPeriod.swift */; };
 		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
@@ -39,6 +40,7 @@
 		761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CreateOrSync.swift"; sourceTree = "<group>"; };
 		761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+ProjectStatus.swift"; sourceTree = "<group>"; };
+		764AA30B23C2816600F581BA /* String+Capitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalizer.swift"; sourceTree = "<group>"; };
 		765BA58223C230E7007F835D /* NotificationPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPeriod.swift; sourceTree = "<group>"; };
 		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				765BA58523C2313E007F835D /* Date+ToString.swift */,
 				765BA58723C236E5007F835D /* String+EmptyHolder.swift */,
+				764AA30B23C2816600F581BA /* String+Capitalizer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */,
+				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
 				765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */,
 				76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */,

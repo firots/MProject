@@ -17,7 +17,11 @@ struct ProjectsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                listProjects()
+                VStack {
+                    projectFilter()
+                    listProjects()
+                }
+                
                 addButton()
             }
             .navigationBarTitle("My Projects")
@@ -25,6 +29,14 @@ struct ProjectsView: View {
         .sheet(isPresented: $model.showAddProject)  {
             AddProjectView(context: self.moc, project: nil)
         }
+    }
+    
+    func projectFilter() -> some View {
+        Picker(selection: $model.projectFilter, label: Text("Show")) {
+            ForEach(0..<MProject.ProjectStatus.all.count + 1) { index in
+                Text(self.model.projectFilterTypeNames[index])
+            }
+        }.pickerStyle(SegmentedPickerStyle())
     }
     
     func listProjects() -> some View {

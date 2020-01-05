@@ -13,5 +13,8 @@ extension MProject {
         case active
         case suspended
         case completed
+        case failed
+        
+        static let all = [active, suspended, completed, failed]
     }
 }
