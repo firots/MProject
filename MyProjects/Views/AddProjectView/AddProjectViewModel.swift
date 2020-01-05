@@ -9,5 +9,6 @@
 import Foundation
 
 class AddProjectViewModel: ObservableObject {
-    
+    @Published var name: String?
+    @Published var notes: String?
 }
