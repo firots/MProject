@@ -33,7 +33,7 @@ extension MProject {
     }
     
     public var wrappedStatus: MProject.ProjectStatus {
-        return MProject.ProjectStatus(rawValue: status ?? MProject.ProjectStatus.active.rawValue) ?? .active
+        return ProjectStatus(rawValue: status ?? ProjectStatus.active.rawValue) ?? .active
     }
     
     public var wrappedNotes: String {

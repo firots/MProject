@@ -20,6 +20,7 @@ extension MProject {
         let project = MProject()
         project.id = UUID()
         project.created = Date()
+        project.status = ProjectStatus.active.rawValue
         
         return project
     }
