@@ -15,6 +15,12 @@ class AddProjectViewModel: ObservableObject {
     @Published var deadline = Date()
     @Published var hasDeadline = false
     
+    var project: MProject?
+    
+    init(project: MProject?) {
+        self.project = project
+    }
+    
     /*private var cancellableSet: Set<AnyCancellable> = []
     
     private var hasDeadlinePublisher: AnyPublisher<Bool, Never> {

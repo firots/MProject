@@ -23,7 +23,7 @@ struct ProjectsView: View {
             .navigationBarTitle("My Projects")
         }
         .sheet(isPresented: $model.showAddProject)  {
-            AddProjectView(moc: self.moc)
+            AddProjectView(context: self.moc, project: nil)
         }
     }
     

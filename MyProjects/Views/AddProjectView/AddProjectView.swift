@@ -10,35 +10,50 @@ import SwiftUI
 import CoreData
 
 struct AddProjectView: View {
-    @ObservedObject var model = AddProjectViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var model: AddProjectViewModel
     var moc: NSManagedObjectContext
+    
+    init(context moc: NSManagedObjectContext, project: MProject?) {
+        self.moc = moc
+        self.model = AddProjectViewModel(project: project)
+    }
     
     var body: some View {
         VStack {
             Form {
-                TextField("Name of your project", text: $model.name)
-                
-                TextField("Details about your project (optional)", text: $model.details)
-                
-                Toggle(isOn: $model.hasDeadline.animation()) {
-                    Text("Set a deadline for this project")
-                }
-                
-                if model.hasDeadline {
-                    DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
-                        Text("Deadline")
-                    }
-                }
-
+                mainSection()
             }
             saveButton()
         }
     }
     
+    func mainSection() -> some View {
+        Section {
+            TextField("Name of your project", text: $model.name)
+            
+            TextField("Details about your project (optional)", text: $model.details)
+            
+            Toggle(isOn: $model.hasDeadline.animation()) {
+                Text("Set a deadline for this project")
+            }
+            
+            if model.hasDeadline {
+                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
+                    Text("Deadline")
+                }.accentColor(.purple)
+            }
+        }
+    }
+    
     func saveButton() -> some View {
         Button("Save") {
-            let _ = MProject.create(from: self.model, context: self.moc)
-            
+            if self.model.project == nil {
+                let _ = MProject.create(from: self.model, context: self.moc)
+            } else {
+                self.model.project?.sync(to: self.model)
+            }
+
             if self.moc.hasChanges {
                 do {
                     try self.moc.save()
@@ -46,6 +61,7 @@ struct AddProjectView: View {
                     print(error.localizedDescription)
                 }
             }
+            self.presentationMode.wrappedValue.dismiss()
         }
         .foregroundColor(Color.white)
         .padding(EdgeInsets(top: 10, leading: 50, bottom: 10, trailing: 50))
@@ -58,6 +74,6 @@ struct AddProjectView_Previews: PreviewProvider {
     @Environment(\.managedObjectContext) static var moc
     
     static var previews: some View {
-        AddProjectView(moc: AddProjectView_Previews.moc)
+        AddProjectView(context: AddProjectView_Previews.moc, project: nil)
     }
 }
