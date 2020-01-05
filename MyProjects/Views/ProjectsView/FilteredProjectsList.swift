@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FilteredProjectsList: View {
     var fetchRequest: FetchRequest<MProject>
-    private var predicate: NSPredicate?
+    @State private var predicate: NSPredicate?
     @Environment(\.managedObjectContext) var moc
     
     var body: some View {
