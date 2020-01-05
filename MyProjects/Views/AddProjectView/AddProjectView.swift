@@ -15,15 +15,29 @@ struct AddProjectView: View {
     
     var body: some View {
         VStack {
+            Form {
+                TextField("Name of your project", text: $model.name)
+                
+                TextField("Details about your project (optional)", text: $model.details)
+                
+                Toggle(isOn: $model.hasDeadline.animation()) {
+                    Text("Project Deadline")
+                }
+                
+                if model.hasDeadline {
+                    DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
+                        Text("Deadline")
+                    }
+                }
+
+            }
             saveButton()
         }
     }
     
     func saveButton() -> some View {
         Button("Save") {
-            let project = MProject(context: self.moc)
-            project.id = UUID()
-            project.name = "Test Project"
+            let _ = MProject.create(from: self.model, context: self.moc)
             
             if self.moc.hasChanges {
                 do {

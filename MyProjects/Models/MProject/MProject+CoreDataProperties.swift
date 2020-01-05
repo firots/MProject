@@ -20,9 +20,11 @@ extension MProject {
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var status: String?
-    @NSManaged public var notes: String?
+    @NSManaged public var details: String?
     @NSManaged public var created: Date?
+    @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
+    @NSManaged public var deadline: Date?
     
     public var wrappedID: UUID {
         return id ?? UUID()
@@ -36,8 +38,8 @@ extension MProject {
         return ProjectStatus(rawValue: status ?? ProjectStatus.active.rawValue) ?? .active
     }
     
-    public var wrappedNotes: String {
-        return notes ?? ""
+    public var wrappedDetails: String {
+        return details ?? ""
     }
     
     public var wrappedCreated: Date {

@@ -29,7 +29,8 @@ struct ProjectsView: View {
     
     func listProjects() -> some View {
         List(projects, id: \.self) { project in
-            Text(project.name ?? "sdfds")
+            Text(project.wrappedName)
+            Text(project.wrappedDetails)
         }
     }
     

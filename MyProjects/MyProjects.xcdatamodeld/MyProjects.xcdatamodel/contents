@@ -2,10 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="MProject" representedClassName="MProject" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="deadline" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="details" optional="YES" attributeType="String"/>
+        <attribute name="ended" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -14,6 +16,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="MProject" positionX="-45" positionY="0" width="128" height="133"/>
+        <element name="MProject" positionX="-45" positionY="0" width="128" height="163"/>
     </elements>
 </model>
