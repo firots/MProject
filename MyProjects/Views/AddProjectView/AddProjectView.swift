@@ -40,7 +40,11 @@ struct AddProjectView: View {
             
             if model.hasDeadline {
                 DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
-                    Text("Deadline")
+                    Text("Date")
+                }.accentColor(.purple)
+                
+                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .hourAndMinute) {
+                    Text("Time")
                 }.accentColor(.purple)
             }
         }
