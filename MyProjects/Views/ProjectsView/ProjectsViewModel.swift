@@ -12,20 +12,19 @@ import Combine
 class ProjectsViewModel: ObservableObject {
     @Published var showAddProject = false
     @Published var projectFilter = 1
-    @Published var showProjects = [MProject.ProjectStatus.active.rawValue]
-    
+    @Published var predicate: NSPredicate?
+
     var projectFilterTypeNames: [String] = MProject.ProjectStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
     
     private var cancellableSet: Set<AnyCancellable> = []
 
-    
-    private var showProjectsPublisher: AnyPublisher<[String], Never> {
+    private var showProjectsPublisher: AnyPublisher<NSPredicate?, Never> {
         $projectFilter
             .map { projectFilter in
                 if projectFilter == 0 {
-                    return MProject.ProjectStatus.all.map({ $0.rawValue })
+                    return nil
                 } else {
-                    return [MProject.ProjectStatus.all[projectFilter - 1].rawValue]
+                    return NSPredicate(format: "status == %@", MProject.ProjectStatus.all[projectFilter - 1].rawValue)
                 }
             }
             .eraseToAnyPublisher()
@@ -36,10 +35,10 @@ class ProjectsViewModel: ObservableObject {
         
         showProjectsPublisher
             .receive(on: RunLoop.main)
-            .map {showProjects in
-                showProjects
+            .map {predicate in
+                predicate
         }
-        .assign(to: \.showProjects, on: self)
+        .assign(to: \.predicate, on: self)
         .store(in: &cancellableSet)
     }
     
