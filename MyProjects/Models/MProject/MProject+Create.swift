@@ -10,7 +10,17 @@ import Foundation
 import CoreData
 
 extension MProject {
-    static func create(from model: AddProjectViewModel) {
+    static func create(from model: AddProjectViewModel) -> MProject {
+        let project = createBase()
         
+        return project
+    }
+    
+    static func createBase() -> MProject {
+        let project = MProject()
+        project.id = UUID()
+        project.created = Date()
+        
+        return project
     }
 }
