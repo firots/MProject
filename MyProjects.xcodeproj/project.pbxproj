@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		761F244023C1667C008AA2B7 /* MProject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */; };
 		761F244123C1667C008AA2B7 /* MProject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */; };
-		761F244423C16EFD008AA2B7 /* MProject+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244323C16EFD008AA2B7 /* MProject+Create.swift */; };
+		761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */; };
 		761F244623C17238008AA2B7 /* MProject+ProjectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */; };
+		765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58223C230E7007F835D /* NotificationPeriod.swift */; };
+		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
+		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
 		76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */; };
 		76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */; };
 		76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C423BCE16200C1CD11 /* AddTaskView.swift */; };
@@ -34,8 +37,11 @@
 /* Begin PBXFileReference section */
 		761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		761F244323C16EFD008AA2B7 /* MProject+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+Create.swift"; sourceTree = "<group>"; };
+		761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CreateOrSync.swift"; sourceTree = "<group>"; };
 		761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+ProjectStatus.swift"; sourceTree = "<group>"; };
+		765BA58223C230E7007F835D /* NotificationPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPeriod.swift; sourceTree = "<group>"; };
+		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
+		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
 		76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
 		76EF17C423BCE16200C1CD11 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
@@ -82,10 +88,27 @@
 			children = (
 				761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */,
 				761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */,
-				761F244323C16EFD008AA2B7 /* MProject+Create.swift */,
+				761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */,
 				761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */,
 			);
 			path = MProject;
+			sourceTree = "<group>";
+		};
+		765BA58123C230C1007F835D /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				765BA58223C230E7007F835D /* NotificationPeriod.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		765BA58423C2312D007F835D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				765BA58523C2313E007F835D /* Date+ToString.swift */,
+				765BA58723C236E5007F835D /* String+EmptyHolder.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		76EF17BC23BCE07100C1CD11 /* Reusables */ = {
@@ -141,6 +164,8 @@
 		76FD61A423B929AE00D21B21 /* MyProjects */ = {
 			isa = PBXGroup;
 			children = (
+				765BA58423C2312D007F835D /* Extensions */,
+				765BA58123C230C1007F835D /* Notifications */,
 				761F243C23C15A4B008AA2B7 /* Models */,
 				76FD61BC23B929D900D21B21 /* Views */,
 				76FD61A523B929AE00D21B21 /* AppDelegate.swift */,
@@ -285,13 +310,16 @@
 				761F244623C17238008AA2B7 /* MProject+ProjectStatus.swift in Sources */,
 				76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */,
 				76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */,
+				765BA58623C2313E007F835D /* Date+ToString.swift in Sources */,
 				76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */,
-				761F244423C16EFD008AA2B7 /* MProject+Create.swift in Sources */,
+				761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */,
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
+				765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */,
 				76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */,
+				765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */,
 				761F244023C1667C008AA2B7 /* MProject+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

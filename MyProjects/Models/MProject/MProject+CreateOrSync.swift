@@ -13,8 +13,8 @@ extension MProject {
     static func createOrSync(from model: AddProjectViewModel, context moc: NSManagedObjectContext, project: MProject?) -> MProject {
         let p = project ?? createBase(context: moc)
         
-        p.name = model.name
-        p.details = model.details
+        p.name = model.name.emptyIsNil()
+        p.details = model.details.emptyIsNil()
         
         if model.hasDeadline {
             p.deadline = model.deadline
@@ -30,6 +30,7 @@ extension MProject {
         project.id = UUID()
         project.created = Date()
         project.status = ProjectStatus.active.rawValue
+        project.details = ""
         
         return project
     }

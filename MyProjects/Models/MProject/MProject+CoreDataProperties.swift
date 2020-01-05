@@ -39,7 +39,7 @@ extension MProject {
     }
     
     public var wrappedDetails: String {
-        return details ?? ""
+        return details ?? "No Details"
     }
     
     public var wrappedCreated: Date {

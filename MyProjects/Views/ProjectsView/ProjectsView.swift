@@ -29,8 +29,15 @@ struct ProjectsView: View {
     
     func listProjects() -> some View {
         List(projects, id: \.self) { project in
-            Text(project.wrappedName)
-            Text(project.wrappedDetails)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(project.wrappedName)
+                    Text(project.wrappedDetails).font(.footnote)
+                    Text("Due: \(project.deadline?.toString() ?? "No Deadline")").font(.footnote)
+                    
+                }
+                Spacer()
+            }
         }
     }
     
