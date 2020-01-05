@@ -30,17 +30,16 @@ struct ProjectsView: View {
     func listProjects() -> some View {
         List {
             ForEach(projects, id: \.self) { project in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(project.wrappedName)
-                        Text(project.wrappedDetails).font(.footnote)
-                        Text("Due: \(project.deadline?.toString() ?? "No Deadline")").font(.footnote)
-                        
-                    }
-                    Spacer()
-                }
-
+                self.projectCell(project)
             }.onDelete(perform: removeProjects)
+        }
+    }
+    
+    func projectCell(_ project: MProject) -> some View {
+        VStack(alignment: .leading) {
+            Text(project.wrappedName)
+            Text(project.wrappedDetails).font(.footnote)
+            Text("Due: \(project.deadline?.toString() ?? "No Deadline")").font(.footnote)
         }
     }
     
