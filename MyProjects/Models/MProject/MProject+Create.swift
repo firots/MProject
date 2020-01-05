@@ -16,6 +16,10 @@ extension MProject {
         project.name = model.name
         project.details = model.details
         
+        if model.hasDeadline {
+            project.deadline = model.deadline
+        }
+        
         return project
     }
     

@@ -21,7 +21,7 @@ struct AddProjectView: View {
                 TextField("Details about your project (optional)", text: $model.details)
                 
                 Toggle(isOn: $model.hasDeadline.animation()) {
-                    Text("Project Deadline")
+                    Text("Set a deadline for this project")
                 }
                 
                 if model.hasDeadline {
@@ -47,6 +47,10 @@ struct AddProjectView: View {
                 }
             }
         }
+        .foregroundColor(Color.white)
+        .padding(EdgeInsets(top: 10, leading: 50, bottom: 10, trailing: 50))
+        .background(Color.purple)
+        .clipShape(Capsule())
     }
 }
 
