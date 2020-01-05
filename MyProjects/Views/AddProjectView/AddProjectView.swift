@@ -10,9 +10,16 @@ import SwiftUI
 
 struct AddProjectView: View {
     @ObservedObject var model = AddTaskViewModel()
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
-        Text("Add Project")
+        saveButton()
+    }
+    
+    func saveButton() -> some View {
+        Button("Save") {
+            if self.moc.hasChanges { try? self.moc.save() }
+        }
     }
 }
 

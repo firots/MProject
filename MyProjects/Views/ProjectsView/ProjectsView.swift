@@ -10,6 +10,9 @@ import SwiftUI
 
 struct ProjectsView: View {
     @ObservedObject var model = ProjectsViewModel()
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Project.entity(), sortDescriptors: []) var projects: FetchedResults<Project>
+    
     var body: some View {
         NavigationView {
             ZStack {
