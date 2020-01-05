@@ -28,27 +28,4 @@ class AddProjectViewModel: ObservableObject {
             }
         }
     }
-
-    
-    /*private var cancellableSet: Set<AnyCancellable> = []
-    
-    private var hasDeadlinePublisher: AnyPublisher<Bool, Never> {
-        $hasDeadline
-            .map { hasDeadline in
-                return hasDeadline
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    init() {
-        hasDeadlinePublisher
-            .receive(on: RunLoop.main)
-            .map {hasDeadline in
-                hasDeadline ? self.deadline ?? Date() : nil
-        }
-        .assign(to: \.deadline, on: self)
-        .store(in: &cancellableSet)
-    }*/
-    
-    
 }
