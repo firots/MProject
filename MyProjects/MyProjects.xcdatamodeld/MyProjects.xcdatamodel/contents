@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Project" representedClassName="Project" syncable="YES">
-        <attribute name="completed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="dcription" optional="YES" attributeType="String"/>
-        <attribute name="deadline" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="MProject" representedClassName="MProject" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Project" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="MProject" positionX="-45" positionY="0" width="128" height="133"/>
     </elements>
 </model>

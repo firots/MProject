@@ -10,21 +10,32 @@ import SwiftUI
 
 struct ProjectsView: View {
     @ObservedObject var model = ProjectsViewModel()
+    
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: Project.entity(), sortDescriptors: []) var projects: FetchedResults<Project>
+    @FetchRequest(entity: MProject.entity(), sortDescriptors: []) var projects: FetchedResults<MProject>
     
     var body: some View {
         NavigationView {
             ZStack {
-                AddButton() {
-                    self.model.showAddProject = true
-                }
-                Text("No projects so far.")
+                listProjects()
+                addButton()
             }
             .navigationBarTitle("My Projects")
         }
         .sheet(isPresented: $model.showAddProject)  {
-            AddProjectView()
+            AddProjectView(moc: self.moc)
+        }
+    }
+    
+    func listProjects() -> some View {
+        List(projects, id: \.self) { project in
+            Text(project.name ?? "sdfds")
+        }
+    }
+    
+    func addButton() -> some View {
+        AddButton() {
+            self.model.showAddProject = true
         }
     }
 }

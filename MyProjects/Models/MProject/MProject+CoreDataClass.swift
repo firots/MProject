@@ -1,5 +1,5 @@
 //
-//  Project+CoreDataClass.swift
+//  MProject+CoreDataClass.swift
 //  MyProjects
 //
 //  Created by Firot on 5.01.2020.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Project)
-public class Project: NSManagedObject {
+@objc(MProject)
+public class MProject: NSManagedObject {
 
 }
