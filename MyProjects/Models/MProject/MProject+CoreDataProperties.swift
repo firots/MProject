@@ -25,6 +25,7 @@ extension MProject {
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var deadline: Date?
+    @NSManaged public var task: NSSet?
     
     public var wrappedID: UUID {
         return id ?? UUID()
@@ -49,4 +50,21 @@ extension MProject {
     public var wrappedLastModified: Date {
         return lastModified ?? wrappedCreated
     }
+}
+
+// MARK: Generated accessors for task
+extension MProject {
+
+    @objc(addTaskObject:)
+    @NSManaged public func addToTask(_ value: MTask)
+
+    @objc(removeTaskObject:)
+    @NSManaged public func removeFromTask(_ value: MTask)
+
+    @objc(addTask:)
+    @NSManaged public func addToTask(_ values: NSSet)
+
+    @objc(removeTask:)
+    @NSManaged public func removeFromTask(_ values: NSSet)
+
 }
