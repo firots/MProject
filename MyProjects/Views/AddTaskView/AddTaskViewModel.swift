@@ -9,6 +9,11 @@
 import Foundation
 
 class AddTaskViewModel: ObservableObject {
+    @Published var name = ""
+    @Published var details = ""
+    @Published var deadline = Date()
+    @Published var hasDeadline = false
+    
     let project: MProject?
     
     init(_ project: MProject?) {
