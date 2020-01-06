@@ -50,6 +50,14 @@ extension MProject {
     public var wrappedLastModified: Date {
         return lastModified ?? wrappedCreated
     }
+    
+    public var tasks: [MTask] {
+        let set = task as? Set<MTask> ?? []
+        
+        return set.sorted {
+            $0.wrappedCreated > $1.wrappedCreated
+        }
+    }
 }
 
 // MARK: Generated accessors for task

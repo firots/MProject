@@ -28,6 +28,26 @@ extension MTask {
     @NSManaged public var project: MProject?
     @NSManaged public var precondition: NSSet?
     @NSManaged public var involved: NSSet?
+    
+    public var wrappedCreated: Date {
+        return created ?? Date()
+    }
+    
+    public var preconditions: [MTask] {
+        let set = precondition as? Set<MTask> ?? []
+        
+        return set.sorted {
+            $0.wrappedCreated > $1.wrappedCreated
+        }
+    }
+    
+    public var involvedTasks: [MTask] {
+        let set = involved as? Set<MTask> ?? []
+        
+        return set.sorted {
+            $0.wrappedCreated > $1.wrappedCreated
+        }
+    }
 
 }
 
