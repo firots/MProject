@@ -9,7 +9,11 @@
 import SwiftUI
 
 struct TasksView: View {
-    @ObservedObject private var model = TasksViewModel()
+    @ObservedObject private var model: TasksViewModel
+    
+    init(project: MProject?) {
+        model = TasksViewModel(project: project)
+    }
     
     var body: some View {
         NavigationView {
@@ -29,6 +33,6 @@ struct TasksView: View {
 
 struct TasksView_Previews: PreviewProvider {
     static var previews: some View {
-        TasksView()
+        TasksView(project: nil)
     }
 }
