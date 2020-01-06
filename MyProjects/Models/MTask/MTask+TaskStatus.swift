@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension MTask {
     public enum TaskStatus: String {
@@ -15,5 +16,6 @@ extension MTask {
         case expired
         
         static let all = [active, completed, expired]
+        static let colors = [Color(UIColor.systemBackground), Color.green, Color.red]
     }
 }

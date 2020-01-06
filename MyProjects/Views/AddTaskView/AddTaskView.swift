@@ -24,9 +24,6 @@ struct AddTaskView: View {
             Spacer(minLength: 20)
             titleBar()
             Form {
-                if model.task != nil {
-                    taskStatePicker()
-                }
                 mainSection()
             }
         }
@@ -52,11 +49,18 @@ struct AddTaskView: View {
             ForEach(0..<MProject.ProjectStatus.all.count) { index in
                 Text(MTask.TaskStatus.all[index].rawValue.capitalizingFirstLetter())
             }
-        }.pickerStyle(SegmentedPickerStyle())
+        }
+        .pickerStyle(SegmentedPickerStyle())
+        .background(MTask.TaskStatus.colors[model.statusIndex])
+        .cornerRadius(5)
     }
     
     func mainSection() -> some View {
         Section {
+            if model.task != nil {
+                taskStatePicker()
+            }
+            
             TextField("Name of your task", text: $model.name)
             
             TextField("Details about your task (optional)", text: $model.details)
