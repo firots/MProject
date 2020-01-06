@@ -21,12 +21,30 @@ struct AddProjectView: View {
     
     var body: some View {
         VStack {
+            Spacer(minLength: 20)
+            titleBar()
             Form {
                 mainSection()
             }
-            saveButton()
-            Spacer()
         }
+    }
+    
+    func titleBar() -> some View {
+        ZStack {
+            HStack {
+                Spacer()
+                saveButton()
+                Spacer().frame(width: 20)
+            }
+            
+            HStack {
+                Spacer()
+                Text(model.project == nil ? "Add Project": "Edit Project")
+                    .font(.headline)
+                Spacer()
+            }
+        }
+
     }
     
     func mainSection() -> some View {
@@ -64,10 +82,7 @@ struct AddProjectView: View {
             }
             self.presentationMode.wrappedValue.dismiss()
         }
-        .foregroundColor(Color.white)
-        .padding(EdgeInsets(top: 10, leading: 50, bottom: 10, trailing: 50))
-        .background(Color.purple)
-        .clipShape(Capsule())
+        .foregroundColor(Color.purple)
     }
 }
 
