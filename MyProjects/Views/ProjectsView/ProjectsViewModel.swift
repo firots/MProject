@@ -18,7 +18,7 @@ class ProjectsViewModel: ObservableObject {
     
     private var cancellableSet: Set<AnyCancellable> = []
 
-    private var showProjectsPublisher: AnyPublisher<NSPredicate?, Never> {
+    private var filterProjectsPublisher: AnyPublisher<NSPredicate?, Never> {
         $projectFilter
             .map { projectFilter in
                 if projectFilter == 0 {
@@ -33,7 +33,7 @@ class ProjectsViewModel: ObservableObject {
     init() {
         projectFilterTypeNames.insert("All", at: 0)
         
-        showProjectsPublisher
+        filterProjectsPublisher
             .receive(on: RunLoop.main)
             .map {predicate in
                 predicate
