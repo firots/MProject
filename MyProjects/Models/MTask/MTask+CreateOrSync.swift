@@ -16,6 +16,7 @@ extension MTask {
         t.name = model.name.emptyIsNil()
         t.details = model.details.emptyIsNil()
         t.project = project
+        t.status = TaskStatus.all[model.statusIndex].rawValue
         
         if model.hasDeadline {
             t.deadline = model.deadline

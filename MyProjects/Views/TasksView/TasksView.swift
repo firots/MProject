@@ -20,12 +20,13 @@ struct TasksView: View {
         ZStack {
             listTasks()
             AddButton() {
+                self.model.taskToEdit = nil
                 self.model.showAddTask = true
             }
         }
         .navigationBarTitle(model.project?.wrappedName ?? "My Tasks")
         .sheet(isPresented: $model.showAddTask)  {
-            AddTaskView(task: nil, project: self.model.project, context: self.moc)
+            AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
         }
     }
     
@@ -36,10 +37,15 @@ struct TasksView: View {
     }
     
     private func taskCell(_ task: MTask) -> some View {
-        VStack(alignment: .leading) {
-            Text(task.wrappedName)
-            Text(task.wrappedDetails).font(.footnote)
-            Text("Due: \(task.deadline?.toString() ?? "No Deadline")").font(.footnote)
+        Button(action: {
+            self.model.taskToEdit = task
+            self.model.showAddTask = true
+        }) {
+            VStack(alignment: .leading) {
+                Text(task.wrappedName)
+                Text(task.wrappedDetails).font(.footnote)
+                Text("Due: \(task.deadline?.toString() ?? "No Deadline")").font(.footnote)
+            }
         }
     }
 }

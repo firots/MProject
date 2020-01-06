@@ -13,6 +13,8 @@ class TasksViewModel: ObservableObject {
     @Published var showAddTask = false
     @Published var taskFilter = 1
     @Published var predicate: NSPredicate?
+    
+    var taskToEdit: MTask?
 
     var taskFilterTypeNames: [String] = MTask.TaskStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
     

@@ -24,6 +24,9 @@ struct AddTaskView: View {
             Spacer(minLength: 20)
             titleBar()
             Form {
+                if model.task != nil {
+                    taskStatePicker()
+                }
                 mainSection()
             }
         }
@@ -42,6 +45,14 @@ struct AddTaskView: View {
             }
             self.presentationMode.wrappedValue.dismiss()
         }
+    }
+    
+    private func taskStatePicker() -> some View {
+        Picker(selection: $model.statusIndex, label: Text("Status")) {
+            ForEach(0..<MProject.ProjectStatus.all.count) { index in
+                Text(MTask.TaskStatus.all[index].rawValue.capitalizingFirstLetter())
+            }
+        }.pickerStyle(SegmentedPickerStyle())
     }
     
     func mainSection() -> some View {

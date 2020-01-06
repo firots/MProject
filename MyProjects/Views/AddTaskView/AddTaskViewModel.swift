@@ -13,6 +13,7 @@ class AddTaskViewModel: ObservableObject {
     @Published var details = ""
     @Published var deadline = Date()
     @Published var hasDeadline = false
+    @Published var statusIndex: Int
     
     let project: MProject?
     let task: MTask?
@@ -20,6 +21,7 @@ class AddTaskViewModel: ObservableObject {
     init(_ task: MTask?, _ project: MProject?) {
         self.project = project
         self.task = task
+        self.statusIndex = MTask.TaskStatus.all.firstIndex(of: MTask.TaskStatus(rawValue: task?.status ?? MTask.TaskStatus.active.rawValue) ?? MTask.TaskStatus.active) ?? 0
         
         if let t = task {
             name = t.name ?? ""
