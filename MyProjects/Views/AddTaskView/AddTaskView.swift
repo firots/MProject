@@ -15,13 +15,13 @@ struct AddTaskView: View {
         Text("Add Task")
     }
     
-    init(project: MProject?) {
-        model = AddTaskViewModel(project)
+    init(task: MTask?, project: MProject?) {
+        model = AddTaskViewModel(task, project)
     }
 }
 
 struct AddTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTaskView(project: nil)
+        AddTaskView(task: nil, project: nil)
     }
 }

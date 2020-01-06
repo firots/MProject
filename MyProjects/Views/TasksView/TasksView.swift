@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TasksView: View {
     @ObservedObject private var model: TasksViewModel
+    @Environment(\.managedObjectContext) private var moc
     
     init(project: MProject?) {
         model = TasksViewModel(project: project)
@@ -26,7 +27,7 @@ struct TasksView: View {
             .navigationBarTitle("My Tasks")
         }
         .sheet(isPresented: $model.showAddTask)  {
-            AddTaskView(project: self.model.project)
+            AddTaskView(task: nil, project: self.model.project)
         }
     }
     

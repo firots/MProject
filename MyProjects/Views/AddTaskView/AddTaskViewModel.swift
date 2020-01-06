@@ -15,8 +15,10 @@ class AddTaskViewModel: ObservableObject {
     @Published var hasDeadline = false
     
     let project: MProject?
+    let task: MTask?
     
-    init(_ project: MProject?) {
+    init(_ task: MTask?, _ project: MProject?) {
         self.project = project
+        self.task = task
     }
 }
