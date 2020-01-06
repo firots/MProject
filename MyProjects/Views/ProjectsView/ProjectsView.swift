@@ -19,7 +19,6 @@ struct ProjectsView: View {
                     projectFilter()
                     listProjects()
                 }
-                
                 addButton()
             }
             .navigationBarTitle("My Projects")

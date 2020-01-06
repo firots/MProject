@@ -9,5 +9,9 @@
 import Foundation
 
 class AddTaskViewModel: ObservableObject {
+    let project: MProject?
     
+    init(_ project: MProject?) {
+        self.project = project
+    }
 }

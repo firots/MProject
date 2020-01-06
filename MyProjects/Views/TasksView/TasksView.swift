@@ -18,15 +18,29 @@ struct TasksView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                listTasks()
                 AddButton() {
                     self.model.showAddTask = true
                 }
-                Text("No tasks so far.")
             }
             .navigationBarTitle("My Tasks")
         }
         .sheet(isPresented: $model.showAddTask)  {
-            AddTaskView()
+            AddTaskView(project: self.model.project)
+        }
+    }
+    
+    private func listTasks() -> some View {
+        FilteredList(predicate: model.predicate) { (task: MTask) in
+            self.taskCell(task)
+        }
+    }
+    
+    private func taskCell(_ task: MTask) -> some View {
+        VStack(alignment: .leading) {
+            Text(task.wrappedName)
+            Text(task.wrappedDetails).font(.footnote)
+            Text("Due: \(task.deadline?.toString() ?? "No Deadline")").font(.footnote)
         }
     }
 }

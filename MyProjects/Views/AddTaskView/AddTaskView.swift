@@ -9,15 +9,19 @@
 import SwiftUI
 
 struct AddTaskView: View {
-    @ObservedObject private var model = AddTaskViewModel()
+    @ObservedObject private var model: AddTaskViewModel
     
     var body: some View {
         Text("Add Task")
+    }
+    
+    init(project: MProject?) {
+        model = AddTaskViewModel(project)
     }
 }
 
 struct AddTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTaskView()
+        AddTaskView(project: nil)
     }
 }

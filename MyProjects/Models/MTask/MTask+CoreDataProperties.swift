@@ -29,8 +29,28 @@ extension MTask {
     @NSManaged public var precondition: NSSet?
     @NSManaged public var involved: NSSet?
     
+    public var wrappedID: UUID {
+        return id ?? UUID()
+    }
+    
+    public var wrappedName: String {
+        return name ?? "Unnamed Task"
+    }
+    
+    public var wrappedStatus:TaskStatus{
+        return TaskStatus(rawValue: status ?? TaskStatus.active.rawValue) ?? .active
+    }
+    
+    public var wrappedDetails: String {
+        return details ?? "No Details"
+    }
+    
     public var wrappedCreated: Date {
         return created ?? Date()
+    }
+    
+    public var wrappedLastModified: Date {
+        return lastModified ?? wrappedCreated
     }
     
     public var preconditions: [MTask] {

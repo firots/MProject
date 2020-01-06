@@ -29,4 +29,5 @@ class TasksViewModel: ObservableObject {
              predicate = NSPredicate(format: "project == %@", project)
         }
     }
+
 }
