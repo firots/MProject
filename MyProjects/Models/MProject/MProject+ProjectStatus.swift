@@ -11,10 +11,9 @@ import Foundation
 extension MProject {
     public enum ProjectStatus: String {
         case active
-        case suspended
         case completed
         case failed
         
-        static let all = [active, suspended, completed, failed]
+        static let all = [active, completed, failed]
     }
 }

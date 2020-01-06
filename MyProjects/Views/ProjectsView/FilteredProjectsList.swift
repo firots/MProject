@@ -9,13 +9,17 @@
 import SwiftUI
 
 struct FilteredProjectsList: View {
-    var fetchRequest: FetchRequest<MProject>
     @State private var predicate: NSPredicate?
     @Environment(\.managedObjectContext) var moc
     
+    private var fetchRequest: FetchRequest<MProject>
+    private var projects: FetchedResults<MProject> {
+        fetchRequest.wrappedValue
+    }
+
     var body: some View {
         List {
-            ForEach(fetchRequest.wrappedValue, id: \.self) { project in
+            ForEach(projects, id: \.self) { project in
                 self.projectCell(project)
             }.onDelete(perform: removeProjects)
         }
@@ -26,7 +30,7 @@ struct FilteredProjectsList: View {
         self.predicate = predicate
     }
     
-    func projectCell(_ project: MProject) -> some View {
+    private func projectCell(_ project: MProject) -> some View {
         VStack(alignment: .leading) {
             Text(project.wrappedName)
             Text(project.wrappedDetails).font(.footnote)
@@ -34,9 +38,9 @@ struct FilteredProjectsList: View {
         }
     }
     
-    func removeProjects(at offsets: IndexSet) {
+    private func removeProjects(at offsets: IndexSet) {
         for index in offsets {
-            let project = fetchRequest.wrappedValue[index]
+            let project = projects[index]
             moc.delete(project)
         }
         if moc.hasChanges { try? moc.save() }

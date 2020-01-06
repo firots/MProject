@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct ProjectsView: View {
-    @ObservedObject var model = ProjectsViewModel()
-    @Environment(\.managedObjectContext) var moc
+    @ObservedObject private var model = ProjectsViewModel()
+    @Environment(\.managedObjectContext) private var moc
     
     var body: some View {
         NavigationView {
@@ -29,7 +29,7 @@ struct ProjectsView: View {
         }
     }
     
-    func projectFilter() -> some View {
+    private func projectFilter() -> some View {
         Picker(selection: $model.projectFilter, label: Text("Show")) {
             ForEach(0..<MProject.ProjectStatus.all.count + 1) { index in
                 Text(self.model.projectFilterTypeNames[index])
@@ -37,11 +37,11 @@ struct ProjectsView: View {
         }.pickerStyle(SegmentedPickerStyle())
     }
     
-    func listProjects() -> some View {
+    private func listProjects() -> some View {
         FilteredProjectsList(predicate: model.predicate)
     }
     
-    func addButton() -> some View {
+    private func addButton() -> some View {
         AddButton() {
             self.model.showAddProject = true
         }

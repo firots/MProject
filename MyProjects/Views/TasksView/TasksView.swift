@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct TasksView: View {
-    @ObservedObject var model = TasksViewModel()
+    @ObservedObject private var model = TasksViewModel()
+    
     var body: some View {
         NavigationView {
             ZStack {

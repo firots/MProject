@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AddTaskView: View {
-    @ObservedObject var model = AddTaskViewModel()
+    @ObservedObject private var model = AddTaskViewModel()
     
     var body: some View {
         Text("Add Task")
