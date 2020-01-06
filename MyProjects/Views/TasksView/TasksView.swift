@@ -17,17 +17,15 @@ struct TasksView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                listTasks()
-                AddButton() {
-                    self.model.showAddTask = true
-                }
+        ZStack {
+            listTasks()
+            AddButton() {
+                self.model.showAddTask = true
             }
-            .navigationBarTitle("My Tasks")
         }
+        .navigationBarTitle(model.project?.wrappedName ?? "My Tasks")
         .sheet(isPresented: $model.showAddTask)  {
-            AddTaskView(task: nil, project: self.model.project)
+            AddTaskView(task: nil, project: self.model.project, context: self.moc)
         }
     }
     

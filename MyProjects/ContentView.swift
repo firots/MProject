@@ -13,7 +13,9 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            TasksView(project: nil)
+            NavigationView {
+                TasksView(project: nil)
+            }
             .tabItem {
                 Image(systemName: "largecircle.fill.circle")
                     .font(.system(size: 24))

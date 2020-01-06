@@ -20,5 +20,14 @@ class AddTaskViewModel: ObservableObject {
     init(_ task: MTask?, _ project: MProject?) {
         self.project = project
         self.task = task
+        
+        if let t = task {
+            name = t.name ?? ""
+            details = t.details ?? ""
+            if let deadline = t.deadline {
+                hasDeadline = true
+                self.deadline = deadline
+            }
+        }
     }
 }

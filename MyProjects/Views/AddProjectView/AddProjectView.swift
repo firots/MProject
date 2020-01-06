@@ -26,25 +26,22 @@ struct AddProjectView: View {
             Form {
                 mainSection()
             }
-        }
+        }.navigationBarTitle("Add Project")
     }
     
     func titleBar() -> some View {
-        ZStack {
-            HStack {
-                Spacer()
-                saveButton()
-                Spacer().frame(width: 20)
-            }
-            
-            HStack {
-                Spacer()
-                Text(model.project == nil ? "Add Project": "Edit Project")
-                    .font(.headline)
-                Spacer()
-            }
-        }
+        ModalTitle(title: model.project == nil ? "Add Project": "Edit Project") {
+            let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.project)
 
+            if self.moc.hasChanges {
+                do {
+                    try self.moc.save()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
     
     func mainSection() -> some View {
@@ -69,21 +66,7 @@ struct AddProjectView: View {
         }
     }
     
-    func saveButton() -> some View {
-        Button("Save") {
-            let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.project)
 
-            if self.moc.hasChanges {
-                do {
-                    try self.moc.save()
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-            self.presentationMode.wrappedValue.dismiss()
-        }
-        .foregroundColor(Color.purple)
-    }
 }
 
 struct AddProjectView_Previews: PreviewProvider {

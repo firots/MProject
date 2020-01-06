@@ -49,10 +49,12 @@ struct ProjectsView: View {
     }
     
     private func projectCell(_ project: MProject) -> some View {
-        VStack(alignment: .leading) {
-            Text(project.wrappedName)
-            Text(project.wrappedDetails).font(.footnote)
-            Text("Due: \(project.deadline?.toString() ?? "No Deadline")").font(.footnote)
+        NavigationLink(destination: TasksView(project: project)) {
+            VStack(alignment: .leading) {
+                Text(project.wrappedName)
+                Text(project.wrappedDetails).font(.footnote)
+                Text("Due: \(project.deadline?.toString() ?? "No Deadline")").font(.footnote)
+            }
         }
     }
 }
