@@ -38,12 +38,22 @@ struct ProjectsView: View {
     }
     
     private func listProjects() -> some View {
-        FilteredProjectsList(predicate: model.predicate)
+        FilteredList(predicate: model.predicate) { (project: MProject) in
+            self.projectCell(project)
+        }
     }
     
     private func addButton() -> some View {
         AddButton() {
             self.model.showAddProject = true
+        }
+    }
+    
+    private func projectCell(_ project: MProject) -> some View {
+        VStack(alignment: .leading) {
+            Text(project.wrappedName)
+            Text(project.wrappedDetails).font(.footnote)
+            Text("Due: \(project.deadline?.toString() ?? "No Deadline")").font(.footnote)
         }
     }
 }
