@@ -54,9 +54,9 @@ extension MObject {
 public enum MObjectStatus: String {
     case active
     case waiting
-    case completed
+    case done
     case expired
     
-    static let all = [active, waiting, completed, expired]
+    static let all = [active, waiting, done, expired]
     static let colors = [Color(UIColor.systemBackground), Color.yellow, Color.green, Color.red]
 }

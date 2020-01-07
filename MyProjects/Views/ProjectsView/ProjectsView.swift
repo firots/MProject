@@ -11,6 +11,7 @@ import SwiftUI
 struct ProjectsView: View {
     @ObservedObject private var model = ProjectsViewModel()
     @Environment(\.managedObjectContext) private var moc
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     var body: some View {
         NavigationView {
@@ -56,11 +57,19 @@ struct ProjectsView: View {
                 Text("Due: \(project.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
             }
         }
-        .listRowBackground(Color(.secondarySystemBackground))
+        .listRowBackground(cellColor)
         .padding()
-        .background(Color(.systemBackground))
+        .background(cellBackgroundColor)
         .cornerRadius(12)
         .shadow(radius: 2)
+    }
+    
+    private var cellColor: Color {
+        colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
+    }
+    
+    private var cellBackgroundColor: Color {
+        colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground)
     }
 }
 
