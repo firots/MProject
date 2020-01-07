@@ -14,7 +14,7 @@ class ProjectsViewModel: ObservableObject {
     @Published var projectFilter = 1
     @Published var predicate: NSPredicate?
 
-    var projectFilterTypeNames: [String] = MProject.ProjectStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
+    var projectFilterTypeNames: [String] = MObjectStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
     
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -24,7 +24,7 @@ class ProjectsViewModel: ObservableObject {
                 if projectFilter == 0 {
                     return nil
                 } else {
-                    return NSPredicate(format: "status == %@", MProject.ProjectStatus.all[projectFilter - 1].rawValue)
+                    return NSPredicate(format: "status == %@", MObjectStatus.all[projectFilter - 1].rawValue)
                 }
             }
             .eraseToAnyPublisher()

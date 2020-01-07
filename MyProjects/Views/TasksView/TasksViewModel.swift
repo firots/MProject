@@ -16,7 +16,7 @@ class TasksViewModel: ObservableObject {
     
     var taskToEdit: MTask?
 
-    var taskFilterTypeNames: [String] = MTask.TaskStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
+    var taskFilterTypeNames: [String] = MObjectStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
     
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -34,9 +34,9 @@ class TasksViewModel: ObservableObject {
                     }
                 } else {
                     if self.project == nil {
-                        return NSPredicate(format: "status == %@", MTask.TaskStatus.all[taskFilter - 1].rawValue)
+                        return NSPredicate(format: "status == %@", MObjectStatus.all[taskFilter - 1].rawValue)
                     } else {
-                        return NSPredicate(format: "status == %@ AND project == %@", MTask.TaskStatus.all[taskFilter - 1].rawValue, self.project!)
+                        return NSPredicate(format: "status == %@ AND project == %@", MObjectStatus.all[taskFilter - 1].rawValue, self.project!)
                     }
                 }
             }

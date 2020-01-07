@@ -24,7 +24,7 @@ class AddTaskViewModel: ObservableObject {
     init(_ task: MTask?, _ project: MProject?) {
         self.project = project
         self.task = task
-        self.statusIndex = MTask.TaskStatus.all.firstIndex(of: MTask.TaskStatus(rawValue: task?.status ?? MTask.TaskStatus.active.rawValue) ?? MTask.TaskStatus.active) ?? 0
+        self.statusIndex = MObjectStatus.all.firstIndex(of: MObjectStatus(rawValue: task?.status ?? MObjectStatus.active.rawValue) ?? MObjectStatus.active) ?? 0
         
         if let t = task {
             name = t.name ?? ""

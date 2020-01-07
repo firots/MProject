@@ -16,7 +16,7 @@ extension MTask {
         t.name = model.name.emptyIsNil()
         t.details = model.details.emptyIsNil()
         t.project = project
-        t.status = TaskStatus.all[model.statusIndex].rawValue
+        t.status = MObjectStatus.all[model.statusIndex].rawValue
         
         if model.hasDeadline {
             t.deadline = model.deadline
@@ -31,7 +31,7 @@ extension MTask {
         let task = MTask(context: moc)
         task.id = UUID()
         task.created = Date()
-        task.status = TaskStatus.active.rawValue
+        task.status = MObjectStatus.active.rawValue
         task.details = ""
         
         return task

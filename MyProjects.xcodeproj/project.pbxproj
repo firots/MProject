@@ -11,7 +11,8 @@
 		761F244023C1667C008AA2B7 /* MProject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */; };
 		761F244123C1667C008AA2B7 /* MProject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */; };
 		761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */; };
-		761F244623C17238008AA2B7 /* MProject+ProjectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */; };
+		7625E11123C4E58900F81CCA /* AddMObjectSharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11023C4E58900F81CCA /* AddMObjectSharedView.swift */; };
+		7625E11423C4E5F700F81CCA /* MObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11323C4E5F700F81CCA /* MObject.swift */; };
 		764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30B23C2816600F581BA /* String+Capitalizer.swift */; };
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
 		765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58223C230E7007F835D /* NotificationPeriod.swift */; };
@@ -19,7 +20,6 @@
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
 		7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */; };
 		7681B67F23C383DA0068254B /* MTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */; };
-		7681B68623C3ADA80068254B /* MTask+TaskStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B68523C3ADA80068254B /* MTask+TaskStatus.swift */; };
 		7681B68823C3B3360068254B /* MTask+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */; };
 		76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */; };
 		76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */; };
@@ -46,7 +46,8 @@
 		761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CreateOrSync.swift"; sourceTree = "<group>"; };
-		761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+ProjectStatus.swift"; sourceTree = "<group>"; };
+		7625E11023C4E58900F81CCA /* AddMObjectSharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectSharedView.swift; sourceTree = "<group>"; };
+		7625E11323C4E5F700F81CCA /* MObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObject.swift; sourceTree = "<group>"; };
 		764AA30B23C2816600F581BA /* String+Capitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalizer.swift"; sourceTree = "<group>"; };
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		765BA58223C230E7007F835D /* NotificationPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPeriod.swift; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
 		7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7681B68523C3ADA80068254B /* MTask+TaskStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+TaskStatus.swift"; sourceTree = "<group>"; };
 		7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CreateOrSync.swift"; sourceTree = "<group>"; };
 		76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
@@ -104,9 +104,32 @@
 				761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */,
 				761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */,
 				761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */,
-				761F244523C17238008AA2B7 /* MProject+ProjectStatus.swift */,
 			);
 			path = MProject;
+			sourceTree = "<group>";
+		};
+		7625E10E23C4E54100F81CCA /* MObject */ = {
+			isa = PBXGroup;
+			children = (
+				7625E10F23C4E55400F81CCA /* AddMObjectShared */,
+			);
+			path = MObject;
+			sourceTree = "<group>";
+		};
+		7625E10F23C4E55400F81CCA /* AddMObjectShared */ = {
+			isa = PBXGroup;
+			children = (
+				7625E11023C4E58900F81CCA /* AddMObjectSharedView.swift */,
+			);
+			path = AddMObjectShared;
+			sourceTree = "<group>";
+		};
+		7625E11223C4E59800F81CCA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7625E11323C4E5F700F81CCA /* MObject.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		765BA58123C230C1007F835D /* Notifications */ = {
@@ -132,7 +155,6 @@
 			children = (
 				7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */,
 				7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */,
-				7681B68523C3ADA80068254B /* MTask+TaskStatus.swift */,
 				7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */,
 			);
 			path = MTask;
@@ -141,6 +163,7 @@
 		76EF17BC23BCE07100C1CD11 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				7625E10E23C4E54100F81CCA /* MObject */,
 				764AA30F23C29F6A00F581BA /* FilteredList.swift */,
 				76068E6023C3CF7B008E53C4 /* ModalTitle.swift */,
 				76EF17BD23BCE07900C1CD11 /* Buttons */,
@@ -193,6 +216,7 @@
 		76FD61A423B929AE00D21B21 /* MyProjects */ = {
 			isa = PBXGroup;
 			children = (
+				7625E11223C4E59800F81CCA /* Protocols */,
 				765BA58423C2312D007F835D /* Extensions */,
 				765BA58123C230C1007F835D /* Notifications */,
 				761F243C23C15A4B008AA2B7 /* Models */,
@@ -340,8 +364,7 @@
 				76FD61BF23B92A5C00D21B21 /* SettingsView.swift in Sources */,
 				76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */,
 				76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */,
-				761F244623C17238008AA2B7 /* MProject+ProjectStatus.swift in Sources */,
-				7681B68623C3ADA80068254B /* MTask+TaskStatus.swift in Sources */,
+				7625E11423C4E5F700F81CCA /* MObject.swift in Sources */,
 				76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */,
 				76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */,
 				765BA58623C2313E007F835D /* Date+ToString.swift in Sources */,
@@ -352,6 +375,7 @@
 				76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
+				7625E11123C4E58900F81CCA /* AddMObjectSharedView.swift in Sources */,
 				765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */,
 				7681B67F23C383DA0068254B /* MTask+CoreDataProperties.swift in Sources */,
 				76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */,

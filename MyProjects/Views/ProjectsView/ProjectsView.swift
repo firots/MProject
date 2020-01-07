@@ -30,7 +30,7 @@ struct ProjectsView: View {
     
     private func projectFilter() -> some View {
         Picker(selection: $model.projectFilter, label: Text("Show")) {
-            ForEach(0..<MProject.ProjectStatus.all.count + 1) { index in
+            ForEach(0..<MObjectStatus.all.count + 1) { index in
                 Text(self.model.projectFilterTypeNames[index])
             }
         }.pickerStyle(SegmentedPickerStyle())

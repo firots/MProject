@@ -38,8 +38,8 @@ extension MTask {
         return name ?? "Unnamed Task"
     }
     
-    public var wrappedStatus:TaskStatus{
-        return TaskStatus(rawValue: status ?? TaskStatus.active.rawValue) ?? .active
+    public var wrappedStatus: MObjectStatus {
+        return MObjectStatus(rawValue: status ?? MObjectStatus.active.rawValue) ?? .active
     }
     
     public var wrappedDetails: String {

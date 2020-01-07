@@ -36,8 +36,8 @@ extension MProject {
         return name ?? "Unnamed Project"
     }
     
-    public var wrappedStatus: MProject.ProjectStatus {
-        return ProjectStatus(rawValue: status ?? ProjectStatus.active.rawValue) ?? .active
+    public var wrappedStatus: MObjectStatus {
+        return MObjectStatus(rawValue: status ?? MObjectStatus.active.rawValue) ?? .active
     }
     
     public var wrappedDetails: String {

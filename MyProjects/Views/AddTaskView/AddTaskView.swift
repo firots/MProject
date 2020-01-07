@@ -46,12 +46,12 @@ struct AddTaskView: View {
     
     private func taskStatePicker() -> some View {
         Picker(selection: $model.statusIndex, label: Text("Status")) {
-            ForEach(0..<MProject.ProjectStatus.all.count) { index in
-                Text(MTask.TaskStatus.all[index].rawValue.capitalizingFirstLetter())
+            ForEach(0..<MObjectStatus.all.count) { index in
+                Text(MObjectStatus.all[index].rawValue.capitalizingFirstLetter())
             }
         }
         .pickerStyle(SegmentedPickerStyle())
-        .background(MTask.TaskStatus.colors[model.statusIndex])
+        .background(MObjectStatus.colors[model.statusIndex])
         .cornerRadius(5)
     }
     

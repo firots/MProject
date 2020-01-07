@@ -29,7 +29,7 @@ extension MProject {
         let project = MProject(context: moc)
         project.id = UUID()
         project.created = Date()
-        project.status = ProjectStatus.active.rawValue
+        project.status = MObjectStatus.active.rawValue
         project.details = ""
         
         return project
