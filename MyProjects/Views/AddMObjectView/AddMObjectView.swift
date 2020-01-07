@@ -30,16 +30,26 @@ struct AddMObjectView: View {
         .cornerRadius(5)
     }
     
+    var modelName: String {
+        model is AddProjectViewModel ? "project" : "task"
+    }
+    
     func mainSection() -> some View {
         Section {
             taskStatePicker()
-            TextField("Name of your project", text: $model.name)
+            TextField("Name of your \(modelName)", text: $model.name)
             
-            TextField("Details about your project (optional)", text: $model.details)
+            TextField("Details about your \(modelName) (optional)", text: $model.details)
             
-            Toggle(isOn: $model.hasDeadline.animation()) {
-                Text("Set a deadline for this project")
+            HStack {
+                Image(systemName: "calendar")
+                    .foregroundColor(Color(.purple))
+                    .aspectRatio(contentMode: .fill)
+                Toggle(isOn: $model.hasDeadline.animation()) {
+                    Text("Due date for this \(modelName)")
+                }
             }
+
             
             if model.hasDeadline {
                 DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
