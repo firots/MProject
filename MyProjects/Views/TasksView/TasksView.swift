@@ -18,7 +18,13 @@ struct TasksView: View {
     
     var body: some View {
         ZStack {
-            listTasks()
+            VStack {
+                HStack {
+                    Text(Date().toClassic()).padding(.leading, 20)
+                    Spacer()
+                }
+                listTasks()
+            }
             AddButton() {
                 self.model.taskToEdit = nil
                 self.model.showAddTask = true
@@ -44,7 +50,7 @@ struct TasksView: View {
             VStack(alignment: .leading) {
                 Text(task.wrappedName)
                 Text(task.wrappedDetails).font(.footnote)
-                Text("Due: \(task.deadline?.toString() ?? "No Deadline")").font(.footnote)
+                Text("Due: \(task.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
             }
         }
     }

@@ -14,6 +14,8 @@ class AddTaskViewModel: ObservableObject {
     @Published var deadline = Date()
     @Published var hasDeadline = false
     @Published var statusIndex: Int
+    @Published var startDate = Date()
+    @Published var completed = Date()
     
     let project: MProject?
     let task: MTask?

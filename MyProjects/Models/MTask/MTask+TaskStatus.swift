@@ -12,10 +12,11 @@ import SwiftUI
 extension MTask {
     public enum TaskStatus: String {
         case active
+        case waiting
         case completed
         case expired
         
-        static let all = [active, completed, expired]
-        static let colors = [Color(UIColor.systemBackground), Color.green, Color.red]
+        static let all = [active, waiting, completed, expired]
+        static let colors = [Color(UIColor.systemBackground), Color.yellow, Color.green, Color.red]
     }
 }

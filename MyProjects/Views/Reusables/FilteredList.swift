@@ -23,7 +23,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
             ForEach(results, id: \.self) { result in
                 self.content(result)
             }.onDelete(perform: removeItems)
-        }
+        }.listStyle(GroupedListStyle())
     }
     
     init(predicate: NSPredicate?, @ViewBuilder content: @escaping (T) -> Content) {

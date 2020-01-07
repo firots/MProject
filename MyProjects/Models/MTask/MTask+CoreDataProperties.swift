@@ -21,6 +21,7 @@ extension MTask {
     @NSManaged public var name: String?
     @NSManaged public var details: String?
     @NSManaged public var created: Date?
+    @NSManaged public var started: Date?
     @NSManaged public var deadline: Date?
     @NSManaged public var status: String?
     @NSManaged public var ended: Date?
@@ -49,6 +50,10 @@ extension MTask {
         return created ?? Date()
     }
     
+    public var wrappedStarted: Date {
+        return started ?? wrappedCreated
+    }
+    
     public var wrappedLastModified: Date {
         return lastModified ?? wrappedCreated
     }
@@ -68,39 +73,4 @@ extension MTask {
             $0.wrappedCreated > $1.wrappedCreated
         }
     }
-
-}
-
-// MARK: Generated accessors for precondition
-extension MTask {
-
-    @objc(addPreconditionObject:)
-    @NSManaged public func addToPrecondition(_ value: MTask)
-
-    @objc(removePreconditionObject:)
-    @NSManaged public func removeFromPrecondition(_ value: MTask)
-
-    @objc(addPrecondition:)
-    @NSManaged public func addToPrecondition(_ values: NSSet)
-
-    @objc(removePrecondition:)
-    @NSManaged public func removeFromPrecondition(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for involved
-extension MTask {
-
-    @objc(addInvolvedObject:)
-    @NSManaged public func addToInvolved(_ value: MTask)
-
-    @objc(removeInvolvedObject:)
-    @NSManaged public func removeFromInvolved(_ value: MTask)
-
-    @objc(addInvolved:)
-    @NSManaged public func addToInvolved(_ values: NSSet)
-
-    @objc(removeInvolved:)
-    @NSManaged public func removeFromInvolved(_ values: NSSet)
-
 }

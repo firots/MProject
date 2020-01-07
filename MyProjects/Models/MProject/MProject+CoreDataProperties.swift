@@ -21,6 +21,7 @@ extension MProject {
     @NSManaged public var name: String?
     @NSManaged public var status: String?
     @NSManaged public var details: String?
+    @NSManaged public var started: Date?
     @NSManaged public var created: Date?
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
@@ -45,6 +46,10 @@ extension MProject {
     
     public var wrappedCreated: Date {
         return created ?? Date()
+    }
+    
+    public var wrappedStarted: Date {
+        return started ?? wrappedCreated
     }
     
     public var wrappedLastModified: Date {

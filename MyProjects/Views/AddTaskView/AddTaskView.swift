@@ -57,9 +57,7 @@ struct AddTaskView: View {
     
     func mainSection() -> some View {
         Section {
-            if model.task != nil {
-                taskStatePicker()
-            }
+            taskStatePicker()
             
             TextField("Name of your task", text: $model.name)
             

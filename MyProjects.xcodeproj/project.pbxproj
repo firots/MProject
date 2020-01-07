@@ -142,8 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				764AA30F23C29F6A00F581BA /* FilteredList.swift */,
-				76EF17BD23BCE07900C1CD11 /* Buttons */,
 				76068E6023C3CF7B008E53C4 /* ModalTitle.swift */,
+				76EF17BD23BCE07900C1CD11 /* Buttons */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
