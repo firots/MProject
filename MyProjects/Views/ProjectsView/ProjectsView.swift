@@ -56,6 +56,10 @@ struct ProjectsView: View {
                 Text("Due: \(project.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
             }
         }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 2)
     }
 }
 

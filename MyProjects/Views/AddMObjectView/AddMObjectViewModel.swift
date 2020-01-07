@@ -14,7 +14,7 @@ class AddMObjectViewModel: ObservableObject {
     @Published var details = ""
     @Published var deadline = Date()
     @Published var hasDeadline = false
-    @Published var statusIndex = 0
+    @Published var statusIndex: Int
     
     init(mObject: MObject?) {
         self.statusIndex = MObjectStatus.all.firstIndex(of: MObjectStatus(rawValue: mObject?.status ?? MObjectStatus.active.rawValue) ?? MObjectStatus.active) ?? 0
