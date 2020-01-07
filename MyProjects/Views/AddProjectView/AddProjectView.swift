@@ -27,6 +27,8 @@ struct AddProjectView: View {
                 AddMObjectView(model: model)
             }
         }.navigationBarTitle("Add Project")
+        .onTapGesture(count: 2){}
+        .onLongPressGesture(minimumDuration: 0, maximumDistance: 0, pressing: nil, perform: hideKeyboard)
     }
     
     func titleBar() -> some View {

@@ -26,7 +26,8 @@ struct AddTaskView: View {
             Form {
                 AddMObjectView(model: model)
             }
-        }
+        }.onTapGesture(count: 2){} // UI is unresponsive without this line. Why?
+        .onLongPressGesture(minimumDuration: 0, maximumDistance: 0, pressing: nil, perform: hideKeyboard)
     }
     
     func titleBar() -> some View {

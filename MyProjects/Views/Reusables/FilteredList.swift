@@ -12,7 +12,7 @@ import CoreData
 struct FilteredList<T: NSManagedObject, Content: View>: View {
     @State private var predicate: NSPredicate?
     @Environment(\.managedObjectContext) var moc
-    
+
     private var fetchRequest: FetchRequest<T>
     private var results: FetchedResults<T> {
         fetchRequest.wrappedValue }
