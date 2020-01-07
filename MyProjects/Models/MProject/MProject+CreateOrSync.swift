@@ -15,6 +15,7 @@ extension MProject {
         
         p.name = model.name.emptyIsNil()
         p.details = model.details.emptyIsNil()
+        p.status = MObjectStatus.all[model.statusIndex].rawValue
         
         if model.hasDeadline {
             p.deadline = model.deadline
