@@ -16,7 +16,7 @@ struct AddProjectView: View {
     
     init(context moc: NSManagedObjectContext, project: MProject?) {
         self.moc = moc
-        self.model = AddProjectViewModel(project: project)
+        self.model = AddProjectViewModel(mObject: project)
     }
     
     var body: some View {
@@ -24,14 +24,14 @@ struct AddProjectView: View {
             Spacer(minLength: 20)
             titleBar()
             Form {
-                mainSection()
+                AddMObjectView(model: model)
             }
         }.navigationBarTitle("Add Project")
     }
     
     func titleBar() -> some View {
-        ModalTitle(title: model.project == nil ? "Add Project": "Edit Project") {
-            let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.project)
+        ModalTitle(title: model.mObject == nil ? "Add Project": "Edit Project") {
+            let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.mObject)
 
             if self.moc.hasChanges {
                 do {
@@ -43,29 +43,6 @@ struct AddProjectView: View {
             self.presentationMode.wrappedValue.dismiss()
         }
     }
-    
-    func mainSection() -> some View {
-        Section {
-            TextField("Name of your project", text: $model.name)
-            
-            TextField("Details about your project (optional)", text: $model.details)
-            
-            Toggle(isOn: $model.hasDeadline.animation()) {
-                Text("Set a deadline for this project")
-            }
-            
-            if model.hasDeadline {
-                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
-                    Text("Date")
-                }.accentColor(.purple)
-                
-                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .hourAndMinute) {
-                    Text("Time")
-                }.accentColor(.purple)
-            }
-        }
-    }
-    
 
 }
 

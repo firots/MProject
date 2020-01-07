@@ -9,23 +9,7 @@
 import Foundation
 import Combine
 
-class AddProjectViewModel: ObservableObject {
-    @Published var name = ""
-    @Published var details = ""
-    @Published var deadline = Date()
-    @Published var hasDeadline = false
-    
-    var project: MProject?
-    
-    init(project: MProject?) {
-        self.project = project
-        if let p = project {
-            name = p.name ?? ""
-            details = p.details ?? ""
-            if let deadline = p.deadline {
-                hasDeadline = true
-                self.deadline = deadline
-            }
-        }
-    }
+class AddProjectViewModel: AddMObjectViewModel<MProject> {
+
+
 }

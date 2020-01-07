@@ -13,6 +13,7 @@
 		761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */; };
 		7625E11423C4E5F700F81CCA /* MObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11323C4E5F700F81CCA /* MObject.swift */; };
 		7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */; };
+		7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11A23C5063400F81CCA /* AddMObjectView.swift */; };
 		764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30B23C2816600F581BA /* String+Capitalizer.swift */; };
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
 		765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58223C230E7007F835D /* NotificationPeriod.swift */; };
@@ -48,6 +49,7 @@
 		761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CreateOrSync.swift"; sourceTree = "<group>"; };
 		7625E11323C4E5F700F81CCA /* MObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObject.swift; sourceTree = "<group>"; };
 		7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectViewModel.swift; sourceTree = "<group>"; };
+		7625E11A23C5063400F81CCA /* AddMObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectView.swift; sourceTree = "<group>"; };
 		764AA30B23C2816600F581BA /* String+Capitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalizer.swift"; sourceTree = "<group>"; };
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		765BA58223C230E7007F835D /* NotificationPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPeriod.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */,
+				7625E11A23C5063400F81CCA /* AddMObjectView.swift */,
 			);
 			path = AddMObjectView;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */,
+				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
 				765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */,

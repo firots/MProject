@@ -8,12 +8,8 @@
 
 import Foundation
 
-class AddTaskViewModel: ObservableObject {
-    @Published var name = ""
-    @Published var details = ""
-    @Published var deadline = Date()
-    @Published var hasDeadline = false
-    @Published var statusIndex: Int
+class AddTaskViewModel: AddMObjectViewModel<MTask> {
+    
     @Published var ended = Date()
     @Published var autoStart = Date()
     @Published var showAutoStart = false
@@ -24,15 +20,10 @@ class AddTaskViewModel: ObservableObject {
     init(_ task: MTask?, _ project: MProject?) {
         self.project = project
         self.task = task
-        self.statusIndex = MObjectStatus.all.firstIndex(of: MObjectStatus(rawValue: task?.status ?? MObjectStatus.active.rawValue) ?? MObjectStatus.active) ?? 0
         
+        super.init(mObject: task)
+
         if let t = task {
-            name = t.name ?? ""
-            details = t.details ?? ""
-            if let deadline = t.deadline {
-                hasDeadline = true
-                self.deadline = deadline
-            }
             if let started = t.started, started > Date() { autoStart = started }
             if let ended = t.ended { self.ended = ended }
         }

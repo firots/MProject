@@ -24,7 +24,7 @@ struct AddTaskView: View {
             Spacer(minLength: 20)
             titleBar()
             Form {
-                mainSection()
+                AddMObjectView(model: model)
             }
         }
     }
@@ -41,41 +41,6 @@ struct AddTaskView: View {
                 }
             }
             self.presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
-    private func taskStatePicker() -> some View {
-        Picker(selection: $model.statusIndex, label: Text("Status")) {
-            ForEach(0..<MObjectStatus.all.count) { index in
-                Text(MObjectStatus.all[index].rawValue.capitalizingFirstLetter())
-            }
-        }
-        .pickerStyle(SegmentedPickerStyle())
-        .background(MObjectStatus.colors[model.statusIndex])
-        .cornerRadius(5)
-    }
-    
-    func mainSection() -> some View {
-        Section {
-            taskStatePicker()
-            
-            TextField("Name of your task", text: $model.name)
-            
-            TextField("Details about your task (optional)", text: $model.details)
-            
-            Toggle(isOn: $model.hasDeadline.animation()) {
-                Text("Set a deadline for this task")
-            }
-            
-            if model.hasDeadline {
-                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
-                    Text("Date")
-                }.accentColor(.purple)
-                
-                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .hourAndMinute) {
-                    Text("Time")
-                }.accentColor(.purple)
-            }
         }
     }
 }
