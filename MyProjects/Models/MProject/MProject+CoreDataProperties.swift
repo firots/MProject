@@ -28,34 +28,6 @@ extension MProject {
     @NSManaged public var deadline: Date?
     @NSManaged public var task: NSSet?
     
-    public var wrappedID: UUID {
-        return id ?? UUID()
-    }
-    
-    public var wrappedName: String {
-        return name ?? "Unnamed Project"
-    }
-    
-    public var wrappedStatus: MObjectStatus {
-        return MObjectStatus(rawValue: status ?? MObjectStatus.active.rawValue) ?? .active
-    }
-    
-    public var wrappedDetails: String {
-        return details ?? "No Details"
-    }
-    
-    public var wrappedCreated: Date {
-        return created ?? Date()
-    }
-    
-    public var wrappedStarted: Date {
-        return started ?? wrappedCreated
-    }
-    
-    public var wrappedLastModified: Date {
-        return lastModified ?? wrappedCreated
-    }
-    
     public var tasks: [MTask] {
         let set = task as? Set<MTask> ?? []
         

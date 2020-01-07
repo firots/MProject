@@ -11,6 +11,6 @@ import Foundation
 import CoreData
 
 @objc(MProject)
-public class MProject: NSManagedObject {
+public class MProject: NSManagedObject, MObject {
 
 }

@@ -27,50 +27,5 @@ extension MTask {
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var project: MProject?
-    @NSManaged public var precondition: NSSet?
-    @NSManaged public var involved: NSSet?
-    
-    public var wrappedID: UUID {
-        return id ?? UUID()
-    }
-    
-    public var wrappedName: String {
-        return name ?? "Unnamed Task"
-    }
-    
-    public var wrappedStatus: MObjectStatus {
-        return MObjectStatus(rawValue: status ?? MObjectStatus.active.rawValue) ?? .active
-    }
-    
-    public var wrappedDetails: String {
-        return details ?? "No Details"
-    }
-    
-    public var wrappedCreated: Date {
-        return created ?? Date()
-    }
-    
-    public var wrappedStarted: Date {
-        return started ?? wrappedCreated
-    }
-    
-    public var wrappedLastModified: Date {
-        return lastModified ?? wrappedCreated
-    }
-    
-    public var preconditions: [MTask] {
-        let set = precondition as? Set<MTask> ?? []
-        
-        return set.sorted {
-            $0.wrappedCreated > $1.wrappedCreated
-        }
-    }
-    
-    public var involvedTasks: [MTask] {
-        let set = involved as? Set<MTask> ?? []
-        
-        return set.sorted {
-            $0.wrappedCreated > $1.wrappedCreated
-        }
-    }
+
 }

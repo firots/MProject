@@ -11,6 +11,8 @@ import Foundation
 import CoreData
 
 @objc(MTask)
-public class MTask: NSManagedObject {
+public class MTask: NSManagedObject, MObject {
+
+    
 
 }
