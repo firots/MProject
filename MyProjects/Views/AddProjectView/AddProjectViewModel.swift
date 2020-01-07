@@ -9,7 +9,12 @@
 import Foundation
 import Combine
 
-class AddProjectViewModel: AddMObjectViewModel<MProject> {
-
+class AddProjectViewModel: AddMObjectViewModel {
+    let project: MProject?
+    
+    init(project: MProject?) {
+        self.project = project
+        super.init(mObject: project)
+    }
 
 }

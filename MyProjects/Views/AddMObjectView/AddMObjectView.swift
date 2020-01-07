@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-struct AddMObjectView<T>: View where T: MObject {
-    @ObservedObject private var model: AddMObjectViewModel<T>
+struct AddMObjectView: View {
+    @ObservedObject private var model: AddMObjectViewModel
     
-    init(model: AddMObjectViewModel<T>) {
+    init(model: AddMObjectViewModel) {
         self.model = model
     }
     
@@ -54,8 +54,8 @@ struct AddMObjectView<T>: View where T: MObject {
     }
 }
 
-/*struct AddMObjectView_Previews: PreviewProvider {
+struct AddMObjectView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMObjectView()
+        AddMObjectView(model: AddMObjectViewModel(mObject: nil))
     }
-}*/
+}

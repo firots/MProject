@@ -9,17 +9,14 @@
 import Foundation
 import Combine
 
-class AddMObjectViewModel<T>: ObservableObject where T:MObject {
+class AddMObjectViewModel: ObservableObject {
     @Published var name = ""
     @Published var details = ""
     @Published var deadline = Date()
     @Published var hasDeadline = false
-    @Published var statusIndex: Int
+    @Published var statusIndex = 0
     
-    var mObject: T?
-    
-    init(mObject: T?) {
-        self.mObject = mObject
+    init(mObject: MObject?) {
         self.statusIndex = MObjectStatus.all.firstIndex(of: MObjectStatus(rawValue: mObject?.status ?? MObjectStatus.active.rawValue) ?? MObjectStatus.active) ?? 0
         
         if let o = mObject {

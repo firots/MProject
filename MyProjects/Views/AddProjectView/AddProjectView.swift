@@ -16,7 +16,7 @@ struct AddProjectView: View {
     
     init(context moc: NSManagedObjectContext, project: MProject?) {
         self.moc = moc
-        self.model = AddProjectViewModel(mObject: project)
+        self.model = AddProjectViewModel(project: project)
     }
     
     var body: some View {
@@ -30,8 +30,8 @@ struct AddProjectView: View {
     }
     
     func titleBar() -> some View {
-        ModalTitle(title: model.mObject == nil ? "Add Project": "Edit Project") {
-            let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.mObject)
+        ModalTitle(title: model.project == nil ? "Add Project": "Edit Project") {
+            let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.project)
 
             if self.moc.hasChanges {
                 do {
