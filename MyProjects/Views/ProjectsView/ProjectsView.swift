@@ -57,18 +57,18 @@ struct ProjectsView: View {
                 Text("Due: \(project.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
             }
         }
-        .listRowBackground(cellColor)
+        .listRowBackground(cellBackgroundColor)
         .padding()
-        .background(cellBackgroundColor)
+        .background(cellColor)
         .cornerRadius(12)
         .shadow(radius: 2)
     }
     
-    private var cellColor: Color {
+    private var cellBackgroundColor: Color {
         colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
     }
     
-    private var cellBackgroundColor: Color {
+    private var cellColor: Color {
         colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground)
     }
 }
