@@ -14,8 +14,9 @@ class AddTaskViewModel: ObservableObject {
     @Published var deadline = Date()
     @Published var hasDeadline = false
     @Published var statusIndex: Int
-    @Published var startDate = Date()
-    @Published var completed = Date()
+    @Published var ended = Date()
+    @Published var autoStart = Date()
+    @Published var showAutoStart = false
     
     let project: MProject?
     let task: MTask?
@@ -32,6 +33,8 @@ class AddTaskViewModel: ObservableObject {
                 hasDeadline = true
                 self.deadline = deadline
             }
+            if let started = t.started, started > Date() { autoStart = started }
+            if let ended = t.ended { self.ended = ended }
         }
     }
 }
