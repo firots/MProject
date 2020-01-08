@@ -9,7 +9,11 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var model = SettingsViewModel()
+    @ObservedObject var model: SettingsViewModel
+    
+    init() {
+        model = SettingsViewModel()
+    }
     var body: some View {
         NavigationView {
             Text("Settings will be here.")
