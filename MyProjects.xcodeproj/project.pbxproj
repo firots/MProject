@@ -17,12 +17,14 @@
 		7625E11D23C5239900F81CCA /* View+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11C23C5239900F81CCA /* View+HideKeyboard.swift */; };
 		764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30B23C2816600F581BA /* String+Capitalizer.swift */; };
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
-		765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58223C230E7007F835D /* NotificationPeriod.swift */; };
 		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
 		7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */; };
 		7681B67F23C383DA0068254B /* MTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */; };
 		7681B68823C3B3360068254B /* MTask+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */; };
+		76ED808123C62E430042D36D /* NotificationPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808023C62E430042D36D /* NotificationPeriod.swift */; };
+		76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808323C62F580042D36D /* PlaceholderView.swift */; };
+		76ED808623C648F70042D36D /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808523C648F70042D36D /* TextView.swift */; };
 		76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */; };
 		76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */; };
 		76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C423BCE16200C1CD11 /* AddTaskView.swift */; };
@@ -54,12 +56,14 @@
 		7625E11C23C5239900F81CCA /* View+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HideKeyboard.swift"; sourceTree = "<group>"; };
 		764AA30B23C2816600F581BA /* String+Capitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalizer.swift"; sourceTree = "<group>"; };
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
-		765BA58223C230E7007F835D /* NotificationPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPeriod.swift; sourceTree = "<group>"; };
 		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
 		7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CreateOrSync.swift"; sourceTree = "<group>"; };
+		76ED808023C62E430042D36D /* NotificationPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPeriod.swift; sourceTree = "<group>"; };
+		76ED808323C62F580042D36D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		76ED808523C648F70042D36D /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
 		76EF17C423BCE16200C1CD11 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
@@ -122,14 +126,6 @@
 			path = AddMObjectView;
 			sourceTree = "<group>";
 		};
-		765BA58123C230C1007F835D /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				765BA58223C230E7007F835D /* NotificationPeriod.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
 		765BA58423C2312D007F835D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +145,14 @@
 				7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */,
 			);
 			path = MTask;
+			sourceTree = "<group>";
+		};
+		76ED807F23C62E2D0042D36D /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				76ED808023C62E430042D36D /* NotificationPeriod.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		76EF17BC23BCE07100C1CD11 /* Reusables */ = {
@@ -206,8 +210,8 @@
 		76FD61A423B929AE00D21B21 /* MyProjects */ = {
 			isa = PBXGroup;
 			children = (
+				76ED807F23C62E2D0042D36D /* Notifications */,
 				765BA58423C2312D007F835D /* Extensions */,
-				765BA58123C230C1007F835D /* Notifications */,
 				761F243C23C15A4B008AA2B7 /* Models */,
 				76FD61BC23B929D900D21B21 /* Views */,
 				76FD61A523B929AE00D21B21 /* AppDelegate.swift */,
@@ -240,6 +244,8 @@
 				76FD61CA23B9334300D21B21 /* AddProjectView */,
 				76FD61C223B92BAE00D21B21 /* ProjectsView */,
 				76FD61BD23B92A4A00D21B21 /* SettingsView */,
+				76ED808323C62F580042D36D /* PlaceholderView.swift */,
+				76ED808523C648F70042D36D /* TextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,9 +360,11 @@
 				76EF17C723BCE17400C1CD11 /* AddTaskViewModel.swift in Sources */,
 				76FD61BF23B92A5C00D21B21 /* SettingsView.swift in Sources */,
 				76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */,
+				76ED808623C648F70042D36D /* TextView.swift in Sources */,
 				76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */,
 				7625E11423C4E5F700F81CCA /* MObject.swift in Sources */,
 				7625E11D23C5239900F81CCA /* View+HideKeyboard.swift in Sources */,
+				76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */,
 				76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */,
 				76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */,
 				765BA58623C2313E007F835D /* Date+ToString.swift in Sources */,
@@ -368,9 +376,9 @@
 				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
-				765BA58323C230E7007F835D /* NotificationPeriod.swift in Sources */,
 				7681B67F23C383DA0068254B /* MTask+CoreDataProperties.swift in Sources */,
 				76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */,
+				76ED808123C62E430042D36D /* NotificationPeriod.swift in Sources */,
 				765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */,
 				761F244023C1667C008AA2B7 /* MProject+CoreDataClass.swift in Sources */,
 			);

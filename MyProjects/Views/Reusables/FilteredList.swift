@@ -17,18 +17,26 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     private var results: FetchedResults<T> {
         fetchRequest.wrappedValue }
     private let content: (T) -> Content
+    private let placeholder: PlaceholderViewModel
 
     var body: some View {
-        List {
-            ForEach(results, id: \.self) { result in
-                self.content(result)
-            }.onDelete(perform: removeItems)
-        }.listStyle(GroupedListStyle())
+        Group {
+            if results.count > 0 {
+                List {
+                    ForEach(results, id: \.self) { result in
+                        self.content(result)
+                    }.onDelete(perform: removeItems)
+                }.listStyle(GroupedListStyle())
+            } else {
+                PlaceholderView(model: placeholder)
+            }
+        }
     }
     
-    init(predicate: NSPredicate?, @ViewBuilder content: @escaping (T) -> Content) {
+    init(predicate: NSPredicate?, placeholder: PlaceholderViewModel, @ViewBuilder content: @escaping (T) -> Content) {
         self.fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [], predicate: predicate)
         self.content = content
+        self.placeholder = placeholder
         self.predicate = predicate
     }
     
@@ -43,7 +51,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
 
 struct FilteredProjectsList_Previews: PreviewProvider {
     static var previews: some View {
-        FilteredList(predicate: nil) {_ in
+        FilteredList(predicate: nil, placeholder: PlaceholderViewModel(title: "Hello There", subtitle: "This is an empty placeholder", image: UIImage(named: "pencil"))) {_ in
             Text("Test")
         }
     }

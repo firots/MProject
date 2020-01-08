@@ -38,7 +38,6 @@ struct AddMObjectView: View {
         Section {
             taskStatePicker()
             TextField("Name of your \(modelName)", text: $model.name)
-            
             TextField("Details about your \(modelName) (optional)", text: $model.details)
             
             HStack {
