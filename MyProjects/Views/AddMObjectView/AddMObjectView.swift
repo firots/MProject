@@ -37,13 +37,20 @@ struct AddMObjectView: View {
     func mainSection() -> some View {
         Section {
             taskStatePicker()
-            TextField("Name of your \(modelName)", text: $model.name)
+            HStack {
+                Image(systemName: "info.circle")
+                .foregroundColor(Color(.purple))
+                .aspectRatio(contentMode: .fill)
+                TextField("Name of your \(modelName)", text: $model.name)
+            }.accentColor(.purple)
+
             Button(action: {
                 self.model.showNotes = true
             }) {
                 HStack {
-                    //Image(systemName: "info.circle.fill")
-                    //Text("Details")
+                    Image(systemName: "pencil.circle")
+                    .foregroundColor(Color(.purple))
+                    .aspectRatio(contentMode: .fill)
                     Text(self.model.details.emptyHolder("Details about your \(modelName)"))
                         .foregroundColor(Color(.tertiaryLabel))
                         .lineLimit(1)

@@ -49,7 +49,7 @@ struct TasksView: View {
         }) {
             VStack(alignment: .leading) {
                 Text(task.wrappedName)
-                Text(task.wrappedDetails).font(.footnote)
+                Text(task.wrappedDetails).font(.footnote).lineLimit(1)
                 Text("Due: \(task.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
             }
         }
