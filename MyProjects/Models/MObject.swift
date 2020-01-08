@@ -63,10 +63,10 @@ public enum MObjectStatus: String {
     
     static let emptyProjectTitles = ["No projects", "No active projects", "No waiting projects", "No projects completed", "No expired projects"]
     
-    static let emptyProjectSubtitles = ["Lets add some?", "Fine...", "Good...", "Lets do some!", "Wow!" ]
+    static let emptyProjectSubtitles = ["Let's add some?", "Fine...", "Good...", "Let's do some!", "Wow!" ]
     
     static let emptyTaskTitles = ["No tasks", "No active tasks", "No waiting tasks", "No tasks completed", "No expired tasks"]
     
-    static let emptyTaskSubtitles = ["Lets add some?", "Fine...", "Good...", "Lets do some!", "Wow!" ]
+    static let emptyTaskSubtitles = ["Let's add some?", "Fine...", "Good...", "Let's do some!", "Wow!" ]
     
 }

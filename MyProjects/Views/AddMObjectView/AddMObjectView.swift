@@ -38,7 +38,9 @@ struct AddMObjectView: View {
         Section {
             taskStatePicker()
             TextField("Name of your \(modelName)", text: $model.name)
-            TextField("Details about your \(modelName) (optional)", text: $model.details)
+            Button("Details") {
+                if self.model.showNotes == false { self.model.showNotes = true }
+            }
             
             HStack {
                 Image(systemName: "calendar")

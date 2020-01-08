@@ -22,18 +22,21 @@ struct ModalTitle: View {
     }
     
     func titleBar() -> some View {
-        ZStack {
-            HStack {
-                Spacer()
-                saveButton()
-                Spacer().frame(width: 20)
-            }
-            
-            HStack {
-                Spacer()
-                Text(title)
-                    .font(.headline)
-                Spacer()
+        VStack {
+            Spacer().frame(height: 20)
+            ZStack {
+                HStack {
+                    Spacer()
+                    saveButton()
+                    Spacer().frame(width: 20)
+                }
+                
+                HStack {
+                    Spacer()
+                    Text(title)
+                        .font(.headline)
+                    Spacer()
+                }
             }
         }
     }

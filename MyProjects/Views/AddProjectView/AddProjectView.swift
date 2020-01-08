@@ -21,7 +21,6 @@ struct AddProjectView: View {
     
     var body: some View {
         VStack {
-            Spacer(minLength: 20)
             titleBar()
             Form {
                 AddMObjectView(model: model)
@@ -29,6 +28,9 @@ struct AddProjectView: View {
         }
         .onTapGesture(count: 2){}
         .onLongPressGesture(minimumDuration: 0, maximumDistance: 0, pressing: nil, perform: hideKeyboard)
+        .sheet(isPresented: $model.showNotes) {
+            NotesView(model: NotesViewModel(notes: self.$model.details))
+        }
     }
     
     func titleBar() -> some View {
