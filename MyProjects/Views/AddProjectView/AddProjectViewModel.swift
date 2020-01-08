@@ -16,5 +16,4 @@ class AddProjectViewModel: AddMObjectViewModel {
         self.project = project
         super.init(mObject: project)
     }
-
 }

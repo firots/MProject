@@ -9,9 +9,13 @@
 import SwiftUI
 
 struct ProjectsView: View {
-    @ObservedObject private var model = ProjectsViewModel()
+    @ObservedObject private var model: ProjectsViewModel
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
+    init() {
+        model = ProjectsViewModel()
+    }
     
     var body: some View {
         NavigationView {

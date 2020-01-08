@@ -11,7 +11,7 @@ import CoreData
 
 struct AddProjectView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var model: AddProjectViewModel
+    @ObservedObject private var model: AddProjectViewModel
     var moc: NSManagedObjectContext
     
     init(context moc: NSManagedObjectContext, project: MProject?) {
@@ -26,7 +26,7 @@ struct AddProjectView: View {
             Form {
                 AddMObjectView(model: model)
             }
-        }.navigationBarTitle("Add Project")
+        }
         .onTapGesture(count: 2){}
         .onLongPressGesture(minimumDuration: 0, maximumDistance: 0, pressing: nil, perform: hideKeyboard)
     }
