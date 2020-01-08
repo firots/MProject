@@ -11,6 +11,7 @@ import SwiftUI
 struct ModalTitle: View {
     let title: String
     var action: (() -> Void)?
+    @Environment(\.presentationMode) var presentationMode
     
     init(title: String, action: (() -> Void)?) {
         self.title = title
@@ -26,6 +27,8 @@ struct ModalTitle: View {
             Spacer().frame(height: 20)
             ZStack {
                 HStack {
+                    Spacer().frame(width: 20)
+                    closeButton()
                     Spacer()
                     saveButton()
                     Spacer().frame(width: 20)
@@ -44,6 +47,13 @@ struct ModalTitle: View {
     func saveButton() -> some View {
         Button("Save") {
             self.action?()
+        }
+        .foregroundColor(Color.purple)
+    }
+    
+    func closeButton() -> some View {
+        Button("Close") {
+            self.presentationMode.wrappedValue.dismiss()
         }
         .foregroundColor(Color.purple)
     }

@@ -18,7 +18,7 @@ struct NotesView: View {
     
     var body: some View {
         VStack {
-            ModalTitle(title: "Notes") {
+            ModalTitle(title: "Details") {
                 self.model.notes.wrappedValue = self.model.tempNotes
                 self.presentationMode.wrappedValue.dismiss()
             }

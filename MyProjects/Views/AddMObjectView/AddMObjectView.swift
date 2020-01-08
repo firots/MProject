@@ -38,9 +38,18 @@ struct AddMObjectView: View {
         Section {
             taskStatePicker()
             TextField("Name of your \(modelName)", text: $model.name)
-            Button("Details") {
-                if self.model.showNotes == false { self.model.showNotes = true }
+            Button(action: {
+                self.model.showNotes = true
+            }) {
+                HStack {
+                    //Image(systemName: "info.circle.fill")
+                    //Text("Details")
+                    Text(self.model.details.emptyHolder("Details about your \(modelName)"))
+                        .foregroundColor(Color(.tertiaryLabel))
+                        .lineLimit(1)
+                }.accentColor(.purple)
             }
+            
             
             HStack {
                 Image(systemName: "calendar")
