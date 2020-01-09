@@ -27,5 +27,13 @@ extension MTask {
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var project: MProject?
-
+    @NSManaged public var repeatMode: String?
+    
+    public var wrappedRepeatMode: RepeatMode {
+        get {
+            RepeatMode(rawValue: repeatMode ?? RepeatMode.none.rawValue) ?? RepeatMode.none
+        } set {
+            repeatMode = newValue.rawValue
+        }
+    }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum RepeatingPeriod: String {
+public enum RepeatMode: String {
     case none
     case daily
     case dow
