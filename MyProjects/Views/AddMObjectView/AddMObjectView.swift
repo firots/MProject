@@ -66,16 +66,20 @@ struct AddMObjectView: View {
                     Text("Due date for this \(modelName)")
                 }
             }
-
+            
             
             if model.hasDeadline {
                 DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
                     Text("Date")
-                }.accentColor(.purple)
+                }
+                .accentColor(.purple)
+                .modifier(DismissKeyboardOnTap())
                 
                 DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .hourAndMinute) {
                     Text("Time")
-                }.accentColor(.purple)
+                }
+                .accentColor(.purple)
+                .modifier(DismissKeyboardOnTap())
             }
         }
     }

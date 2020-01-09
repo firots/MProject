@@ -12,6 +12,13 @@ import SwiftUI
 extension View {
     func hideKeyboard()
     {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        
+    }
+}
+
+struct DismissKeyboardOnTap: ViewModifier {
+    func body(content: Content) -> some View { content
+        .onTapGesture(count: 2){}
+        .onLongPressGesture(minimumDuration: 0, maximumDistance: 0, pressing: nil, perform: { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) })
     }
 }

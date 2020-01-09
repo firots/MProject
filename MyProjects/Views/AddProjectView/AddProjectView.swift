@@ -26,8 +26,6 @@ struct AddProjectView: View {
                 AddMObjectView(model: model)
             }
         }
-        .onTapGesture(count: 2){}
-        .onLongPressGesture(minimumDuration: 0, maximumDistance: 0, pressing: nil, perform: hideKeyboard)
         .sheet(isPresented: $model.showNotes) {
             NotesView(model: NotesViewModel(notes: self.$model.details))
         }
