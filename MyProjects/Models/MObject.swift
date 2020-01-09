@@ -70,3 +70,8 @@ public enum MObjectStatus: String {
     static let emptyTaskSubtitles = ["Let's add some?", "Fine...", "Good...", "Let's do some!", "Wow!" ]
     
 }
+
+public enum MObjectType {
+    case project
+    case task
+}

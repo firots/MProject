@@ -8,18 +8,19 @@
 
 import SwiftUI
 
-struct AddButton: View {
+struct HoveringButton: View {
     var action: (() -> Void)?
+    let color: Color
+    let image: Image
 
     var body: some View {
         HStack {
             Spacer()
             VStack {
-                Spacer()
                 Button(action: {
                     self.action?()
                 }) {
-                    Image(systemName: "plus")
+                    image
                     .frame(width: 44, height: 44, alignment: .center)
                     .padding(0)
                     .background(Color(UIColor.systemBackground))
@@ -33,10 +34,18 @@ struct AddButton: View {
             Spacer().frame(width: 24)
         }
     }
+    
+    init(color: Color, image: Image, action: (() -> Void)?) {
+        self.color = color
+        self.image = image
+        self.action = action
+    }
 }
 
-struct AddProjectButton_Previews: PreviewProvider {
+struct HoveringButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddButton()
+        HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
+            
+        }
     }
 }

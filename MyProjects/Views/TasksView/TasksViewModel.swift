@@ -10,9 +10,10 @@ import Foundation
 import Combine
 
 class TasksViewModel: ObservableObject {
-    @Published var showAddTask = false
+    @Published var showAdd = false
     @Published var taskFilter = 1
     @Published var predicate: NSPredicate?
+    var modalType = ModalType.addTask
     
     var taskToEdit: MTask?
 
@@ -62,6 +63,11 @@ class TasksViewModel: ObservableObject {
         .store(in: &cancellableSet)
         
         predicate = getPredicate(filter: taskFilter)
+    }
+    
+    enum ModalType {
+        case addTask
+        case addProject
     }
 
 }

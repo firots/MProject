@@ -42,7 +42,7 @@
 		76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C023B92B3D00D21B21 /* SettingsViewModel.swift */; };
 		76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C423B92BCC00D21B21 /* ProjectsView.swift */; };
 		76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C623B92BDF00D21B21 /* ProjectsViewModel.swift */; };
-		76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C823B92C4D00D21B21 /* AddButton.swift */; };
+		76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C823B92C4D00D21B21 /* HoveringButton.swift */; };
 		76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61CB23B9335100D21B21 /* AddProjectView.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +84,7 @@
 		76FD61C023B92B3D00D21B21 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		76FD61C423B92BCC00D21B21 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
 		76FD61C623B92BDF00D21B21 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
-		76FD61C823B92C4D00D21B21 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		76FD61C823B92C4D00D21B21 /* HoveringButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoveringButton.swift; sourceTree = "<group>"; };
 		76FD61CB23B9335100D21B21 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,7 +166,7 @@
 		76EF17BD23BCE07900C1CD11 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				76FD61C823B92C4D00D21B21 /* AddButton.swift */,
+				76FD61C823B92C4D00D21B21 /* HoveringButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 				761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */,
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
-				76FD61C923B92C4D00D21B21 /* AddButton.swift in Sources */,
+				76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */,
 				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,

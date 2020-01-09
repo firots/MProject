@@ -48,8 +48,11 @@ struct ProjectsView: View {
     }
     
     private func addButton() -> some View {
-        AddButton() {
-            self.model.showAddProject = true
+        VStack {
+            Spacer()
+            HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
+                self.model.showAddProject = true
+            }
         }
     }
     

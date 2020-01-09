@@ -26,14 +26,33 @@ struct TasksView: View {
                 taskFilter()
                 listTasks()
             }
-            AddButton() {
-                self.model.taskToEdit = nil
-                self.model.showAddTask = true
-            }
+            hoveringButtons()
         }
         .navigationBarTitle(model.project?.wrappedName ?? "My Tasks")
-        .sheet(isPresented: $model.showAddTask)  {
-            AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
+        .sheet(isPresented: $model.showAdd)  {
+            if self.model.modalType == .addTask {
+                AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
+            } else {
+                AddProjectView(context: self.moc, project: self.model.project)
+            }
+        }
+    }
+    
+    private func hoveringButtons() -> some View {
+        VStack {
+            Spacer()
+            if model.project != nil {
+                HoveringButton(color: Color(.systemPurple), image: Image(systemName: "gear")) {
+                    self.model.modalType = .addProject
+                    self.model.taskToEdit = nil
+                    self.model.showAdd = true
+                }
+            }
+            HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
+                self.model.modalType = .addTask
+                self.model.taskToEdit = nil
+                self.model.showAdd = true
+            }
         }
     }
     
@@ -54,7 +73,8 @@ struct TasksView: View {
     private func taskCell(_ task: MTask) -> some View {
         Button(action: {
             self.model.taskToEdit = task
-            self.model.showAddTask = true
+            self.model.modalType = .addTask
+            self.model.showAdd = true
         }) {
             VStack(alignment: .leading) {
                 Text(task.wrappedName)
