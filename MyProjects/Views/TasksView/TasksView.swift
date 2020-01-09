@@ -42,7 +42,7 @@ struct TasksView: View {
         VStack {
             Spacer()
             if model.project != nil {
-                HoveringButton(color: Color(.systemPurple), image: Image(systemName: "gear")) {
+                HoveringButton(color: Color(.systemPurple), image: Image(systemName: "pencil")) {
                     self.model.modalType = .addProject
                     self.model.taskToEdit = nil
                     self.model.showAdd = true
