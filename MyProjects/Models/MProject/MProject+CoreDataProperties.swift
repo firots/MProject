@@ -27,6 +27,7 @@ extension MProject {
     @NSManaged public var lastModified: Date?
     @NSManaged public var deadline: Date?
     @NSManaged public var task: NSSet?
+    @NSManaged public var priotory: Int
     
     public var tasks: [MTask] {
         let set = task as? Set<MTask> ?? []

@@ -98,7 +98,7 @@ struct AddMObjectView: View {
                 .foregroundColor(Color(.systemPurple))
                 .aspectRatio(contentMode: .fill)
             Toggle(isOn: $model.showAutoStart.animation()) {
-                Text("Automatic Activation")
+                Text("Activation Date")
             }
         }
     }

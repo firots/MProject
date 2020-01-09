@@ -28,6 +28,7 @@ extension MTask {
     @NSManaged public var lastModified: Date?
     @NSManaged public var project: MProject?
     @NSManaged public var repeatMode: String?
+    @NSManaged public var priotory: Int
     
     public var wrappedRepeatMode: RepeatMode {
         get {

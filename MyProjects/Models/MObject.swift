@@ -19,6 +19,7 @@ protocol MObject {
     var status: String? { get  set }
     var ended: Date? { get  set }
     var lastModified: Date? { get  set }
+    var priotory: Int { get set }
 }
 
 extension MObject {

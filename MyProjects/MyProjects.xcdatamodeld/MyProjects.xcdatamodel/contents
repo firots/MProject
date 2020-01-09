@@ -8,6 +8,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="priotory" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="started" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTask" inverseName="project" inverseEntity="MTask"/>
@@ -25,13 +26,14 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="priotory" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeatMode" optional="YES" attributeType="String"/>
         <attribute name="started" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="task" inverseEntity="MProject"/>
     </entity>
     <elements>
-        <element name="MProject" positionX="-45" positionY="0" width="128" height="193"/>
-        <element name="MTask" positionX="-45" positionY="63" width="128" height="208"/>
+        <element name="MProject" positionX="-45" positionY="0" width="128" height="208"/>
+        <element name="MTask" positionX="-45" positionY="63" width="128" height="223"/>
     </elements>
 </model>
