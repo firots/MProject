@@ -55,17 +55,17 @@ public enum MObjectStatus: String {
     case active
     case waiting
     case done
-    case expired
+    case failed
     
-    static let all = [active, waiting, done, expired]
+    static let all = [active, waiting, done, failed]
     
     static let colors = [Color(UIColor.systemBackground), Color.yellow, Color.green, Color.red]
     
-    static let emptyProjectTitles = ["No projects", "No active projects", "No waiting projects", "No projects completed", "No expired projects"]
+    static let emptyProjectTitles = ["No projects", "No active projects", "No waiting projects", "No projects completed", "No failed projects"]
     
     static let emptyProjectSubtitles = ["Let's add some?", "Fine...", "Good...", "Let's do some!", "Wow!" ]
     
-    static let emptyTaskTitles = ["No tasks", "No active tasks", "No waiting tasks", "No tasks completed", "No expired tasks"]
+    static let emptyTaskTitles = ["No tasks", "No active tasks", "No waiting tasks", "No tasks completed", "No failed tasks"]
     
     static let emptyTaskSubtitles = ["Let's add some?", "Fine...", "Good...", "Let's do some!", "Wow!" ]
     
