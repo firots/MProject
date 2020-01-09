@@ -224,8 +224,8 @@
 				76FD61AC23B929AE00D21B21 /* ContentView.swift */,
 				76FD61AE23B929AE00D21B21 /* Assets.xcassets */,
 				76FD61B323B929AE00D21B21 /* LaunchScreen.storyboard */,
-				76FD61B623B929AE00D21B21 /* Info.plist */,
 				76FD61A923B929AE00D21B21 /* MyProjects.xcdatamodeld */,
+				76FD61B623B929AE00D21B21 /* Info.plist */,
 				76FD61B023B929AE00D21B21 /* Preview Content */,
 			);
 			path = MyProjects;

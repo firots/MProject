@@ -52,7 +52,7 @@ struct ModalTitle: View {
     }
     
     func closeButton() -> some View {
-        Button("Close") {
+        Button("Cancel") {
             self.presentationMode.wrappedValue.dismiss()
         }
         .foregroundColor(Color.purple)
