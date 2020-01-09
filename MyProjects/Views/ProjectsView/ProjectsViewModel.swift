@@ -17,6 +17,8 @@ class ProjectsViewModel: ObservableObject {
     var projectFilterTypeNames: [String] = MObjectStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
     
     private var cancellableSet: Set<AnyCancellable> = []
+    
+
 
     private var filterProjectsPublisher: AnyPublisher<NSPredicate?, Never> {
         $projectFilter

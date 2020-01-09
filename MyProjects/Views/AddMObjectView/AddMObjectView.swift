@@ -16,11 +16,17 @@ struct AddMObjectView: View {
     }
     
     var body: some View {
-        mainSection()
+        Group {
+            mainSection()
+            deadlineSection()
+            if model.status == .waiting {
+                autoStartSection()
+            }
+        }
     }
     
     private func taskStatePicker() -> some View {
-        Picker(selection: $model.statusIndex, label: Text("Status")) {
+        Picker(selection: $model.statusIndex.animation(), label: Text("Status")) {
             ForEach(0..<MObjectStatus.all.count) { index in
                 Text(MObjectStatus.all[index].rawValue.capitalizingFirstLetter())
             }
@@ -34,6 +40,63 @@ struct AddMObjectView: View {
         model is AddProjectViewModel ? "project" : "task"
     }
     
+    func dueToggle() -> some View {
+        HStack {
+            Image(systemName: "calendar")
+                .foregroundColor(Color(.purple))
+                .aspectRatio(contentMode: .fill)
+            Toggle(isOn: $model.hasDeadline.animation()) {
+                Text("Due date")
+            }
+        }
+    }
+    
+    func deadlineSection() -> some View {
+        Section {
+            dueToggle()
+            
+            if model.hasDeadline {
+                dateTimePicker(date: $model.deadline)
+            }
+        }
+    }
+    
+    func dateTimePicker(date: Binding<Date>) -> some View {
+        Group {
+            DatePicker(selection: date, in: Date()..., displayedComponents: .date) {
+                Text("Date")
+            }
+            .accentColor(.purple)
+            .modifier(DismissKeyboardOnTap())
+            
+            DatePicker(selection: date, in: Date()..., displayedComponents: .hourAndMinute) {
+                Text("Time")
+            }
+            .accentColor(.purple)
+            .modifier(DismissKeyboardOnTap())
+        }
+    }
+    
+    func autoStartSection() -> some View {
+        Section {
+            autoStartToggle()
+            if model.showAutoStart {
+                dateTimePicker(date: $model.autoStart)
+            }
+        }
+    }
+    
+    func autoStartToggle() -> some View {
+        HStack {
+            Image(systemName: "calendar")
+                .foregroundColor(Color(.purple))
+                .aspectRatio(contentMode: .fill)
+            Toggle(isOn: $model.showAutoStart.animation()) {
+                Text("Automatic Activation")
+            }
+        }
+    }
+    
     func mainSection() -> some View {
         Section {
             taskStatePicker()
@@ -41,7 +104,7 @@ struct AddMObjectView: View {
                 Image(systemName: "info.circle")
                 .foregroundColor(Color(.purple))
                 .aspectRatio(contentMode: .fill)
-                TextField("Name of your \(modelName)", text: $model.name)
+                TextField("Name", text: $model.name)
             }.accentColor(.purple)
 
             Button(action: {
@@ -51,35 +114,10 @@ struct AddMObjectView: View {
                     Image(systemName: "pencil.circle")
                     .foregroundColor(Color(.purple))
                     .aspectRatio(contentMode: .fill)
-                    Text(self.model.details.emptyHolder("Details about your \(modelName)"))
+                    Text(self.model.details.emptyHolder("Details"))
                         .foregroundColor(Color(.tertiaryLabel))
                         .lineLimit(1)
                 }.accentColor(.purple)
-            }
-            
-            
-            HStack {
-                Image(systemName: "calendar")
-                    .foregroundColor(Color(.purple))
-                    .aspectRatio(contentMode: .fill)
-                Toggle(isOn: $model.hasDeadline.animation()) {
-                    Text("Due date for this \(modelName)")
-                }
-            }
-            
-            
-            if model.hasDeadline {
-                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .date) {
-                    Text("Date")
-                }
-                .accentColor(.purple)
-                .modifier(DismissKeyboardOnTap())
-                
-                DatePicker(selection: $model.deadline, in: Date()..., displayedComponents: .hourAndMinute) {
-                    Text("Time")
-                }
-                .accentColor(.purple)
-                .modifier(DismissKeyboardOnTap())
             }
         }
     }
