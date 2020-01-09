@@ -46,7 +46,7 @@ struct AddMObjectView: View {
                 .foregroundColor(Color(.systemPurple))
                 .aspectRatio(contentMode: .fill)
             Toggle(isOn: $model.hasDeadline.animation()) {
-                Text("Due date")
+                Text("Due")
             }
         }
     }

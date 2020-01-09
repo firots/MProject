@@ -23,6 +23,7 @@ struct TasksView: View {
                     Text(Date().toClassic()).padding(.leading, 20)
                     Spacer()
                 }
+                taskFilter()
                 listTasks()
             }
             AddButton() {
@@ -40,6 +41,14 @@ struct TasksView: View {
         FilteredList(predicate: model.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.taskFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.taskFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
         }
+    }
+    
+    private func taskFilter() -> some View {
+        Picker(selection: $model.taskFilter, label: Text("Show")) {
+            ForEach(0..<MObjectStatus.all.count + 1) { index in
+                Text(self.model.taskFilterTypeNames[index])
+            }
+        }.pickerStyle(SegmentedPickerStyle())
     }
     
     private func taskCell(_ task: MTask) -> some View {

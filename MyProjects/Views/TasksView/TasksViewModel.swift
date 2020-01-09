@@ -26,21 +26,26 @@ class TasksViewModel: ObservableObject {
     private var filterTasksPublisher: AnyPublisher<NSPredicate?, Never> {
         $taskFilter
             .map { taskFilter in
-                if taskFilter == 0 {
-                    if self.project == nil {
-                        return nil
-                    } else {
-                        return NSPredicate(format: "project == %@", self.project!)
-                    }
-                } else {
-                    if self.project == nil {
-                        return NSPredicate(format: "status == %@", MObjectStatus.all[taskFilter - 1].rawValue)
-                    } else {
-                        return NSPredicate(format: "status == %@ AND project == %@", MObjectStatus.all[taskFilter - 1].rawValue, self.project!)
-                    }
-                }
+                self.getPredicate(filter: taskFilter)
             }
             .eraseToAnyPublisher()
+    }
+    
+    
+    func getPredicate(filter: Int) -> NSPredicate? {
+        if filter == 0 {
+            if self.project == nil {
+                return nil
+            } else {
+                return NSPredicate(format: "project == %@", self.project!)
+            }
+        } else {
+            if self.project == nil {
+                return NSPredicate(format: "status == %@", MObjectStatus.all[filter - 1].rawValue)
+            } else {
+                return NSPredicate(format: "status == %@ AND project == %@", MObjectStatus.all[filter - 1].rawValue, self.project!)
+            }
+        }
     }
     
     
@@ -55,6 +60,8 @@ class TasksViewModel: ObservableObject {
         }
         .assign(to: \.predicate, on: self)
         .store(in: &cancellableSet)
+        
+        predicate = getPredicate(filter: taskFilter)
     }
 
 }
