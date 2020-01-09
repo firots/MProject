@@ -24,10 +24,10 @@ struct AddButton: View {
                     .padding(0)
                     .background(Color(UIColor.systemBackground))
                     .clipShape(Circle())
-                    .shadow(color: .purple, radius: 4, x: 0, y: 0)
+                    .shadow(color: Color(.systemPurple), radius: 4, x: 0, y: 0)
 
                 }
-                .foregroundColor(Color.purple)
+                .foregroundColor(Color(.systemPurple))
                 Spacer().frame(height: 24)
             }
             Spacer().frame(width: 24)

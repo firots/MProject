@@ -33,7 +33,7 @@ struct AddMObjectView: View {
         }
         .pickerStyle(SegmentedPickerStyle())
         .background(MObjectStatus.colors[model.statusIndex])
-        .cornerRadius(5)
+        .cornerRadius(8)
     }
     
     var modelName: String {
@@ -43,7 +43,7 @@ struct AddMObjectView: View {
     func dueToggle() -> some View {
         HStack {
             Image(systemName: "calendar")
-                .foregroundColor(Color(.purple))
+                .foregroundColor(Color(.systemPurple))
                 .aspectRatio(contentMode: .fill)
             Toggle(isOn: $model.hasDeadline.animation()) {
                 Text("Due date")
@@ -59,21 +59,26 @@ struct AddMObjectView: View {
                 dateTimePicker(date: $model.deadline)
             }
         }
+        .modifier(DismissKeyboardOnTap())
     }
     
     func dateTimePicker(date: Binding<Date>) -> some View {
         Group {
             DatePicker(selection: date, in: Date()..., displayedComponents: .date) {
-                Text("Date")
+                Group {
+                    Image(systemName: "calendar").foregroundColor(.clear)
+                    Text("Date")
+                }
             }
-            .accentColor(.purple)
-            .modifier(DismissKeyboardOnTap())
-            
+            .accentColor(Color(.systemPurple))
+
             DatePicker(selection: date, in: Date()..., displayedComponents: .hourAndMinute) {
-                Text("Time")
+                Group {
+                    Image(systemName: "calendar").foregroundColor(.clear)
+                    Text("Time")
+                }
             }
-            .accentColor(.purple)
-            .modifier(DismissKeyboardOnTap())
+            .accentColor(Color(.systemPurple))
         }
     }
     
@@ -84,12 +89,13 @@ struct AddMObjectView: View {
                 dateTimePicker(date: $model.autoStart)
             }
         }
+        .modifier(DismissKeyboardOnTap())
     }
     
     func autoStartToggle() -> some View {
         HStack {
             Image(systemName: "calendar")
-                .foregroundColor(Color(.purple))
+                .foregroundColor(Color(.systemPurple))
                 .aspectRatio(contentMode: .fill)
             Toggle(isOn: $model.showAutoStart.animation()) {
                 Text("Automatic Activation")
@@ -102,22 +108,22 @@ struct AddMObjectView: View {
             taskStatePicker()
             HStack {
                 Image(systemName: "info.circle")
-                .foregroundColor(Color(.purple))
+                .foregroundColor(Color(.systemPurple))
                 .aspectRatio(contentMode: .fill)
                 TextField("Name", text: $model.name)
-            }.accentColor(.purple)
+            }.accentColor(Color(.systemPurple))
 
             Button(action: {
                 self.model.showNotes = true
             }) {
                 HStack {
                     Image(systemName: "pencil.circle")
-                    .foregroundColor(Color(.purple))
+                    .foregroundColor(Color(.systemPurple))
                     .aspectRatio(contentMode: .fill)
                     Text(self.model.details.emptyHolder("Details"))
                         .foregroundColor(Color(.tertiaryLabel))
                         .lineLimit(1)
-                }.accentColor(.purple)
+                }.accentColor(Color(.systemPurple))
             }
         }
     }

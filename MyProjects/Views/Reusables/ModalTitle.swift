@@ -48,14 +48,14 @@ struct ModalTitle: View {
         Button("Save") {
             self.action?()
         }
-        .foregroundColor(Color.purple)
+        .foregroundColor(Color(.systemPurple))
     }
     
     func closeButton() -> some View {
         Button("Cancel") {
             self.presentationMode.wrappedValue.dismiss()
         }
-        .foregroundColor(Color.purple)
+        .foregroundColor(Color(.systemPurple))
     }
 }
 

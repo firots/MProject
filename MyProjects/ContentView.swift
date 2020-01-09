@@ -32,7 +32,7 @@ struct ContentView: View {
                 Image(systemName: "gear")
                 .font(.system(size: 24))
             }.tag(2)
-        }.accentColor(.purple)
+        }.accentColor(Color(.systemPurple))
     }
 }
 
