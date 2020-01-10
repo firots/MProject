@@ -27,7 +27,7 @@
 		768A23E223C8C8E000AE8B83 /* MStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23D923C8C7BE00AE8B83 /* MStep+CoreDataProperties.swift */; };
 		768A23E523C8CD3500AE8B83 /* StepCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E423C8CD3500AE8B83 /* StepCellViewModel.swift */; };
 		768A23E823C8CD5500AE8B83 /* StepCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E723C8CD5500AE8B83 /* StepCellView.swift */; };
-		768A23EA23C8FB1900AE8B83 /* CheckmarkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E923C8FB1900AE8B83 /* CheckmarkButtonView.swift */; };
+		768A23EA23C8FB1900AE8B83 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */; };
 		76ED808123C62E430042D36D /* RepeatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808023C62E430042D36D /* RepeatMode.swift */; };
 		76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808323C62F580042D36D /* PlaceholderView.swift */; };
 		76ED808623C648F70042D36D /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808523C648F70042D36D /* TextView.swift */; };
@@ -72,7 +72,7 @@
 		768A23D923C8C7BE00AE8B83 /* MStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		768A23E423C8CD3500AE8B83 /* StepCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCellViewModel.swift; sourceTree = "<group>"; };
 		768A23E723C8CD5500AE8B83 /* StepCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCellView.swift; sourceTree = "<group>"; };
-		768A23E923C8FB1900AE8B83 /* CheckmarkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButtonView.swift; sourceTree = "<group>"; };
+		768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		76ED808023C62E430042D36D /* RepeatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatMode.swift; sourceTree = "<group>"; };
 		76ED808323C62F580042D36D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76ED808523C648F70042D36D /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				76FD61C823B92C4D00D21B21 /* HoveringButton.swift */,
-				768A23E923C8FB1900AE8B83 /* CheckmarkButtonView.swift */,
+				768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -388,7 +388,7 @@
 				76EF17C723BCE17400C1CD11 /* AddTaskViewModel.swift in Sources */,
 				76FD61BF23B92A5C00D21B21 /* SettingsView.swift in Sources */,
 				76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */,
-				768A23EA23C8FB1900AE8B83 /* CheckmarkButtonView.swift in Sources */,
+				768A23EA23C8FB1900AE8B83 /* CheckmarkButton.swift in Sources */,
 				768A23E223C8C8E000AE8B83 /* MStep+CoreDataProperties.swift in Sources */,
 				76ED808623C648F70042D36D /* TextView.swift in Sources */,
 				76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */,
