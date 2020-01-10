@@ -36,4 +36,14 @@ extension MTask {
         
         return task
     }
+    
+    public func complete() {
+        self.ended = Date()
+        self.status = MObjectStatus.done.rawValue
+    }
+    
+    public func uncomplete() {
+        self.ended = nil
+        self.status = MObjectStatus.active.rawValue
+    }
 }

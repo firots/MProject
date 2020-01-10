@@ -77,7 +77,7 @@ struct TasksView: View {
             self.model.showAdd = true
         }) {
             HStack {
-                checkMarkImage(task)
+                checkmarkButton(task)
                 VStack(alignment: .leading) {
                     Text(task.wrappedName)
                     Text(task.wrappedDetails).font(.footnote).lineLimit(1)
@@ -98,13 +98,13 @@ struct TasksView: View {
         }
     }
     
-    func checkMarkImage(_ task: MTask) -> some View {
+    func checkmarkButton(_ task: MTask) -> some View {
         Button(action: {
             if task.wrappedStatus == .active {
-                task.status = MObjectStatus.done.rawValue
+                task.complete()
                 self.saveChanges()
             } else if task.wrappedStatus == .done {
-                task.status = MObjectStatus.active.rawValue
+                task.uncomplete()
                 self.saveChanges()
             } else {
                 self.model.taskToEdit = task
@@ -113,18 +113,25 @@ struct TasksView: View {
             }
         }) {
             if task.wrappedStatus == .active {
-                Image(systemName: "circle")
+                checkmarkButtonImage(imageName: "circle")
             } else if task.wrappedStatus == .done {
-                Image(systemName: "checkmark.circle.fill")
-                    //.foregroundColor(Color(.systemGreen))
+                checkmarkButtonImage(imageName:  "checkmark.circle.fill")
+                .foregroundColor(Color(.systemGreen))
             } else if task.wrappedStatus == .waiting {
-                Image(systemName: "pause.circle.fill")
-                    //.foregroundColor(Color(.systemYellow))
+                checkmarkButtonImage(imageName:  "pause.circle.fill")
+                    .foregroundColor(Color(.systemOrange))
             } else {
-                Image(systemName: "xmark.circle.fill")
-                    //.foregroundColor(Color(.systemRed))
+                checkmarkButtonImage(imageName:  "xmark.circle.fill")
+                    .foregroundColor(Color(.systemPink))
             }
         }
+    }
+    
+    func checkmarkButtonImage(imageName: String) -> some View {
+        Image(systemName: imageName)
+            .resizable()
+            .frame(width: 30, height: 30)
+            .aspectRatio(contentMode: .fill)
     }
 }
 

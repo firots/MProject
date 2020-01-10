@@ -60,7 +60,7 @@ public enum MObjectStatus: String {
     
     static let all = [active, waiting, done, failed]
     
-    static let colors = [Color(UIColor.systemBackground), Color.yellow, Color.green, Color.red]
+    static let colors = [Color(UIColor.systemBackground), Color(.systemOrange), Color(.systemGreen), Color(.systemRed)]
     
     static let emptyProjectTitles = ["No projects", "No active projects", "No waiting projects", "No projects completed", "No failed projects"]
     
