@@ -13,6 +13,7 @@ class TasksViewModel: ObservableObject {
     @Published var showAdd = false
     @Published var taskFilter = 1
     @Published var predicate: NSPredicate?
+    
     var modalType = ModalType.addTask
     
     var taskToEdit: MTask?

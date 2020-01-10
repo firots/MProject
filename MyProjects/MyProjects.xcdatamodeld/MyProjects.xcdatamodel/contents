@@ -18,6 +18,13 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="MStep" representedClassName="MStep" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="step" inverseEntity="MTask"/>
+    </entity>
     <entity name="MTask" representedClassName="MTask" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="deadline" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -31,9 +38,11 @@
         <attribute name="started" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="task" inverseEntity="MProject"/>
+        <relationship name="step" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MStep" inverseName="task" inverseEntity="MStep"/>
     </entity>
     <elements>
         <element name="MProject" positionX="-45" positionY="0" width="128" height="208"/>
-        <element name="MTask" positionX="-45" positionY="63" width="128" height="223"/>
+        <element name="MStep" positionX="-36" positionY="126" width="128" height="118"/>
+        <element name="MTask" positionX="-45" positionY="63" width="128" height="238"/>
     </elements>
 </model>

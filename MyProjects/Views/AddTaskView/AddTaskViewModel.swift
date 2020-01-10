@@ -12,10 +12,14 @@ class AddTaskViewModel: AddMObjectViewModel {
     let project: MProject?
     let task: MTask?
     
+    @Published var steps = [StepCellViewModel]()
+    
     init(_ task: MTask?, _ project: MProject?) {
         self.project = project
         self.task = task
         super.init(mObject: task)
-    
+
     }
 }
+
+

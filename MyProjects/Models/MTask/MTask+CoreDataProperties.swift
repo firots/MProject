@@ -12,7 +12,6 @@ import CoreData
 
 
 extension MTask {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MTask> {
         return NSFetchRequest<MTask>(entityName: "MTask")
     }
@@ -29,6 +28,7 @@ extension MTask {
     @NSManaged public var project: MProject?
     @NSManaged public var repeatMode: String?
     @NSManaged public var priotory: Int
+    @NSManaged public var step: NSSet?
     
     public var wrappedRepeatMode: RepeatMode {
         get {
@@ -37,4 +37,29 @@ extension MTask {
             repeatMode = newValue.rawValue
         }
     }
+    
+    public var steps: [MStep] {
+        let set = step as? Set<MStep> ?? []
+        
+        return set.sorted {
+            $0.wrappedCreated > $1.wrappedCreated
+        }
+    }
+}
+
+// MARK: Generated accessors for step
+extension MTask {
+
+    @objc(addStepObject:)
+    @NSManaged public func addToStep(_ value: MStep)
+
+    @objc(removeStepObject:)
+    @NSManaged public func removeFromStep(_ value: MStep)
+
+    @objc(addStep:)
+    @NSManaged public func addToStep(_ values: NSSet)
+
+    @objc(removeStep:)
+    @NSManaged public func removeFromStep(_ values: NSSet)
+
 }

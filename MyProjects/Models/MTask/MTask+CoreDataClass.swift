@@ -13,6 +13,5 @@ import CoreData
 @objc(MTask)
 public class MTask: NSManagedObject, MObject {
 
-    
 
 }

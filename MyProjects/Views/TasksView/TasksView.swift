@@ -76,10 +76,53 @@ struct TasksView: View {
             self.model.modalType = .addTask
             self.model.showAdd = true
         }) {
-            VStack(alignment: .leading) {
-                Text(task.wrappedName)
-                Text(task.wrappedDetails).font(.footnote).lineLimit(1)
-                Text("Due: \(task.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
+            HStack {
+                checkMarkImage(task)
+                VStack(alignment: .leading) {
+                    Text(task.wrappedName)
+                    Text(task.wrappedDetails).font(.footnote).lineLimit(1)
+                    Text("Due: \(task.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
+                }
+            }
+        }
+        
+    }
+    
+    func saveChanges() {
+        if self.moc.hasChanges {
+            do {
+                try self.moc.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func checkMarkImage(_ task: MTask) -> some View {
+        Button(action: {
+            if task.wrappedStatus == .active {
+                task.status = MObjectStatus.done.rawValue
+                self.saveChanges()
+            } else if task.wrappedStatus == .done {
+                task.status = MObjectStatus.active.rawValue
+                self.saveChanges()
+            } else {
+                self.model.taskToEdit = task
+                self.model.modalType = .addTask
+                self.model.showAdd = true
+            }
+        }) {
+            if task.wrappedStatus == .active {
+                Image(systemName: "circle")
+            } else if task.wrappedStatus == .done {
+                Image(systemName: "checkmark.circle.fill")
+                    //.foregroundColor(Color(.systemGreen))
+            } else if task.wrappedStatus == .waiting {
+                Image(systemName: "pause.circle.fill")
+                    //.foregroundColor(Color(.systemYellow))
+            } else {
+                Image(systemName: "xmark.circle.fill")
+                    //.foregroundColor(Color(.systemRed))
             }
         }
     }
