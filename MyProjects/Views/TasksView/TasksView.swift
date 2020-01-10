@@ -78,14 +78,25 @@ struct TasksView: View {
         }) {
             HStack {
                 checkmarkButton(task)
+                    .padding(.trailing)
                 VStack(alignment: .leading) {
                     Text(task.wrappedName)
-                    Text(task.wrappedDetails).font(.footnote).lineLimit(1)
-                    Text("Due: \(task.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
-                }
+                        .lineLimit(1)
+                Spacer()
+                    
+                Text(task.wrappedDetails)
+                    .font(.subheadline)
+                    .lineLimit(1)
+                Spacer()
+                    
+                Text(task.deadline != nil ? task.deadline!.toRelative() : "No deadline")
+                    .font(.subheadline)
+                    .lineLimit(1)
+                    .foregroundColor(Color(.placeholderText))
+                    
+                }.foregroundColor(Color(.label))
             }
         }
-        
     }
     
     func saveChanges() {

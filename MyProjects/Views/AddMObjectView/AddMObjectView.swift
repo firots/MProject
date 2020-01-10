@@ -139,7 +139,7 @@ struct AddMObjectView: View {
                     .foregroundColor(Color(.systemPurple))
                     .aspectRatio(contentMode: .fill)
                     Text(self.model.details.emptyHolder("Details"))
-                        .foregroundColor(Color(.tertiaryLabel))
+                        .foregroundColor(Color(.placeholderText))
                         .lineLimit(1)
                 }.accentColor(Color(.systemPurple))
             }
