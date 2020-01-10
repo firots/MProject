@@ -16,11 +16,12 @@ class AddMObjectViewModel: ObservableObject {
     @Published var deadline = Date()
     @Published var hasDeadline = false
     @Published var statusIndex: Int
-    @Published var showNotes = false
+    @Published var showModal = false
     @Published var autoStart = Date()
     @Published var ended: Date?
     @Published var started: Date?
     @Published var showAutoStart = false
+    @Published var modalType = ModalType.notes
     
     var status: MObjectStatus {
         return MObjectStatus.all[statusIndex]
@@ -43,5 +44,10 @@ class AddMObjectViewModel: ObservableObject {
                 autoStart = started
             }
         }
+    }
+    
+    enum ModalType {
+        case notes
+        case addNotification
     }
 }

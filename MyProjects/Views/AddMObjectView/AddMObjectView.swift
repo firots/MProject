@@ -22,6 +22,7 @@ struct AddMObjectView: View {
             if model.status == .waiting {
                 autoStartSection()
             }
+            notificationsSection()
         }
     }
     
@@ -48,6 +49,22 @@ struct AddMObjectView: View {
             Toggle(isOn: $model.hasDeadline.animation()) {
                 Text("Due")
             }
+        }
+    }
+    
+    func notificationsSection() -> some View {
+        Section {
+            Button(action: {
+                withAnimation {
+                    self.model.modalType = .addNotification
+                    self.model.showModal = true
+                }
+            }) {
+                HStack {
+                    Image(systemName: "plus.circle")
+                    Text("Add Notification")
+                }
+            }.accentColor(Color(.systemPurple))
         }
     }
     
@@ -114,7 +131,8 @@ struct AddMObjectView: View {
             }.accentColor(Color(.systemPurple))
 
             Button(action: {
-                self.model.showNotes = true
+                self.model.modalType = .notes
+                self.model.showModal = true
             }) {
                 HStack {
                     Image(systemName: "pencil.circle")

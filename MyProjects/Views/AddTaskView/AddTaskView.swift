@@ -26,8 +26,12 @@ struct AddTaskView: View {
                 AddMObjectView(model: model)
             }
         }
-        .sheet(isPresented: $model.showNotes) {
-            NotesView(model: NotesViewModel(notes: self.$model.details))
+        .sheet(isPresented: $model.showModal) {
+            if (self.model.modalType == .notes) {
+                NotesView(model: NotesViewModel(notes: self.$model.details))
+            } else {
+                Text("Add notification")
+            }
         }
     }
     
