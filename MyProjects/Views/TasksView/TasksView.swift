@@ -99,7 +99,7 @@ struct TasksView: View {
     }
     
     func checkmarkButton(_ task: MTask) -> some View {
-        Button(action: {
+        CheckmarkButton(status: task.wrappedStatus) {
             if task.wrappedStatus == .active {
                 task.complete()
                 self.saveChanges()
@@ -111,27 +111,7 @@ struct TasksView: View {
                 self.model.modalType = .addTask
                 self.model.showAdd = true
             }
-        }) {
-            if task.wrappedStatus == .active {
-                checkmarkButtonImage(imageName: "circle")
-            } else if task.wrappedStatus == .done {
-                checkmarkButtonImage(imageName:  "checkmark.circle.fill")
-                .foregroundColor(Color(.systemGreen))
-            } else if task.wrappedStatus == .waiting {
-                checkmarkButtonImage(imageName:  "pause.circle.fill")
-                    .foregroundColor(Color(.systemOrange))
-            } else {
-                checkmarkButtonImage(imageName:  "xmark.circle.fill")
-                    .foregroundColor(Color(.systemPink))
-            }
         }
-    }
-    
-    func checkmarkButtonImage(imageName: String) -> some View {
-        Image(systemName: imageName)
-            .resizable()
-            .frame(width: 30, height: 30)
-            .aspectRatio(contentMode: .fill)
     }
 }
 
