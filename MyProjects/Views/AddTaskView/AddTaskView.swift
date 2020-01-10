@@ -15,6 +15,8 @@ struct AddTaskView: View {
     var moc: NSManagedObjectContext
     
     init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext) {
+        UITableView.appearance().backgroundColor = .secondarySystemBackground
+        UISegmentedControl.appearance().backgroundColor = .clear
         model = AddTaskViewModel(task, project)
         self.moc = moc
     }

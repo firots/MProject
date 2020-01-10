@@ -11,8 +11,11 @@ import SwiftUI
 struct TasksView: View {
     @ObservedObject private var model: TasksViewModel
     @Environment(\.managedObjectContext) private var moc
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     init(project: MProject?) {
+        UITableView.appearance().backgroundColor = .systemBackground
+        UISegmentedControl.appearance().backgroundColor = .systemBackground
         model = TasksViewModel(project: project)
     }
     
@@ -23,8 +26,13 @@ struct TasksView: View {
                     Text(Date().toClassic()).padding(.leading, 20)
                     Spacer()
                 }
-                taskFilter()
-                listTasks()
+                ZStack {
+                    listTasks()
+                    VStack {
+                        taskFilter()
+                        Spacer()
+                    }
+                }
             }
             hoveringButtons()
         }
@@ -62,6 +70,8 @@ struct TasksView: View {
         }
     }
     
+    
+    
     private func taskFilter() -> some View {
         Picker(selection: $model.taskFilter, label: Text("Show")) {
             ForEach(0..<MObjectStatus.all.count + 1) { index in
@@ -96,7 +106,16 @@ struct TasksView: View {
                     
                 }.foregroundColor(Color(.label))
             }
-        }
+        }.listRowBackground(cellBackgroundColor)
+    }
+    
+    private var cellBackgroundColor: Color {
+        colorScheme == .light ? Color(.clear) : Color(.systemBackground)
+    }
+
+    private var cellColor: Color {
+        Color(.systemBackground)
+        //colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground)
     }
     
     func saveChanges() {

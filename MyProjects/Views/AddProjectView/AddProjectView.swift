@@ -15,6 +15,8 @@ struct AddProjectView: View {
     var moc: NSManagedObjectContext
     
     init(context moc: NSManagedObjectContext, project: MProject?) {
+        UITableView.appearance().backgroundColor = .secondarySystemBackground
+        UISegmentedControl.appearance().backgroundColor = .clear
         self.moc = moc
         self.model = AddProjectViewModel(project: project)
     }

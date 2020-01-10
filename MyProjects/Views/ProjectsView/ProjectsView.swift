@@ -14,6 +14,8 @@ struct ProjectsView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     init() {
+        UITableView.appearance().backgroundColor = .systemBackground
+        UISegmentedControl.appearance().backgroundColor = .systemBackground
         model = ProjectsViewModel()
     }
     
@@ -72,11 +74,12 @@ struct ProjectsView: View {
     }
     
     private var cellBackgroundColor: Color {
-        colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
+        colorScheme == .light ? Color(.clear) : Color(.systemBackground)
     }
     
     private var cellColor: Color {
-        colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground)
+        Color(.systemBackground)
+        //colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground)
     }
 }
 
