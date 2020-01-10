@@ -28,6 +28,7 @@
 		768A23E523C8CD3500AE8B83 /* StepCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E423C8CD3500AE8B83 /* StepCellViewModel.swift */; };
 		768A23E823C8CD5500AE8B83 /* StepCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E723C8CD5500AE8B83 /* StepCellView.swift */; };
 		768A23EA23C8FB1900AE8B83 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */; };
+		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76ED808123C62E430042D36D /* RepeatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808023C62E430042D36D /* RepeatMode.swift */; };
 		76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808323C62F580042D36D /* PlaceholderView.swift */; };
 		76ED808623C648F70042D36D /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808523C648F70042D36D /* TextView.swift */; };
@@ -73,6 +74,7 @@
 		768A23E423C8CD3500AE8B83 /* StepCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCellViewModel.swift; sourceTree = "<group>"; };
 		768A23E723C8CD5500AE8B83 /* StepCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCellView.swift; sourceTree = "<group>"; };
 		768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
+		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76ED808023C62E430042D36D /* RepeatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatMode.swift; sourceTree = "<group>"; };
 		76ED808323C62F580042D36D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76ED808523C648F70042D36D /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				765BA58723C236E5007F835D /* String+EmptyHolder.swift */,
 				764AA30B23C2816600F581BA /* String+Capitalizer.swift */,
 				7625E11C23C5239900F81CCA /* View+HideKeyboard.swift */,
+				76D802F223C941E70088556A /* String+NoNewline.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				768A23E823C8CD5500AE8B83 /* StepCellView.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
 				76895C5523C67FA600867607 /* NotesView.swift in Sources */,
+				76D802F323C941E70088556A /* String+NoNewline.swift in Sources */,
 				7681B67F23C383DA0068254B /* MTask+CoreDataProperties.swift in Sources */,
 				76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */,
 				76ED808123C62E430042D36D /* RepeatMode.swift in Sources */,

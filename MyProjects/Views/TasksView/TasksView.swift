@@ -92,17 +92,18 @@ struct TasksView: View {
                 VStack(alignment: .leading) {
                     Text(task.wrappedName)
                         .lineLimit(1)
-                Spacer()
+                    Spacer()
                     
-                Text(task.wrappedDetails)
-                    .font(.subheadline)
-                    .lineLimit(1)
-                Spacer()
+                    Text(task.wrappedDetails.noNewline())
+                        .font(.subheadline)
+                        .lineLimit(1)
                     
-                Text(task.deadline != nil ? task.deadline!.toRelative() : "No deadline")
-                    .font(.subheadline)
-                    .lineLimit(1)
-                    .foregroundColor(Color(.placeholderText))
+                    Spacer()
+                    
+                    Text(task.deadline != nil ? task.deadline!.toRelative() : "No deadline")
+                        .font(.subheadline)
+                        .lineLimit(1)
+                        .foregroundColor(Color(.placeholderText))
                     
                 }.foregroundColor(Color(.label))
             }

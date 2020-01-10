@@ -138,7 +138,7 @@ struct AddMObjectView: View {
                     Image(systemName: "pencil.circle")
                     .foregroundColor(Color(.systemPurple))
                     .aspectRatio(contentMode: .fill)
-                    Text(self.model.details.emptyHolder("Details"))
+                    Text(self.model.details.emptyHolder("Details").noNewline())
                         .foregroundColor(Color(.placeholderText))
                         .lineLimit(1)
                 }.accentColor(Color(.systemPurple))
