@@ -19,6 +19,8 @@
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
 		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
+		7673533823CA1065002C1194 /* MTask+ChangeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533723CA1065002C1194 /* MTask+ChangeState.swift */; };
+		7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533923CA11F1002C1194 /* MStep+Create.swift */; };
 		7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */; };
 		7681B67F23C383DA0068254B /* MTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */; };
 		7681B68823C3B3360068254B /* MTask+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */; };
@@ -65,6 +67,8 @@
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
+		7673533723CA1065002C1194 /* MTask+ChangeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+ChangeState.swift"; sourceTree = "<group>"; };
+		7673533923CA11F1002C1194 /* MStep+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+Create.swift"; sourceTree = "<group>"; };
 		7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+CreateOrSync.swift"; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 				7681B67C23C383DA0068254B /* MTask+CoreDataClass.swift */,
 				7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */,
 				7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */,
+				7673533723CA1065002C1194 /* MTask+ChangeState.swift */,
 			);
 			path = MTask;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 			children = (
 				768A23D823C8C7BE00AE8B83 /* MStep+CoreDataClass.swift */,
 				768A23D923C8C7BE00AE8B83 /* MStep+CoreDataProperties.swift */,
+				7673533923CA11F1002C1194 /* MStep+Create.swift */,
 			);
 			path = MStep;
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				768A23E223C8C8E000AE8B83 /* MStep+CoreDataProperties.swift in Sources */,
 				76ED808623C648F70042D36D /* TextView.swift in Sources */,
 				76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */,
+				7673533823CA1065002C1194 /* MTask+ChangeState.swift in Sources */,
 				7625E11423C4E5F700F81CCA /* MObject.swift in Sources */,
 				7625E11D23C5239900F81CCA /* View+HideKeyboard.swift in Sources */,
 				76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */,
@@ -406,6 +413,7 @@
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */,
+				7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */,
 				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
 				768A23E823C8CD5500AE8B83 /* StepCellView.swift in Sources */,

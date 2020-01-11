@@ -28,10 +28,7 @@ struct TasksView: View {
                 }
                 ZStack {
                     listTasks()
-                    VStack {
-                        taskFilter()
-                        Spacer()
-                    }
+                    taskFilter()
                 }
             }
             hoveringButtons()
@@ -73,11 +70,14 @@ struct TasksView: View {
     
     
     private func taskFilter() -> some View {
-        Picker(selection: $model.taskFilter, label: Text("Show")) {
-            ForEach(0..<MObjectStatus.all.count + 1) { index in
-                Text(self.model.taskFilterTypeNames[index])
-            }
-        }.pickerStyle(SegmentedPickerStyle())
+        VStack {
+            Picker(selection: $model.taskFilter, label: Text("Show")) {
+                ForEach(0..<MObjectStatus.all.count + 1) { index in
+                    Text(self.model.taskFilterTypeNames[index])
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            Spacer()
+        }
     }
     
     private func taskCell(_ task: MTask) -> some View {

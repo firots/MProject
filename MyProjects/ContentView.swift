@@ -21,7 +21,9 @@ struct ContentView: View {
                     .font(.system(size: 24))
             }.tag(0)
             
-            ProjectsView()
+            NavigationView {
+                ProjectsView()
+            }
             .tabItem {
                 Image(systemName: "tray.2")
                 .font(.system(size: 24))

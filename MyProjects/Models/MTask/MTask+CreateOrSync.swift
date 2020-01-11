@@ -24,7 +24,18 @@ extension MTask {
             t.deadline = nil
         }
         
+        t.syncSteps(with: model.steps, context: moc)
+        
         return t
+    }
+    
+    func syncSteps(with stepModels: [StepCellViewModel], context moc: NSManagedObjectContext) {
+        var steps = [MStep]()
+        for stepModel in stepModels {
+            let step = MStep.create(from: stepModel, context: moc)
+            steps.append(step)
+        }
+        if moc.hasChanges { try? moc.save() }
     }
     
     static func createBase(context moc: NSManagedObjectContext) -> MTask {
@@ -35,15 +46,5 @@ extension MTask {
         task.details = ""
         
         return task
-    }
-    
-    public func complete() {
-        self.ended = Date()
-        self.status = MObjectStatus.done.rawValue
-    }
-    
-    public func uncomplete() {
-        self.ended = nil
-        self.status = isExpired ? MObjectStatus.failed.rawValue : MObjectStatus.active.rawValue
     }
 }

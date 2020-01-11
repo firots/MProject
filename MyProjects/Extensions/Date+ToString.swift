@@ -28,6 +28,12 @@ extension Date {
     }
     
     func toClassic() -> String {
-        return self.toString(format: "EEEE", isRelative: false)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "d MMMM EEE"
+
+        let date = dateFormatter.string(from: self)
+        
+        return date
     }
 }

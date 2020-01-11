@@ -20,27 +20,34 @@ struct ProjectsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                VStack {
-                    projectFilter()
-                    listProjects()
+        ZStack {
+            VStack {
+                HStack {
+                    Text(Date().toClassic()).padding(.leading, 20)
+                    Spacer()
                 }
-                addButton()
+                ZStack {
+                    listProjects()
+                    projectFilter()
+                }
             }
-            .navigationBarTitle("My Projects")
+            addButton()
         }
+        .navigationBarTitle("My Projects")
         .sheet(isPresented: $model.showAddProject)  {
             AddProjectView(context: self.moc, project: nil)
         }
     }
     
     private func projectFilter() -> some View {
-        Picker(selection: $model.projectFilter, label: Text("Show")) {
-            ForEach(0..<MObjectStatus.all.count + 1) { index in
-                Text(self.model.projectFilterTypeNames[index])
-            }
-        }.pickerStyle(SegmentedPickerStyle())
+        VStack {
+            Picker(selection: $model.projectFilter, label: Text("Show")) {
+                ForEach(0..<MObjectStatus.all.count + 1) { index in
+                    Text(self.model.projectFilterTypeNames[index])
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            Spacer()
+        }
     }
     
     private func listProjects() -> some View {

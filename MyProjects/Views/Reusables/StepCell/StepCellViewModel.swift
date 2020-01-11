@@ -13,8 +13,9 @@ class StepCellViewModel: ObservableObject {
     var name: String
     var done: Bool
     var created: Date
+    var task: MTask?
     
-    init(name: String?, done: Bool, created: Date) {
+    init(name: String?, done: Bool, created: Date, task: MTask?) {
         self.id = UUID()
         self.name = name ?? ""
         self.done = done
@@ -26,5 +27,6 @@ class StepCellViewModel: ObservableObject {
         self.name = step.name ?? ""
         self.done = step.done
         self.created = step.wrappedCreated
+        self.task = step.task
     }
 }
