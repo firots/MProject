@@ -8,9 +8,10 @@
 
 import Foundation
 
-class StepCellViewModel: ObservableObject {
+class StepCellViewModel: ObservableObject, Identifiable {
     var id: UUID
-    var name: String
+    @Published var name: String
+    @Published var editing: Bool
     var done: Bool
     var created: Date
     var task: MTask?
@@ -20,6 +21,8 @@ class StepCellViewModel: ObservableObject {
         self.name = name ?? ""
         self.done = done
         self.created = created
+        self.task = task
+        self.editing = true
     }
     
     init(step: MStep) {
@@ -28,5 +31,6 @@ class StepCellViewModel: ObservableObject {
         self.done = step.done
         self.created = step.wrappedCreated
         self.task = step.task
+        self.editing = false
     }
 }

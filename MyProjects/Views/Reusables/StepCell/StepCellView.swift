@@ -11,9 +11,20 @@ import SwiftUI
 struct StepCellView: View {
     @ObservedObject var model: StepCellViewModel
     
+    var action: (() -> Void)?
+    
     var body: some View {
         HStack {
-            TextField("Name", text: $model.name)
+            TextView(text: $model.name, isEditing: $model.editing, backgroundColor: .systemBackground, isScrollingEnabled: false)
+
+            Spacer()
+            
+            Button(action: {
+                self.action?()
+            }) {
+                Image(systemName: "xmark")
+                    .foregroundColor(Color(.systemPurple))
+            }
         }
     }
 }

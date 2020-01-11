@@ -23,19 +23,31 @@ extension MTask {
         } else {
             t.deadline = nil
         }
-        
+
+
         t.syncSteps(with: model.steps, context: moc)
         
         return t
     }
     
+    func clearSteps(context moc: NSManagedObjectContext) {
+        for step in steps {
+            moc.delete(step)
+        }
+    }
+    
     func syncSteps(with stepModels: [StepCellViewModel], context moc: NSManagedObjectContext) {
+        clearSteps(context: moc)
         var steps = [MStep]()
         for stepModel in stepModels {
             let step = MStep.create(from: stepModel, context: moc)
+            step.task = self
             steps.append(step)
         }
-        if moc.hasChanges { try? moc.save() }
+
+        if moc.hasChanges {
+            try? moc.save()
+        }
     }
     
     static func createBase(context moc: NSManagedObjectContext) -> MTask {

@@ -18,6 +18,13 @@ class AddTaskViewModel: AddMObjectViewModel {
         self.project = project
         self.task = task
         super.init(mObject: task)
+        
+        if let task = task {
+            for step in task.steps {
+                let stepModel = StepCellViewModel(step: step)
+                steps.append(stepModel)
+            }
+        }
     }
 }
 

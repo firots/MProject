@@ -26,6 +26,7 @@ struct AddTaskView: View {
             titleBar()
             Form {
                 AddMObjectView(model: model)
+                stepsSection()
             }
         }
         .sheet(isPresented: $model.showModal) {
@@ -34,6 +35,39 @@ struct AddTaskView: View {
             } else {
                 Text("Add notification")
             }
+        }
+    }
+    
+    func addStepButton() -> some View {
+        Button(action: {
+            let stepModel = StepCellViewModel(name: "", done: false, created: Date(), task: self.model.task)
+            self.model.steps.append(stepModel)
+            withAnimation {
+                self.model.objectWillChange.send()
+            }
+            
+        }) {
+            HStack {
+                Image(systemName: "plus.circle")
+                Text("Add Step")
+            }
+        }.accentColor(Color(.systemPurple))
+    }
+    
+    func stepsSection() -> some View {
+        return Section {
+            addStepButton()
+            List {
+                ForEach(0..<model.steps.count, id: \.self) { index in
+                    StepCellView(model: self.model.steps[index]) {
+                        self.model.steps.remove(at: index)
+                        withAnimation {
+                            self.model.objectWillChange.send()
+                        }
+                    }
+                }
+            }
+
         }
     }
     
