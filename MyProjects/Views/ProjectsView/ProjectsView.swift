@@ -67,10 +67,6 @@ struct ProjectsView: View {
             }
         }
         .listRowBackground(cellBackgroundColor)
-        .padding()
-        .background(cellColor)
-        .cornerRadius(12)
-        .shadow(radius: 2)
     }
     
     private var cellBackgroundColor: Color {

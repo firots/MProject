@@ -45,6 +45,15 @@ extension MTask {
             $0.wrappedCreated > $1.wrappedCreated
         }
     }
+    
+    public var isExpired: Bool {
+        if deadline == nil {
+            return false
+        } else if let deadline = deadline, deadline > Date() {
+            return false
+        }
+        return true
+    }
 }
 
 // MARK: Generated accessors for step

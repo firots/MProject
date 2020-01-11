@@ -44,6 +44,6 @@ extension MTask {
     
     public func uncomplete() {
         self.ended = nil
-        self.status = MObjectStatus.active.rawValue
+        self.status = isExpired ? MObjectStatus.failed.rawValue : MObjectStatus.active.rawValue
     }
 }

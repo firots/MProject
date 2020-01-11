@@ -18,7 +18,6 @@ class AddTaskViewModel: AddMObjectViewModel {
         self.project = project
         self.task = task
         super.init(mObject: task)
-
     }
 }
 
