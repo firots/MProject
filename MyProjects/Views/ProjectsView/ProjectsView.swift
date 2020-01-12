@@ -11,7 +11,6 @@ import SwiftUI
 struct ProjectsView: View {
     @ObservedObject private var model: ProjectsViewModel
     @Environment(\.managedObjectContext) private var moc
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     init() {
         UITableView.appearance().backgroundColor = .systemBackground
@@ -77,7 +76,7 @@ struct ProjectsView: View {
     }
     
     private var cellBackgroundColor: Color {
-        colorScheme == .light ? Color(.clear) : Color(.systemBackground)
+        Color(.systemBackground)
     }
     
     private var cellColor: Color {

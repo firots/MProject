@@ -65,7 +65,7 @@ class TasksViewModel: ObservableObject {
         
         predicate = getPredicate(filter: taskFilter)
     }
-    
+
     enum ModalType {
         case addTask
         case addProject

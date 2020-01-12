@@ -32,10 +32,6 @@ class AddTaskViewModel: AddMObjectViewModel {
         
 
     }
-    
-    deinit {
-        print("bye bye")
-    }
 }
 
 

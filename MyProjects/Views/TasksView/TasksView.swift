@@ -8,34 +8,9 @@
 
 import SwiftUI
 
-struct SheetView: View {
-    @ObservedObject var model: ViewModel
-    
-    init() {
-        model = ViewModel()
-    }
-    
-    var body: some View {
-        Form {
-            Toggle("Toggle Me", isOn: $model.isOn)
-            TextField("Name", text: $model.text)
-        }
-    }
-}
-
-class ViewModel: ObservableObject {
-    @Published var isOn = false
-    @Published var text = "Hello"
-    
-    deinit {
-        print("ViewModel deinit ")
-    }
-}
-
 struct TasksView: View {
     @ObservedObject private var model: TasksViewModel
     @Environment(\.managedObjectContext) private var moc
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @State private var sheetOn = false
     
     init(project: MProject?) {
@@ -139,7 +114,7 @@ struct TasksView: View {
     }
     
     private var cellBackgroundColor: Color {
-        colorScheme == .light ? Color(.clear) : Color(.systemBackground)
+        Color(.systemBackground)
     }
 
     private var cellColor: Color {

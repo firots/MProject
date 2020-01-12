@@ -12,7 +12,6 @@ import CoreData
 struct AddTaskView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var model: AddTaskViewModel
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @ObservedObject private var keyboard: KeyboardResponder
     var moc: NSManagedObjectContext
     
@@ -24,7 +23,6 @@ struct AddTaskView: View {
         self.moc = moc
     }
 
-    
     var body: some View {
         VStack {
             titleBar()
