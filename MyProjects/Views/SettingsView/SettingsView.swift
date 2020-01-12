@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var model: SettingsViewModel
+    @ObservedObject private var model: SettingsViewModel
     
     init() {
         model = SettingsViewModel()

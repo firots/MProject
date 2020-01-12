@@ -11,6 +11,7 @@ import SwiftUI
 struct StepsView: View {
     @ObservedObject var model: StepsViewModel
     @State var isEditing = false
+    @State var showModal = false
     
     var body: some View {
         Group {
@@ -24,6 +25,8 @@ struct StepsView: View {
             }
             .onMove(perform: move)
             .onDelete(perform: delete)
+        } .sheet(isPresented: $showModal) {
+            Text("Add Step")
         }
     }
     
@@ -36,18 +39,21 @@ struct StepsView: View {
     }
     
     func addStepButton() -> some View {
-        Button(action: {
-            let stepModel = StepCellViewModel(name: "", done: false, created: Date())
+        HStack {
+            Image(systemName: "plus.circle")
+            Text("Add Step")
+            Spacer()
+        }
+        .foregroundColor(Color(.systemPurple))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            /*let stepModel = StepCellViewModel(name: "", done: false, created: Date())
             stepModel.name = String(self.model.steps.count)
             withAnimation {
                 self.model.steps.append(stepModel)
-            }
-        }) {
-            HStack {
-                Image(systemName: "plus.circle")
-                Text("Add Step")
-            }
-        }.accentColor(Color(.systemPurple))
+            }*/
+            self.showModal = true
+        }
     }
 }
 

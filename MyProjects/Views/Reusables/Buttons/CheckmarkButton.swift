@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CheckmarkButton: View {
-    @ObservedObject var model: CheckmarkButtonViewModel
+    @ObservedObject private var model: CheckmarkButtonViewModel
     
     var body: some View {
         let status = model.status

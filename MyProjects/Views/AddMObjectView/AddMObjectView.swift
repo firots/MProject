@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AddMObjectView: View {
-    @ObservedObject var model: AddMObjectViewModel
+    @ObservedObject private var model: AddMObjectViewModel
     
     init(model: AddMObjectViewModel) {
         self.model = model
@@ -54,18 +54,20 @@ struct AddMObjectView: View {
     
     func notificationsSection() -> some View {
         Section {
-            Button(action: {
+            HStack {
+                Image(systemName: "plus.circle")
+                .foregroundColor(Color(.systemPurple))
+                Text("Add Notification")
+                .foregroundColor(Color(.systemPurple))
+                Spacer()
+            }.onTapGesture {
                 withAnimation {
                     self.model.modalType = .addNotification
                     self.model.showModal = true
                 }
-            }) {
-                HStack {
-                    Image(systemName: "plus.circle")
-                    Text("Add Notification")
-                }
-            }.accentColor(Color(.systemPurple))
-        }
+            }
+            .contentShape(Rectangle())
+        }.accentColor(Color(.systemPurple))
     }
     
     func deadlineSection() -> some View {
@@ -130,22 +132,28 @@ struct AddMObjectView: View {
                 TextField("Name", text: $model.name)
             }.accentColor(Color(.systemPurple))
 
-            Button(action: {
-                self.model.modalType = .notes
-                self.model.showModal = true
-            }) {
-                HStack {
-                    Image(systemName: "pencil.circle")
-                    .foregroundColor(Color(.systemPurple))
-                    .aspectRatio(contentMode: .fill)
-                    Text(self.model.details.emptyHolder("Details").noNewline())
-                        .foregroundColor(Color(.placeholderText))
-                        .lineLimit(1)
-                }.accentColor(Color(.systemPurple))
-            }
+            detailsButton()
+        }
+    }
+    
+    func detailsButton() -> some View {
+        HStack {
+            Image(systemName: "pencil.circle")
+            .foregroundColor(Color(.systemPurple))
+            .aspectRatio(contentMode: .fill)
+            Text(self.model.details.emptyHolder("Details").noNewline())
+                .foregroundColor(Color(.placeholderText))
+                .lineLimit(1)
+            Spacer()
+        }.accentColor(Color(.systemPurple))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            self.model.modalType = .notes
+            self.model.showModal = true
         }
     }
 }
+
 
 struct AddMObjectView_Previews: PreviewProvider {
     static var previews: some View {

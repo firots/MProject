@@ -15,6 +15,7 @@ struct StepCellView: View {
     var body: some View {
         HStack {
             Text(model.name.emptyHolder("Unnamed Step"))
+            .lineLimit(3)
             Spacer()
         }
     }

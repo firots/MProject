@@ -32,7 +32,7 @@ struct AddProjectView: View {
         .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
-                NotesView(model: NotesViewModel(notes: self.$model.details))
+                NotesView(notes: self.$model.details)
             } else {
                 Text("Add notification")
             }
@@ -40,7 +40,7 @@ struct AddProjectView: View {
     }
     
     func titleBar() -> some View {
-        ModalTitle(title: model.project == nil ? "Add Project": "Edit Project", edit: true) {
+        ModalTitle(title: model.project == nil ? "Add Project": "Edit Project", edit: false) {
             let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.project)
 
             if self.moc.hasChanges {

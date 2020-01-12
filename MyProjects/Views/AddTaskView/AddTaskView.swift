@@ -11,7 +11,7 @@ import CoreData
 
 struct AddTaskView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var model: AddTaskViewModel
+    @ObservedObject private var model: AddTaskViewModel
     @ObservedObject private var keyboard: KeyboardResponder
     var moc: NSManagedObjectContext
     
@@ -34,7 +34,7 @@ struct AddTaskView: View {
         .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
-                NotesView(model: NotesViewModel(notes: self.$model.details))
+                NotesView(notes: self.$model.details)
             } else {
                 Text("Add notification")
             }
