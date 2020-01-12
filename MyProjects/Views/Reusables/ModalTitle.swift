@@ -11,10 +11,12 @@ import SwiftUI
 struct ModalTitle: View {
     let title: String
     var action: (() -> Void)?
+    let editable: Bool
     @Environment(\.presentationMode) var presentationMode
     
-    init(title: String, action: (() -> Void)?) {
+    init(title: String, edit: Bool, action: (() -> Void)?) {
         self.title = title
+        self.editable = edit
         self.action = action
     }
     
@@ -28,10 +30,13 @@ struct ModalTitle: View {
             ZStack {
                 HStack {
                     Spacer().frame(width: 20)
-                    closeButton()
-                    Spacer()
                     saveButton()
-                    Spacer().frame(width: 20)
+                    Spacer()
+                    if editable {
+                        EditButton()
+                        .foregroundColor(Color(.systemPurple))
+                        Spacer().frame(width: 20)
+                    }
                 }
                 
                 HStack {
@@ -61,7 +66,7 @@ struct ModalTitle: View {
 
 struct ModalTitle_Previews: PreviewProvider {
     static var previews: some View {
-        ModalTitle(title: "Title") {
+        ModalTitle(title: "Title", edit: true) {
             
         }
     }

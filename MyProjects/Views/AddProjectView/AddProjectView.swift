@@ -40,7 +40,7 @@ struct AddProjectView: View {
     }
     
     func titleBar() -> some View {
-        ModalTitle(title: model.project == nil ? "Add Project": "Edit Project") {
+        ModalTitle(title: model.project == nil ? "Add Project": "Edit Project", edit: true) {
             let _ = MProject.createOrSync(from: self.model, context: self.moc, project: self.model.project)
 
             if self.moc.hasChanges {

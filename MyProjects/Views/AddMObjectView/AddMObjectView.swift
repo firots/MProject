@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AddMObjectView: View {
-    @ObservedObject private var model: AddMObjectViewModel
+    @ObservedObject var model: AddMObjectViewModel
     
     init(model: AddMObjectViewModel) {
         self.model = model

@@ -10,22 +10,22 @@ import SwiftUI
 
 struct NotesView: View {
     @ObservedObject var model: NotesViewModel
-    //@ObservedObject private var keyboard: KeyboardResponder
+    @ObservedObject private var keyboard = KeyboardResponder()
     @Environment(\.presentationMode) var presentationMode
     
     init(model: NotesViewModel) {
-        //self.keyboard = KeyboardResponder()
         self.model = model
     }
     
     var body: some View {
         VStack {
-            ModalTitle(title: "Details") {
-                self.model.notes.wrappedValue = self.model.tempNotes
+            ModalTitle(title: "Details", edit: false) {
                 self.presentationMode.wrappedValue.dismiss()
+                self.model.notes.wrappedValue = self.model.tempNotes
             }
             TextView(text: $model.tempNotes, isEditing: $model.isEditing)
-        }//.padding(.bottom, keyboard.currentHeight)
+        }
+        .padding(.bottom, keyboard.currentHeight)
     }
 }
 

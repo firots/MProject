@@ -8,10 +8,35 @@
 
 import SwiftUI
 
+struct SheetView: View {
+    @ObservedObject var model: ViewModel
+    
+    init() {
+        model = ViewModel()
+    }
+    
+    var body: some View {
+        Form {
+            Toggle("Toggle Me", isOn: $model.isOn)
+            TextField("Name", text: $model.text)
+        }
+    }
+}
+
+class ViewModel: ObservableObject {
+    @Published var isOn = false
+    @Published var text = "Hello"
+    
+    deinit {
+        print("ViewModel deinit ")
+    }
+}
+
 struct TasksView: View {
     @ObservedObject private var model: TasksViewModel
     @Environment(\.managedObjectContext) private var moc
     @Environment(\.colorScheme) var colorScheme: ColorScheme
+    @State private var sheetOn = false
     
     init(project: MProject?) {
         UITableView.appearance().backgroundColor = .systemBackground
@@ -34,7 +59,7 @@ struct TasksView: View {
             hoveringButtons()
         }
         .navigationBarTitle(model.project?.wrappedName ?? "My Tasks")
-        .sheet(isPresented: $model.showAdd)  {
+        .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {
                 AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
             } else {

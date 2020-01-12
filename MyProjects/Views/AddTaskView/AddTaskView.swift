@@ -11,15 +11,16 @@ import CoreData
 
 struct AddTaskView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var model: AddTaskViewModel
+    @ObservedObject var model: AddTaskViewModel
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @ObservedObject private var keyboard = KeyboardResponder()
+    @ObservedObject private var keyboard: KeyboardResponder
     var moc: NSManagedObjectContext
     
     init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext) {
         UITableView.appearance().backgroundColor = .secondarySystemBackground
         UISegmentedControl.appearance().backgroundColor = .clear
         model = AddTaskViewModel(task, project)
+        keyboard = KeyboardResponder()
         self.moc = moc
     }
 
@@ -40,6 +41,7 @@ struct AddTaskView: View {
                 Text("Add notification")
             }
         }
+
     }
     
     func stepsSection() -> some View {
@@ -48,7 +50,7 @@ struct AddTaskView: View {
     
 
     func titleBar() -> some View {
-        ModalTitle(title: model.task == nil ? "Add Task": "Edit Task") {
+        ModalTitle(title: model.task == nil ? "Add Task": "Edit Task", edit: true) {
             let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project)
 
             if self.moc.hasChanges {
