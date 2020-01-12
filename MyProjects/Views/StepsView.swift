@@ -21,12 +21,18 @@ struct StepsView: View {
                     _ = withAnimation {
                         self.model.steps.remove(at: index)
                     }
+                }.onTapGesture {
+                    self.model.newStep = false
+                    self.model.stepViewModel = self.model.steps[index]
+                    self.showModal = true
                 }
             }
             .onMove(perform: move)
             .onDelete(perform: delete)
         } .sheet(isPresented: $showModal) {
-            Text("Add Step")
+            AddStepView(model: self.model.stepViewModel, newStep: self.model.newStep) {
+                self.model.steps.append(self.model.stepViewModel)
+            }
         }
     }
     
@@ -40,18 +46,15 @@ struct StepsView: View {
     
     func addStepButton() -> some View {
         HStack {
-            Image(systemName: "plus.circle")
-            Text("Add Step")
+            CellImageView(systemName: "plus.circle")
+            Text("Add New Step")
             Spacer()
         }
         .foregroundColor(Color(.systemPurple))
         .contentShape(Rectangle())
         .onTapGesture {
-            /*let stepModel = StepCellViewModel(name: "", done: false, created: Date())
-            stepModel.name = String(self.model.steps.count)
-            withAnimation {
-                self.model.steps.append(stepModel)
-            }*/
+            self.model.newStep = true
+            self.model.stepViewModel = StepCellViewModel(name: "")
             self.showModal = true
         }
     }
@@ -60,6 +63,8 @@ struct StepsView: View {
 
 class StepsViewModel: ObservableObject {
     @Published var steps = [StepCellViewModel]()
+    var stepViewModel = StepCellViewModel(name: "")
+    var newStep = false
     
     init(steps: [StepCellViewModel]) {
         self.steps = steps

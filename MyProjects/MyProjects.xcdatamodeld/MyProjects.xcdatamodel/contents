@@ -20,10 +20,10 @@
     </entity>
     <entity name="MStep" representedClassName="MStep" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="step" inverseEntity="MTask"/>
         <uniquenessConstraints>
             <uniquenessConstraint>

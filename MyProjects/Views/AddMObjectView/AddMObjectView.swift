@@ -25,27 +25,14 @@ struct AddMObjectView: View {
             notificationsSection()
         }
     }
-    
-    private func taskStatePicker() -> some View {
-        Picker(selection: $model.statusIndex.animation(), label: Text("Status")) {
-            ForEach(0..<MObjectStatus.all.count) { index in
-                Text(MObjectStatus.all[index].rawValue.capitalizingFirstLetter())
-            }
-        }
-        .pickerStyle(SegmentedPickerStyle())
-        .background(MObjectStatus.colors[model.statusIndex])
-        .cornerRadius(8)
-    }
-    
+
     var modelName: String {
         model is AddProjectViewModel ? "project" : "task"
     }
     
     func dueToggle() -> some View {
         HStack {
-            Image(systemName: "calendar")
-                .foregroundColor(Color(.systemPurple))
-                .aspectRatio(contentMode: .fill)
+            CellImageView(systemName:"calendar.circle")
             Toggle(isOn: $model.hasDeadline.animation()) {
                 Text("Due")
             }
@@ -55,8 +42,7 @@ struct AddMObjectView: View {
     func notificationsSection() -> some View {
         Section {
             HStack {
-                Image(systemName: "plus.circle")
-                .foregroundColor(Color(.systemPurple))
+                CellImageView(systemName: "plus.circle")
                 Text("Add Notification")
                 .foregroundColor(Color(.systemPurple))
                 Spacer()
@@ -85,7 +71,7 @@ struct AddMObjectView: View {
         Group {
             DatePicker(selection: date, in: Date()..., displayedComponents: .date) {
                 Group {
-                    Image(systemName: "calendar").foregroundColor(.clear)
+                    Spacer().frame(width: 37)
                     Text("Date")
                 }
             }
@@ -93,7 +79,7 @@ struct AddMObjectView: View {
 
             DatePicker(selection: date, in: Date()..., displayedComponents: .hourAndMinute) {
                 Group {
-                    Image(systemName: "calendar").foregroundColor(.clear)
+                    Spacer().frame(width: 37)
                     Text("Time")
                 }
             }
@@ -113,9 +99,7 @@ struct AddMObjectView: View {
     
     func autoStartToggle() -> some View {
         HStack {
-            Image(systemName: "calendar")
-                .foregroundColor(Color(.systemPurple))
-                .aspectRatio(contentMode: .fill)
+            CellImageView(systemName: "calendar.circle")
             Toggle(isOn: $model.showAutoStart.animation()) {
                 Text("Activation Date")
             }
@@ -124,12 +108,9 @@ struct AddMObjectView: View {
     
     func mainSection() -> some View {
         Section {
-            taskStatePicker()
             HStack {
-                Image(systemName: "info.circle")
-                .foregroundColor(Color(.systemPurple))
-                .aspectRatio(contentMode: .fill)
-                TextField("Name", text: $model.name)
+                CellImageView(systemName: "info.circle")
+                TextField("\(modelName.capitalizingFirstLetter()) Name", text: $model.name)
             }.accentColor(Color(.systemPurple))
 
             detailsButton()
@@ -138,9 +119,7 @@ struct AddMObjectView: View {
     
     func detailsButton() -> some View {
         HStack {
-            Image(systemName: "pencil.circle")
-            .foregroundColor(Color(.systemPurple))
-            .aspectRatio(contentMode: .fill)
+            CellImageView(systemName: "pencil.circle")
             Text(self.model.details.emptyHolder("Details").noNewline())
                 .foregroundColor(Color(.placeholderText))
                 .lineLimit(1)

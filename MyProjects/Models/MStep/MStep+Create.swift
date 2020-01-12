@@ -14,7 +14,7 @@ extension MStep {
         let step = MStep(context: moc)
         step.id = model.id
         step.name = model.name
-        step.done = model.done
+        step.status = MStepStatus.all[model.statusIndex].rawValue
         step.created = model.created
         step.rank = rank
         return step

@@ -23,7 +23,5 @@ struct NotesView: View {
         }
         .padding(.bottom, keyboard.currentHeight)
     }
-    
-
 }
 

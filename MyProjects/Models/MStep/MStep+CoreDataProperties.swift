@@ -19,7 +19,7 @@ extension MStep {
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var done: Bool
+    @NSManaged public var status: String?
     @NSManaged public var created: Date?
     @NSManaged public var task: MTask?
     @NSManaged public var rank: Int
@@ -30,5 +30,9 @@ extension MStep {
     
     public var wrappedID: UUID {
         return id ?? UUID()
+    }
+    
+    public var wrappedStatus: MStepStatus {
+        return MStepStatus(rawValue: status ?? MStepStatus.active.rawValue) ?? MStepStatus.active
     }
 }

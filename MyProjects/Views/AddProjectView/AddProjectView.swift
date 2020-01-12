@@ -25,6 +25,7 @@ struct AddProjectView: View {
     var body: some View {
         VStack {
             titleBar()
+            MObjectStatePicker(statusIndex: $model.statusIndex)
             Form {
                 AddMObjectView(model: model)
             }

@@ -26,9 +26,10 @@ struct AddTaskView: View {
     var body: some View {
         VStack {
             titleBar()
+            MObjectStatePicker(statusIndex: $model.statusIndex)
             Form {
-                AddMObjectView(model: model)
                 stepsSection()
+                AddMObjectView(model: model)
             }
         }
         .padding(.bottom, keyboard.currentHeight)
