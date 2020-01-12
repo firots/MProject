@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 extension MStep {
-    static func create(from model: StepCellViewModel, context moc: NSManagedObjectContext) -> MStep {
+    static func create(from model: StepCellViewModel, context moc: NSManagedObjectContext, rank: Int) -> MStep {
         let step = MStep(context: moc)
         step.id = model.id
         step.name = model.name
         step.done = model.done
         step.created = model.created
-        step.task = model.task
+        step.rank = rank
         return step
     }
 }

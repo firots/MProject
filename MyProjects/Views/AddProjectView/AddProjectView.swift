@@ -12,11 +12,12 @@ import CoreData
 struct AddProjectView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var model: AddProjectViewModel
+    @ObservedObject private var keyboard = KeyboardResponder()
     var moc: NSManagedObjectContext
     
     init(context moc: NSManagedObjectContext, project: MProject?) {
-        UITableView.appearance().backgroundColor = .secondarySystemBackground
         UISegmentedControl.appearance().backgroundColor = .clear
+        UITableView.appearance().backgroundColor = .secondarySystemBackground
         self.moc = moc
         self.model = AddProjectViewModel(project: project)
     }
@@ -28,6 +29,7 @@ struct AddProjectView: View {
                 AddMObjectView(model: model)
             }
         }
+        .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
                 NotesView(model: NotesViewModel(notes: self.$model.details))

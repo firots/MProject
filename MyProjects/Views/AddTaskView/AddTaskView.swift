@@ -12,6 +12,8 @@ import CoreData
 struct AddTaskView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var model: AddTaskViewModel
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    @ObservedObject private var keyboard = KeyboardResponder()
     var moc: NSManagedObjectContext
     
     init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext) {
@@ -20,6 +22,7 @@ struct AddTaskView: View {
         model = AddTaskViewModel(task, project)
         self.moc = moc
     }
+
     
     var body: some View {
         VStack {
@@ -29,6 +32,7 @@ struct AddTaskView: View {
                 stepsSection()
             }
         }
+        .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
                 NotesView(model: NotesViewModel(notes: self.$model.details))
@@ -38,39 +42,11 @@ struct AddTaskView: View {
         }
     }
     
-    func addStepButton() -> some View {
-        Button(action: {
-            let stepModel = StepCellViewModel(name: "", done: false, created: Date(), task: self.model.task)
-            self.model.steps.append(stepModel)
-            withAnimation {
-                self.model.objectWillChange.send()
-            }
-            
-        }) {
-            HStack {
-                Image(systemName: "plus.circle")
-                Text("Add Step")
-            }
-        }.accentColor(Color(.systemPurple))
-    }
-    
     func stepsSection() -> some View {
-        return Section {
-            addStepButton()
-            List {
-                ForEach(0..<model.steps.count, id: \.self) { index in
-                    StepCellView(model: self.model.steps[index]) {
-                        self.model.steps.remove(at: index)
-                        withAnimation {
-                            self.model.objectWillChange.send()
-                        }
-                    }
-                }
-            }
-
-        }
+        StepsView(model: model.stepsModel)
     }
     
+
     func titleBar() -> some View {
         ModalTitle(title: model.task == nil ? "Add Task": "Edit Task") {
             let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project)

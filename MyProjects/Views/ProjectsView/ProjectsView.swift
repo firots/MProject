@@ -82,7 +82,6 @@ struct ProjectsView: View {
     
     private var cellColor: Color {
         Color(.systemBackground)
-        //colorScheme == .dark ? Color(.secondarySystemBackground) : Color(.systemBackground)
     }
 }
 

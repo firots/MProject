@@ -40,9 +40,8 @@ extension MTask {
     
     public var steps: [MStep] {
         let set = step as? Set<MStep> ?? []
-        
         return set.sorted {
-            $0.wrappedCreated > $1.wrappedCreated
+            $0.rank < $1.rank
         }
     }
     

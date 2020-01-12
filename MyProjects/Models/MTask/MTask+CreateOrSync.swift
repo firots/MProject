@@ -25,7 +25,7 @@ extension MTask {
         }
 
 
-        t.syncSteps(with: model.steps, context: moc)
+        t.syncSteps(with: model.stepsModel.steps, context: moc)
         
         return t
     }
@@ -39,10 +39,13 @@ extension MTask {
     func syncSteps(with stepModels: [StepCellViewModel], context moc: NSManagedObjectContext) {
         clearSteps(context: moc)
         var steps = [MStep]()
-        for stepModel in stepModels {
-            let step = MStep.create(from: stepModel, context: moc)
-            step.task = self
-            steps.append(step)
+
+        for (i, stepModel) in stepModels.enumerated() {
+            if stepModel.name != "" {
+                let step = MStep.create(from: stepModel, context: moc, rank: i)
+                step.task = self
+                steps.append(step)
+            }
         }
 
         if moc.hasChanges {

@@ -22,6 +22,7 @@ extension MStep {
     @NSManaged public var done: Bool
     @NSManaged public var created: Date?
     @NSManaged public var task: MTask?
+    @NSManaged public var rank: Int
     
     public var wrappedCreated: Date {
         return created ?? Date()

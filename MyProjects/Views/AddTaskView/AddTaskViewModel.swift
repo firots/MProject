@@ -12,12 +12,13 @@ class AddTaskViewModel: AddMObjectViewModel {
     let project: MProject?
     let task: MTask?
     
-    @Published var steps = [StepCellViewModel]()
+    var stepsModel: StepsViewModel
     
     init(_ task: MTask?, _ project: MProject?) {
         self.project = project
         self.task = task
-        super.init(mObject: task)
+        
+        var steps = [StepCellViewModel]()
         
         if let task = task {
             for step in task.steps {
@@ -25,6 +26,11 @@ class AddTaskViewModel: AddMObjectViewModel {
                 steps.append(stepModel)
             }
         }
+        
+        stepsModel = StepsViewModel(steps: steps)
+        super.init(mObject: task)
+        
+
     }
 }
 

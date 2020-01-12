@@ -10,9 +10,11 @@ import SwiftUI
 
 struct NotesView: View {
     @ObservedObject var model: NotesViewModel
+    //@ObservedObject private var keyboard: KeyboardResponder
     @Environment(\.presentationMode) var presentationMode
     
     init(model: NotesViewModel) {
+        //self.keyboard = KeyboardResponder()
         self.model = model
     }
     
@@ -23,7 +25,7 @@ struct NotesView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }
             TextView(text: $model.tempNotes, isEditing: $model.isEditing)
-        }
+        }//.padding(.bottom, keyboard.currentHeight)
     }
 }
 
