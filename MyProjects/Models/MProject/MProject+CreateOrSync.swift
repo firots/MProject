@@ -12,17 +12,7 @@ import CoreData
 extension MProject {
     static func createOrSync(from model: AddProjectViewModel, context moc: NSManagedObjectContext, project: MProject?) -> MProject {
         let p = project ?? createBase(context: moc)
-        
-        p.name = model.name.emptyIsNil()
-        p.details = model.details.emptyIsNil()
-        p.status = MObjectStatus.all[model.statusIndex].rawValue
-        
-        if model.hasDeadline {
-            p.deadline = model.deadline
-        } else {
-            p.deadline = nil
-        }
-        
+        p.setMutualFields(from: model)
         return p
     }
     

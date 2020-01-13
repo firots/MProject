@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-protocol MObject {
+protocol MObject: class {
     var id: UUID? { get  set }
     var name: String? { get  set }
     var details: String? { get  set }
@@ -49,6 +49,29 @@ extension MObject {
     
     public var wrappedLastModified: Date {
         return lastModified ?? wrappedCreated
+    }
+    
+    func setMutualFields(from model: AddMObjectViewModel) {
+        self.name = model.name.emptyIsNil()
+        self.details = model.details.emptyIsNil()
+        
+        
+        if self.status == nil && model.status == .active  {
+            self.started = Date()
+        }
+        else if model.showAutoStart == true && model.status == .waiting {
+            self.started = model.autoStart
+        } else if self.wrappedStatus != .active && model.status == .active {
+            self.started = Date()
+        }
+        
+        if model.hasDeadline {
+            self.deadline = model.deadline
+        } else {
+            self.deadline = nil
+        }
+        
+        self.status = MObjectStatus.all[model.statusIndex].rawValue
     }
 }
 

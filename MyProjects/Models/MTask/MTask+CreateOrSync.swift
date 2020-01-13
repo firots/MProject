@@ -12,21 +12,9 @@ import CoreData
 extension MTask {
     static func createOrSync(from model: AddTaskViewModel, context moc: NSManagedObjectContext, task: MTask?, project: MProject?) -> MTask {
         let t = task ?? createBase(context: moc)
-        
-        t.name = model.name.emptyIsNil()
-        t.details = model.details.emptyIsNil()
+        t.setMutualFields(from: model)
         t.project = project
-        t.status = MObjectStatus.all[model.statusIndex].rawValue
-        
-        if model.hasDeadline {
-            t.deadline = model.deadline
-        } else {
-            t.deadline = nil
-        }
-
-
         t.syncSteps(with: model.stepsModel.steps, context: moc)
-        
         return t
     }
     

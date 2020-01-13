@@ -111,6 +111,7 @@ struct TasksView: View {
             }
         }.listRowBackground(cellBackgroundColor)
     }
+
     
     private var cellBackgroundColor: Color {
         Color(.systemBackground)
