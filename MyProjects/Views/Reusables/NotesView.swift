@@ -16,12 +16,17 @@ struct NotesView: View {
     
     var body: some View {
         return VStack {
-            ModalTitle(title: "Details", edit: false) {
-                self.presentationMode.wrappedValue.dismiss()
+            ZStack {
+                ModalTitle(title: "Details", edit: false) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                KeyboardDoneButton(show: $jenas)
             }
             TextView(text: $notes, isEditing: $jenas)
         }
+        .edgesIgnoringSafeArea(.bottom)
         .padding(.bottom, keyboard.currentHeight)
+        .animation(.default)
     }
 }
 

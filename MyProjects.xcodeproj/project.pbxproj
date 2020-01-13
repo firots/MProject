@@ -36,6 +36,7 @@
 		768A23E223C8C8E000AE8B83 /* MStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23D923C8C7BE00AE8B83 /* MStep+CoreDataProperties.swift */; };
 		768A23EA23C8FB1900AE8B83 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */; };
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
+		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
 		76ED808123C62E430042D36D /* RepeatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808023C62E430042D36D /* RepeatMode.swift */; };
 		76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808323C62F580042D36D /* PlaceholderView.swift */; };
 		76ED808623C648F70042D36D /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808523C648F70042D36D /* TextView.swift */; };
@@ -89,6 +90,7 @@
 		768A23D923C8C7BE00AE8B83 /* MStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
+		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
 		76ED808023C62E430042D36D /* RepeatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatMode.swift; sourceTree = "<group>"; };
 		76ED808323C62F580042D36D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76ED808523C648F70042D36D /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				7621991623CBCA8F004B6541 /* MObjectStatePicker.swift */,
 				7621991823CBCD86004B6541 /* CellImageView.swift */,
 				7621991A23CBD50A004B6541 /* AddStepView.swift */,
+				76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				7673533C23CA52F1002C1194 /* StepsView.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
 				7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */,
+				76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */,
 				76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */,
 				7621991923CBCD86004B6541 /* CellImageView.swift in Sources */,
 				764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */,

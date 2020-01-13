@@ -19,15 +19,19 @@ struct AddStepView: View {
 
     var body: some View {
         VStack {
-            ModalTitle(title: newStep ? "Add New Step" : "Edit Step", edit: false) {
-                if self.newStep { self.addAction?() }
-                withAnimation {
-                    self.presentationMode.wrappedValue.dismiss()
+            ZStack {
+                ModalTitle(title: newStep ? "Add New Step" : "Edit Step", edit: false) {
+                    if self.newStep { self.addAction?() }
+                    withAnimation {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }
+                KeyboardDoneButton(show: $jenas)
             }
             self.statePicker()
             TextView(text: $model.name, isEditing: $jenas)
         }
+        .edgesIgnoringSafeArea(.bottom)
         .padding(.bottom, keyboard.currentHeight)
     }
     

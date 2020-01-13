@@ -14,6 +14,7 @@ struct ModalTitle: View {
     let editable: Bool
     @Environment(\.presentationMode) var presentationMode
     
+    
     init(title: String, edit: Bool, action: (() -> Void)?) {
         self.title = title
         self.editable = edit
@@ -29,15 +30,17 @@ struct ModalTitle: View {
             Spacer().frame(height: 20)
             ZStack {
                 HStack {
+                    Spacer().frame(width: 20)
+                    
+                    saveButton()
+                    
+                    Spacer()
+                    
                     if editable {
-                        Spacer().frame(width: 20)
                         EditButton()
                         .foregroundColor(Color(.systemPurple))
-                        
+                        Spacer().frame(width: 20)
                     }
-                    Spacer()
-                    saveButton()
-                    Spacer().frame(width: 20)
                 }
                 
                 HStack {
@@ -64,6 +67,8 @@ struct ModalTitle: View {
         .foregroundColor(Color(.systemPurple))
     }
 }
+
+
 
 struct ModalTitle_Previews: PreviewProvider {
     static var previews: some View {
