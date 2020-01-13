@@ -93,7 +93,17 @@ struct TasksView: View {
                         .lineLimit(1)
                     
                     Spacer().frame(height: 3)
-                
+                    
+                    if !task.steps.isEmpty {
+                        
+                        Text("Steps • \(task.completedSteps.count)/\(task.steps.count)")
+                            .font(.subheadline)
+                            .lineLimit(1)
+                            .foregroundColor(Color(.systemGray))
+                        
+                        Spacer().frame(height: 3)
+                    }
+                    
                     Text(task.firstDate)
                         .font(.subheadline)
                         .lineLimit(1)

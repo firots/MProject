@@ -45,6 +45,10 @@ extension MTask {
         }
     }
     
+    public var completedSteps: [MStep] {
+        steps.filter({ $0.status == MStepStatus.done.rawValue })
+    }
+    
     public var isExpired: Bool {
         if deadline == nil {
             return false

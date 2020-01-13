@@ -18,10 +18,10 @@ struct AddMObjectView: View {
     var body: some View {
         Group {
             mainSection()
-            deadlineSection()
             if model.status == .waiting {
                 autoStartSection()
             }
+            deadlineSection()
             notificationsSection()
         }
     }
