@@ -54,11 +54,13 @@ struct AddTaskView: View {
             self.model.showModal = true
         }
         .onLongPressGesture {
-            withAnimation {
-                if self.editMode?.wrappedValue != .active {
-                    self.editMode?.wrappedValue = .active
+            if !self.model.stepsModel.steps.isEmpty {
+                withAnimation {
+                    if self.editMode?.wrappedValue != .active {
+                        self.editMode?.wrappedValue = .active
+                    }
+                    self.editVisible = true
                 }
-                self.editVisible = true
             }
         }
     }
