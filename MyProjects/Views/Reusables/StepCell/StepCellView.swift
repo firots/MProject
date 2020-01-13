@@ -29,6 +29,7 @@ struct StepCellView: View {
         Image(systemName: self.model.statusIndex == 0 ? "circle" : "checkmark.circle.fill")
         .resizable()
         .frame(width:24, height: 24)
+        .padding(.trailing, 6)
         .foregroundColor(self.model.statusIndex == 0 ? Color(.systemPurple) : Color(.systemGreen))
         .contentShape(Rectangle())
         .onTapGesture {
