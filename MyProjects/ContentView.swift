@@ -15,7 +15,7 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 TasksView(project: nil)
-            }
+            }.navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "largecircle.fill.circle")
                     .font(.system(size: 24))
@@ -23,7 +23,8 @@ struct ContentView: View {
             
             NavigationView {
                 ProjectsView()
-            }
+            }.navigationViewStyle(DoubleColumnNavigationViewStyle())
+            .padding()
             .tabItem {
                 Image(systemName: "tray.2")
                 .font(.system(size: 24))
