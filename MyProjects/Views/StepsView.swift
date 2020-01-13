@@ -13,19 +13,30 @@ struct StepsView: View {
     @State var isEditing = false
     @State var showModal = false
     
+    init(model: StepsViewModel) {
+        self.model = model
+        
+    }
+    
     var body: some View {
         Group {
             addStepButton()
             ForEach(0..<model.steps.count, id: \.self) { index in
-                StepCellView(model: self.model.steps[index]) {
-                    _ = withAnimation {
-                        self.model.steps.remove(at: index)
+                VStack {
+                    StepCellView(model: self.model.steps[index]) {
+                        _ = withAnimation {
+                            self.model.steps.remove(at: index)
+                        }
+                    }.onTapGesture {
+                        self.model.newStep = false
+                        self.model.stepViewModel = self.model.steps[index]
+                        self.showModal = true
                     }
-                }.onTapGesture {
-                    self.model.newStep = false
-                    self.model.stepViewModel = self.model.steps[index]
-                    self.showModal = true
+                    if index < self.model.steps.count - 1 {
+                         Divider()
+                    }
                 }
+
             }
             .onMove(perform: move)
             .onDelete(perform: delete)
