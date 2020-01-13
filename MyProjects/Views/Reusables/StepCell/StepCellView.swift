@@ -30,6 +30,7 @@ struct StepCellView: View {
         .resizable()
         .frame(width:24, height: 24)
         .foregroundColor(self.model.statusIndex == 0 ? Color(.systemPurple) : Color(.systemGreen))
+        .animation(.linear)
         .contentShape(Rectangle())
         .onTapGesture {
             withAnimation {

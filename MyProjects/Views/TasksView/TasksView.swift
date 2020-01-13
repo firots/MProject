@@ -94,7 +94,7 @@ struct TasksView: View {
                     
                     Spacer().frame(height: 3)
                 
-                    Text(task.wrappedStarted.toRelative())
+                    Text(task.firstDate)
                         .font(.subheadline)
                         .lineLimit(1)
                         .foregroundColor(Color(.systemGray))

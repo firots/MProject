@@ -55,8 +55,6 @@ extension MObject {
         self.name = model.name.emptyIsNil()
         self.details = model.details.emptyIsNil()
         
-        
-        
         if self.status == nil && model.status == .active  {
             self.started = Date()
         }
@@ -64,6 +62,8 @@ extension MObject {
             self.started = model.autoStart
         } else if self.wrappedStatus != .active && model.status == .active {
             self.started = Date()
+        } else if model.showAutoStart == false && model.status == .waiting {
+            self.started = nil
         }
         
         /* set deadline if user set one */
@@ -85,6 +85,10 @@ extension MObject {
     
     public var secondDate: String {
         ended?.toRelative() ?? deadline?.toRelative() ?? "No Deadline"
+    }
+    
+    public var firstDate: String {
+        started?.toRelative() ?? "No Start Date"
     }
 }
 
