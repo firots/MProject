@@ -90,6 +90,7 @@ struct TasksView: View {
                     .padding(.trailing)
                 VStack(alignment: .leading) {
                     Text(task.wrappedName)
+                        .strikethrough(task.wrappedStatus == .done, color: nil)
                         .lineLimit(1)
                     
                     Spacer().frame(height: 3)
@@ -97,9 +98,11 @@ struct TasksView: View {
                     if !task.steps.isEmpty {
                         
                         Text("Steps • \(task.completedSteps.count)/\(task.steps.count)")
+                            .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
                             .font(.subheadline)
                             .lineLimit(1)
                             .foregroundColor(Color(.systemGray))
+                            
                         
                         Spacer().frame(height: 3)
                     }

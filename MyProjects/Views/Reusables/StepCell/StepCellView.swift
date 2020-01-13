@@ -17,6 +17,7 @@ struct StepCellView: View {
         HStack {
             checkerButton()
             Text(model.name.emptyHolder("Unnamed Step"))
+                .strikethrough(model.statusIndex == 1)
             .lineLimit(3)
             Spacer()
         }.contentShape(Rectangle())
