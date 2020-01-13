@@ -54,7 +54,7 @@ extension MObject {
     func setMutualFields(from model: AddMObjectViewModel) {
         self.name = model.name.emptyIsNil()
         self.details = model.details.emptyIsNil()
-        
+
         if self.status == nil && model.status == .active  {
             self.started = Date()
         }

@@ -43,7 +43,6 @@ extension MTask {
         let task = MTask(context: moc)
         task.id = UUID()
         task.created = Date()
-        task.status = MObjectStatus.active.rawValue
         task.details = ""
         
         return task
