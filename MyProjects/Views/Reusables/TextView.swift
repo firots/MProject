@@ -109,6 +109,7 @@ public struct TextView: UIViewRepresentable {
         textView.isSelectable = isSelectable
         textView.isScrollEnabled = isScrollingEnabled
         textView.isUserInteractionEnabled = isUserInteractionEnabled
+        textView.tintColor = .systemPurple
         return textView
     }
     
