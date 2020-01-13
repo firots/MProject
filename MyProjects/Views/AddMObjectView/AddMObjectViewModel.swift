@@ -49,5 +49,6 @@ class AddMObjectViewModel: ObservableObject {
     enum ModalType {
         case notes
         case addNotification
+        case addStep
     }
 }

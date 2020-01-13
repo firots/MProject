@@ -37,15 +37,23 @@ struct AddTaskView: View {
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
                 NotesView(notes: self.$model.details, keyboard: self.keyboard)
+            } else if (self.model.modalType == .addStep) {
+                AddStepView(model: self.model.stepsModel.stepViewModel, newStep: self.model.stepsModel.newStep) {
+                    self.model.stepsModel.steps.append(self.model.stepsModel.stepViewModel)
+                }
             } else {
-                Text("Add notification")
+                Text("Add Notification")
             }
         }
 
     }
     
     func stepsSection() -> some View {
-        StepsView(model: model.stepsModel).onLongPressGesture {
+        StepsView(model: model.stepsModel) {
+            self.model.modalType = .addStep
+            self.model.showModal = true
+        }
+        .onLongPressGesture {
             withAnimation {
                 if self.editMode?.wrappedValue != .active {
                     self.editMode?.wrappedValue = .active

@@ -11,15 +11,15 @@ import SwiftUI
 struct StepsView: View {
     @ObservedObject var model: StepsViewModel
     @State var isEditing = false
-    @State var showModal = false
+    var modalAction: (() -> Void)?
     
-    init(model: StepsViewModel) {
+    init(model: StepsViewModel, modalAction: (() -> Void)?) {
         self.model = model
-        
+        self.modalAction = modalAction
     }
     
     var body: some View {
-        Group {
+        Section {
             addStepButton()
             ForEach(0..<model.steps.count, id: \.self) { index in
                 VStack {
@@ -27,7 +27,7 @@ struct StepsView: View {
                         withAnimation {
                             self.model.newStep = false
                             self.model.stepViewModel = self.model.steps[index]
-                            self.showModal = true
+                            self.modalAction?()
                         }
                     }
                     if index < self.model.steps.count - 1 {
@@ -37,11 +37,6 @@ struct StepsView: View {
             }
             .onMove(perform: move)
             .onDelete(perform: delete)
-        }
-        .sheet(isPresented: $showModal) {
-            AddStepView(model: self.model.stepViewModel, newStep: self.model.newStep) {
-                self.model.steps.append(self.model.stepViewModel)
-            }
         }
     }
     
@@ -64,7 +59,7 @@ struct StepsView: View {
         .onTapGesture {
             self.model.newStep = true
             self.model.stepViewModel = StepCellViewModel(name: "")
-            self.showModal = true
+            self.modalAction?()
         }
     }
 }

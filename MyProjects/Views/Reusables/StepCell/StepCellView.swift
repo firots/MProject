@@ -20,7 +20,6 @@ struct StepCellView: View {
             Spacer()
         }.contentShape(Rectangle())
         .onTapGesture {
-            print("sdfdsf")
             self.tapAction?()
         }
     }
