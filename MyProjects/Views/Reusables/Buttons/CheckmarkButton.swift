@@ -30,7 +30,7 @@ struct CheckmarkButton: View {
                 checkmarkButtonImage(imageName: "pause.circle.fill")
                     .foregroundColor(Color(.systemOrange))
             } else {
-                checkmarkButtonImage(imageName: "xmark.circle.fill")
+                checkmarkButtonImage(imageName: "exclamationmark.circle.fill")
                     .foregroundColor(Color(.systemPink))
             }
         }

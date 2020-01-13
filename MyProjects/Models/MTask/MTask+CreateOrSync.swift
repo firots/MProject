@@ -29,11 +29,9 @@ extension MTask {
         var steps = [MStep]()
 
         for (i, stepModel) in stepModels.enumerated() {
-            if stepModel.name != "" {
-                let step = MStep.create(from: stepModel, context: moc, rank: i)
-                step.task = self
-                steps.append(step)
-            }
+            let step = MStep.create(from: stepModel, context: moc, rank: i)
+            step.task = self
+            steps.append(step)
         }
 
         if moc.hasChanges {

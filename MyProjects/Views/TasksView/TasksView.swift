@@ -101,7 +101,7 @@ struct TasksView: View {
                     
                     Spacer().frame(height: 3)
                     
-                    Text(task.deadline != nil ? task.deadline!.toRelative() : "No deadline")
+                    Text(task.secondDate)
                         .font(.subheadline)
                         .lineLimit(1)
                         .foregroundColor(Color(.systemGray))

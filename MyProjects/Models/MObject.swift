@@ -56,6 +56,7 @@ extension MObject {
         self.details = model.details.emptyIsNil()
         
         
+        
         if self.status == nil && model.status == .active  {
             self.started = Date()
         }
@@ -65,13 +66,25 @@ extension MObject {
             self.started = Date()
         }
         
+        /* set deadline if user set one */
         if model.hasDeadline {
             self.deadline = model.deadline
         } else {
             self.deadline = nil
         }
         
+        /* set end date if object state changed to failed or done */
+        if (model.status == .failed && self.status != MObjectStatus.failed.rawValue) || (model.status == .done && self.status != MObjectStatus.done.rawValue) {
+            self.ended = Date()
+        } else {
+            self.ended = nil
+        }
+        
         self.status = MObjectStatus.all[model.statusIndex].rawValue
+    }
+    
+    public var secondDate: String {
+        ended?.toRelative() ?? deadline?.toRelative() ?? "No Deadline"
     }
 }
 

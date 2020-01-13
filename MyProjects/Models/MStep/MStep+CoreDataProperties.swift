@@ -35,4 +35,8 @@ extension MStep {
     public var wrappedStatus: MStepStatus {
         return MStepStatus(rawValue: status ?? MStepStatus.active.rawValue) ?? MStepStatus.active
     }
+    
+    public var wrappedName: String {
+        return name ?? "Unnamed Step"
+    }
 }

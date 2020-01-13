@@ -9,18 +9,32 @@ import SwiftUI
 
 struct StepCellView: View {
     @ObservedObject var model: StepCellViewModel
+    @Environment(\.editMode) var editMode
     
     var tapAction: (() -> Void)?
     
     var body: some View {
         HStack {
-            Spacer().frame(width: 37)
+            checkerButton()
             Text(model.name.emptyHolder("Unnamed Step"))
             .lineLimit(3)
             Spacer()
         }.contentShape(Rectangle())
         .onTapGesture {
             self.tapAction?()
+        }
+    }
+    
+    func checkerButton() -> some View {
+        Image(systemName: self.model.statusIndex == 0 ? "circle" : "checkmark.circle.fill")
+        .resizable()
+        .frame(width:24, height: 24)
+        .foregroundColor(self.model.statusIndex == 0 ? Color(.systemPurple) : Color(.systemGreen))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation {
+                self.model.statusIndex = self.model.statusIndex == 0 ? 1 : 0
+            }
         }
     }
 }
