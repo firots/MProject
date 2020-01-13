@@ -14,6 +14,8 @@ struct AddTaskView: View {
     @ObservedObject private var model: AddTaskViewModel
     @ObservedObject private var keyboard: KeyboardResponder
     var moc: NSManagedObjectContext
+    @State var editVisible = false
+    @Environment(\.editMode) var editMode
     
     init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext) {
         UITableView.appearance().backgroundColor = .secondarySystemBackground
@@ -44,12 +46,19 @@ struct AddTaskView: View {
     }
     
     func stepsSection() -> some View {
-        StepsView(model: model.stepsModel)
+        StepsView(model: model.stepsModel).onLongPressGesture {
+            withAnimation {
+                if self.editMode?.wrappedValue != .active {
+                    self.editMode?.wrappedValue = .active
+                }
+                self.editVisible = true
+            }
+        }
     }
     
 
     func titleBar() -> some View {
-        ModalTitle(title: model.task == nil ? "Add Task": "Edit Task", edit: true) {
+        ModalTitle(title: model.task == nil ? "Add Task": "Edit Task", edit: editVisible) {
             let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project)
 
             if self.moc.hasChanges {

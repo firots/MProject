@@ -111,7 +111,7 @@ struct AddMObjectView: View {
             HStack {
                 CellImageView(systemName: "info.circle")
                 TextField("\(modelName.capitalizingFirstLetter()) Name", text: $model.name)
-            }.accentColor(Color(.systemPurple))
+                }.accentColor(Color(.systemPurple))
 
             detailsButton()
         }

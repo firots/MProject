@@ -40,7 +40,8 @@ struct StepsView: View {
             }
             .onMove(perform: move)
             .onDelete(perform: delete)
-        } .sheet(isPresented: $showModal) {
+        }
+        .sheet(isPresented: $showModal) {
             AddStepView(model: self.model.stepViewModel, newStep: self.model.newStep) {
                 self.model.steps.append(self.model.stepViewModel)
             }

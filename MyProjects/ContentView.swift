@@ -24,7 +24,6 @@ struct ContentView: View {
             NavigationView {
                 ProjectsView()
             }.navigationViewStyle(DoubleColumnNavigationViewStyle())
-            .padding()
             .tabItem {
                 Image(systemName: "tray.2")
                 .font(.system(size: 24))

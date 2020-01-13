@@ -29,14 +29,15 @@ struct ModalTitle: View {
             Spacer().frame(height: 20)
             ZStack {
                 HStack {
-                    Spacer().frame(width: 20)
-                    saveButton()
-                    Spacer()
                     if editable {
+                        Spacer().frame(width: 20)
                         EditButton()
                         .foregroundColor(Color(.systemPurple))
-                        Spacer().frame(width: 20)
+                        
                     }
+                    Spacer()
+                    saveButton()
+                    Spacer().frame(width: 20)
                 }
                 
                 HStack {

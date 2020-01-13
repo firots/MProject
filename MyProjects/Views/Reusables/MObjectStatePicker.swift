@@ -21,6 +21,7 @@ struct MObjectStatePicker: View {
         .background(MObjectStatus.colors[statusIndex])
         .cornerRadius(8)
         .padding(.horizontal, 20)
+        .padding(.top, 10)
     }
 }
 
