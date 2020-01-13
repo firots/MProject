@@ -24,19 +24,16 @@ struct StepsView: View {
             ForEach(0..<model.steps.count, id: \.self) { index in
                 VStack {
                     StepCellView(model: self.model.steps[index]) {
-                        _ = withAnimation {
-                            self.model.steps.remove(at: index)
+                        withAnimation {
+                            self.model.newStep = false
+                            self.model.stepViewModel = self.model.steps[index]
+                            self.showModal = true
                         }
-                    }.onTapGesture {
-                        self.model.newStep = false
-                        self.model.stepViewModel = self.model.steps[index]
-                        self.showModal = true
                     }
                     if index < self.model.steps.count - 1 {
                          Divider()
                     }
-                }
-
+                }.contentShape(Rectangle())
             }
             .onMove(perform: move)
             .onDelete(perform: delete)

@@ -46,13 +46,15 @@ struct AddMObjectView: View {
                 Text("Add Notification")
                 .foregroundColor(Color(.systemPurple))
                 Spacer()
-            }.onTapGesture {
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
                 withAnimation {
                     self.model.modalType = .addNotification
                     self.model.showModal = true
                 }
             }
-            .contentShape(Rectangle())
+            
         }.accentColor(Color(.systemPurple))
     }
     
@@ -64,7 +66,6 @@ struct AddMObjectView: View {
                 dateTimePicker(date: $model.deadline)
             }
         }
-        .modifier(DismissKeyboardOnTap())
     }
     
     func dateTimePicker(date: Binding<Date>) -> some View {
@@ -94,7 +95,6 @@ struct AddMObjectView: View {
                 dateTimePicker(date: $model.autoStart)
             }
         }
-        .modifier(DismissKeyboardOnTap())
     }
     
     func autoStartToggle() -> some View {

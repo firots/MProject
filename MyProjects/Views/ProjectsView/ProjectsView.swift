@@ -13,8 +13,6 @@ struct ProjectsView: View {
     @Environment(\.managedObjectContext) private var moc
     
     init() {
-        UITableView.appearance().backgroundColor = .systemBackground
-        UISegmentedControl.appearance().backgroundColor = .systemBackground
         model = ProjectsViewModel()
     }
     
@@ -45,6 +43,7 @@ struct ProjectsView: View {
                     Text(self.model.projectFilterTypeNames[index])
                 }
             }.pickerStyle(SegmentedPickerStyle())
+            .background(Color(.systemBackground))
             Spacer()
         }
     }

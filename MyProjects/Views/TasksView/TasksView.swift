@@ -14,8 +14,6 @@ struct TasksView: View {
     @State private var sheetOn = false
     
     init(project: MProject?) {
-        UITableView.appearance().backgroundColor = .systemBackground
-        UISegmentedControl.appearance().backgroundColor = .systemBackground
         model = TasksViewModel(project: project)
     }
     
@@ -76,6 +74,7 @@ struct TasksView: View {
                     Text(self.model.taskFilterTypeNames[index])
                 }
             }.pickerStyle(SegmentedPickerStyle())
+            .background(Color(.systemBackground))
             Spacer()
         }
     }

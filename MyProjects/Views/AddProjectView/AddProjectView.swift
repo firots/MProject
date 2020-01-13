@@ -16,8 +16,6 @@ struct AddProjectView: View {
     var moc: NSManagedObjectContext
     
     init(context moc: NSManagedObjectContext, project: MProject?) {
-        UISegmentedControl.appearance().backgroundColor = .clear
-        UITableView.appearance().backgroundColor = .secondarySystemBackground
         self.moc = moc
         self.model = AddProjectViewModel(project: project)
     }
@@ -28,7 +26,8 @@ struct AddProjectView: View {
             MObjectStatePicker(statusIndex: $model.statusIndex)
             Form {
                 AddMObjectView(model: model)
-            }
+            }.background(Color(.systemGroupedBackground))
+            .edgesIgnoringSafeArea(.bottom)
         }
         .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {

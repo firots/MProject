@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UISwitch.appearance().onTintColor = .systemPurple
         UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .clear
+        UISegmentedControl.appearance().backgroundColor = .clear
         return true
     }
 

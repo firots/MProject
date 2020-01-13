@@ -10,13 +10,18 @@ import SwiftUI
 struct StepCellView: View {
     @ObservedObject var model: StepCellViewModel
     
-    var deleteAction: (() -> Void)?
+    var tapAction: (() -> Void)?
     
     var body: some View {
         HStack {
+            Spacer().frame(width: 37)
             Text(model.name.emptyHolder("Unnamed Step"))
             .lineLimit(3)
             Spacer()
+        }.contentShape(Rectangle())
+        .onTapGesture {
+            print("sdfdsf")
+            self.tapAction?()
         }
     }
 }

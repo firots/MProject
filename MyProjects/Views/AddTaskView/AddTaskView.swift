@@ -18,8 +18,6 @@ struct AddTaskView: View {
     @Environment(\.editMode) var editMode
     
     init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext) {
-        UITableView.appearance().backgroundColor = .secondarySystemBackground
-        UISegmentedControl.appearance().backgroundColor = .clear
         model = AddTaskViewModel(task, project)
         keyboard = KeyboardResponder()
         self.moc = moc
@@ -32,7 +30,8 @@ struct AddTaskView: View {
             Form {
                 stepsSection()
                 AddMObjectView(model: model)
-            }
+            }.background(Color(.systemGroupedBackground))
+            .edgesIgnoringSafeArea(.bottom)
         }
         .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {
