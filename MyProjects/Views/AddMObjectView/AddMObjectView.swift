@@ -120,9 +120,9 @@ struct AddMObjectView: View {
     func detailsButton() -> some View {
         HStack {
             CellImageView(systemName: "pencil.circle")
-            Text(self.model.details.emptyHolder("Details").noNewline())
+            Text(self.model.details.emptyHolder("Details"))
                 .foregroundColor(Color(.placeholderText))
-                .lineLimit(1)
+                .lineLimit(3)
             Spacer()
         }.accentColor(Color(.systemPurple))
         .contentShape(Rectangle())

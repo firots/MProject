@@ -41,6 +41,7 @@ struct StepCellView: View {
     }
 }
 
+
 /*struct StepCellView_Previews: PreviewProvider {
     static var previews: some View {
         StepCellView(model: StepCellViewModel(name: "", done: true, created: Date()))
