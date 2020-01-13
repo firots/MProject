@@ -33,7 +33,7 @@ struct AddProjectView: View {
         .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
-                NotesView(notes: self.$model.details)
+                NotesView(notes: self.$model.details, keyboard: self.keyboard)
             } else {
                 Text("Add notification")
             }

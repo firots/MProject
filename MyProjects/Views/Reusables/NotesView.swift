@@ -11,11 +11,11 @@ import SwiftUI
 struct NotesView: View {
     @Binding var notes: String
     @State var jenas = true
-    @ObservedObject private var keyboard = KeyboardResponder()
+    @ObservedObject var keyboard: KeyboardResponder
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack {
+        return VStack {
             ModalTitle(title: "Details", edit: false) {
                 self.presentationMode.wrappedValue.dismiss()
             }
