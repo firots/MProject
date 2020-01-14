@@ -58,6 +58,7 @@
 		76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C623B92BDF00D21B21 /* ProjectsViewModel.swift */; };
 		76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61C823B92C4D00D21B21 /* HoveringButton.swift */; };
 		76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61CB23B9335100D21B21 /* AddProjectView.swift */; };
+		76FDE0D923CE0BCA00E3EEA2 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0D823CE0BCA00E3EEA2 /* Haptics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		76FD61C623B92BDF00D21B21 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		76FD61C823B92C4D00D21B21 /* HoveringButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoveringButton.swift; sourceTree = "<group>"; };
 		76FD61CB23B9335100D21B21 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
+		76FDE0D823CE0BCA00E3EEA2 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 		76FD61A423B929AE00D21B21 /* MyProjects */ = {
 			isa = PBXGroup;
 			children = (
+				76FDE0D723CE0BBC00E3EEA2 /* Helpers */,
 				765BA58423C2312D007F835D /* Extensions */,
 				761F243C23C15A4B008AA2B7 /* Models */,
 				76FD61BC23B929D900D21B21 /* Views */,
@@ -328,6 +331,14 @@
 				76EF17C823BCE1AF00C1CD11 /* AddProjectViewModel.swift */,
 			);
 			path = AddProjectView;
+			sourceTree = "<group>";
+		};
+		76FDE0D723CE0BBC00E3EEA2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				76FDE0D823CE0BCA00E3EEA2 /* Haptics.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,6 +447,7 @@
 				761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */,
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
+				76FDE0D923CE0BCA00E3EEA2 /* Haptics.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */,
 				7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */,
 				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,

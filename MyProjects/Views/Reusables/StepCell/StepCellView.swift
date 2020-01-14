@@ -40,6 +40,7 @@ struct StepCellView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
+            Haptic.feedback(self.model.statusIndex == 0 ? .medium : .light)
             withAnimation {
                 self.model.statusIndex = self.model.statusIndex == 0 ? 1 : 0
             }

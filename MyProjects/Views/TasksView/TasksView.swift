@@ -148,11 +148,18 @@ struct TasksView: View {
         CheckmarkButton(status: task.wrappedStatus) {
             if task.wrappedStatus == .active {
                 task.complete()
+                Haptic.feedback(.medium)
                 self.saveChanges()
             } else if task.wrappedStatus == .done {
-                task.uncomplete()
+                let newStatus = task.uncomplete()
+                if newStatus == .active {
+                    Haptic.feedback(.light)
+                } else {
+                    Haptic.notify(.error)
+                }
                 self.saveChanges()
             } else {
+                Haptic.notify(.warning)
                 self.model.taskToEdit = task
                 self.model.modalType = .addTask
                 self.model.showAdd = true

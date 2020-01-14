@@ -10,12 +10,16 @@ import Foundation
 
 extension MTask {
     public func complete() {
-        self.ended = Date()
-        self.status = MObjectStatus.done.rawValue
+        ended = Date()
+        status = MObjectStatus.done.rawValue
     }
     
-    public func uncomplete() {
-        self.ended = nil
-        self.status = isExpired ? MObjectStatus.failed.rawValue : MObjectStatus.active.rawValue
+    public func uncomplete() -> MObjectStatus {
+        ended = nil
+        status = isExpired ? MObjectStatus.failed.rawValue : MObjectStatus.active.rawValue
+        if isExpired {
+            return .failed
+        }
+        return .active
     }
 }
