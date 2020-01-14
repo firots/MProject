@@ -50,7 +50,7 @@ struct StepsView: View {
     
     func addStepButton() -> some View {
         HStack {
-            CellImageView(systemName: "plus.circle")
+            CellImageView(systemName: "plus.circle.fill")
             Text("Add New Step")
             Spacer()
         }

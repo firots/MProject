@@ -32,7 +32,7 @@ struct AddMObjectView: View {
     
     func dueToggle() -> some View {
         HStack {
-            CellImageView(systemName:"calendar.circle")
+            CellImageView(systemName:"calendar.circle.fill")
             Toggle(isOn: $model.hasDeadline.animation()) {
                 Text("Due")
             }
@@ -42,7 +42,7 @@ struct AddMObjectView: View {
     func notificationsSection() -> some View {
         Section {
             HStack {
-                CellImageView(systemName: "plus.circle")
+                CellImageView(systemName: "plus.circle.fill")
                 Text("Add Notification")
                 .foregroundColor(Color(.systemPurple))
                 Spacer()
@@ -99,7 +99,7 @@ struct AddMObjectView: View {
     
     func autoStartToggle() -> some View {
         HStack {
-            CellImageView(systemName: "calendar.circle")
+            CellImageView(systemName: "calendar.circle.fill")
             Toggle(isOn: $model.showAutoStart.animation()) {
                 Text("Activation Date")
             }
@@ -109,7 +109,7 @@ struct AddMObjectView: View {
     func mainSection() -> some View {
         Section {
             HStack {
-                CellImageView(systemName: "info.circle")
+                CellImageView(systemName: "info.circle.fill")
                 TextField("\(modelName.capitalizingFirstLetter()) Name", text: $model.name)
                 }.accentColor(Color(.systemPurple))
 
@@ -119,7 +119,7 @@ struct AddMObjectView: View {
     
     func detailsButton() -> some View {
         HStack {
-            CellImageView(systemName: "pencil.circle")
+            CellImageView(systemName: "pencil.circle.fill")
             Text(self.model.details.emptyHolder("Details"))
                 .foregroundColor(Color(.placeholderText))
                 .lineLimit(3)
