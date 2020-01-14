@@ -26,7 +26,7 @@ struct NotesView: View {
         }
         .edgesIgnoringSafeArea(.bottom)
         .padding(.bottom, keyboard.currentHeight)
-        .animation(.default)
+        .animation(.easeInOut)
     }
 }
 

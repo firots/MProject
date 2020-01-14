@@ -9,6 +9,7 @@
 import Foundation
 
 class AddTaskViewModel: AddMObjectViewModel {
+    @Published var editVisible = false
     let project: MProject?
     let task: MTask?
     

@@ -14,7 +14,6 @@ struct AddTaskView: View {
     @ObservedObject private var model: AddTaskViewModel
     @ObservedObject private var keyboard: KeyboardResponder
     var moc: NSManagedObjectContext
-    @State var editVisible = false
     @Environment(\.editMode) var editMode
     
     init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext) {
@@ -45,7 +44,6 @@ struct AddTaskView: View {
                 Text("Add Notification")
             }
         }
-
     }
     
     func stepsSection() -> some View {
@@ -59,24 +57,28 @@ struct AddTaskView: View {
                     if self.editMode?.wrappedValue != .active {
                         self.editMode?.wrappedValue = .active
                     }
-                    self.editVisible = true
+                    self.model.editVisible = true
                 }
+            }
+        }
+    }
+    
+    func save() {
+        let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project)
+
+        if self.moc.hasChanges {
+            do {
+                try self.moc.save()
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }
     
 
     func titleBar() -> some View {
-        ModalTitle(title: model.task == nil ? "Add Task": "Edit Task", edit: editVisible) {
-            let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project)
-
-            if self.moc.hasChanges {
-                do {
-                    try self.moc.save()
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
+        ModalTitle(title: model.task == nil ? "Add Task": "Edit Task", edit: model.editVisible) {
+            self.save()
             self.presentationMode.wrappedValue.dismiss()
         }
     }

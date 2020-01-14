@@ -110,6 +110,7 @@ public struct TextView: UIViewRepresentable {
         textView.isScrollEnabled = isScrollingEnabled
         textView.isUserInteractionEnabled = isUserInteractionEnabled
         textView.tintColor = .systemPurple
+
         return textView
     }
     

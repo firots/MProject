@@ -10,13 +10,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-extension View {
-    func hideKeyboard()
-    {
-        
-    }
-}
-
 struct DismissKeyboardOnTap: ViewModifier {
     func body(content: Content) -> some View { content
         .onTapGesture(count: 2){}
