@@ -10,10 +10,10 @@ import SwiftUI
 
 struct AddStepView: View {
     @ObservedObject var model: StepCellViewModel
-    @State var jenas = false
+    @State var jenas = true
     @Environment(\.presentationMode) var presentationMode
     var newStep: Bool
-    @ObservedObject var keyboard = KeyboardResponder()
+    @ObservedObject var keyboard: KeyboardResponder
     var addAction: (() -> Void)?
     
 

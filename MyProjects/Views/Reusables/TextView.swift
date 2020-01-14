@@ -115,9 +115,12 @@ public struct TextView: UIViewRepresentable {
     }
     
     public func updateUIView(_ textView: UITextView, context _: Context) {
-        textView.text = text
-        _ = isEditing
-            ? textView.becomeFirstResponder()
-            : textView.resignFirstResponder()
+        DispatchQueue.main.async {
+            textView.text = self.text
+            _ = self.isEditing
+                ? textView.becomeFirstResponder()
+                : textView.resignFirstResponder()
+        }
+
     }
 }

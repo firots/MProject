@@ -37,7 +37,7 @@ struct AddTaskView: View {
             if (self.model.modalType == .notes) {
                 NotesView(notes: self.$model.details, keyboard: self.keyboard)
             } else if (self.model.modalType == .addStep) {
-                AddStepView(model: self.model.stepsModel.stepViewModel, newStep: self.model.stepsModel.newStep) {
+                AddStepView(model: self.model.stepsModel.stepViewModel, newStep: self.model.stepsModel.newStep, keyboard: self.keyboard) {
                     self.model.stepsModel.steps.append(self.model.stepsModel.stepViewModel)
                 }
             } else {
