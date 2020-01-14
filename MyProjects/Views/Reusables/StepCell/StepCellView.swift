@@ -27,11 +27,17 @@ struct StepCellView: View {
     }
     
     func checkerButton() -> some View {
-        Image(systemName: self.model.statusIndex == 0 ? "circle" : "checkmark.circle.fill")
-        .resizable()
-        .frame(width:24, height: 24)
-        .padding(.trailing, 6)
-        .foregroundColor(self.model.statusIndex == 0 ? Color(.systemPurple) : Color(.systemGreen))
+        ZStack {
+            CellImageView(systemName: "circle")
+            if model.statusIndex == 1 {
+                Image(systemName: self.model.statusIndex == 0 ? "circle" : "checkmark.circle.fill")
+                .resizable()
+                .frame(width:24, height: 24)
+                .padding(.trailing, 6)
+                .foregroundColor(self.model.statusIndex == 0 ? Color(.systemPurple) : Color(.systemGreen))
+                .transition(.scale)
+            }
+        }
         .contentShape(Rectangle())
         .onTapGesture {
             withAnimation {
