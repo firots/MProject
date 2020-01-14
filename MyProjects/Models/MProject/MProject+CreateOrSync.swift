@@ -21,7 +21,7 @@ extension MProject {
         project.id = UUID()
         project.created = Date()
         project.details = ""
-        
+
         return project
     }
 }

@@ -18,7 +18,7 @@ class TasksViewModel: ObservableObject {
     
     var taskToEdit: MTask?
 
-    var taskFilterTypeNames: [String] = MObjectStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
+    var taskFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
     
     private var cancellableSet: Set<AnyCancellable> = []
     

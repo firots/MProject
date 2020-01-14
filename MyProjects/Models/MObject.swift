@@ -16,10 +16,11 @@ protocol MObject: class {
     var created: Date? { get  set }
     var started: Date?  { get  set }
     var deadline: Date? { get  set }
-    var status: String? { get  set }
+    var status: Int { get  set }
     var ended: Date? { get  set }
     var lastModified: Date? { get  set }
     var priotory: Int { get set }
+    var saved: Bool { get set }
 }
 
 extension MObject {
@@ -32,7 +33,7 @@ extension MObject {
     }
     
     public var wrappedStatus: MObjectStatus {
-        return MObjectStatus(rawValue: status ?? MObjectStatus.active.rawValue) ?? .active
+        return MObjectStatus(rawValue: status) ?? .active
     }
     
     public var wrappedDetails: String {
@@ -55,7 +56,7 @@ extension MObject {
         self.name = model.name.emptyIsNil()
         self.details = model.details.emptyIsNil()
 
-        if self.status == nil && model.status == .active  {
+        if self.saved == false && model.status == .active  {
             self.started = Date()
         }
         else if model.showAutoStart == true && model.status == .waiting {
@@ -81,6 +82,7 @@ extension MObject {
         }
         
         self.status = MObjectStatus.all[model.statusIndex].rawValue
+        self.saved = true
     }
     
     public var secondDate: String {
@@ -92,11 +94,13 @@ extension MObject {
     }
 }
 
-public enum MObjectStatus: String {
+public enum MObjectStatus: Int {
     case active
     case waiting
     case done
     case failed
+    
+    static let names = ["active", "waiting", "done", "failed"]
     
     static let all = [active, waiting, done, failed]
     

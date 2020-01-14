@@ -22,13 +22,14 @@ extension MTask {
     @NSManaged public var created: Date?
     @NSManaged public var started: Date?
     @NSManaged public var deadline: Date?
-    @NSManaged public var status: String?
+    @NSManaged public var status: Int
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var project: MProject?
     @NSManaged public var repeatMode: String?
     @NSManaged public var priotory: Int
     @NSManaged public var step: NSSet?
+    @NSManaged public var saved: Bool
     
     public var wrappedRepeatMode: RepeatMode {
         get {

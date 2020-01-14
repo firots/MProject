@@ -14,7 +14,7 @@ class ProjectsViewModel: ObservableObject {
     @Published var projectFilter = 1
     @Published var predicate: NSPredicate?
 
-    var projectFilterTypeNames: [String] = MObjectStatus.all.map( {$0.rawValue.capitalizingFirstLetter()} )
+    var projectFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
     
     private var cancellableSet: Set<AnyCancellable> = []
     

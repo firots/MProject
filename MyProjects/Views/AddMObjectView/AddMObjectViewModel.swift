@@ -28,7 +28,7 @@ class AddMObjectViewModel: ObservableObject {
     }
     
     init(mObject: MObject?) {
-        self.statusIndex = MObjectStatus.all.firstIndex(of: MObjectStatus(rawValue: mObject?.status ?? MObjectStatus.active.rawValue) ?? MObjectStatus.active) ?? 0
+        self.statusIndex = MObjectStatus.all.firstIndex(of: MObjectStatus(rawValue: mObject?.status ?? MObjectStatus.active.rawValue) ?? MObjectStatus.active) ?? 1
         
         if let o = mObject {
             name = o.name ?? ""

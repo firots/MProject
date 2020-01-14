@@ -44,7 +44,7 @@ extension MTask {
         task.id = UUID()
         task.created = Date()
         task.details = ""
-        
+
         return task
     }
 }

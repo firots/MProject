@@ -19,7 +19,7 @@ extension MProject {
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var status: String?
+    @NSManaged public var status: Int
     @NSManaged public var details: String?
     @NSManaged public var started: Date?
     @NSManaged public var created: Date?
@@ -28,6 +28,7 @@ extension MProject {
     @NSManaged public var deadline: Date?
     @NSManaged public var task: NSSet?
     @NSManaged public var priotory: Int
+    @NSManaged public var saved: Bool
     
     public var tasks: [MTask] {
         let set = task as? Set<MTask> ?? []

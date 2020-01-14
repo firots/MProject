@@ -65,8 +65,7 @@ struct TasksView: View {
         }
     }
     
-    
-    
+
     private func taskFilter() -> some View {
         VStack {
             Picker(selection: $model.taskFilter, label: Text("Show")) {

@@ -14,7 +14,7 @@ struct MObjectStatePicker: View {
     var body: some View {
         Picker(selection: $statusIndex.animation(), label: Text("Status")) {
             ForEach(0..<MObjectStatus.all.count) { index in
-                Text(MObjectStatus.all[index].rawValue.capitalizingFirstLetter())
+                Text(MObjectStatus.names[index].capitalizingFirstLetter())
             }
         }
         .pickerStyle(SegmentedPickerStyle())
