@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public enum MStepStatus: String {
+public enum MStepStatus: Int {
     case active
     case done
     

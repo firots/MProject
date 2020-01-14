@@ -38,7 +38,7 @@ struct AddStepView: View {
     func statePicker() -> some View {
         Picker(selection: $model.statusIndex.animation(), label: Text("Status")) {
             ForEach(0..<2) { index in
-                Text(MStepStatus.all[index].rawValue.capitalizingFirstLetter())
+                Text(MStepStatus.names[index].capitalizingFirstLetter())
             }
         }
         .pickerStyle(SegmentedPickerStyle())

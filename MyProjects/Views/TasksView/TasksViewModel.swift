@@ -43,9 +43,9 @@ class TasksViewModel: ObservableObject {
             }
         } else {
             if self.project == nil {
-                return NSPredicate(format: "status == %@", MObjectStatus.all[filter - 1].rawValue)
+                return NSPredicate(format: "status == %d", MObjectStatus.all[filter - 1].rawValue)
             } else {
-                return NSPredicate(format: "status == %@ AND project == %@", MObjectStatus.all[filter - 1].rawValue, self.project!)
+                return NSPredicate(format: "status == %d AND project == %@", MObjectStatus.all[filter - 1].rawValue, self.project!)
             }
         }
     }

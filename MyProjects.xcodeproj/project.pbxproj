@@ -60,6 +60,8 @@
 		76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61CB23B9335100D21B21 /* AddProjectView.swift */; };
 		76FDE0D923CE0BCA00E3EEA2 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0D823CE0BCA00E3EEA2 /* Haptics.swift */; };
 		76FDE0DB23CE1C5A00E3EEA2 /* DismissGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0DA23CE1C5A00E3EEA2 /* DismissGuardian.swift */; };
+		76FDE0DD23CE422500E3EEA2 /* MObject+SetMutualFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0DC23CE422500E3EEA2 /* MObject+SetMutualFields.swift */; };
+		76FDE0E023CE425C00E3EEA2 /* MObject+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0DF23CE425C00E3EEA2 /* MObject+Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,8 @@
 		76FD61CB23B9335100D21B21 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
 		76FDE0D823CE0BCA00E3EEA2 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		76FDE0DA23CE1C5A00E3EEA2 /* DismissGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissGuardian.swift; sourceTree = "<group>"; };
+		76FDE0DC23CE422500E3EEA2 /* MObject+SetMutualFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+SetMutualFields.swift"; sourceTree = "<group>"; };
+		76FDE0DF23CE425C00E3EEA2 /* MObject+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+Notifications.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +138,8 @@
 		761F243C23C15A4B008AA2B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				76FDE0DE23CE422E00E3EEA2 /* MObject */,
 				76ED808023C62E430042D36D /* RepeatMode.swift */,
-				7625E11323C4E5F700F81CCA /* MObject.swift */,
 				768A23E023C8C7FF00AE8B83 /* MStep */,
 				7681B68023C383DF0068254B /* MTask */,
 				761F244223C16E08008AA2B7 /* MProject */,
@@ -344,6 +348,16 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		76FDE0DE23CE422E00E3EEA2 /* MObject */ = {
+			isa = PBXGroup;
+			children = (
+				7625E11323C4E5F700F81CCA /* MObject.swift */,
+				76FDE0DC23CE422500E3EEA2 /* MObject+SetMutualFields.swift */,
+				76FDE0DF23CE425C00E3EEA2 /* MObject+Notifications.swift */,
+			);
+			path = MObject;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -425,6 +439,7 @@
 				76FDE0DB23CE1C5A00E3EEA2 /* DismissGuardian.swift in Sources */,
 				76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */,
 				7621991923CBCD86004B6541 /* CellImageView.swift in Sources */,
+				76FDE0DD23CE422500E3EEA2 /* MObject+SetMutualFields.swift in Sources */,
 				764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */,
 				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,
 				7673533E23CA6B93002C1194 /* StepCellView.swift in Sources */,
@@ -453,6 +468,7 @@
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
 				76FDE0D923CE0BCA00E3EEA2 /* Haptics.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */,
+				76FDE0E023CE425C00E3EEA2 /* MObject+Notifications.swift in Sources */,
 				7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */,
 				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
