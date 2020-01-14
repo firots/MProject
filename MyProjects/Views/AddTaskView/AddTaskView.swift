@@ -33,12 +33,12 @@ struct AddTaskView: View {
             }.background(Color(.systemGroupedBackground))
             .edgesIgnoringSafeArea(.bottom)
         }
-        .padding(.bottom, keyboard.currentHeight)
+        .padding(.bottom, self.model.showModal == false  ? keyboard.currentHeight : 0)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
                 NotesView(notes: self.$model.details, keyboard: self.keyboard)
             } else if (self.model.modalType == .addStep) {
-                AddStepView(model: self.model.stepsModel.stepViewModel, newStep: self.model.stepsModel.newStep) {
+                AddStepView(model: self.model.stepsModel.stepViewModel, newStep: self.model.stepsModel.newStep, keyboard: self.keyboard) {
                     self.model.stepsModel.steps.append(self.model.stepsModel.stepViewModel)
                 }
             } else {
