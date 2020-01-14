@@ -12,7 +12,14 @@ import Foundation
 extension MObject {
     func deleteNotifications() {
         /* get notifications from
-         core data and delete them from ios notifications by id*/
+         core data and delete them from ios notifications by id
+         
+         if state is active delete nothing
+         if state is completed delete all
+         if state is failed delete all
+         if state is waiting delete all but deadline
+         
+         */
     }
     
     func createNotifications() {
@@ -21,7 +28,6 @@ extension MObject {
     
     func resetNotifications() {
         deleteNotifications()
-        
         if wrappedStatus == .active {
             createNotifications()
         }

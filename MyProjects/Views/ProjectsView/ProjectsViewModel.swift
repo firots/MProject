@@ -26,7 +26,7 @@ class ProjectsViewModel: ObservableObject {
                 if projectFilter == 0 {
                     return nil
                 } else {
-                    return NSPredicate(format: "status == %@", MObjectStatus.all[projectFilter - 1].rawValue)
+                    return NSPredicate(format: "status == %d", MObjectStatus.all[projectFilter - 1].rawValue)
                 }
             }
             .eraseToAnyPublisher()

@@ -23,6 +23,7 @@
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
 		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
+		7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */; };
 		7673533823CA1065002C1194 /* MTask+ChangeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533723CA1065002C1194 /* MTask+ChangeState.swift */; };
 		7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533923CA11F1002C1194 /* MStep+Create.swift */; };
 		7673533C23CA52F1002C1194 /* StepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533B23CA52F1002C1194 /* StepsView.swift */; };
@@ -81,6 +82,7 @@
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
+		7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObjectNavigationButtons.swift; sourceTree = "<group>"; };
 		7673533723CA1065002C1194 /* MTask+ChangeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+ChangeState.swift"; sourceTree = "<group>"; };
 		7673533923CA11F1002C1194 /* MStep+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+Create.swift"; sourceTree = "<group>"; };
 		7673533B23CA52F1002C1194 /* StepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				7621991A23CBD50A004B6541 /* AddStepView.swift */,
 				76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */,
 				76FDE0DA23CE1C5A00E3EEA2 /* DismissGuardian.swift */,
+				7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */,
 				7673533C23CA52F1002C1194 /* StepsView.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
+				7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */,
 				7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */,
 				76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */,
 				76FDE0DB23CE1C5A00E3EEA2 /* DismissGuardian.swift in Sources */,

@@ -22,6 +22,7 @@ struct TasksView: View {
             VStack {
                 HStack {
                     Text(Date().toClassic()).padding(.leading, 20)
+                    MObjectNavigationButtons()
                     Spacer()
                 }
                 ZStack {
