@@ -30,7 +30,7 @@ public enum RepeatMode: Int {
     ]
 }
 
-struct MNotificationModel {
+struct NotificationViewModel {
     /* uuid will be transferred to notification center */
     var id: UUID
     
@@ -41,15 +41,13 @@ struct MNotificationModel {
     /* callback date date for non repeating notifications */
     var date: Date?
     
-    
     /* repeat section */
     var repeatMode: RepeatMode?
     
     var startDate: Date?
     var endDate: Date?
+    
     var repeatMinute: Int
     var repeatHour: Int
-    
     var repeatInterval: Int
-    
 }

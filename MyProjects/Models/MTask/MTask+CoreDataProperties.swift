@@ -26,14 +26,14 @@ extension MTask {
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var project: MProject?
-    @NSManaged public var repeatMode: String?
+    @NSManaged public var repeatMode: Int
     @NSManaged public var priotory: Int
     @NSManaged public var step: NSSet?
     @NSManaged public var saved: Bool
     
     public var wrappedRepeatMode: RepeatMode {
         get {
-            RepeatMode(rawValue: repeatMode ?? RepeatMode.none.rawValue) ?? RepeatMode.none
+            RepeatMode(rawValue: repeatMode) ?? RepeatMode.none
         } set {
             repeatMode = newValue.rawValue
         }
