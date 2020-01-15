@@ -32,8 +32,31 @@ extension MObject {
         return name ?? "Unnamed \(self is MProject ? "Project" : "Task")"
     }
     
+    public var isExpired: Bool {
+        if deadline == nil {
+            return false
+        } else if let deadline = deadline, deadline > Date() {
+            return false
+        }
+        return true
+    }
+    
     public var wrappedStatus: MObjectStatus {
-        return MObjectStatus(rawValue: status) ?? .active
+        get {
+            return MObjectStatus(rawValue: status) ?? .active
+        } set {
+            if (newValue == .failed && self.wrappedStatus != MObjectStatus.failed) || (newValue == .done && self.wrappedStatus != MObjectStatus.done) {
+                self.ended = Date()
+            } else {
+                self.ended = nil
+            }
+
+            if newValue == .active && isExpired {
+                self.status = MObjectStatus.failed.rawValue
+            } else {
+                self.status = newValue.rawValue
+            }
+        }
     }
     
     public var wrappedDetails: String {
@@ -52,6 +75,8 @@ extension MObject {
         return lastModified ?? wrappedCreated
     }
     
+    
+    
     func setMutualFields(from model: AddMObjectViewModel) {
         self.name = model.name.emptyIsNil()
         self.details = model.details.emptyIsNil()
@@ -59,11 +84,11 @@ extension MObject {
         if self.saved == false && model.status == .active  {
             self.started = Date()
         }
-        else if model.showAutoStart == true && model.status == .waiting {
+        else if model.hasAutoStart == true && model.status == .waiting {
             self.started = model.autoStart
         } else if self.wrappedStatus != .active && model.status == .active {
             self.started = Date()
-        } else if model.showAutoStart == false && model.status == .waiting {
+        } else if model.hasAutoStart == false && model.status == .waiting {
             self.started = nil
         }
         
@@ -74,14 +99,7 @@ extension MObject {
             self.deadline = nil
         }
         
-        /* set end date if object state changed to failed or done */
-        if (model.status == .failed && self.status != MObjectStatus.failed.rawValue) || (model.status == .done && self.status != MObjectStatus.done.rawValue) {
-            self.ended = Date()
-        } else {
-            self.ended = nil
-        }
-        
-        self.status = MObjectStatus.all[model.statusIndex].rawValue
+        self.wrappedStatus = MObjectStatus.all[model.statusIndex]
         self.saved = true
     }
     

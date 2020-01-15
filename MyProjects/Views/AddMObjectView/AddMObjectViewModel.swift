@@ -20,7 +20,7 @@ class AddMObjectViewModel: ObservableObject {
     @Published var autoStart = Date()
     @Published var ended: Date?
     @Published var started: Date?
-    @Published var showAutoStart = false
+    @Published var hasAutoStart = false
     @Published var modalType = ModalType.notes
     
     var status: MObjectStatus {
@@ -40,7 +40,7 @@ class AddMObjectViewModel: ObservableObject {
                 self.deadline = deadline
             }
             if let started = o.started, started > Date() {
-                showAutoStart = true
+                hasAutoStart = true
                 autoStart = started
             }
         }

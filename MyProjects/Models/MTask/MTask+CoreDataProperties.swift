@@ -49,15 +49,7 @@ extension MTask {
     public var completedSteps: [MStep] {
         steps.filter({ $0.status == MStepStatus.done.rawValue })
     }
-    
-    public var isExpired: Bool {
-        if deadline == nil {
-            return false
-        } else if let deadline = deadline, deadline > Date() {
-            return false
-        }
-        return true
-    }
+
 }
 
 // MARK: Generated accessors for step

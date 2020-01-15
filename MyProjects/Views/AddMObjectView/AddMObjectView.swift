@@ -91,7 +91,7 @@ struct AddMObjectView: View {
     func autoStartSection() -> some View {
         Section {
             autoStartToggle()
-            if model.showAutoStart {
+            if model.hasAutoStart {
                 dateTimePicker(date: $model.autoStart)
             }
         }
@@ -100,7 +100,7 @@ struct AddMObjectView: View {
     func autoStartToggle() -> some View {
         HStack {
             CellImageView(systemName: "calendar.circle.fill")
-            Toggle(isOn: $model.showAutoStart.animation()) {
+            Toggle(isOn: $model.hasAutoStart.animation()) {
                 Text("Activation Date")
             }
         }

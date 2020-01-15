@@ -13,24 +13,27 @@ extension MObject {
     func deleteNotifications() {
         /* get notifications from
          core data and delete them from ios notifications by id
-         
-         if state is active delete nothing
-         if state is completed delete all
-         if state is failed delete all
-         if state is waiting delete all but deadline
-         
-         */
+        */
     }
     
     func createNotifications() {
         /* create ios notifications from core data */
+        if wrappedStatus == .active {
+            //create user defined notifications which is not expired
+            //create deadline notifications
+        }
+        else if wrappedStatus == .waiting {
+            if let started = self.started {
+                if started > Date() {
+                    //create auto start notifications
+                }
+            }
+            //create deadline notifications
+        }
     }
     
     func resetNotifications() {
         deleteNotifications()
-        if wrappedStatus == .active {
-            createNotifications()
-        }
-        
+        createNotifications()
     }
 }

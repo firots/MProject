@@ -147,12 +147,12 @@ struct TasksView: View {
     func checkmarkButton(_ task: MTask) -> some View {
         CheckmarkButton(status: task.wrappedStatus) {
             if task.wrappedStatus == .active {
-                task.complete()
+                task.wrappedStatus = .done
                 Haptic.feedback(.medium)
                 self.saveChanges()
             } else if task.wrappedStatus == .done {
-                let newStatus = task.uncomplete()
-                if newStatus == .active {
+                task.wrappedStatus = .active
+                if task.wrappedStatus == .active {
                     Haptic.feedback(.light)
                 } else {
                     Haptic.notify(.error)
