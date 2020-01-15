@@ -33,6 +33,8 @@ public enum RepeatMode: Int {
 struct NotificationViewModel {
     /* uuid will be transferred to notification center */
     var id: UUID
+    var title: String?
+    var details: String?
     
     /* can belong to project or task*/
     var project: MProject?

@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="MNotification" representedClassName="MNotification" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="repeatHour" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -9,6 +10,7 @@
         <attribute name="repeatMinute" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeatMode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="notification" inverseEntity="MProject"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="notification" inverseEntity="MTask"/>
         <uniquenessConstraints>
@@ -71,6 +73,6 @@
         <element name="MProject" positionX="-45" positionY="0" width="128" height="238"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="133"/>
         <element name="MTask" positionX="-45" positionY="63" width="128" height="268"/>
-        <element name="MNotification" positionX="-36" positionY="144" width="128" height="193"/>
+        <element name="MNotification" positionX="-36" positionY="144" width="128" height="223"/>
     </elements>
 </model>
