@@ -22,9 +22,44 @@ class AddMObjectViewModel: ObservableObject {
     @Published var started: Date?
     @Published var hasAutoStart = false
     @Published var modalType = ModalType.notes
+    @Published var showExpiredWarning = false
+    
+    private var cancellableSet: Set<AnyCancellable> = []
     
     var status: MObjectStatus {
         return MObjectStatus.all[statusIndex]
+    }
+    
+    private var hasDeadlinePublisher: AnyPublisher<Bool, Never> {
+        $hasDeadline
+            .map { hasDeadline in
+                hasDeadline
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private var deadlineExpiredPublisher: AnyPublisher<Bool, Never> {
+        $deadline
+            .map { deadline in
+                Date() > deadline
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private var statusPublisher: AnyPublisher<MObjectStatus, Never> {
+        $statusIndex
+            .map { statusIndex in
+                MObjectStatus.all[statusIndex]
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private var showExpiredWarningPublisher: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest3(hasDeadlinePublisher, deadlineExpiredPublisher, statusPublisher)
+            .map { deadline, expired, status in
+                return deadline && expired && (status == .active || status == .waiting)
+        }
+        .eraseToAnyPublisher()
     }
     
     init(mObject: MObject?) {
@@ -44,6 +79,11 @@ class AddMObjectViewModel: ObservableObject {
                 autoStart = started
             }
         }
+        
+        showExpiredWarningPublisher
+            .receive(on: RunLoop.main)
+            .assign(to: \.showExpiredWarning, on: self)
+            .store(in: &cancellableSet)
     }
     
     enum ModalType {

@@ -24,6 +24,9 @@ struct AddProjectView: View {
         VStack {
             titleBar()
             MObjectStatePicker(statusIndex: $model.statusIndex)
+            if model.showExpiredWarning {
+                expiredText()
+            }
             Form {
                 AddMObjectView(model: model)
             }.background(Color(.systemGroupedBackground))
@@ -37,6 +40,13 @@ struct AddProjectView: View {
                 Text("Add notification")
             }
         }
+    }
+    
+    func expiredText() -> some View {
+        Text("This project will fail, please change due date or disable it.")
+            .font(.footnote)
+            .foregroundColor(Color(.systemRed))
+            .padding(.horizontal, 20)
     }
     
     func titleBar() -> some View {

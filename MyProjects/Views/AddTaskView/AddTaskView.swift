@@ -26,6 +26,10 @@ struct AddTaskView: View {
         VStack {
             titleBar()
             MObjectStatePicker(statusIndex: $model.statusIndex)
+            if model.showExpiredWarning {
+                expiredText() 
+            }
+            
             Form {
                 stepsSection()
                 AddMObjectView(model: model)
@@ -44,6 +48,13 @@ struct AddTaskView: View {
                 Text("Add Notification")
             }
         }
+    }
+    
+    func expiredText() -> some View {
+        Text("This task will fail, please change due date or disable it.")
+            .font(.footnote)
+            .foregroundColor(Color(.systemRed))
+            .padding(.horizontal, 20)
     }
     
     func stepsSection() -> some View {
