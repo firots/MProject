@@ -26,14 +26,18 @@ struct AddTaskView: View {
         VStack {
             titleBar()
             MObjectStatePicker(statusIndex: $model.statusIndex)
-            expiredText()
             
-            Form {
-                stepsSection()
-                AddMObjectView(model: model)
-            }.background(Color(.systemGroupedBackground))
-            .edgesIgnoringSafeArea(.bottom)
+            ZStack {
+                Form {
+                    stepsSection()
+                    AddMObjectView(model: model)
+                }.background(Color(.systemGroupedBackground))
+                .edgesIgnoringSafeArea(.bottom)
+                
+                expiredText()
+            }
         }
+            
         .padding(.bottom, self.model.showModal == false  ? keyboard.currentHeight : 0)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
@@ -49,13 +53,14 @@ struct AddTaskView: View {
     }
     
     func expiredText() -> some View {
-        Group {
-            if model.showExpiredWarning {
+        VStack {
+            if model.showExpiredWarningAnimated {
                 Text("This task will fail, please change or disable the deadline.")
                     .font(.footnote)
                     .foregroundColor(Color(.systemRed))
                     .padding(.horizontal, 20)
             }
+            Spacer()
         }
     }
     

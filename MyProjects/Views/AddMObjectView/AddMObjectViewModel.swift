@@ -23,6 +23,15 @@ class AddMObjectViewModel: ObservableObject {
     @Published var hasAutoStart = false
     @Published var modalType = ModalType.notes
     @Published var showExpiredWarning = false
+        {
+        didSet {
+            withAnimation {
+                showExpiredWarningAnimated = showExpiredWarning
+            }
+        }
+    }
+    @Published var showExpiredWarningAnimated = false
+
     
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -57,7 +66,7 @@ class AddMObjectViewModel: ObservableObject {
     private var showExpiredWarningPublisher: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest3(hasDeadlinePublisher, deadlineExpiredPublisher, statusPublisher)
             .map { deadline, expired, status in
-                return deadline && expired && (status == .active || status == .waiting)
+                deadline && expired && (status == .active || status == .waiting)
         }
         .eraseToAnyPublisher()
     }

@@ -24,11 +24,15 @@ struct AddProjectView: View {
         VStack {
             titleBar()
             MObjectStatePicker(statusIndex: $model.statusIndex)
-            expiredText()
-            Form {
-                AddMObjectView(model: model)
-            }.background(Color(.systemGroupedBackground))
-            .edgesIgnoringSafeArea(.bottom)
+        
+            ZStack {
+                Form {
+                    AddMObjectView(model: model)
+                }.background(Color(.systemGroupedBackground))
+                .edgesIgnoringSafeArea(.bottom)
+                
+                expiredText()
+            }
         }
         .padding(.bottom, keyboard.currentHeight)
         .sheet(isPresented: $model.showModal) {
@@ -41,13 +45,14 @@ struct AddProjectView: View {
     }
     
     func expiredText() -> some View {
-        Group {
+        VStack {
             if model.showExpiredWarning {
                 Text("This project will fail, please change or disable the deadline.")
                     .font(.footnote)
                     .foregroundColor(Color(.systemRed))
                     .padding(.horizontal, 20)
             }
+            Spacer()
         }
     }
     
