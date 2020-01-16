@@ -23,6 +23,9 @@
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
 		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
+		766FE81223D0BE3D0055180B /* MNotification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */; };
+		766FE81323D0BE3D0055180B /* MNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */; };
+		766FE81623D0C82B0055180B /* MNotification+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81523D0C82B0055180B /* MNotification+Create.swift */; };
 		7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */; };
 		7673533823CA1065002C1194 /* MTask+ChangeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533723CA1065002C1194 /* MTask+ChangeState.swift */; };
 		7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533923CA11F1002C1194 /* MStep+Create.swift */; };
@@ -82,6 +85,9 @@
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
+		766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataClass.swift"; sourceTree = "<group>"; };
+		766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		766FE81523D0C82B0055180B /* MNotification+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+Create.swift"; sourceTree = "<group>"; };
 		7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObjectNavigationButtons.swift; sourceTree = "<group>"; };
 		7673533723CA1065002C1194 /* MTask+ChangeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+ChangeState.swift"; sourceTree = "<group>"; };
 		7673533923CA11F1002C1194 /* MStep+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+Create.swift"; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 		761F243C23C15A4B008AA2B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				766FE81423D0BE430055180B /* MNotification */,
 				76FDE0DE23CE422E00E3EEA2 /* MObject */,
 				76ED808023C62E430042D36D /* RepeatMode.swift */,
 				768A23E023C8C7FF00AE8B83 /* MStep */,
@@ -177,6 +184,16 @@
 				76D802F223C941E70088556A /* String+NoNewline.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		766FE81423D0BE430055180B /* MNotification */ = {
+			isa = PBXGroup;
+			children = (
+				766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */,
+				766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */,
+				766FE81523D0C82B0055180B /* MNotification+Create.swift */,
+			);
+			path = MNotification;
 			sourceTree = "<group>";
 		};
 		7681B68023C383DF0068254B /* MTask */ = {
@@ -443,6 +460,7 @@
 				76FDE0DB23CE1C5A00E3EEA2 /* DismissGuardian.swift in Sources */,
 				76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */,
 				7621991923CBCD86004B6541 /* CellImageView.swift in Sources */,
+				766FE81323D0BE3D0055180B /* MNotification+CoreDataProperties.swift in Sources */,
 				76FDE0DD23CE422500E3EEA2 /* MObject+SetMutualFields.swift in Sources */,
 				764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */,
 				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,
@@ -463,9 +481,11 @@
 				7625E11D23C5239900F81CCA /* Keyboard.swift in Sources */,
 				76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */,
 				76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */,
+				766FE81623D0C82B0055180B /* MNotification+Create.swift in Sources */,
 				76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */,
 				7621991723CBCA8F004B6541 /* MObjectStatePicker.swift in Sources */,
 				765BA58623C2313E007F835D /* Date+ToString.swift in Sources */,
+				766FE81223D0BE3D0055180B /* MNotification+CoreDataClass.swift in Sources */,
 				76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */,
 				761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */,
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
