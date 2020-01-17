@@ -18,6 +18,7 @@ struct MObjectNavigationButtons: View {
                 Image(systemName: "arrow.up.arrow.down.circle.fill")
                     .resizable()
                     .frame(width: 24, height: 24)
+
             }
             
             Button(action: {

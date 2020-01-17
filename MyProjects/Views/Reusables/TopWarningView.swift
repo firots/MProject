@@ -35,7 +35,6 @@ struct TopWarningView: View {
                     Spacer()
                 }
             }
-            
         }
     }
 }

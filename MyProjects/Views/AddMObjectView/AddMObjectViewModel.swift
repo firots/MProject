@@ -23,16 +23,7 @@ class AddMObjectViewModel: ObservableObject {
     @Published var hasAutoStart = false
     @Published var modalType = ModalType.notes
     @Published var showExpiredWarning = false
-        {
-        didSet {
-            withAnimation {
-                showExpiredWarningAnimated = showExpiredWarning
-            }
-        }
-    }
-    @Published var showExpiredWarningAnimated = false
 
-    
     private var cancellableSet: Set<AnyCancellable> = []
     
     var status: MObjectStatus {
