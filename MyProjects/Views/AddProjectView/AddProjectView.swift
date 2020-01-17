@@ -28,9 +28,11 @@ struct AddProjectView: View {
             ZStack {
                 Form {
                     AddMObjectView(model: model)
-                }.background(Color(.systemGroupedBackground))
+                }
+                
                 expiredText()
             }.padding(.bottom, keyboard.currentHeight)
+            .background(Color(.systemGroupedBackground))
         }
         .edgesIgnoringSafeArea(.bottom)
         
@@ -44,15 +46,8 @@ struct AddProjectView: View {
     }
     
     func expiredText() -> some View {
-        VStack {
-            if model.showExpiredWarning {
-                Text("This project will fail, please change or disable the deadline.")
-                    .font(.footnote)
-                    .foregroundColor(Color(.systemRed))
-                    .padding(.horizontal, 20)
-            }
-            Spacer()
-        }
+        TopWarningView(text: "This project will fail, please change or disable the deadline.", show: model.showExpiredWarning)
+            .animation(.easeInOut)
     }
     
     func titleBar() -> some View {

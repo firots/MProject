@@ -15,6 +15,7 @@
 		7621991923CBCD86004B6541 /* CellImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7621991823CBCD86004B6541 /* CellImageView.swift */; };
 		7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7621991A23CBD50A004B6541 /* AddStepView.swift */; };
 		7621991D23CBD6A3004B6541 /* MStep+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7621991C23CBD6A3004B6541 /* MStep+Status.swift */; };
+		7623EEF923D2102D007B1B0D /* TopWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7623EEF823D2102D007B1B0D /* TopWarningView.swift */; };
 		7625E11423C4E5F700F81CCA /* MObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11323C4E5F700F81CCA /* MObject.swift */; };
 		7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */; };
 		7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11A23C5063400F81CCA /* AddMObjectView.swift */; };
@@ -77,6 +78,7 @@
 		7621991823CBCD86004B6541 /* CellImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImageView.swift; sourceTree = "<group>"; };
 		7621991A23CBD50A004B6541 /* AddStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStepView.swift; sourceTree = "<group>"; };
 		7621991C23CBD6A3004B6541 /* MStep+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+Status.swift"; sourceTree = "<group>"; };
+		7623EEF823D2102D007B1B0D /* TopWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopWarningView.swift; sourceTree = "<group>"; };
 		7625E11323C4E5F700F81CCA /* MObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObject.swift; sourceTree = "<group>"; };
 		7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectViewModel.swift; sourceTree = "<group>"; };
 		7625E11A23C5063400F81CCA /* AddMObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectView.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */,
 				76FDE0DA23CE1C5A00E3EEA2 /* DismissGuardian.swift */,
 				7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */,
+				7623EEF823D2102D007B1B0D /* TopWarningView.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				7621991923CBCD86004B6541 /* CellImageView.swift in Sources */,
 				766FE81323D0BE3D0055180B /* MNotification+CoreDataProperties.swift in Sources */,
 				76FDE0DD23CE422500E3EEA2 /* MObject+SetMutualFields.swift in Sources */,
+				7623EEF923D2102D007B1B0D /* TopWarningView.swift in Sources */,
 				764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */,
 				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,
 				7673533E23CA6B93002C1194 /* StepCellView.swift in Sources */,

@@ -31,11 +31,8 @@ struct AddStepView: View {
             self.statePicker()
             TextView(text: $model.name, isEditing: $jenas)
             .padding(.bottom, keyboard.currentHeight)
-            .animation(.easeInOut)
         }
         .edgesIgnoringSafeArea(.bottom)
-        .background(Color(.systemBackground))
-        
     }
     
     func statePicker() -> some View {

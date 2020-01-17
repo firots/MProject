@@ -64,7 +64,7 @@ public struct TextView: UIViewRepresentable {
         textAlignment: TextAlignment = .left,
         font: UIFont = Self.defaultFont,
         textColor: UIColor = .label,
-        backgroundColor: UIColor = .secondarySystemBackground,
+        backgroundColor: UIColor = .systemBackground,
         contentType: ContentType? = nil,
         autocorrection: Autocorrection = .default,
         autocapitalization: Autocapitalization = .sentences,

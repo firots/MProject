@@ -31,11 +31,11 @@ struct AddTaskView: View {
                 Form {
                     stepsSection()
                     AddMObjectView(model: model)
-                }.background(Color(.systemGroupedBackground))
+                }
                 
                 expiredText()
-            }.padding(.bottom, self.model.showModal == false  ? keyboard.currentHeight : 0)
-            .animation(.easeInOut)
+            }.padding(.bottom, keyboard.currentHeight)
+            .background(Color(.systemGroupedBackground))
         }
         .edgesIgnoringSafeArea(.bottom)
         .sheet(isPresented: $model.showModal) {
@@ -52,15 +52,8 @@ struct AddTaskView: View {
     }
     
     func expiredText() -> some View {
-        VStack {
-            if model.showExpiredWarningAnimated {
-                Text("This task will fail, please change or disable the deadline.")
-                    .font(.footnote)
-                    .foregroundColor(Color(.systemRed))
-                    .padding(.horizontal, 20)
-            }
-            Spacer()
-        }
+        TopWarningView(text: "This task will fail, please change or disable the deadline.", show: model.showExpiredWarning)
+            .animation(.easeInOut)
     }
     
     func stepsSection() -> some View {

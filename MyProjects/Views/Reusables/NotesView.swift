@@ -24,10 +24,8 @@ struct NotesView: View {
             }
             TextView(text: $notes, isEditing: $jenas)
             .padding(.bottom, keyboard.currentHeight)
-                .animation(.easeInOut)
         }
         .edgesIgnoringSafeArea(.bottom)
-        .background(Color(.systemBackground))
     }
 }
 
