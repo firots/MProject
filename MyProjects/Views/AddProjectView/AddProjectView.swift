@@ -29,12 +29,11 @@ struct AddProjectView: View {
                 Form {
                     AddMObjectView(model: model)
                 }.background(Color(.systemGroupedBackground))
-                .edgesIgnoringSafeArea(.bottom)
-                
                 expiredText()
-            }
+            }.padding(.bottom, keyboard.currentHeight)
         }
-        .padding(.bottom, keyboard.currentHeight)
+        .edgesIgnoringSafeArea(.bottom)
+        
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
                 NotesView(notes: self.$model.details, keyboard: self.keyboard)

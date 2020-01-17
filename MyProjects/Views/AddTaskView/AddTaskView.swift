@@ -32,13 +32,12 @@ struct AddTaskView: View {
                     stepsSection()
                     AddMObjectView(model: model)
                 }.background(Color(.systemGroupedBackground))
-                .edgesIgnoringSafeArea(.bottom)
                 
                 expiredText()
-            }
+            }.padding(.bottom, self.model.showModal == false  ? keyboard.currentHeight : 0)
+            .animation(.easeInOut)
         }
-            
-        .padding(.bottom, self.model.showModal == false  ? keyboard.currentHeight : 0)
+        .edgesIgnoringSafeArea(.bottom)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
                 NotesView(notes: self.$model.details, keyboard: self.keyboard)
