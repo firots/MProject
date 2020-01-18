@@ -21,7 +21,7 @@ struct AddNotificationView: View {
     var body: some View {
         VStack {
             titleBar()
-            RepeatModePicker(model: $model.repeatModeConfiguration)
+            RepeatModePicker(model: $model.repeatModeConfiguration, desc: RepeatMode.descriptions[model.repeatModeConfiguration.repeatMode])
             Form {
                 if model.repeatModeConfiguration.repeatMode == RepeatMode.none.rawValue {
                     oneTimeRepeat()

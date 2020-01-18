@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RepeatModePicker<T: HasRepeatMode>: View {
     @Binding var model: ConfigureRepeatModeViewModel<T>
+    var desc: String
     
     var body: some View {
         VStack {
