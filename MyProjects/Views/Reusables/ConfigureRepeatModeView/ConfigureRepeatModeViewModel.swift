@@ -67,7 +67,7 @@ public enum RepeatMode: Int {
     case dow
     case dom
     
-    static var names = ["none", "hourly", "daily", "dow", "dom"]
+    static var names = ["none", "hourly", "daily", "DOW", "DOM"]
     
     static var all = [none, hour, day, dow, dom]
     
