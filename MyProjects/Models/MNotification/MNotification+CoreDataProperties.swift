@@ -11,8 +11,7 @@ import Foundation
 import CoreData
 
 
-extension MNotification {
-
+extension MNotification: HasRepeatMode {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MNotification> {
         return NSFetchRequest<MNotification>(entityName: "MNotification")
     }
@@ -34,11 +33,4 @@ extension MNotification {
     public var wrappedID: UUID {
         return id ?? UUID()
     }
-    
-    
-    
-    
-    
-    
-
 }

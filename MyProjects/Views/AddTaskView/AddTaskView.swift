@@ -46,7 +46,7 @@ struct AddTaskView: View {
                     self.model.stepsModel.steps.append(self.model.stepsModel.stepViewModel)
                 }
             } else {
-                Text("Add Notification")
+                AddNotificationView(notification: nil, keyboard: self.keyboard)
             }
         }
     }

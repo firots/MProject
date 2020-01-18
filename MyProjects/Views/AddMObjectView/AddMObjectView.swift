@@ -32,9 +32,9 @@ struct AddMObjectView: View {
     
     func dueToggle() -> some View {
         HStack {
-            CellImageView(systemName:"calendar.circle.fill")
+            CellImageView(systemName:"exclamationmark.circle.fill")
             Toggle(isOn: $model.hasDeadline.animation()) {
-                Text("Due")
+                Text("Deadline")
             }
         }
     }
@@ -65,28 +65,8 @@ struct AddMObjectView: View {
             dueToggle()
             
             if model.hasDeadline {
-                dateTimePicker(date: $model.deadline)
+                DateTimePicker(date: $model.deadline)
             }
-        }
-    }
-    
-    func dateTimePicker(date: Binding<Date>) -> some View {
-        Group {
-            DatePicker(selection: date, in: Date()..., displayedComponents: .date) {
-                Group {
-                    Spacer().frame(width: 37)
-                    Text("Date")
-                }
-            }
-            .accentColor(Color(.systemPurple))
-
-            DatePicker(selection: date, in: Date()..., displayedComponents: .hourAndMinute) {
-                Group {
-                    Spacer().frame(width: 37)
-                    Text("Time")
-                }
-            }
-            .accentColor(Color(.systemPurple))
         }
     }
     
@@ -94,16 +74,16 @@ struct AddMObjectView: View {
         Section {
             autoStartToggle()
             if model.hasAutoStart {
-                dateTimePicker(date: $model.autoStart)
+                DateTimePicker(date: $model.autoStart)
             }
         }
     }
     
     func autoStartToggle() -> some View {
         HStack {
-            CellImageView(systemName: "calendar.circle.fill")
+            CellImageView(systemName: "play.circle.fill")
             Toggle(isOn: $model.hasAutoStart.animation()) {
-                Text("Activation Date")
+                Text("Auto Start")
             }
         }
     }
