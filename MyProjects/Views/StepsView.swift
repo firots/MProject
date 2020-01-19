@@ -19,24 +19,29 @@ struct StepsView: View {
     }
     
     var body: some View {
-        Section {
-            addStepButton()
-            ForEach(0..<model.steps.count, id: \.self) { index in
-                VStack {
-                    StepCellView(model: self.model.steps[index]) {
-                        withAnimation {
-                            self.model.newStep = false
-                            self.model.stepViewModel = self.model.steps[index]
-                            self.modalAction?()
-                        }
-                    }
-                    if index < self.model.steps.count - 1 {
-                         Divider()
-                    }
-                }.contentShape(Rectangle())
+        Group {
+            Section {
+                addStepButton()
             }
-            .onMove(perform: move)
-            .onDelete(perform: delete)
+            
+            Section {
+                ForEach(0..<model.steps.count, id: \.self) { index in
+                    VStack {
+                        StepCellView(model: self.model.steps[index]) {
+                            withAnimation {
+                                self.model.newStep = false
+                                self.model.stepViewModel = self.model.steps[index]
+                                self.modalAction?()
+                            }
+                        }
+                        if index < self.model.steps.count - 1 {
+                             Divider()
+                        }
+                    }.contentShape(Rectangle())
+                }
+                .onMove(perform: move)
+                .onDelete(perform: delete)
+            }
         }
     }
     

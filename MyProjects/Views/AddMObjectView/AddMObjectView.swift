@@ -71,7 +71,7 @@ struct AddMObjectView: View {
     }
     
     func autoStartSection() -> some View {
-        Section {
+        Section() {
             autoStartToggle()
             if model.hasAutoStart {
                 DateTimePicker(date: $model.autoStart)
