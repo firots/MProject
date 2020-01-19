@@ -64,12 +64,12 @@ public enum RepeatMode: Int {
     case none
     case hour
     case day
-    case dow
-    case dom
+    case week
+    case month
     
-    static var names = ["none", "hourly", "daily", "DOW", "DOM"]
+    static var names = ["none", "hourly", "daily", "weekly", "monthly"]
     
-    static var all = [none, hour, day, dow, dom]
+    static var all = [none, hour, day, week, month]
     
     static var descriptions = [
         "Does not repeat",

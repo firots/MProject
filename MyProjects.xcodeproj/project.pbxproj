@@ -51,6 +51,7 @@
 		76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */; };
 		76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808323C62F580042D36D /* PlaceholderView.swift */; };
 		76ED808623C648F70042D36D /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808523C648F70042D36D /* TextView.swift */; };
+		76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED8CFF23D487320035A0A3 /* MultiSelectorGridView.swift */; };
 		76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */; };
 		76EF17C223BCE0B600C1CD11 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */; };
 		76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C423BCE16200C1CD11 /* AddTaskView.swift */; };
@@ -120,6 +121,7 @@
 		76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Remeans.swift"; sourceTree = "<group>"; };
 		76ED808323C62F580042D36D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76ED808523C648F70042D36D /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		76ED8CFF23D487320035A0A3 /* MultiSelectorGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectorGridView.swift; sourceTree = "<group>"; };
 		76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		76EF17C123BCE0B600C1CD11 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
 		76EF17C423BCE16200C1CD11 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				7623EEF823D2102D007B1B0D /* TopWarningView.swift */,
 				764F94C323D3341C008C0D09 /* RepeatModePicker.swift */,
 				764F94CF23D34EF2008C0D09 /* DateTimePicker.swift */,
+				76ED8CFF23D487320035A0A3 /* MultiSelectorGridView.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */,
 				76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */,
 				7673533C23CA52F1002C1194 /* StepsView.swift in Sources */,
+				76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
 				7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */,
 				7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */,

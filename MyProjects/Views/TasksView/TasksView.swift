@@ -88,72 +88,81 @@ struct TasksView: View {
             HStack {
                 checkmarkButton(task)
                     .padding(.trailing)
+                
                 VStack(alignment: .leading) {
+                    taskCellNameAndSteps(task)
+                        .padding(.bottom, 5)
                     
-                    HStack {
-                        Text(task.wrappedName)
-                             .strikethrough(task.wrappedStatus == .done, color: nil)
-                             .lineLimit(1)
-                         
-                         Spacer()
-                         
-                         if !task.steps.isEmpty {
-                             
-                             Text("\(task.completedSteps.count)/\(task.steps.count)")
-                                .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
-                                .font(.system(size: 20, design: .monospaced))
-                                .bold()
-                                .lineLimit(1)
-                                .foregroundColor(Color(.systemGray))
-                         }
-                    }
-                    Spacer().frame(height: 5)
+                    taskCellStartDates(task)
+                        .padding(.bottom, 5)
                     
-                    
-                    HStack {
-                        Text(task.firstDate)
-                            .font(.subheadline)
-                            .lineLimit(1)
-                            .foregroundColor(Color(.systemGray))
-                        
-                        Spacer()
-                        
-                        if task.started != nil && task.wrappedStatus == .waiting  {
-                            Text(task.started!.remeans())
-                            .bold()
-                            .font(.system(size: 20, design: .monospaced))
-                            .lineLimit(1)
-                            .foregroundColor(Color(.systemOrange))
-                        }
-                    }
-
-                    Spacer().frame(height: 5)
-                    
-                    HStack {
-                        Text(task.secondDate)
-                            .font(.subheadline)
-                            .lineLimit(1)
-                            .foregroundColor(Color(.systemGray))
-                        
-                        Spacer()
-                        
-                        if task.deadline != nil && (task.wrappedStatus == .active || task.wrappedStatus == .waiting )  {
-                            Text(task.deadline!.remeans())
-                            .bold()
-                            .font(.system(size: 20, design: .monospaced))
-                            .lineLimit(1)
-                            .foregroundColor(Color(.systemRed))
-                        }
-                        
-                        
-                    }
-
-                    
-                    Spacer().frame(height: 10)
+                    taskCellStartDates(task)
+                        .padding(.bottom, 5)
                     
                 }.foregroundColor(Color(.label))
             }
+            .padding(.bottom, 5)
         }.listRowBackground(cellBackgroundColor)
+    }
+    
+    private func taskCellNameAndSteps(_ task: MTask) -> some View {
+        HStack {
+            Text(task.wrappedName)
+                 .strikethrough(task.wrappedStatus == .done, color: nil)
+                 .lineLimit(1)
+             
+             Spacer()
+             
+             if !task.steps.isEmpty {
+                 
+                 Text("\(task.completedSteps.count)/\(task.steps.count)")
+                    .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
+                    .font(.system(size: 20, design: .monospaced))
+                    .bold()
+                    .lineLimit(1)
+                    .foregroundColor(Color(.systemGray))
+             }
+        }
+    }
+    
+    private func taskCellEndDates(_ task: MTask) -> some View {
+        HStack {
+            Text(task.secondDate)
+                .font(.subheadline)
+                .lineLimit(1)
+                .foregroundColor(Color(.systemGray))
+            
+            Spacer()
+            
+            if task.deadline != nil && (task.wrappedStatus == .active || task.wrappedStatus == .waiting )  {
+                Text(task.deadline!.remeans())
+                .bold()
+                .font(.system(size: 20, design: .monospaced))
+                .lineLimit(1)
+                .foregroundColor(Color(.systemRed))
+            }
+            
+            
+        }
+    }
+    
+    private func taskCellStartDates(_ task: MTask) -> some View {
+        HStack {
+            Text(task.firstDate)
+                .font(.subheadline)
+                .lineLimit(1)
+                .foregroundColor(Color(.systemGray))
+            
+            Spacer()
+            
+            if task.started != nil && task.wrappedStatus == .waiting  {
+                Text(task.started!.remeans())
+                .bold()
+                .font(.system(size: 20, design: .monospaced))
+                .lineLimit(1)
+                .foregroundColor(Color(.systemOrange))
+            }
+        }
     }
 
     
