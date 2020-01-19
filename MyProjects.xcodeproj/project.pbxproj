@@ -20,6 +20,8 @@
 		7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */; };
 		7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11A23C5063400F81CCA /* AddMObjectView.swift */; };
 		7625E11D23C5239900F81CCA /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11C23C5239900F81CCA /* Keyboard.swift */; };
+		762F74E723D4E47D0016CC94 /* ConfigureMonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F74E623D4E47D0016CC94 /* ConfigureMonthlyView.swift */; };
+		762F74E923D4E4A90016CC94 /* ConfigureWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F74E823D4E4A90016CC94 /* ConfigureWeeklyView.swift */; };
 		764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30B23C2816600F581BA /* String+Capitalizer.swift */; };
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
 		764F94C423D3341C008C0D09 /* RepeatModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F94C323D3341C008C0D09 /* RepeatModePicker.swift */; };
@@ -90,6 +92,8 @@
 		7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectViewModel.swift; sourceTree = "<group>"; };
 		7625E11A23C5063400F81CCA /* AddMObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectView.swift; sourceTree = "<group>"; };
 		7625E11C23C5239900F81CCA /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		762F74E623D4E47D0016CC94 /* ConfigureMonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureMonthlyView.swift; sourceTree = "<group>"; };
+		762F74E823D4E4A90016CC94 /* ConfigureWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWeeklyView.swift; sourceTree = "<group>"; };
 		764AA30B23C2816600F581BA /* String+Capitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalizer.swift"; sourceTree = "<group>"; };
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		764F94C323D3341C008C0D09 /* RepeatModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatModePicker.swift; sourceTree = "<group>"; };
@@ -190,6 +194,15 @@
 			path = AddMObjectView;
 			sourceTree = "<group>";
 		};
+		762F74E523D4E4610016CC94 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				762F74E623D4E47D0016CC94 /* ConfigureMonthlyView.swift */,
+				762F74E823D4E4A90016CC94 /* ConfigureWeeklyView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		764F94C523D3380A008C0D09 /* AddNotificationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +215,7 @@
 		764F94CA23D3384A008C0D09 /* ConfigureRepeatModeView */ = {
 			isa = PBXGroup;
 			children = (
+				762F74E523D4E4610016CC94 /* Components */,
 				764F94CB23D33865008C0D09 /* ConfigureRepeatModeView.swift */,
 				764F94CD23D33881008C0D09 /* ConfigureRepeatModeViewModel.swift */,
 			);
@@ -493,8 +507,10 @@
 				7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */,
 				76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */,
 				7673533C23CA52F1002C1194 /* StepsView.swift in Sources */,
+				762F74E923D4E4A90016CC94 /* ConfigureWeeklyView.swift in Sources */,
 				76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
+				762F74E723D4E47D0016CC94 /* ConfigureMonthlyView.swift in Sources */,
 				7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */,
 				7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */,
 				76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */,

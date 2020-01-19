@@ -67,45 +67,8 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     }
     
     func weeklyRepeat() -> some View {
-        var repeatDescription: String {
-            model.repeatPeriod > 1 ? "Repeats every \(model.repeatPeriod) day" : "Repeats every week"
-        }
-        
-        let component = Calendar.current
-
-        
-        var intervalDescription: String {
-            "When the day of week is: \(String(format: "%02d", model.repeatInterval))"
-        }
-        
-        return Group {
-            Section {
-                HStack {
-                    Spacer()
-                    MultiSelectorGridView(maxRows: 1, maxColumns: 7, maxSelection: nil, minSelection: 1, selections: $selectedWeekDay, items: component.shortWeekdaySymbols, selectedColor: UIColor.systemPurple, selectedLabelColor: UIColor.systemBackground) {
-                        
-                    }
-                    Spacer()
-                }
-            }
-        }
+        ConfigureWeeklyView(selectedWeekDay: $selectedWeekDay, repeatPeriod: $model.repeatPeriod, weekDays: component.shortWeekdaySymbols)
     }
-    
-    func monthlyRepeat() -> some View {
-        Group {
-            Section {
-                HStack {
-                    Spacer()
-                    MultiSelectorGridView(maxRows: nil, maxColumns: 7, maxSelection: nil, minSelection: 1, selections: $selectedMonthDay, items: monthDays, selectedColor: UIColor.systemPurple, selectedLabelColor: UIColor.systemBackground) {
-                        
-                    }
-                    Spacer()
-                }
-            }
-        }
-    }
-    
-    
     
     func startStopSection() -> some View {
         Group {
@@ -127,8 +90,15 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
         }
     }
     
-
+    
+    func monthlyRepeat() -> some View {
+        ConfigureMonthlyView(selectedMonthDay: $selectedMonthDay, repeatPeriod: $model.repeatPeriod, monthDays: monthDays)
+    }
 }
+
+
+
+
 
 /*struct ConfigureRepeatModeView_Previews: PreviewProvider {
     static var previews: some View {

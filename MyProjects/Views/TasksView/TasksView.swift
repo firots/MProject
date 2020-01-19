@@ -96,7 +96,7 @@ struct TasksView: View {
                     taskCellStartDates(task)
                         .padding(.bottom, 5)
                     
-                    taskCellStartDates(task)
+                    taskCellEndDates(task)
                         .padding(.bottom, 5)
                     
                 }.foregroundColor(Color(.label))
