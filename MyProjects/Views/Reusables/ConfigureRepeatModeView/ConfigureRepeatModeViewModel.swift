@@ -18,9 +18,14 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     
     var repeatMinute: Int
     var repeatHour: Int
-    var repeatInterval: Int
-    var repeatPeriod: Int
     
+    var selectedDayOfWeekIndex = [0]
+    var selectedDayOfMonthIndex = [0]
+    
+    var repeatHoursPeriod = 1
+    var repeatDaysPeriod = 1
+    var repeatWeeksPeriod = 1
+    var repeatMonthsPeriod = 1
 
     init(from notification: T?) {
         var date: Date
@@ -34,8 +39,18 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         repeatMinute = notification?.repeatMinute ?? Calendar.current.component(.minute, from: date)
         repeatHour = notification?.repeatHour ?? Calendar.current.component(.hour, from: date)
         
-        repeatInterval = notification?.repeatInterval ?? 1
-        repeatPeriod = notification?.repeatPeriod ?? 1
+        if notification?.repeatMode == RepeatMode.month.rawValue {
+            selectedDayOfMonthIndex = notification?.selectedDateIndex ?? [0]
+            repeatMonthsPeriod = notification?.repeatPeriod ?? 1
+        } else if notification?.repeatMode == RepeatMode.week.rawValue {
+            selectedDayOfWeekIndex = notification?.selectedDateIndex ?? [0]
+            repeatWeeksPeriod = notification?.repeatPeriod ?? 1
+        } else if notification?.repeatMode == RepeatMode.day.rawValue {
+            repeatDaysPeriod = notification?.repeatPeriod ?? 1
+        }  else if notification?.repeatMode == RepeatMode.hour.rawValue {
+            repeatHoursPeriod = notification?.repeatPeriod ?? 1
+        }
+        
         
         startDate = notification?.startDate ?? Date()
         endDate = notification?.endDate ?? Date()
@@ -56,7 +71,7 @@ protocol HasRepeatMode {
     
     var repeatMinute: Int  { get  set }
     var repeatHour: Int  { get  set }
-    var repeatInterval: Int  { get  set }
+    var selectedDateIndex: [Int]  { get  set }
     var repeatPeriod: Int  { get  set }
 }
 

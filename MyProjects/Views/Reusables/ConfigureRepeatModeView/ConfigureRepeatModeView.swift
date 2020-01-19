@@ -10,11 +10,7 @@ import SwiftUI
 
 struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     @Binding var model: ConfigureRepeatModeViewModel<T>
-    
-    @State private var selectedWeekDay = [0]
     let component = Calendar.current
-    
-    @State private var selectedMonthDay = [0]
     let monthDays = Array(1...31).map({ String($0) })
     
     var body: some View {
@@ -41,20 +37,20 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func hourlyRepeat() -> some View {
         var repeatDescription: String {
-            model.repeatPeriod > 1 ? "Repeats every \(model.repeatPeriod) hours" : "Repeats every hour"
+            model.repeatHoursPeriod > 1 ? "Repeats every \(model.repeatHoursPeriod) hours" : "Repeats every hour"
         }
         
         var intervalDescription: String {
-            "When the minute of hour is: \(String(format: "%02d", model.repeatInterval))"
+            "When the minute of hour is: \(String(format: "%02d", model.repeatMinute))"
         }
         
         return Group {
             Section {
-                Stepper(repeatDescription, value: $model.repeatPeriod, in: 1...23)
+                Stepper(repeatDescription, value: $model.repeatHoursPeriod, in: 1...23)
             }
             
             Section {
-                Stepper(intervalDescription, value: $model.repeatInterval, in: 0...59)
+                Stepper(intervalDescription, value: $model.repeatMinute, in: 0...59)
             }
             
         }
@@ -67,7 +63,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     }
     
     func weeklyRepeat() -> some View {
-        ConfigureWeeklyView(selectedWeekDay: $selectedWeekDay, repeatPeriod: $model.repeatPeriod, weekDays: component.shortWeekdaySymbols)
+        ConfigureWeeklyView(selectedWeekDay: $model.selectedDayOfWeekIndex, repeatPeriod: $model.repeatWeeksPeriod, weekDays: component.shortWeekdaySymbols)
     }
     
     func startStopSection() -> some View {
@@ -92,7 +88,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     
     func monthlyRepeat() -> some View {
-        ConfigureMonthlyView(selectedMonthDay: $selectedMonthDay, repeatPeriod: $model.repeatPeriod, monthDays: monthDays)
+        ConfigureMonthlyView(selectedMonthDay: $model.selectedDayOfMonthIndex, repeatPeriod: $model.repeatMonthsPeriod, monthDays: monthDays)
     }
 }
 

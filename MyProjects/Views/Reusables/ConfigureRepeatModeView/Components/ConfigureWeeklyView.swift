@@ -16,7 +16,7 @@ struct ConfigureWeeklyView: View {
     
     var body: some View {
         var repeatDescription: String {
-            repeatPeriod > 1 ? "Repeats every \(repeatPeriod) week" : "Repeats every week"
+            repeatPeriod > 1 ? "Repeats every \(repeatPeriod) weeks" : "Repeats every week"
         }
 
         return Group {
