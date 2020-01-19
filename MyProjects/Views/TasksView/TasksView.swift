@@ -89,36 +89,68 @@ struct TasksView: View {
                 checkmarkButton(task)
                     .padding(.trailing)
                 VStack(alignment: .leading) {
-                    Text(task.wrappedName)
-                        .strikethrough(task.wrappedStatus == .done, color: nil)
-                        .lineLimit(1)
                     
-                    Spacer().frame(height: 3)
+                    HStack {
+                        Text(task.wrappedName)
+                             .strikethrough(task.wrappedStatus == .done, color: nil)
+                             .lineLimit(1)
+                         
+                         Spacer()
+                         
+                         if !task.steps.isEmpty {
+                             
+                             Text("\(task.completedSteps.count)/\(task.steps.count)")
+                                 .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
+                                 .font(.subheadline)
+                                 .lineLimit(1)
+                                 .foregroundColor(Color(.systemGray))
+                         }
+                    }
+                    Spacer().frame(height: 5)
                     
-                    if !task.steps.isEmpty {
-                        
-                        Text("Steps • \(task.completedSteps.count)/\(task.steps.count)")
-                            .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
+                    
+                    HStack {
+                        Text(task.firstDate)
                             .font(.subheadline)
                             .lineLimit(1)
                             .foregroundColor(Color(.systemGray))
-                            
                         
-                        Spacer().frame(height: 3)
+                        Spacer()
+                        
+                        if task.started != nil && task.wrappedStatus == .waiting  {
+                            Text(task.started!.remeans())
+                            .bold()
+                            .font(.subheadline)
+                            .lineLimit(1)
+                            .foregroundColor(Color(.systemOrange))
+                        }
+                        
                     }
-                    
-                    Text(task.firstDate)
-                        .font(.subheadline)
-                        .lineLimit(1)
-                        .foregroundColor(Color(.systemGray))
-                    
-                    Spacer().frame(height: 3)
-                    
-                    Text(task.secondDate)
-                        .font(.subheadline)
-                        .lineLimit(1)
-                        .foregroundColor(Color(.systemGray))
 
+                    
+                    Spacer().frame(height: 5)
+                    
+                    HStack {
+                        Text(task.secondDate)
+                            .font(.subheadline)
+                            .lineLimit(1)
+                            .foregroundColor(Color(.systemGray))
+                        
+                        Spacer()
+                        
+                        if task.deadline != nil && (task.wrappedStatus == .active || task.wrappedStatus == .waiting )  {
+                            Text(task.deadline!.remeans())
+                            .bold()
+                            .font(.subheadline)
+                            .lineLimit(1)
+                            .foregroundColor(Color(.systemRed))
+                        }
+                        
+                        
+                    }
+
+                    
+                    Spacer().frame(height: 10)
                     
                 }.foregroundColor(Color(.label))
             }

@@ -23,24 +23,25 @@ struct StepsView: View {
             Section {
                 addStepButton()
             }
-            
-            Section {
-                ForEach(0..<model.steps.count, id: \.self) { index in
-                    VStack {
-                        StepCellView(model: self.model.steps[index]) {
-                            withAnimation {
-                                self.model.newStep = false
-                                self.model.stepViewModel = self.model.steps[index]
-                                self.modalAction?()
+            if model.steps.count > 0 {
+                Section {
+                    ForEach(0..<model.steps.count, id: \.self) { index in
+                        VStack {
+                            StepCellView(model: self.model.steps[index]) {
+                                withAnimation {
+                                    self.model.newStep = false
+                                    self.model.stepViewModel = self.model.steps[index]
+                                    self.modalAction?()
+                                }
                             }
-                        }
-                        if index < self.model.steps.count - 1 {
-                             Divider()
-                        }
-                    }.contentShape(Rectangle())
+                            if index < self.model.steps.count - 1 {
+                                 Divider()
+                            }
+                        }.contentShape(Rectangle())
+                    }
+                    .onMove(perform: move)
+                    .onDelete(perform: delete)
                 }
-                .onMove(perform: move)
-                .onDelete(perform: delete)
             }
         }
     }

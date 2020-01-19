@@ -48,6 +48,7 @@
 		768A23EA23C8FB1900AE8B83 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */; };
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
+		76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */; };
 		76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808323C62F580042D36D /* PlaceholderView.swift */; };
 		76ED808623C648F70042D36D /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808523C648F70042D36D /* TextView.swift */; };
 		76EF17C023BCE0AA00C1CD11 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */; };
@@ -116,6 +117,7 @@
 		768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
+		76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Remeans.swift"; sourceTree = "<group>"; };
 		76ED808323C62F580042D36D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76ED808523C648F70042D36D /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		76EF17BF23BCE0AA00C1CD11 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				765BA58723C236E5007F835D /* String+EmptyHolder.swift */,
 				764AA30B23C2816600F581BA /* String+Capitalizer.swift */,
 				76D802F223C941E70088556A /* String+NoNewline.swift */,
+				76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				764F94C423D3341C008C0D09 /* RepeatModePicker.swift in Sources */,
 				7623EEF923D2102D007B1B0D /* TopWarningView.swift in Sources */,
 				764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */,
+				76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */,
 				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,
 				7673533E23CA6B93002C1194 /* StepCellView.swift in Sources */,
 				764F94D023D34EF2008C0D09 /* DateTimePicker.swift in Sources */,

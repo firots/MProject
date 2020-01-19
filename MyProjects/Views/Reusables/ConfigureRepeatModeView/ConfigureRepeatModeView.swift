@@ -41,27 +41,18 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func startStopSection() -> some View {
         Group {
-            Section(footer: Text("Send notifications only between start and end dates")) {
+            Section(footer: Text("Send notifications only between specific date range.")) {
                 Toggle(isOn: $model.hasStartStop) {
                     Text("Date Range")
                 }
             }
 
             if model.hasStartStop {
-                Section {
-                    HStack {
-                        CellImageView(systemName: "play.circle.fill")
-                        Text("Start Date")
-                    }
-                    
+                Section(header: Text("Start Date")) {
                     DateTimePicker(date: $model.startDate)
                 }
 
-                Section {
-                    HStack {
-                        CellImageView(systemName: "stop.circle.fill")
-                        Text("End Date")
-                    }
+                Section(header: Text("End Date")) {
                     DateTimePicker(date: $model.endDate)
                 }
             }
