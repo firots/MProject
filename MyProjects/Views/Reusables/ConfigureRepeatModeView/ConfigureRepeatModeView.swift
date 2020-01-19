@@ -10,8 +10,12 @@ import SwiftUI
 
 struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     @Binding var model: ConfigureRepeatModeViewModel<T>
-    @State private var weekDays = [0]
+    
+    @State private var selectedWeekDay = [0]
     let component = Calendar.current
+    
+    @State private var selectedMonthDay = [0]
+    let monthDays = Array(1...31).map({ String($0) })
     
     var body: some View {
         Group {
@@ -46,11 +50,11 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
         
         return Group {
             Section {
-                Stepper(repeatDescription, value: $model.repeatPeriod.animation(), in: 1...23)
+                Stepper(repeatDescription, value: $model.repeatPeriod, in: 1...23)
             }
             
             Section {
-                Stepper(intervalDescription, value: $model.repeatInterval.animation(), in: 0...59)
+                Stepper(intervalDescription, value: $model.repeatInterval, in: 0...59)
             }
             
         }
@@ -74,14 +78,25 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
             "When the day of week is: \(String(format: "%02d", model.repeatInterval))"
         }
         
-
-
-        
         return Group {
             Section {
                 HStack {
                     Spacer()
-                    MultiSelectorGridView(maxRows: nil, maxColumns: 7, maxSelection: nil, minSelection: 1, selections: $weekDays, items: component.shortWeekdaySymbols, selectedColor: UIColor.systemPurple, selectedLabelColor: UIColor.systemBackground) {
+                    MultiSelectorGridView(maxRows: 1, maxColumns: 7, maxSelection: nil, minSelection: 1, selections: $selectedWeekDay, items: component.shortWeekdaySymbols, selectedColor: UIColor.systemPurple, selectedLabelColor: UIColor.systemBackground) {
+                        
+                    }
+                    Spacer()
+                }
+            }
+        }
+    }
+    
+    func monthlyRepeat() -> some View {
+        Group {
+            Section {
+                HStack {
+                    Spacer()
+                    MultiSelectorGridView(maxRows: nil, maxColumns: 7, maxSelection: nil, minSelection: 1, selections: $selectedMonthDay, items: monthDays, selectedColor: UIColor.systemPurple, selectedLabelColor: UIColor.systemBackground) {
                         
                     }
                     Spacer()
@@ -112,14 +127,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
         }
     }
     
-    func monthlyRepeat() -> some View {
-        Group {
-            Text("Repeats Day of Month")
-            Text("Repeats Day of Month")
-            Text("Repeats Day of Month")
-            Text("Repeats Day of Month")
-        }
-    }
+
 }
 
 /*struct ConfigureRepeatModeView_Previews: PreviewProvider {
