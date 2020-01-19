@@ -125,10 +125,8 @@ struct TasksView: View {
                             .lineLimit(1)
                             .foregroundColor(Color(.systemOrange))
                         }
-                        
                     }
 
-                    
                     Spacer().frame(height: 5)
                     
                     HStack {
