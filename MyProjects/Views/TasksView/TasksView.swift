@@ -100,10 +100,11 @@ struct TasksView: View {
                          if !task.steps.isEmpty {
                              
                              Text("\(task.completedSteps.count)/\(task.steps.count)")
-                                 .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
-                                 .font(.subheadline)
-                                 .lineLimit(1)
-                                 .foregroundColor(Color(.systemGray))
+                                .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
+                                .font(.system(size: 20, design: .monospaced))
+                                .bold()
+                                .lineLimit(1)
+                                .foregroundColor(Color(.systemGray))
                          }
                     }
                     Spacer().frame(height: 5)
@@ -120,7 +121,7 @@ struct TasksView: View {
                         if task.started != nil && task.wrappedStatus == .waiting  {
                             Text(task.started!.remeans())
                             .bold()
-                            .font(.subheadline)
+                            .font(.system(size: 20, design: .monospaced))
                             .lineLimit(1)
                             .foregroundColor(Color(.systemOrange))
                         }
@@ -141,7 +142,7 @@ struct TasksView: View {
                         if task.deadline != nil && (task.wrappedStatus == .active || task.wrappedStatus == .waiting )  {
                             Text(task.deadline!.remeans())
                             .bold()
-                            .font(.subheadline)
+                            .font(.system(size: 20, design: .monospaced))
                             .lineLimit(1)
                             .foregroundColor(Color(.systemRed))
                         }
