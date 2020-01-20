@@ -34,7 +34,7 @@ class AddNotificationViewModel: ObservableObject {
         details = mNot?.details ?? ""
         
         mNotification = mNot
-        repeatModeConfiguration = ConfigureRepeatModeViewModel(from: mNot)
+        repeatModeConfiguration = ConfigureRepeatModeViewModel(from: mNot, type: .notification)
         
         mObject = mNot?.task != nil ? mNot?.task : mNot?.project
     }

@@ -18,13 +18,13 @@ extension MNotification: HasRepeatMode {
 
     @NSManaged public var date: Date?
     @NSManaged public var details: String?
-    @NSManaged public var endDate: Date?
+    @NSManaged public var repeatEndDate: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var repeatHour: Int
     @NSManaged public var selectedDateIndex: [Int]
     @NSManaged public var repeatMinute: Int
     @NSManaged public var repeatMode: Int
-    @NSManaged public var startDate: Date?
+    @NSManaged public var repeatStartDate: Date?
     @NSManaged public var title: String?
     @NSManaged public var repeatPeriod: Int
     @NSManaged public var project: MProject?

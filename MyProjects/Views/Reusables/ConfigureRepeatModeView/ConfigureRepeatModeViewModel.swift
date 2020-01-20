@@ -13,8 +13,8 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     
     var hasStartStop: Bool
     
-    var startDate: Date
-    var endDate: Date
+    var repeatStartDate: Date
+    var repeatEndDate: Date
     
     var timeDate: Date
     
@@ -27,8 +27,12 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     var repeatDaysPeriod = 1
     var repeatWeeksPeriod = 1
     var repeatMonthsPeriod = 1
+    
+    var type: RepeatModeObjectType
 
-    init(from notification: T?) {
+    init(from notification: T?, type: RepeatModeObjectType) {
+        self.type = type
+        
         var date: Date
         if let notification = notification as? MNotification {
             date = notification.date ?? Date()
@@ -54,10 +58,10 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         }
         
         
-        startDate = notification?.startDate ?? Date()
-        endDate = notification?.endDate ?? Date()
+        repeatStartDate = notification?.repeatStartDate ?? Date()
+        repeatEndDate = notification?.repeatEndDate ?? Date()
         
-        if notification?.startDate != nil {
+        if notification?.repeatStartDate != nil {
             hasStartStop = true
         } else {
             hasStartStop = false
@@ -68,13 +72,18 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
 protocol HasRepeatMode {
     var repeatMode: Int { get  set }
     
-    var startDate: Date?  { get  set }
-    var endDate: Date?  { get  set }
+    var repeatStartDate: Date?  { get  set }
+    var repeatEndDate: Date?  { get  set }
     
     var repeatMinute: Int  { get  set }
     var repeatHour: Int  { get  set }
     var selectedDateIndex: [Int]  { get  set }
     var repeatPeriod: Int  { get  set }
+}
+
+public enum RepeatModeObjectType {
+    case notification
+    case task
 }
 
 public enum RepeatMode: Int {

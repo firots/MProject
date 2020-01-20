@@ -63,11 +63,11 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
 
             if model.hasStartStop {
                 Section(header: Text("Start Date")) {
-                    DateTimePicker(date: $model.startDate)
+                    DateTimePicker(date: $model.repeatStartDate)
                 }
 
                 Section(header: Text("End Date")) {
-                    DateTimePicker(date: $model.endDate)
+                    DateTimePicker(date: $model.repeatEndDate)
                 }
             }
         }
