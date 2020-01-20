@@ -11,7 +11,19 @@ import CoreData
 
 extension MNotification {
     static func create(from viewModel: AddNotificationViewModel?, context moc: NSManagedObjectContext) -> MNotification {
-        return createBase(context: moc)
+        let notification = createBase(context: moc)
+        if let viewModel = viewModel {
+            notification.details = viewModel.details
+            notification.title = viewModel.title
+            notification.repeatMode = viewModel.repeatModeConfiguration.repeatMode
+            
+            if viewModel.repeatModeConfiguration.repeatMode == RepeatMode.none.rawValue {
+                notification.date = viewModel.date
+            } else {
+                viewModel.repeatModeConfiguration.bind(to: notification)
+            }
+        }
+        return notification
     }
     
     static func createBase(context moc: NSManagedObjectContext) -> MNotification {

@@ -27,7 +27,6 @@ extension MNotification: HasRepeatMode {
     @NSManaged public var project: MProject?
     @NSManaged public var task: MTask?
     
-    
     /* Repeat Section */
     @NSManaged public var repeatEndDate: Date?
     @NSManaged public var repeatHour: Int

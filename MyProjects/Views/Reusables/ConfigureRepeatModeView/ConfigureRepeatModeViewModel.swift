@@ -29,6 +29,10 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     var repeatMonthsPeriod = 1
     
     var type: RepeatModeObjectType
+    
+    var wrappedRepeatMode: RepeatMode {
+        return RepeatMode(rawValue: repeatMode) ?? .none
+    }
 
     init(from notification: T?, type: RepeatModeObjectType) {
         self.type = type
@@ -67,9 +71,39 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
             hasStartStop = false
         }
     }
+    
+    func bind(to repeatingObject: T) {
+        if wrappedRepeatMode == .hour {
+            repeatingObject.repeatPeriod = repeatHoursPeriod
+            repeatingObject.repeatMinute = repeatMinute
+        } else {
+            if wrappedRepeatMode == .day {
+                repeatingObject.repeatPeriod = repeatDaysPeriod
+            } else if wrappedRepeatMode == .week {
+                repeatingObject.repeatPeriod = repeatWeeksPeriod
+                repeatingObject.selectedDateIndex = selectedDayOfWeekIndex
+            } else if wrappedRepeatMode == .month {
+                repeatingObject.repeatPeriod = repeatMonthsPeriod
+                repeatingObject.selectedDateIndex = selectedDayOfMonthIndex
+            }
+            repeatingObject.repeatMinute = Calendar.current.component(.minute, from: timeDate)
+            repeatingObject.repeatHour = Calendar.current.component(.hour, from: timeDate)
+        }
+
+        if hasStartStop {
+            repeatingObject.repeatStartDate = repeatStartDate
+            repeatingObject.repeatEndDate = repeatEndDate
+        } else {
+            repeatingObject.repeatStartDate = nil
+            repeatingObject.repeatEndDate = nil
+        }
+        
+    }
+    
+    
 }
 
-protocol HasRepeatMode {
+protocol HasRepeatMode: class {
     var repeatMode: Int { get  set }
     
     var repeatStartDate: Date?  { get  set }
