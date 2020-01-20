@@ -97,10 +97,7 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
             repeatingObject.repeatStartDate = nil
             repeatingObject.repeatEndDate = nil
         }
-        
     }
-    
-    
 }
 
 protocol HasRepeatMode: class {
