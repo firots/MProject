@@ -80,9 +80,12 @@ class AddMObjectViewModel: ObservableObject {
                 hasAutoStart = true
                 autoStart = started
             }
+            
         }
         
-        notificationsModel = NotificationsViewModel(notifications: [AddNotificationViewModel]())
+        let notifications = mObject?.notifications.map( { AddNotificationViewModel(from: $0) }) ?? [AddNotificationViewModel]()
+        
+        notificationsModel = NotificationsViewModel(notifications: notifications)
         
         showExpiredWarningPublisher
             .receive(on: RunLoop.main)

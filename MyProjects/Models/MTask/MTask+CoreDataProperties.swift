@@ -29,6 +29,7 @@ extension MTask {
     @NSManaged public var repeatMode: Int
     @NSManaged public var priotory: Int
     @NSManaged public var step: NSSet?
+    @NSManaged public var notification: NSSet?
     @NSManaged public var saved: Bool
     
     public var wrappedRepeatMode: RepeatMode {
@@ -49,6 +50,23 @@ extension MTask {
     public var completedSteps: [MStep] {
         steps.filter({ $0.status == MStepStatus.done.rawValue })
     }
+}
+
+
+// MARK: Generated accessors for notification
+extension MTask {
+
+    @objc(addNotificationObject:)
+    @NSManaged public func addToNotification(_ value: MNotification)
+
+    @objc(removeNotificationObject:)
+    @NSManaged public func removeFromNotification(_ value: MNotification)
+
+    @objc(addNotification:)
+    @NSManaged public func addToNotification(_ values: NSSet)
+
+    @objc(removeNotification:)
+    @NSManaged public func removeFromNotification(_ values: NSSet)
 
 }
 

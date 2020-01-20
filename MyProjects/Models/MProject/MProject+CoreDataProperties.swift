@@ -27,6 +27,7 @@ extension MProject {
     @NSManaged public var lastModified: Date?
     @NSManaged public var deadline: Date?
     @NSManaged public var task: NSSet?
+    @NSManaged public var notification: NSSet?
     @NSManaged public var priotory: Int
     @NSManaged public var saved: Bool
     
@@ -37,6 +38,23 @@ extension MProject {
             $0.wrappedCreated > $1.wrappedCreated
         }
     }
+}
+
+// MARK: Generated accessors for notification
+extension MProject {
+
+    @objc(addNotificationObject:)
+    @NSManaged public func addToNotification(_ value: MNotification)
+
+    @objc(removeNotificationObject:)
+    @NSManaged public func removeFromNotification(_ value: MNotification)
+
+    @objc(addNotification:)
+    @NSManaged public func addToNotification(_ values: NSSet)
+
+    @objc(removeNotification:)
+    @NSManaged public func removeFromNotification(_ values: NSSet)
+
 }
 
 // MARK: Generated accessors for task

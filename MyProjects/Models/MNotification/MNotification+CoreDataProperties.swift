@@ -21,6 +21,7 @@ extension MNotification: HasRepeatMode {
     @NSManaged public var title: String?
     @NSManaged public var details: String?
     @NSManaged public var date: Date?
+    @NSManaged public var created: Date?
     
     /* Belongs to */
     @NSManaged public var project: MProject?
@@ -39,5 +40,9 @@ extension MNotification: HasRepeatMode {
     /* Optional Handling */
     public var wrappedID: UUID {
         return id ?? UUID()
+    }
+    
+    public var wrappedCreated: Date {
+        return created ?? Date()
     }
 }

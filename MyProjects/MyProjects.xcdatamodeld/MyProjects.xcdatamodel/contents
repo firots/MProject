@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="MNotification" representedClassName="MNotification" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -71,7 +72,7 @@
         <relationship name="step" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MStep" inverseName="task" inverseEntity="MStep"/>
     </entity>
     <elements>
-        <element name="MNotification" positionX="-36" positionY="144" width="128" height="238"/>
+        <element name="MNotification" positionX="-36" positionY="144" width="128" height="253"/>
         <element name="MProject" positionX="-45" positionY="0" width="128" height="238"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="133"/>
         <element name="MTask" positionX="-45" positionY="63" width="128" height="268"/>

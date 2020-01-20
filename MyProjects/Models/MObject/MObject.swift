@@ -20,6 +20,7 @@ protocol MObject: class {
     var ended: Date? { get  set }
     var lastModified: Date? { get  set }
     var priotory: Int { get set }
+    var notification: NSSet? { get  set }
     var saved: Bool { get set }
 }
 
@@ -30,6 +31,13 @@ extension MObject {
     
     public var wrappedName: String {
         return name ?? "Unnamed \(self is MProject ? "Project" : "Task")"
+    }
+    
+    public var notifications: [MNotification] {
+        let set = notification as? Set<MNotification> ?? []
+        return set.sorted {
+            $0.wrappedCreated < $1.wrappedCreated
+        }
     }
     
     public var isExpired: Bool {
