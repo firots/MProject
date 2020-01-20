@@ -27,7 +27,12 @@ struct NotificationsView: View {
             ForEach (0..<model.notifications.count, id: \.self) { index in
                 self.notificationCell(index)
             }
+            .onDelete(perform: delete)
         }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        model.notifications.remove(atOffsets: offsets)
     }
     
     func notificationCell(_ index: Int) -> some View {
