@@ -50,6 +50,8 @@
 		768A23E123C8C8DD00AE8B83 /* MStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23D823C8C7BE00AE8B83 /* MStep+CoreDataClass.swift */; };
 		768A23E223C8C8E000AE8B83 /* MStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23D923C8C7BE00AE8B83 /* MStep+CoreDataProperties.swift */; };
 		768A23EA23C8FB1900AE8B83 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */; };
+		7694098F23D5EE8C00E40B95 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694098E23D5EE8C00E40B95 /* NotificationsView.swift */; };
+		7694099123D5EE9800E40B95 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */; };
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
 		76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */; };
@@ -124,6 +126,8 @@
 		768A23D823C8C7BE00AE8B83 /* MStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		768A23D923C8C7BE00AE8B83 /* MStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
+		7694098E23D5EE8C00E40B95 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
 		76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Remeans.swift"; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 		7625E11523C4F6C700F81CCA /* AddMObjectView */ = {
 			isa = PBXGroup;
 			children = (
+				7694098D23D5EAEB00E40B95 /* Components */,
 				7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */,
 				7625E11A23C5063400F81CCA /* AddMObjectView.swift */,
 			);
@@ -281,6 +286,23 @@
 			path = StepCell;
 			sourceTree = "<group>";
 		};
+		7694098C23D5EAD300E40B95 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7673533B23CA52F1002C1194 /* StepsView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7694098D23D5EAEB00E40B95 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7694098E23D5EE8C00E40B95 /* NotificationsView.swift */,
+				7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		76EF17BC23BCE07100C1CD11 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +349,7 @@
 		76EF17C323BCE14D00C1CD11 /* AddTaskView */ = {
 			isa = PBXGroup;
 			children = (
+				7694098C23D5EAD300E40B95 /* Components */,
 				76EF17C423BCE16200C1CD11 /* AddTaskView.swift */,
 				76EF17C623BCE17400C1CD11 /* AddTaskViewModel.swift */,
 			);
@@ -387,7 +410,6 @@
 				76EF17BC23BCE07100C1CD11 /* Reusables */,
 				76FD61C223B92BAE00D21B21 /* ProjectsView */,
 				76FD61BD23B92A4A00D21B21 /* SettingsView */,
-				7673533B23CA52F1002C1194 /* StepsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -544,9 +566,11 @@
 				768A23E223C8C8E000AE8B83 /* MStep+CoreDataProperties.swift in Sources */,
 				76ED808623C648F70042D36D /* TextView.swift in Sources */,
 				76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */,
+				7694099123D5EE9800E40B95 /* NotificationsViewModel.swift in Sources */,
 				7673533823CA1065002C1194 /* MTask+ChangeState.swift in Sources */,
 				7625E11423C4E5F700F81CCA /* MObject.swift in Sources */,
 				7625E11D23C5239900F81CCA /* Keyboard.swift in Sources */,
+				7694098F23D5EE8C00E40B95 /* NotificationsView.swift in Sources */,
 				76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */,
 				76FD61C523B92BCC00D21B21 /* ProjectsView.swift in Sources */,
 				766FE81623D0C82B0055180B /* MNotification+Create.swift in Sources */,

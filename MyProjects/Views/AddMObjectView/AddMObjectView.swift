@@ -22,7 +22,7 @@ struct AddMObjectView: View {
                 autoStartSection()
             }
             deadlineSection()
-            notificationsSection()
+            notifications()
         }
     }
 
@@ -39,26 +39,12 @@ struct AddMObjectView: View {
         }
     }
     
-    func notificationsSection() -> some View {
-        Section {
-            HStack {
-                CellImageView(systemName: "plus.circle.fill")
-                Text("Add Notification")
-                .foregroundColor(Color(.systemPurple))
-                Spacer()
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation {
-                    self.model.modalType = .addNotification
-                    self.model.showModal = true
-                }
-            }
-            
-        }.accentColor(Color(.systemPurple))
+    func notifications() -> some View {
+        NotificationsView(model: model.notificationsModel) {
+            self.model.modalType = .addNotification
+            self.model.showModal = true
+        }
     }
-    
-
     
     func deadlineSection() -> some View {
         Section {

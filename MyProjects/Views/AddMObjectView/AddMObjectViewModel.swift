@@ -26,6 +26,8 @@ class AddMObjectViewModel: ObservableObject {
 
     private var cancellableSet: Set<AnyCancellable> = []
     
+    var notificationsModel: NotificationsViewModel
+    
     var status: MObjectStatus {
         return MObjectStatus.all[statusIndex]
     }
@@ -79,6 +81,8 @@ class AddMObjectViewModel: ObservableObject {
                 autoStart = started
             }
         }
+        
+        notificationsModel = NotificationsViewModel(notifications: [AddNotificationViewModel]())
         
         showExpiredWarningPublisher
             .receive(on: RunLoop.main)

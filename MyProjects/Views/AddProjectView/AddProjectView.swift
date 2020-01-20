@@ -40,7 +40,9 @@ struct AddProjectView: View {
             if (self.model.modalType == .notes) {
                 NotesView(notes: self.$model.details, keyboard: self.keyboard)
             } else {
-                Text("Add notification")
+                AddNotificationView(notification: self.model.notificationsModel.notificationToAdd, keyboard: self.keyboard, isNew: self.model.notificationsModel.isNew) {
+                    self.model.notificationsModel.notifications.append(self.model.notificationsModel.notificationToAdd)
+                }
             }
         }
     }

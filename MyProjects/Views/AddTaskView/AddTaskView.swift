@@ -46,10 +46,13 @@ struct AddTaskView: View {
                     self.model.stepsModel.steps.append(self.model.stepsModel.stepViewModel)
                 }
             } else {
-                AddNotificationView(notification: nil, keyboard: self.keyboard)
+                AddNotificationView(notification: self.model.notificationsModel.notificationToAdd, keyboard: self.keyboard, isNew: self.model.notificationsModel.isNew) {
+                    self.model.notificationsModel.notifications.append(self.model.notificationsModel.notificationToAdd)
+                }
             }
         }
     }
+    
     
     func expiredText() -> some View {
         TopWarningView(text: "This task will fail, please change or disable the deadline.", show: model.showExpiredWarning)

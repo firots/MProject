@@ -12,10 +12,14 @@ struct AddNotificationView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var model: AddNotificationViewModel
     @ObservedObject private var keyboard: KeyboardResponder
+    var isNew: Bool
+    var addAction: (() -> Void)?
     
-    init(notification: MNotification?, keyboard: KeyboardResponder) {
-        model = AddNotificationViewModel(from: notification)
+    init(notification: AddNotificationViewModel, keyboard: KeyboardResponder, isNew: Bool, addAction: (() -> Void)?) {
+        model = notification
         self.keyboard = keyboard
+        self.isNew = isNew
+        self.addAction = addAction
     }
     
     var body: some View {
@@ -38,8 +42,14 @@ struct AddNotificationView: View {
     
     func titleBar() -> some View {
         ModalTitle(title: model.mNotification == nil ? "Add Notification": "Edit Notification", edit: false) {
-            //self.save()
+            self.save()
             self.presentationMode.wrappedValue.dismiss()
+        }
+    }
+    
+    func save() {
+        if isNew {
+            self.addAction?()
         }
     }
     
