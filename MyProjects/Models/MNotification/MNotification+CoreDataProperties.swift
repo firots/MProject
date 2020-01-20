@@ -16,20 +16,27 @@ extension MNotification: HasRepeatMode {
         return NSFetchRequest<MNotification>(entityName: "MNotification")
     }
 
-    @NSManaged public var date: Date?
-    @NSManaged public var details: String?
-    @NSManaged public var repeatEndDate: Date?
+    /* Main */
     @NSManaged public var id: UUID?
+    @NSManaged public var title: String?
+    @NSManaged public var details: String?
+    @NSManaged public var date: Date?
+    
+    /* Belongs to */
+    @NSManaged public var project: MProject?
+    @NSManaged public var task: MTask?
+    
+    
+    /* Repeat Section */
+    @NSManaged public var repeatEndDate: Date?
     @NSManaged public var repeatHour: Int
     @NSManaged public var selectedDateIndex: [Int]
     @NSManaged public var repeatMinute: Int
     @NSManaged public var repeatMode: Int
     @NSManaged public var repeatStartDate: Date?
-    @NSManaged public var title: String?
     @NSManaged public var repeatPeriod: Int
-    @NSManaged public var project: MProject?
-    @NSManaged public var task: MTask?
-    
+
+    /* Optional Handling */
     public var wrappedID: UUID {
         return id ?? UUID()
     }
