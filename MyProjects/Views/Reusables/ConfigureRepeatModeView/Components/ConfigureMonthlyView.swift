@@ -16,7 +16,7 @@ struct ConfigureMonthlyView: View {
     
     var body: some View {
         var repeatDescription: String {
-            repeatPeriod > 1 ? "Repeats every \(repeatPeriod) month" : "Repeats every month"
+            repeatPeriod > 1 ? "Repeats every \(repeatPeriod) months" : "Repeats every month"
         }
 
         return Group {
@@ -24,7 +24,7 @@ struct ConfigureMonthlyView: View {
                 Stepper(repeatDescription, value: $repeatPeriod, in: 1...24)
             }
             
-            Section {
+            Section(header: Text("On selected days")) {
                 HStack {
                     Spacer()
                     MultiSelectorGridView(maxRows: nil, maxColumns: 7, maxSelection: nil, minSelection: 1, selections: $selectedMonthDay, items: monthDays, selectedColor: UIColor.systemPurple, selectedLabelColor: UIColor.systemBackground) {

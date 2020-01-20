@@ -16,9 +16,10 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     var startDate: Date
     var endDate: Date
     
-    var repeatMinute: Int
-    var repeatHour: Int
+    var timeDate: Date
     
+    var repeatMinute: Int
+
     var selectedDayOfWeekIndex = [0]
     var selectedDayOfMonthIndex = [0]
     
@@ -37,8 +38,9 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         
         repeatMode = notification?.repeatMode ?? RepeatMode.none.rawValue
         repeatMinute = notification?.repeatMinute ?? Calendar.current.component(.minute, from: date)
-        repeatHour = notification?.repeatHour ?? Calendar.current.component(.hour, from: date)
         
+        timeDate = Calendar.current.date(bySettingHour: notification?.repeatHour ?? 0, minute: notification?.repeatMinute ?? 0, second: 0, of: Date()) ?? Date()
+
         if notification?.repeatMode == RepeatMode.month.rawValue {
             selectedDayOfMonthIndex = notification?.selectedDateIndex ?? [0]
             repeatMonthsPeriod = notification?.repeatPeriod ?? 1

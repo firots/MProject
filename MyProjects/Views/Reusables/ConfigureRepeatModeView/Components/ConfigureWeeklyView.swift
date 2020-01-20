@@ -24,7 +24,7 @@ struct ConfigureWeeklyView: View {
                 Stepper(repeatDescription, value: $repeatPeriod, in: 1...20)
             }
             
-            Section {
+            Section(header: Text("On selected days")) {
                 HStack {
                     Spacer()
                     MultiSelectorGridView(maxRows: 1, maxColumns: 7, maxSelection: nil, minSelection: 1, selections: $selectedWeekDay, items: weekDays, selectedColor: UIColor.systemPurple, selectedLabelColor: UIColor.systemBackground) {

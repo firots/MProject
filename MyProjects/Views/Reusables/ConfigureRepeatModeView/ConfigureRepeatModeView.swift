@@ -16,6 +16,9 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     var body: some View {
         Group {
             mainSection()
+            if model.repeatMode != RepeatMode.hour.rawValue {
+                timePicker()
+            }
             startStopSection()
         }
         
@@ -36,30 +39,11 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     }
     
     func hourlyRepeat() -> some View {
-        var repeatDescription: String {
-            model.repeatHoursPeriod > 1 ? "Repeats every \(model.repeatHoursPeriod) hours" : "Repeats every hour"
-        }
-        
-        var intervalDescription: String {
-            "When the minute of hour is: \(String(format: "%02d", model.repeatMinute))"
-        }
-        
-        return Group {
-            Section {
-                Stepper(repeatDescription, value: $model.repeatHoursPeriod, in: 1...23)
-            }
-            
-            Section {
-                Stepper(intervalDescription, value: $model.repeatMinute, in: 0...59)
-            }
-            
-        }
+        ConfigureHourlyView(repeatHoursPeriod: $model.repeatHoursPeriod, repeatMinute: $model.repeatMinute)
     }
     
     func dailyRepeat() -> some View {
-        Section {
-            Text("daily repeats")
-        }
+        ConfigureDailyView(repeatDaysPeriod: $model.repeatDaysPeriod)
     }
     
     func weeklyRepeat() -> some View {
@@ -68,9 +52,12 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func startStopSection() -> some View {
         Group {
-            Section(footer: Text("Send notifications only between specific date range.")) {
-                Toggle(isOn: $model.hasStartStop) {
-                    Text("Date Range")
+            Section(footer: Text("Repeats only between start and end dates.")) {
+                HStack {
+                    CellImageView(systemName: "calendar.circle.fill")
+                    Toggle(isOn: $model.hasStartStop) {
+                        Text("Date Range")
+                    }
                 }
             }
 
@@ -84,6 +71,16 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
                 }
             }
         }
+    }
+    
+    func timePicker() -> some View {
+        DatePicker(selection: $model.timeDate, in: Date()..., displayedComponents: .hourAndMinute) {
+            Group {
+                CellImageView(systemName: "clock.fill")
+                Text("When the time is")
+            }
+        }
+        .accentColor(Color(.systemPurple))
     }
     
     
