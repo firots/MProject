@@ -35,6 +35,7 @@ struct AddMObjectView: View {
             CellImageView(systemName:"exclamationmark.circle.fill")
             Toggle(isOn: $model.hasDeadline.animation()) {
                 Text("Deadline")
+                    .foregroundColor(model.showExpiredWarning ? Color(.systemRed): Color(.label))
             }
         }
     }

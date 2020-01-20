@@ -80,8 +80,8 @@ class AddMObjectViewModel: ObservableObject {
                 hasAutoStart = true
                 autoStart = started
             }
-            
         }
+        
         
         let notifications = mObject?.notifications.map( { AddNotificationViewModel(from: $0) }) ?? [AddNotificationViewModel]()
         

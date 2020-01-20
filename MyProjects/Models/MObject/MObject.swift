@@ -108,6 +108,7 @@ extension MObject {
         }
         
         self.wrappedStatus = MObjectStatus.all[model.statusIndex]
+        
         self.saved = true
     }
     

@@ -7,9 +7,17 @@
 //
 
 import Foundation
+import CoreData
 
 extension MNotification {
-    func create(from model: AddNotificationViewModel) {
-        /* create entity from notification view model */
+    static func create(from viewModel: AddNotificationViewModel?, context moc: NSManagedObjectContext) -> MNotification {
+        return createBase(context: moc)
+    }
+    
+    static func createBase(context moc: NSManagedObjectContext) -> MNotification {
+        let notification = MNotification(context: moc)
+        notification.id = UUID()
+        notification.created = Date()
+        return notification
     }
 }

@@ -52,6 +52,7 @@
 		768A23EA23C8FB1900AE8B83 /* CheckmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */; };
 		7694098F23D5EE8C00E40B95 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694098E23D5EE8C00E40B95 /* NotificationsView.swift */; };
 		7694099123D5EE9800E40B95 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */; };
+		7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */; };
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
 		76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */; };
@@ -128,6 +129,7 @@
 		768A23E923C8FB1900AE8B83 /* CheckmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkButton.swift; sourceTree = "<group>"; };
 		7694098E23D5EE8C00E40B95 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+SyncNotifications.swift"; sourceTree = "<group>"; };
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
 		76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Remeans.swift"; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				7625E11323C4E5F700F81CCA /* MObject.swift */,
 				76FDE0DC23CE422500E3EEA2 /* MObject+SetMutualFields.swift */,
 				76FDE0DF23CE425C00E3EEA2 /* MObject+Notifications.swift */,
+				7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */,
 			);
 			path = MObject;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				762F74E923D4E4A90016CC94 /* ConfigureWeeklyView.swift in Sources */,
 				76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
+				7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */,
 				762F74E723D4E47D0016CC94 /* ConfigureMonthlyView.swift in Sources */,
 				7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */,
 				7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */,

@@ -15,6 +15,7 @@ extension MTask {
         t.setMutualFields(from: model)
         t.project = project
         t.syncSteps(with: model.stepsModel.steps, context: moc)
+        t.syncNotifications(with: model.notificationsModel.notifications, context: moc)
         return t
     }
     
