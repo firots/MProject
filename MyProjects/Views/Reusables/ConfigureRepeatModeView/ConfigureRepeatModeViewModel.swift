@@ -100,18 +100,6 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     }
 }
 
-protocol HasRepeatMode: class {
-    var repeatMode: Int { get  set }
-    
-    var repeatStartDate: Date?  { get  set }
-    var repeatEndDate: Date?  { get  set }
-    
-    var repeatMinute: Int  { get  set }
-    var repeatHour: Int  { get  set }
-    var selectedDateIndex: [Int]  { get  set }
-    var repeatPeriod: Int  { get  set }
-}
-
 public enum RepeatModeObjectType {
     case notification
     case task

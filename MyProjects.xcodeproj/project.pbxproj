@@ -53,6 +53,7 @@
 		7694098F23D5EE8C00E40B95 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694098E23D5EE8C00E40B95 /* NotificationsView.swift */; };
 		7694099123D5EE9800E40B95 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */; };
 		7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */; };
+		76D2ADE823D65F9D009FFD5E /* HasRepeatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */; };
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
 		76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */; };
@@ -130,6 +131,7 @@
 		7694098E23D5EE8C00E40B95 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+SyncNotifications.swift"; sourceTree = "<group>"; };
+		76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasRepeatMode.swift; sourceTree = "<group>"; };
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
 		76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Remeans.swift"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		761F243C23C15A4B008AA2B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */,
 				766FE81423D0BE430055180B /* MNotification */,
 				76FDE0DE23CE422E00E3EEA2 /* MObject */,
 				768A23E023C8C7FF00AE8B83 /* MStep */,
@@ -559,6 +562,7 @@
 				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,
 				7673533E23CA6B93002C1194 /* StepCellView.swift in Sources */,
 				764F94D023D34EF2008C0D09 /* DateTimePicker.swift in Sources */,
+				76D2ADE823D65F9D009FFD5E /* HasRepeatMode.swift in Sources */,
 				76068E6123C3CF7B008E53C4 /* ModalTitle.swift in Sources */,
 				761F244123C1667C008AA2B7 /* MProject+CoreDataProperties.swift in Sources */,
 				768A23E123C8C8DD00AE8B83 /* MStep+CoreDataClass.swift in Sources */,

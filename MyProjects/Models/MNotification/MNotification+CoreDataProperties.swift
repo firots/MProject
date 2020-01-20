@@ -22,6 +22,7 @@ extension MNotification: HasRepeatMode {
     @NSManaged public var details: String?
     @NSManaged public var date: Date?
     @NSManaged public var created: Date?
+    @NSManaged public var nextFireDate: Date?
     
     /* Belongs to */
     @NSManaged public var project: MProject?

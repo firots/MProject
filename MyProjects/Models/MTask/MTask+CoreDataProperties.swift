@@ -32,13 +32,13 @@ extension MTask {
     @NSManaged public var notification: NSSet?
     @NSManaged public var saved: Bool
     
-    public var wrappedRepeatMode: RepeatMode {
+    /*public var wrappedRepeatMode: RepeatMode {
         get {
             RepeatMode(rawValue: repeatMode) ?? RepeatMode.none
         } set {
             repeatMode = newValue.rawValue
         }
-    }
+    }*/
     
     public var steps: [MStep] {
         let set = step as? Set<MStep> ?? []
