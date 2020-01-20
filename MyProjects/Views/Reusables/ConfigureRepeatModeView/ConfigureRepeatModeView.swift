@@ -74,7 +74,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     }
     
     func timePicker() -> some View {
-        DatePicker(selection: $model.timeDate, in: Date()..., displayedComponents: .hourAndMinute) {
+        DatePicker(selection: $model.timeDate, displayedComponents: .hourAndMinute) {
             Group {
                 CellImageView(systemName: "clock.fill")
                 Text("When the time is")
