@@ -87,7 +87,6 @@ extension HasRepeatMode {
         while fireDate < now {
             fireDate.addDays(repeatPeriod)
         }
-        print(fireDate.toRelative())
         nextFireDate = fireDate
     }
     
