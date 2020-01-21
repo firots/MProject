@@ -9,27 +9,27 @@
 import Foundation
 
 extension Date {
-    func hoursPassed() -> Int {
-        getComponentsForNow(components: [.hour]).hour ?? 0
+    func hoursPassed(from date: Date?) -> Int {
+        getComponents(for: date, components: [.hour]).hour ?? 0
     }
     
-    func daysPassed() -> Int {
-        getComponentsForNow(components: [.day]).day ?? 0
+    func daysPassed(from date: Date?) -> Int {
+        getComponents(for: date, components: [.day]).day ?? 0
     }
     
-    func weeksPassed() -> Int {
-        getComponentsForNow(components: [.weekOfYear]).weekOfYear ?? 0
+    func weeksPassed(from date: Date?) -> Int {
+        getComponents(for: date, components: [.weekOfYear]).weekOfYear ?? 0
     }
     
-    func monthsPassedPassed() -> Int {
-        getComponentsForNow(components: [.month]).month ?? 0
+    func monthsPassedPassed(from date: Date?) -> Int {
+        getComponents(for: date, components: [.month]).month ?? 0
     }
     
-    private func getComponentsForNow(components: Set<Calendar.Component>) -> DateComponents {
+    private func getComponents(for date: Date?, components: Set<Calendar.Component>) -> DateComponents {
         let calendar = Calendar.current
-        let now = Date()
+        let firstDate = date ?? Date()
         
-        let components = calendar.dateComponents(components, from: now, to: self)
+        let components = calendar.dateComponents(components, from: firstDate, to: self)
         
         return components
     }
