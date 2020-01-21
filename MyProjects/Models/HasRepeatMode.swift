@@ -21,18 +21,23 @@ protocol HasRepeatMode: class {
     var repeatHour: Int  { get  set }
     var selectedDateIndex: [Int]  { get  set }
     var repeatPeriod: Int  { get  set }
-
-    var wrappedRepeatMode: RepeatMode { get set }
 }
 
 extension HasRepeatMode {
-    
     var wrappedRepeatMode: RepeatMode {
         get {
             RepeatMode(rawValue: repeatMode) ?? RepeatMode.none
         } set {
             repeatMode = newValue.rawValue
         }
+    }
+    
+    var calendar: Calendar {
+        Calendar.current
+    }
+    
+    var referenceDate: Date {
+        nextFireDate ?? repeatStartDate ?? Date()
     }
     
     func setNextFireDate() {
@@ -50,6 +55,10 @@ extension HasRepeatMode {
             case .month:
                 setFireDateForMonthly()
         }
+        
+        if let nextFireDate = self.nextFireDate, !isInRange(date: nextFireDate) {
+            self.nextFireDate = nil
+        }
     }
     
     private func setFireDateForNone() {
@@ -61,7 +70,17 @@ extension HasRepeatMode {
     }
     
     private func setFireDateForHourly() {
+        let now = Date()
+        var hour = calendar.component(.hour, from: referenceDate)
         
+        var fireDate = Calendar.current.date(bySettingHour: hour , minute: repeatMinute, second: 0, of: Date())!
+        
+        while(fireDate < now) {
+            hour += repeatPeriod
+            fireDate = Calendar.current.date(bySettingHour: hour , minute: repeatMinute, second: 0, of: Date())!
+        }
+        
+        nextFireDate = fireDate
     }
     
     private func setFireDateForDaily() {
@@ -77,7 +96,12 @@ extension HasRepeatMode {
     }
     
     private func isNextFireDateValid() -> Bool {
-        if let nextFireDate = nextFireDate, nextFireDate > Date() { return true }
+        if let nextFireDate = self.nextFireDate, nextFireDate > Date() { return true }
         return false
+    }
+    
+    private func isInRange(date: Date) -> Bool {
+        if let repeatEndDate = self.repeatEndDate, date > repeatEndDate { return false }
+        return true
     }
 }
