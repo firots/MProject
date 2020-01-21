@@ -26,6 +26,10 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func mainSection() -> some View {
         Group {
+            Section(header: Text("Start Date")) {
+                DateTimePicker(date: $model.repeatStartDate)
+            }
+            
             if model.repeatMode == RepeatMode.hour.rawValue {
                 hourlyRepeat()
             } else if model.repeatMode == RepeatMode.day.rawValue {
@@ -52,20 +56,16 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func startStopSection() -> some View {
         Group {
-            Section(footer: Text("Repeats only between start and end dates.")) {
+            Section(footer: Text("Will not repeat after end date.")) {
                 HStack {
                     CellImageView(systemName: "calendar.circle.fill")
                     Toggle(isOn: $model.hasStartStop) {
-                        Text("Date Range")
+                        Text("Set end date")
                     }
                 }
             }
 
             if model.hasStartStop {
-                Section(header: Text("Start Date")) {
-                    DateTimePicker(date: $model.repeatStartDate)
-                }
-
                 Section(header: Text("End Date")) {
                     DateTimePicker(date: $model.repeatEndDate)
                 }

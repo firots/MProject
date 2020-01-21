@@ -32,14 +32,6 @@ extension MTask {
     @NSManaged public var notification: NSSet?
     @NSManaged public var saved: Bool
     
-    /*public var wrappedRepeatMode: RepeatMode {
-        get {
-            RepeatMode(rawValue: repeatMode) ?? RepeatMode.none
-        } set {
-            repeatMode = newValue.rawValue
-        }
-    }*/
-    
     public var steps: [MStep] {
         let set = step as? Set<MStep> ?? []
         return set.sorted {

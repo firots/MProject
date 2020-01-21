@@ -65,7 +65,7 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         repeatStartDate = notification?.repeatStartDate ?? Date()
         repeatEndDate = notification?.repeatEndDate ?? Date()
         
-        if notification?.repeatStartDate != nil {
+        if notification?.repeatEndDate != nil {
             hasStartStop = true
         } else {
             hasStartStop = false
@@ -89,12 +89,12 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
             repeatingObject.repeatMinute = Calendar.current.component(.minute, from: timeDate)
             repeatingObject.repeatHour = Calendar.current.component(.hour, from: timeDate)
         }
+        
+        repeatingObject.repeatStartDate = repeatStartDate
 
         if hasStartStop {
-            repeatingObject.repeatStartDate = repeatStartDate
             repeatingObject.repeatEndDate = repeatEndDate
         } else {
-            repeatingObject.repeatStartDate = nil
             repeatingObject.repeatEndDate = nil
         }
     }
