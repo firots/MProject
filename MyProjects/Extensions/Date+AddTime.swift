@@ -23,4 +23,9 @@ extension Date {
         let dayComponents = DateComponents(day: days)
         self = Calendar.current.date(byAdding: dayComponents, to: self)!
     }
+    
+    static func yesterday() -> Date {
+        let now = Date()
+        return Calendar.current.date(byAdding: .day, value: -1, to: now)!
+    }
 }
