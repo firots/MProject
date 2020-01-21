@@ -45,4 +45,5 @@ extension MNotification: HasRepeatMode {
     public var wrappedCreated: Date {
         return created ?? Date()
     }
+    
 }

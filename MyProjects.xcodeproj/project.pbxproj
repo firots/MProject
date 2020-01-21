@@ -11,6 +11,7 @@
 		76038F7123D522510021260D /* ConfigureHourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76038F7023D522510021260D /* ConfigureHourlyView.swift */; };
 		76068E6123C3CF7B008E53C4 /* ModalTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76068E6023C3CF7B008E53C4 /* ModalTitle.swift */; };
 		7614E90823D754C6004CA385 /* Date+Between.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614E90723D754C6004CA385 /* Date+Between.swift */; };
+		7614E90A23D7B102004CA385 /* Date+AddTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614E90923D7B102004CA385 /* Date+AddTime.swift */; };
 		761F244023C1667C008AA2B7 /* MProject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */; };
 		761F244123C1667C008AA2B7 /* MProject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */; };
 		761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */; };
@@ -90,6 +91,7 @@
 		76038F7023D522510021260D /* ConfigureHourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureHourlyView.swift; sourceTree = "<group>"; };
 		76068E6023C3CF7B008E53C4 /* ModalTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTitle.swift; sourceTree = "<group>"; };
 		7614E90723D754C6004CA385 /* Date+Between.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Between.swift"; sourceTree = "<group>"; };
+		7614E90923D7B102004CA385 /* Date+AddTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+AddTime.swift"; sourceTree = "<group>"; };
 		761F243E23C1667C008AA2B7 /* MProject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		761F243F23C1667C008AA2B7 /* MProject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		761F244323C16EFD008AA2B7 /* MProject+CreateOrSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MProject+CreateOrSync.swift"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				76D802F223C941E70088556A /* String+NoNewline.swift */,
 				76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */,
 				7614E90723D754C6004CA385 /* Date+Between.swift */,
+				7614E90923D7B102004CA385 /* Date+AddTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				76038F7123D522510021260D /* ConfigureHourlyView.swift in Sources */,
 				764F94C423D3341C008C0D09 /* RepeatModePicker.swift in Sources */,
 				7623EEF923D2102D007B1B0D /* TopWarningView.swift in Sources */,
+				7614E90A23D7B102004CA385 /* Date+AddTime.swift in Sources */,
 				764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */,
 				76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */,
 				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,
