@@ -41,6 +41,14 @@ extension HasRepeatMode {
         }
     }
     
+    var wrappedRepeatMode: RepeatMode {
+        get {
+            RepeatMode(rawValue: repeatMode) ?? RepeatMode.none
+        } set {
+            repeatMode = newValue.rawValue
+        }
+    }
+    
     private func setFireDateForNone() {
         if let notification = self as? MNotification, let date = notification.date, date > Date()  {
             nextFireDate = notification.date
@@ -50,27 +58,26 @@ extension HasRepeatMode {
     }
     
     private func setFireDateForHourly() {
+        if !isNextFireDateValid() { return }
         
     }
     
     private func setFireDateForDaily() {
-        
+        if !isNextFireDateValid() { return }
     }
     
     private func setFireDateForWeekly() {
-        
+        if !isNextFireDateValid() { return }
     }
     
     private func setFireDateForMonthly() {
-        
+        if !isNextFireDateValid() { return }
     }
     
-    
-    var wrappedRepeatMode: RepeatMode {
-        get {
-            RepeatMode(rawValue: repeatMode) ?? RepeatMode.none
-        } set {
-            repeatMode = newValue.rawValue
-        }
+    private func isNextFireDateValid() -> Bool {
+        if let nextFireDate = nextFireDate, nextFireDate > Date() { return true }
+        return false
     }
+    
+
 }
