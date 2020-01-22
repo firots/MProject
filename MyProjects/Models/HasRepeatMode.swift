@@ -73,7 +73,7 @@ extension HasRepeatMode {
         let now = Date()
         let startMinute = calendar.component(.minute, from: startDate)
         
-        var fireDate = Calendar.current.date(bySetting: .minute, value: startMinute, of: now)!
+        var fireDate = calendar.date(bySetting: .minute, value: startMinute, of: now)!
         if fireDate <= now { fireDate.addHours(1) }
         
         while(fireDate.hoursPassed(from: startDate) % repeatPeriod != 0) {
@@ -90,7 +90,7 @@ extension HasRepeatMode {
         let startHour = calendar.component(.hour, from: startDate)
         let startMinute = calendar.component(.minute, from: startDate)
         
-        var fireDate = Calendar.current.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
+        var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         if fireDate <= now { fireDate.addDays(1) }
 
