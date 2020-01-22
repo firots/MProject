@@ -70,33 +70,34 @@ extension HasRepeatMode {
     private func setFireDateForHourly() {
         guard let startDate = repeatStartDate else { return }
         
-        let now = Date().withZeros()
+        let now = Date()
         let startMinute = calendar.component(.minute, from: startDate)
         
         var fireDate = Calendar.current.date(bySetting: .minute, value: startMinute, of: now)!
-        if fireDate < now { fireDate.addHours(1) }
+        if fireDate <= now { fireDate.addHours(1) }
         
         while(fireDate.hoursPassed(from: startDate) % repeatPeriod != 0) {
             fireDate.addHours(1)
         }
-        
+        print(fireDate.toRelative())
         nextFireDate = fireDate
     }
     
     private func setFireDateForDaily() {
         guard let startDate = repeatStartDate else { return }
         
-        let now = Date().withZeros()
+        let now = Date()
         let startHour = calendar.component(.hour, from: startDate)
         let startMinute = calendar.component(.minute, from: startDate)
         
         var fireDate = Calendar.current.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
-        if fireDate < now { fireDate.addDays(1) }
+        if fireDate <= now { fireDate.addDays(1) }
 
         while (fireDate.daysPassed(from: startDate) % repeatPeriod != 0) {
             fireDate.addDays(1)
         }
+        print(fireDate.toRelative())
         nextFireDate = fireDate
     }
     
@@ -114,7 +115,7 @@ extension HasRepeatMode {
     }
     
     private func isInRange(date: Date) -> Bool {
-        if let repeatEndDate = self.repeatEndDate, date > repeatEndDate { return false }
+        if let repeatEndDate = self.repeatEndDate, date >= repeatEndDate { return false }
         return true
     }
 }

@@ -23,7 +23,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func mainSection() -> some View {
         Group {
-            Section(header: Text("Start Date")) {
+            Section(header: Text("Start Date"), footer: Text("Will repeat from starting this date and time, including current selected start date/time.")) {
                 DateTimePickerLimitless(date: $model.repeatStartDate)
             }
             

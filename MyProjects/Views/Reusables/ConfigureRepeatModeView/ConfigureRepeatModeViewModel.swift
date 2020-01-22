@@ -49,7 +49,13 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         
         let now = Date()
         
-        repeatStartDate = notification?.repeatStartDate ?? now.withZeros()
+        if let startDate = notification?.repeatStartDate {
+            repeatStartDate = startDate
+        } else {
+            var startDate = now.withZeros()
+            startDate.addMinutes(-1)
+            repeatStartDate = startDate
+        }
         repeatEndDate = notification?.repeatEndDate ?? now.withZeros()
         
         if notification?.repeatEndDate != nil {
