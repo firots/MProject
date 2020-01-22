@@ -70,12 +70,15 @@ extension HasRepeatMode {
     }
     
     private func setFireDateForHourly() {
-        let now = Date()
-        let hour = calendar.component(.hour, from: referenceDate)
-        var fireDate = Calendar.current.date(bySettingHour: hour, minute: repeatMinute, second: 0, of: Date.yesterday())!
+        guard let startDate = repeatStartDate else { return }
         
-        while(fireDate < now) {
-            fireDate.addHours(repeatPeriod)
+        let now = Date()
+        let hour = calendar.component(.hour, from: now)
+        
+        var fireDate = Calendar.current.date(bySettingHour: hour, minute: repeatMinute, second: 0, of: now)!
+        
+        while(fireDate < now || fireDate.hoursPassed(from: startDate) % repeatPeriod != 0) {
+            fireDate.addHours(1)
         }
         nextFireDate = fireDate
     }
