@@ -32,6 +32,30 @@ struct DateTimePicker: View {
     }
 }
 
+struct DateTimePickerLimitless: View {
+    @Binding var date: Date
+    
+    var body: some View {
+        Group {
+            DatePicker(selection: $date, displayedComponents: .date) {
+                Group {
+                    CellImageView(systemName: "calendar.circle.fill")
+                    Text("Date")
+                }
+            }
+            .accentColor(Color(.systemPurple))
+
+            DatePicker(selection: $date, displayedComponents: .hourAndMinute) {
+                Group {
+                    CellImageView(systemName: "clock.fill")
+                    Text("Time")
+                }
+            }
+            .accentColor(Color(.systemPurple))
+        }
+    }
+}
+
 /*struct DateTimePicker_Previews: PreviewProvider {
     static var previews: some View {
         DateTimePicker(date)

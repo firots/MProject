@@ -16,9 +16,6 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     var body: some View {
         Group {
             mainSection()
-            if model.repeatMode != RepeatMode.hour.rawValue {
-                timePicker()
-            }
             startStopSection()
         }
         
@@ -27,7 +24,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     func mainSection() -> some View {
         Group {
             Section(header: Text("Start Date")) {
-                DateTimePicker(date: $model.repeatStartDate)
+                DateTimePickerLimitless(date: $model.repeatStartDate)
             }
             
             if model.repeatMode == RepeatMode.hour.rawValue {
@@ -43,7 +40,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     }
     
     func hourlyRepeat() -> some View {
-        ConfigureHourlyView(repeatHoursPeriod: $model.repeatHoursPeriod, repeatMinute: $model.repeatMinute)
+        ConfigureHourlyView(repeatHoursPeriod: $model.repeatHoursPeriod)
     }
     
     func dailyRepeat() -> some View {
@@ -72,17 +69,6 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
             }
         }
     }
-    
-    func timePicker() -> some View {
-        DatePicker(selection: $model.timeDate, displayedComponents: .hourAndMinute) {
-            Group {
-                CellImageView(systemName: "clock.fill")
-                Text("When the time is")
-            }
-        }
-        .accentColor(Color(.systemPurple))
-    }
-    
     
     func monthlyRepeat() -> some View {
         ConfigureMonthlyView(selectedMonthDay: $model.selectedDayOfMonthIndex, repeatPeriod: $model.repeatMonthsPeriod, monthDays: monthDays)

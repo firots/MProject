@@ -15,10 +15,6 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     
     var repeatStartDate: Date
     var repeatEndDate: Date
-    
-    var timeDate: Date
-    
-    var repeatMinute: Int
 
     var selectedDayOfWeekIndex = [0]
     var selectedDayOfMonthIndex = [0]
@@ -37,17 +33,7 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     init(from notification: T?, type: RepeatModeObjectType) {
         self.type = type
         
-        var date: Date
-        if let notification = notification as? MNotification {
-            date = notification.date ?? Date()
-        } else {
-            date = Date()
-        }
-        
         repeatMode = notification?.repeatMode ?? RepeatMode.none.rawValue
-        repeatMinute = notification?.repeatMinute ?? Calendar.current.component(.minute, from: date)
-        
-        timeDate = Calendar.current.date(bySettingHour: notification?.repeatHour ?? 0, minute: notification?.repeatMinute ?? 0, second: 0, of: Date()) ?? Date()
 
         if notification?.repeatMode == RepeatMode.month.rawValue {
             selectedDayOfMonthIndex = notification?.selectedDateIndex ?? [0]
@@ -61,9 +47,10 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
             repeatHoursPeriod = notification?.repeatPeriod ?? 1
         }
         
+        let now = Date()
         
-        repeatStartDate = notification?.repeatStartDate ?? Date()
-        repeatEndDate = notification?.repeatEndDate ?? Date()
+        repeatStartDate = notification?.repeatStartDate ?? now.withZeros()
+        repeatEndDate = notification?.repeatEndDate ?? now.withZeros()
         
         if notification?.repeatEndDate != nil {
             hasStartStop = true
@@ -75,7 +62,6 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     func bind(to repeatingObject: T) {
         if wrappedRepeatMode == .hour {
             repeatingObject.repeatPeriod = repeatHoursPeriod
-            repeatingObject.repeatMinute = repeatMinute
         } else {
             if wrappedRepeatMode == .day {
                 repeatingObject.repeatPeriod = repeatDaysPeriod
@@ -86,8 +72,6 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
                 repeatingObject.repeatPeriod = repeatMonthsPeriod
                 repeatingObject.selectedDateIndex = selectedDayOfMonthIndex
             }
-            repeatingObject.repeatMinute = Calendar.current.component(.minute, from: timeDate)
-            repeatingObject.repeatHour = Calendar.current.component(.hour, from: timeDate)
         }
         
         repeatingObject.repeatStartDate = repeatStartDate

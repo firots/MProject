@@ -17,8 +17,6 @@ protocol HasRepeatMode: class {
     
     var nextFireDate: Date? { get set }
     
-    var repeatMinute: Int  { get  set }
-    var repeatHour: Int  { get  set }
     var selectedDateIndex: [Int]  { get  set }
     var repeatPeriod: Int  { get  set }
 }
@@ -72,23 +70,32 @@ extension HasRepeatMode {
     private func setFireDateForHourly() {
         guard let startDate = repeatStartDate else { return }
         
-        let now = Date()
-        let hour = calendar.component(.hour, from: now)
+        let now = Date().withZeros()
+        let startMinute = calendar.component(.minute, from: startDate)
         
-        var fireDate = Calendar.current.date(bySettingHour: hour, minute: repeatMinute, second: 0, of: now)!
+        var fireDate = Calendar.current.date(bySetting: .minute, value: startMinute, of: now)!
+        if fireDate < now { fireDate.addHours(1) }
         
-        while(fireDate < now || fireDate.hoursPassed(from: startDate) % repeatPeriod != 0) {
+        while(fireDate.hoursPassed(from: startDate) % repeatPeriod != 0) {
             fireDate.addHours(1)
         }
+        
         nextFireDate = fireDate
     }
     
     private func setFireDateForDaily() {
-        let now = Date()
-        var fireDate = Calendar.current.date(bySettingHour: repeatHour, minute: repeatMinute, second: 0, of: referenceDate)!
+        guard let startDate = repeatStartDate else { return }
         
-        while fireDate < now {
-            fireDate.addDays(repeatPeriod)
+        let now = Date().withZeros()
+        let startHour = calendar.component(.hour, from: startDate)
+        let startMinute = calendar.component(.minute, from: startDate)
+        
+        var fireDate = Calendar.current.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
+        
+        if fireDate < now { fireDate.addDays(1) }
+
+        while (fireDate.daysPassed(from: startDate) % repeatPeriod != 0) {
+            fireDate.addDays(1)
         }
         nextFireDate = fireDate
     }

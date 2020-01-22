@@ -9,6 +9,10 @@
 import Foundation
 
 extension Date {
+    func minutesPassed(from date: Date?) -> Int {
+        getComponents(for: date, components: [.minute]).minute ?? 0
+    }
+    
     func hoursPassed(from date: Date?) -> Int {
         getComponents(for: date, components: [.hour]).hour ?? 0
     }

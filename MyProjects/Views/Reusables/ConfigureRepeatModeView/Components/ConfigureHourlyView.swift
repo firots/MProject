@@ -11,30 +11,17 @@ import Foundation
 
 struct ConfigureHourlyView: View {
     @Binding var repeatHoursPeriod: Int
-    @Binding var repeatMinute: Int
     
     var body: some View {
         return Group {
             Section {
                 Stepper(repeatDescription, value: $repeatHoursPeriod, in: 1...23)
             }
-            
-            Section {
-                HStack {
-                    CellImageView(systemName: "clock.fill")
-                    Stepper(intervalDescription, value: $repeatMinute, in: 0...59)
-                }
-                
-            }
         }
     }
     
     var repeatDescription: String {
         repeatHoursPeriod > 1 ? "Repeats every \(repeatHoursPeriod) hours" : "Repeats every hour"
-    }
-    
-    var intervalDescription: String {
-        return "At minute: \(String(format: "%02d", _repeatMinute.wrappedValue))"
     }
 }
 

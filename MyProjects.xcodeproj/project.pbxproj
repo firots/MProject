@@ -59,6 +59,7 @@
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
 		76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */; };
+		76E53C3B23D9063C0084EC1A /* Date+NowWithZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E53C3A23D9063C0084EC1A /* Date+NowWithZero.swift */; };
 		76ED808423C62F580042D36D /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808323C62F580042D36D /* PlaceholderView.swift */; };
 		76ED808623C648F70042D36D /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED808523C648F70042D36D /* TextView.swift */; };
 		76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED8CFF23D487320035A0A3 /* MultiSelectorGridView.swift */; };
@@ -139,6 +140,7 @@
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
 		76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Remeans.swift"; sourceTree = "<group>"; };
+		76E53C3A23D9063C0084EC1A /* Date+NowWithZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+NowWithZero.swift"; sourceTree = "<group>"; };
 		76ED808323C62F580042D36D /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76ED808523C648F70042D36D /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		76ED8CFF23D487320035A0A3 /* MultiSelectorGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectorGridView.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				76E0A08C23D3D9C000E0B06C /* Date+Remeans.swift */,
 				7614E90723D754C6004CA385 /* Date+Between.swift */,
 				7614E90923D7B102004CA385 /* Date+AddTime.swift */,
+				76E53C3A23D9063C0084EC1A /* Date+NowWithZero.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */,
 				76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */,
 				7673533C23CA52F1002C1194 /* StepsView.swift in Sources */,
+				76E53C3B23D9063C0084EC1A /* Date+NowWithZero.swift in Sources */,
 				762F74E923D4E4A90016CC94 /* ConfigureWeeklyView.swift in Sources */,
 				76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
