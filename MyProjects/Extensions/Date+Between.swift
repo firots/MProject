@@ -25,7 +25,36 @@ extension Date {
         getComponents(for: date, components: [.weekOfYear]).weekOfYear ?? 0
     }
     
-    func monthsPassedPassed(from date: Date?) -> Int {
+    func weekDifference(from date: Date) -> Int {
+        let startWeek = date
+            .withZeroHourAndMinutes()
+            .withZeroSeconds()
+            .withSunday()
+
+        
+        let currentWeek = self
+            .withZeroHourAndMinutes()
+            .withZeroSeconds()
+            .withSunday()
+        
+        return currentWeek.weeksPassed(from: startWeek)
+    }
+    
+    func monthDifference(from date: Date) -> Int {
+        let startMonth = date
+            .withZeroHourAndMinutes()
+            .withZeroSeconds()
+            .withFirstDayOfMonth()
+        
+        let currentMonth = date
+            .withZeroHourAndMinutes()
+            .withZeroSeconds()
+            .withFirstDayOfMonth()
+        
+        return currentMonth.monthsPassed(from: startMonth)
+    }
+    
+    func monthsPassed(from date: Date?) -> Int {
         getComponents(for: date, components: [.month]).month ?? 0
     }
     

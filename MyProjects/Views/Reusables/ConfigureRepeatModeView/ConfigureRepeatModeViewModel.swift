@@ -52,11 +52,11 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         if let startDate = notification?.repeatStartDate {
             repeatStartDate = startDate
         } else {
-            var startDate = now.withZeros()
+            var startDate = now.withZeroSeconds()
             startDate.addMinutes(-1)
             repeatStartDate = startDate
         }
-        repeatEndDate = notification?.repeatEndDate ?? now.withZeros()
+        repeatEndDate = notification?.repeatEndDate ?? now.withZeroSeconds()
         
         if notification?.repeatEndDate != nil {
             hasStartStop = true

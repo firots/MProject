@@ -124,7 +124,7 @@ extension HasRepeatMode {
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         func isInPeriod() -> Bool {
-            (calendar.component(.weekOfYear, from: fireDate) - startWeek) % repeatPeriod == 0
+            fireDate.weekDifference(from: startDate) % repeatPeriod == 0
         }
         
         func isSelectedDayOfWeek() -> Bool {
