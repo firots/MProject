@@ -9,6 +9,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 extension MProject {
@@ -30,6 +31,7 @@ extension MProject {
     @NSManaged public var notification: NSSet?
     @NSManaged public var priotory: Int
     @NSManaged public var saved: Bool
+    @NSManaged public var progress: Float
     
     public var tasks: [MTask] {
         let set = task as? Set<MTask> ?? []
@@ -37,6 +39,23 @@ extension MProject {
         return set.sorted {
             $0.wrappedCreated > $1.wrappedCreated
         }
+    }
+    
+    public func setProgress() {
+        if tasks.isEmpty {
+            progress = Float.zero
+        } else {
+            let completed = tasks.filter( { $0.wrappedStatus == .done} ).count
+            progress = Float(completed) / Float(tasks.count)
+        }
+    }
+    
+    public var wrappedProgress: CGFloat {
+        return CGFloat(progress)
+    }
+    
+    public var progressPercentage: Int {
+        Int(100 * wrappedProgress)
     }
 }
 

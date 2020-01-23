@@ -29,6 +29,10 @@ extension MObject {
         return id ?? UUID()
     }
     
+    public var color: UIColor {
+        .systemPurple
+    }
+    
     public var wrappedName: String {
         return name ?? "Unnamed \(self is MProject ? "Project" : "Task")"
     }

@@ -20,15 +20,27 @@ extension MObject {
         /* create ios notifications from core data */
         if wrappedStatus == .active {
             //create user defined notifications which is not expired
-            //create deadline notifications
+            createNotificationsOnIOS()
         }
         else if wrappedStatus == .waiting {
-            if let started = self.started {
-                if started > Date() {
-                    //create auto start notifications
-                }
+            createActivationNotificationsOnIOS()
+            createDeadlineNotificationsOnIOS()
+        }
+    }
+    
+    func createActivationNotificationsOnIOS() {
+        if let started = self.started {
+            if started.daysPassed(from: Date()) < 1 {
+                //create auto start notifications
             }
-            //create deadline notifications
+        }
+    }
+    
+    func createDeadlineNotificationsOnIOS() {
+        if let deadline = deadline {
+            if deadline.daysPassed(from: Date()) < 1 {
+                //create deadline notifications
+            }
         }
     }
     

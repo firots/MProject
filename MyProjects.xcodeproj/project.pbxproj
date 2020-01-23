@@ -69,6 +69,7 @@
 		76EF17C523BCE16200C1CD11 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C423BCE16200C1CD11 /* AddTaskView.swift */; };
 		76EF17C723BCE17400C1CD11 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C623BCE17400C1CD11 /* AddTaskViewModel.swift */; };
 		76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF17C823BCE1AF00C1CD11 /* AddProjectViewModel.swift */; };
+		76F06B6123DA3E39002CE0E3 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F06B6023DA3E39002CE0E3 /* CircularProgressBarView.swift */; };
 		76FD61A623B929AE00D21B21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61A523B929AE00D21B21 /* AppDelegate.swift */; };
 		76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61A723B929AE00D21B21 /* SceneDelegate.swift */; };
 		76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76FD61A923B929AE00D21B21 /* MyProjects.xcdatamodeld */; };
@@ -151,6 +152,7 @@
 		76EF17C423BCE16200C1CD11 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		76EF17C623BCE17400C1CD11 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		76EF17C823BCE1AF00C1CD11 /* AddProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectViewModel.swift; sourceTree = "<group>"; };
+		76F06B6023DA3E39002CE0E3 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		76FD61A223B929AE00D21B21 /* MyProjects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyProjects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FD61A523B929AE00D21B21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76FD61A723B929AE00D21B21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				764F94C323D3341C008C0D09 /* RepeatModePicker.swift */,
 				764F94CF23D34EF2008C0D09 /* DateTimePicker.swift */,
 				76ED8CFF23D487320035A0A3 /* MultiSelectorGridView.swift */,
+				76F06B6023DA3E39002CE0E3 /* CircularProgressBarView.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */,
 				761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */,
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
+				76F06B6123DA3E39002CE0E3 /* CircularProgressBarView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
 				764F94C723D3381E008C0D09 /* AddNotificationView.swift in Sources */,
 				76FDE0D923CE0BCA00E3EEA2 /* Haptics.swift in Sources */,

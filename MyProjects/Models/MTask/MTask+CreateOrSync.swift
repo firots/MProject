@@ -13,7 +13,7 @@ extension MTask {
     static func createOrSync(from model: AddTaskViewModel, context moc: NSManagedObjectContext, task: MTask?, project: MProject?) -> MTask {
         let t = task ?? createBase(context: moc)
         t.setMutualFields(from: model)
-        t.project = project
+        if project != nil { t.project = project }
         t.syncSteps(with: model.stepsModel.steps, context: moc)
         t.syncNotifications(with: model.notificationsModel.notifications, context: moc)
         return t
