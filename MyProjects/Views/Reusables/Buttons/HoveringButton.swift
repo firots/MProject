@@ -23,12 +23,12 @@ struct HoveringButton: View {
                     image
                     .frame(width: 44, height: 44, alignment: .center)
                     .padding(0)
-                    .background(Color(UIColor.systemBackground))
+                    .background(color)
                     .clipShape(Circle())
                     .shadow(color: Color(.systemPurple), radius: 4, x: 0, y: 0)
 
                 }
-                .foregroundColor(Color(.systemPurple))
+                .foregroundColor(Color(.systemBackground))
                 Spacer().frame(height: 24)
             }
             Spacer().frame(width: 24)
