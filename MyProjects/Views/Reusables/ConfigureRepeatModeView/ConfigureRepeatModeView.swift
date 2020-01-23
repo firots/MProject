@@ -18,7 +18,6 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
             mainSection()
             startStopSection()
         }
-        
     }
     
     func mainSection() -> some View {
