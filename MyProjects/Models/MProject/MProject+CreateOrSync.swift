@@ -25,4 +25,10 @@ extension MProject {
 
         return project
     }
+    
+    func clearTasks(context moc: NSManagedObjectContext) {
+        for task in tasks {
+            moc.deleteWithChilds(task)
+        }
+    }
 }

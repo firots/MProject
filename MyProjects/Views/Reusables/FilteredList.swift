@@ -42,8 +42,8 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     
     private func removeItems(at offsets: IndexSet) {
         for index in offsets {
-            let project = results[index]
-            moc.delete(project)
+            let object = results[index]
+            moc.deleteWithChilds(object)
         }
         if moc.hasChanges { try? moc.save() }
     }

@@ -10,13 +10,13 @@ import Foundation
 
 
 extension MObject {
-    func deleteNotifications() {
+    func deleteNotificationsFromIOS() {
         /* get notifications from
          core data and delete them from ios notifications by id
         */
     }
     
-    func createNotifications() {
+    func createNotificationsOnIOS() {
         /* create ios notifications from core data */
         if wrappedStatus == .active {
             //create user defined notifications which is not expired
@@ -32,8 +32,8 @@ extension MObject {
         }
     }
     
-    func resetNotifications() {
-        deleteNotifications()
-        createNotifications()
+    func resetNotificationsOnIOS() {
+        deleteNotificationsFromIOS()
+        createNotificationsOnIOS()
     }
 }
