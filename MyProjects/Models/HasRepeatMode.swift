@@ -93,7 +93,7 @@ extension HasRepeatMode {
         if fireDate <= now {
             fireDate.addHours(1)
             
-            while(fireDate.hoursPassed(from: startDate) % repeatPeriod != 0) {
+            while(fireDate.hoursPassed(from: startDate) % repeatPeriod != 0 || fireDate < startDate ) {
                 fireDate.addHours(1)
             }
         }
@@ -110,7 +110,7 @@ extension HasRepeatMode {
         if fireDate <= now {
             fireDate.addDays(1)
             
-            while (fireDate.daysPassed(from: startDate) % repeatPeriod != 0) {
+            while (fireDate.daysPassed(from: startDate) % repeatPeriod != 0 || fireDate < startDate ) {
                 fireDate.addDays(1)
             }
         }
@@ -141,7 +141,7 @@ extension HasRepeatMode {
         }
         
         func isFireDate() -> Bool {
-            if fireDate <= now {
+            if fireDate <= now || fireDate < startDate {
                 return false
             } else if !isSelectedDay() {
                 return false
