@@ -40,7 +40,7 @@ struct DateTimePickerLimitless: View {
             DatePicker(selection: $date, displayedComponents: .date) {
                 Group {
                     CellImageView(systemName: "calendar.circle.fill")
-                    Text("Date")
+                    Text("Start Date")
                 }
             }
             .accentColor(Color(.systemPurple))
@@ -48,7 +48,7 @@ struct DateTimePickerLimitless: View {
             DatePicker(selection: $date, displayedComponents: .hourAndMinute) {
                 Group {
                     CellImageView(systemName: "clock.fill")
-                    Text("Time")
+                    Text("Start Time")
                 }
             }
             .accentColor(Color(.systemPurple))

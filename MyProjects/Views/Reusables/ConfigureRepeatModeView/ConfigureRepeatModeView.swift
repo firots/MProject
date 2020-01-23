@@ -22,7 +22,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func mainSection() -> some View {
         Group {
-            Section(header: Text("Start Date"), footer: Text("Starts to repeat from the start date and time. The start time is also the time the notification will be sent.")) {
+            Section(footer: Text("Starts to repeat from the start date and time. The start time is also the time the notification will be sent.")) {
                 DateTimePickerLimitless(date: $model.repeatStartDate)
             }
             
@@ -52,7 +52,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     
     func startStopSection() -> some View {
         Group {
-            Section(footer: Text("Will not repeat after end date.")) {
+            Section(footer: Text("Will not repeat after the end date.")) {
                 HStack {
                     CellImageView(systemName: "calendar.circle.fill")
                     Toggle(isOn: $model.hasStartStop) {
