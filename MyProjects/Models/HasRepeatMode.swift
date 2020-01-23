@@ -39,17 +39,17 @@ extension HasRepeatMode {
     }
     
     var startHour: Int {
-        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
+        guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         return calendar.component(.hour, from: startDate)
     }
     
     var startMinute: Int {
-        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
+        guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         return calendar.component(.minute, from: startDate)
     }
     
     var startWeek: Int {
-        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
+        guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         return calendar.component(.weekOfYear, from: startDate)
     }
     
@@ -72,6 +72,8 @@ extension HasRepeatMode {
         if let nextFireDate = self.nextFireDate, !isInRange(date: nextFireDate) {
             self.nextFireDate = nil
         }
+        
+        print(nextFireDate?.toRelative() ?? "no fire date")
     }
     
     private func setFireDateForNone() {
@@ -96,7 +98,6 @@ extension HasRepeatMode {
             }
         }
 
-        print(fireDate.toRelative())
         nextFireDate = fireDate
     }
     
@@ -113,7 +114,7 @@ extension HasRepeatMode {
                 fireDate.addDays(1)
             }
         }
-        print(fireDate.toRelative())
+
         nextFireDate = fireDate
     }
     
@@ -154,7 +155,6 @@ extension HasRepeatMode {
             fireDate.addDays(1)
         }
         
-        print(fireDate.toRelative())
         nextFireDate = fireDate
     }
     
