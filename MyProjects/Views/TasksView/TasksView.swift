@@ -32,9 +32,6 @@ struct TasksView: View {
             }
             hoveringButtons()
         }
-        .onDisappear() {
-            self.model.project?.setProgress()
-        }
         .navigationBarTitle(model.project?.wrappedName ?? "My Tasks")
         .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {

@@ -11,7 +11,7 @@ import Combine
 
 class TasksViewModel: ObservableObject {
     @Published var showAdd = false
-    @Published var taskFilter = 1
+    @Published var taskFilter = 0
     @Published var predicate: NSPredicate?
     
     var modalType = ModalType.addTask

@@ -50,12 +50,21 @@ extension MProject {
         }
     }
     
-    public var wrappedProgress: CGFloat {
-        return CGFloat(progress)
+    public var completedTasks: [MTask] {
+        tasks.filter({ $0.status == MObjectStatus.done.rawValue })
     }
     
     public var progressPercentage: Int {
         Int(100 * wrappedProgress)
+    }
+    
+    public var wrappedProgress: CGFloat {
+        if tasks.isEmpty {
+            return CGFloat.zero
+        } else {
+            let completed = tasks.filter( { $0.wrappedStatus == .done} ).count
+            return CGFloat(completed) / CGFloat(tasks.count)
+        }
     }
 }
 

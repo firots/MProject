@@ -137,6 +137,8 @@ public enum MObjectStatus: Int {
     
     static let colors = [Color(UIColor.systemBackground), Color(.systemOrange), Color(.systemGreen), Color(.systemRed)]
     
+    static let barColors = [UIColor.systemPurple, UIColor.systemOrange, UIColor.systemGreen, UIColor.systemRed]
+    
     static let emptyProjectTitles = ["No projects", "No active projects", "No waiting projects", "No projects completed", "No failed projects"]
     
     static let emptyProjectSubtitles = ["Let's add some?", "Fine...", "Good...", "Let's do some!", "Wow!" ]

@@ -11,6 +11,7 @@ import SwiftUI
 struct ProjectsView: View {
     @ObservedObject private var model: ProjectsViewModel
     @Environment(\.managedObjectContext) private var moc
+    @State private var refresh = false
     
     init() {
         model = ProjectsViewModel()
@@ -64,21 +65,7 @@ struct ProjectsView: View {
     }
     
     private func projectCell(_ project: MProject) -> some View {
-        return NavigationLink(destination: TasksView(project: project)) {
-            HStack {
-                CircularProgressBarView(color: project.color, text: "\(project.progressPercentage)%", width: 60, thickness: 5, progress: project.wrappedProgress)
-                VStack(alignment: .leading) {
-                    Text(project.wrappedName)
-                    Text(project.wrappedDetails).font(.footnote).lineLimit(1)
-                    Text("Due: \(project.deadline?.toRelative() ?? "No Deadline")").font(.footnote)
-                }
-            }
-
-        }
-        .onAppear() {
-            project.setProgress()
-        }
-        .listRowBackground(cellBackgroundColor)
+        ProjectCellView(project: project)
     }
     
     private var cellBackgroundColor: Color {

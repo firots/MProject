@@ -25,7 +25,7 @@ struct CircularProgressBarView: View {
             Circle()
                 .trim(from: 0, to: model.progress)
                 .stroke(Color(model.color), style: StrokeStyle(lineWidth: model.thickness, lineCap: .round))
-                .animation(.linear(duration: 0.1))
+                .animation(.linear(duration: 0.4))
                 .frame(width: model.width, height: model.width)
                 .rotationEffect(Angle(degrees:-90))
         }
