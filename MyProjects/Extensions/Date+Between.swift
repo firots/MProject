@@ -30,14 +30,17 @@ extension Date {
             .withZeroHourAndMinutes()
             .withZeroSeconds()
             .withSunday()
-
         
         let currentWeek = self
             .withZeroHourAndMinutes()
             .withZeroSeconds()
             .withSunday()
-        
+
         return currentWeek.weeksPassed(from: startWeek)
+    }
+    
+    func withMonth(month: Int) -> Date {
+        Calendar.current.date(bySetting: .month, value: month, of: self)!
     }
     
     func monthDifference(from date: Date) -> Int {
@@ -45,11 +48,17 @@ extension Date {
             .withZeroHourAndMinutes()
             .withZeroSeconds()
             .withFirstDayOfMonth()
+            .withMonth(month: Calendar.current.dateComponents([.month], from: date).month!)
         
-        let currentMonth = date
+        print("S \(startMonth.toRelative())")
+        print(self.toRelative())
+        let currentMonth = self
             .withZeroHourAndMinutes()
             .withZeroSeconds()
             .withFirstDayOfMonth()
+            .withMonth(month: Calendar.current.dateComponents([.month], from: self).month!)
+        
+        print("E \(currentMonth.toRelative())")
         
         return currentMonth.monthsPassed(from: startMonth)
     }

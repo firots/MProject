@@ -64,9 +64,9 @@ extension HasRepeatMode {
             case .day:
                 setFireDateForDaily()
             case .week:
-                setFireDateForWeekly()
+                setFireDateForWeeklyAndMonthly()
             case .month:
-                setFireDateForMonthly()
+                setFireDateForWeeklyAndMonthly()
         }
         
         if let nextFireDate = self.nextFireDate, !isInRange(date: nextFireDate) {
@@ -117,24 +117,32 @@ extension HasRepeatMode {
         nextFireDate = fireDate
     }
     
-    private func setFireDateForWeekly() {
+    private func setFireDateForWeeklyAndMonthly() {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         
         let now = Date()
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         func isInPeriod() -> Bool {
-            fireDate.weekDifference(from: startDate) % repeatPeriod == 0
+            if wrappedRepeatMode == .week {
+                return fireDate.weekDifference(from: startDate) % repeatPeriod == 0
+            } else {
+                return fireDate.monthDifference(from: startDate) % repeatPeriod == 0
+            }
         }
         
-        func isSelectedDayOfWeek() -> Bool {
-            selectedDays.contains(calendar.component(.weekday, from: fireDate))
+        func isSelectedDay() -> Bool {
+            if wrappedRepeatMode == .week {
+                return selectedDays.contains(calendar.component(.weekday, from: fireDate))
+            } else {
+                return selectedDays.contains(calendar.component(.day, from: fireDate))
+            }
         }
         
         func isFireDate() -> Bool {
-            if fireDate < now {
+            if fireDate <= now {
                 return false
-            } else if !isSelectedDayOfWeek() {
+            } else if !isSelectedDay() {
                 return false
             } else if !isInPeriod() {
                 return false
@@ -145,6 +153,7 @@ extension HasRepeatMode {
         while !isFireDate() {
             fireDate.addDays(1)
         }
+        
         print(fireDate.toRelative())
         nextFireDate = fireDate
     }
