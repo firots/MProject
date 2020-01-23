@@ -22,7 +22,6 @@ extension MNotification {
             } else {
                 viewModel.repeatModeConfiguration.bind(to: notification)
             }
-            
             notification.setNextFireDate()
         }
         return notification
