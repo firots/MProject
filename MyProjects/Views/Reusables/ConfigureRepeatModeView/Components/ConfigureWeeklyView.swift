@@ -21,7 +21,7 @@ struct ConfigureWeeklyView: View {
 
         return Group {
             Section {
-                Stepper(repeatDescription, value: $repeatPeriod, in: 1...20)
+                Stepper(repeatDescription, value: $repeatPeriod, in: 1...12)
             }
             
             Section(header: Text("On selected days")) {

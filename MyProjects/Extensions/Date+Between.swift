@@ -25,44 +25,6 @@ extension Date {
         getComponents(for: date, components: [.weekOfYear]).weekOfYear ?? 0
     }
     
-    func weekDifference(from date: Date) -> Int {
-        let startWeek = date
-            .withZeroHourAndMinutes()
-            .withZeroSeconds()
-            .withSunday()
-        
-        let currentWeek = self
-            .withZeroHourAndMinutes()
-            .withZeroSeconds()
-            .withSunday()
-
-        return currentWeek.weeksPassed(from: startWeek)
-    }
-    
-    func withMonth(month: Int) -> Date {
-        Calendar.current.date(bySetting: .month, value: month, of: self)!
-    }
-    
-    func monthDifference(from date: Date) -> Int {
-        let startMonth = date
-            .withZeroHourAndMinutes()
-            .withZeroSeconds()
-            .withFirstDayOfMonth()
-            .withMonth(month: Calendar.current.dateComponents([.month], from: date).month!)
-        
-        print("S \(startMonth.toRelative())")
-        print(self.toRelative())
-        let currentMonth = self
-            .withZeroHourAndMinutes()
-            .withZeroSeconds()
-            .withFirstDayOfMonth()
-            .withMonth(month: Calendar.current.dateComponents([.month], from: self).month!)
-        
-        print("E \(currentMonth.toRelative())")
-        
-        return currentMonth.monthsPassed(from: startMonth)
-    }
-    
     func monthsPassed(from date: Date?) -> Int {
         getComponents(for: date, components: [.month]).month ?? 0
     }
@@ -75,4 +37,36 @@ extension Date {
         
         return components
     }
+    
+    func weekDifference(from date: Date) -> Int {
+        let startWeek = date
+            .withZeroHourAndMinutes()
+            .withZeroSeconds()
+            .withSunday() // geçmiş pazara gidemiyo o yüzden saçmalıyor sanki ya da pazarı sonra görüyor
+        
+        let currentWeek = self
+            .withZeroHourAndMinutes()
+            .withZeroSeconds()
+            .withSunday()
+        
+        return currentWeek.weeksPassed(from: startWeek)
+    }
+    
+    private func withStartOfMonth() -> Date {
+        var components = DateComponents(year: Calendar.current.dateComponents([.year], from: self).year!, month: Calendar.current.dateComponents([.month], from: self).month!, day: 1, hour: 0, minute: 0, second: 0)
+        components.nanosecond = 0
+
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: components)!
+    }
+    
+    func monthDifference(from date: Date) -> Int {
+        let startMonth = date.withStartOfMonth()
+        let currentMonth = self.withStartOfMonth()
+        
+        return currentMonth.monthsPassed(from: startMonth)
+    }
+    
+
+
 }
