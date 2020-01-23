@@ -90,7 +90,7 @@ struct AddTaskView: View {
     
 
     func titleBar() -> some View {
-        ModalTitle(title: model.task == nil ? "Add Task": "Edit Task", edit: model.editVisible) {
+        ModalTitle(title: model.task == nil ? "Add New Task": "Edit Task", edit: model.editVisible) {
             self.save()
             self.presentationMode.wrappedValue.dismiss()
         }
