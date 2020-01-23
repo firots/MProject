@@ -36,10 +36,10 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         repeatMode = notification?.repeatMode ?? RepeatMode.none.rawValue
 
         if notification?.repeatMode == RepeatMode.month.rawValue {
-            selectedDayOfMonthIndex = notification?.selectedDateIndex ?? [0]
+            selectedDayOfMonthIndex = notification?.selectedDays.map( {$0 - 1 }) ?? [0]
             repeatMonthsPeriod = notification?.repeatPeriod ?? 1
         } else if notification?.repeatMode == RepeatMode.week.rawValue {
-            selectedDayOfWeekIndex = notification?.selectedDateIndex ?? [0]
+            selectedDayOfWeekIndex = notification?.selectedDays.map( {$0 - 1 }) ?? [0]
             repeatWeeksPeriod = notification?.repeatPeriod ?? 1
         } else if notification?.repeatMode == RepeatMode.day.rawValue {
             repeatDaysPeriod = notification?.repeatPeriod ?? 1
@@ -73,10 +73,10 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
                 repeatingObject.repeatPeriod = repeatDaysPeriod
             } else if wrappedRepeatMode == .week {
                 repeatingObject.repeatPeriod = repeatWeeksPeriod
-                repeatingObject.selectedDateIndex = selectedDayOfWeekIndex
+                repeatingObject.selectedDays = selectedDayOfWeekIndex.map( {$0 + 1 }).sorted()
             } else if wrappedRepeatMode == .month {
                 repeatingObject.repeatPeriod = repeatMonthsPeriod
-                repeatingObject.selectedDateIndex = selectedDayOfMonthIndex
+                repeatingObject.selectedDays = selectedDayOfMonthIndex.map( {$0 + 1 }).sorted()
             }
         }
         
@@ -108,9 +108,9 @@ public enum RepeatMode: Int {
     
     static var descriptions = [
         "Does not repeat",
-        "Repeats at every x hour",
-        "Repeats at every x day",
-        "Repeats at selected days of the week",
-        "Repeats at selected days of the month",
+        "Repeats every x hour",
+        "Repeats every x day",
+        "Repeats every x weeks on selected week days",
+        "Repeats every x months on selected month days",
     ]
 }

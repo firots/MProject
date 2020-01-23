@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class NotificationsViewModel: ObservableObject {
+    @Published var notifications: [AddNotificationViewModel] 
+    var notificationToAdd = AddNotificationViewModel(from: nil)
+    var isNew = false
+    
+    init(notifications: [AddNotificationViewModel]) {
+        self.notifications = notifications
+    }
+}

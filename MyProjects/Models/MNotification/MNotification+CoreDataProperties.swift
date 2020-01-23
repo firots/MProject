@@ -30,7 +30,7 @@ extension MNotification: HasRepeatMode {
     
     /* Repeat Section */
     @NSManaged public var repeatEndDate: Date?
-    @NSManaged public var selectedDateIndex: [Int]
+    @NSManaged public var selectedDays: [Int]
     @NSManaged public var repeatMode: Int
     @NSManaged public var repeatStartDate: Date?
     @NSManaged public var repeatPeriod: Int

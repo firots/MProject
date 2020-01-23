@@ -17,7 +17,7 @@ protocol HasRepeatMode: class {
     
     var nextFireDate: Date? { get set }
     
-    var selectedDateIndex: [Int]  { get  set }
+    var selectedDays: [Int]  { get  set }
     var repeatPeriod: Int  { get  set }
 }
 
@@ -38,12 +38,27 @@ extension HasRepeatMode {
         nextFireDate ?? repeatStartDate ?? Date()
     }
     
+    var startHour: Int {
+        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
+        return calendar.component(.hour, from: startDate)
+    }
+    
+    var startMinute: Int {
+        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
+        return calendar.component(.minute, from: startDate)
+    }
+    
+    var startWeek: Int {
+        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
+        return calendar.component(.weekOfYear, from: startDate)
+    }
+    
     func setNextFireDate() {
         if isNextFireDateValid() { return }
         
         switch wrappedRepeatMode {
             case .none:
-                setFireDateForHourly()
+                setFireDateForNone()
             case .hour:
                 setFireDateForHourly()
             case .day:
@@ -68,12 +83,11 @@ extension HasRepeatMode {
     }
     
     private func setFireDateForHourly() {
-        guard let startDate = repeatStartDate else { return }
+        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
         
         let now = Date()
-        let startMinute = calendar.component(.minute, from: startDate)
-        
         var fireDate = calendar.date(bySetting: .minute, value: startMinute, of: now)!
+        
         if fireDate <= now {
             fireDate.addHours(1)
             
@@ -87,12 +101,9 @@ extension HasRepeatMode {
     }
     
     private func setFireDateForDaily() {
-        guard let startDate = repeatStartDate else { return }
+        guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         
         let now = Date()
-        let startHour = calendar.component(.hour, from: startDate)
-        let startMinute = calendar.component(.minute, from: startDate)
-        
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         if fireDate <= now {
@@ -102,13 +113,40 @@ extension HasRepeatMode {
                 fireDate.addDays(1)
             }
         }
-
         print(fireDate.toRelative())
         nextFireDate = fireDate
     }
     
     private func setFireDateForWeekly() {
+        guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         
+        let now = Date()
+        var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
+        
+        func isInPeriod() -> Bool {
+            (calendar.component(.weekOfYear, from: fireDate) - startWeek) % repeatPeriod == 0
+        }
+        
+        func isSelectedDayOfWeek() -> Bool {
+            selectedDays.contains(calendar.component(.weekday, from: fireDate))
+        }
+        
+        func isFireDate() -> Bool {
+            if fireDate < now {
+                return false
+            } else if !isSelectedDayOfWeek() {
+                return false
+            } else if !isInPeriod() {
+                return false
+            }
+            return true
+        }
+        
+        while !isFireDate() {
+            fireDate.addDays(1)
+        }
+        print(fireDate.toRelative())
+        nextFireDate = fireDate
     }
     
     private func setFireDateForMonthly() {
