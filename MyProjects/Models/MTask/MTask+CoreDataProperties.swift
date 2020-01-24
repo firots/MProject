@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension MTask {
+extension MTask: HasRepeatMode {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MTask> {
         return NSFetchRequest<MTask>(entityName: "MTask")
     }
@@ -26,11 +26,18 @@ extension MTask {
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var project: MProject?
-    @NSManaged public var repeatMode: Int
     @NSManaged public var priotory: Int
     @NSManaged public var step: NSSet?
     @NSManaged public var notification: NSSet?
     @NSManaged public var saved: Bool
+    
+    /* Repeat Section */
+    @NSManaged public var nextFireDate: Date?
+    @NSManaged public var repeatEndDate: Date?
+    @NSManaged public var selectedDays: [Int]
+    @NSManaged public var repeatMode: Int
+    @NSManaged public var repeatStartDate: Date?
+    @NSManaged public var repeatPeriod: Int
     
     public var steps: [MStep] {
         let set = step as? Set<MStep> ?? []

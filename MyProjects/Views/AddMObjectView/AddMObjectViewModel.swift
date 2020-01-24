@@ -97,5 +97,6 @@ class AddMObjectViewModel: ObservableObject {
         case notes
         case addNotification
         case addStep
+        case setRepeatMode
     }
 }

@@ -63,7 +63,7 @@ struct TasksView: View {
     private func listTasks() -> some View {
         FilteredList(predicate: model.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.taskFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.taskFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
-        }
+        }.padding(.top, 10)
     }
     
 

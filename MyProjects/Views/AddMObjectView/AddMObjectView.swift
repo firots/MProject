@@ -18,6 +18,9 @@ struct AddMObjectView: View {
     var body: some View {
         Group {
             mainSection()
+            if model is AddTaskViewModel {
+                repeatModeSection()
+            }
             if model.status == .waiting {
                 autoStartSection()
             }
@@ -36,6 +39,25 @@ struct AddMObjectView: View {
             Toggle(isOn: $model.hasDeadline.animation()) {
                 Text("Deadline")
                     .foregroundColor(model.showExpiredWarning ? Color(.systemRed): Color(.label))
+            }
+        }
+    }
+    
+    func repeatModeSection() -> some View {
+        let taskModel = model as! AddTaskViewModel
+        return Section {
+            HStack {
+                CellImageView(systemName: "arrow.clockwise.circle.fill")
+                Text("Repeat Mode")
+                Spacer()
+                Text("\(RepeatMode.names[taskModel.repeatModeConfiguration.repeatMode].capitalizingFirstLetter())")
+                    .foregroundColor(Color(.secondaryLabel))
+                    .padding(.trailing, 8)
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                self.model.modalType = .setRepeatMode
+                self.model.showModal = true
             }
         }
     }

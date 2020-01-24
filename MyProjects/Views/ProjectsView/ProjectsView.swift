@@ -52,7 +52,7 @@ struct ProjectsView: View {
     private func listProjects() -> some View {
         FilteredList(predicate: model.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.projectFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.projectFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
             self.projectCell(project)
-        }
+        }.padding(.top, 5)
     }
     
     private func addButton() -> some View {

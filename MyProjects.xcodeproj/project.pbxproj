@@ -25,6 +25,7 @@
 		7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */; };
 		7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11A23C5063400F81CCA /* AddMObjectView.swift */; };
 		7625E11D23C5239900F81CCA /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11C23C5239900F81CCA /* Keyboard.swift */; };
+		762E557623DB29D800CB1521 /* SelectTaskRepeatModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762E557523DB29D800CB1521 /* SelectTaskRepeatModeView.swift */; };
 		762F74E723D4E47D0016CC94 /* ConfigureMonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F74E623D4E47D0016CC94 /* ConfigureMonthlyView.swift */; };
 		762F74E923D4E4A90016CC94 /* ConfigureWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F74E823D4E4A90016CC94 /* ConfigureWeeklyView.swift */; };
 		764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30B23C2816600F581BA /* String+Capitalizer.swift */; };
@@ -109,6 +110,7 @@
 		7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectViewModel.swift; sourceTree = "<group>"; };
 		7625E11A23C5063400F81CCA /* AddMObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectView.swift; sourceTree = "<group>"; };
 		7625E11C23C5239900F81CCA /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		762E557523DB29D800CB1521 /* SelectTaskRepeatModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskRepeatModeView.swift; sourceTree = "<group>"; };
 		762F74E623D4E47D0016CC94 /* ConfigureMonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureMonthlyView.swift; sourceTree = "<group>"; };
 		762F74E823D4E4A90016CC94 /* ConfigureWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWeeklyView.swift; sourceTree = "<group>"; };
 		764AA30B23C2816600F581BA /* String+Capitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalizer.swift"; sourceTree = "<group>"; };
@@ -310,7 +312,9 @@
 		7694098C23D5EAD300E40B95 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				768A23E623C8CD3F00AE8B83 /* StepCell */,
 				7673533B23CA52F1002C1194 /* StepsView.swift */,
+				762E557523DB29D800CB1521 /* SelectTaskRepeatModeView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -329,7 +333,6 @@
 			children = (
 				764F94CA23D3384A008C0D09 /* ConfigureRepeatModeView */,
 				76EF17BD23BCE07900C1CD11 /* Buttons */,
-				768A23E623C8CD3F00AE8B83 /* StepCell */,
 				76ED808323C62F580042D36D /* PlaceholderView.swift */,
 				76ED808523C648F70042D36D /* TextView.swift */,
 				764AA30F23C29F6A00F581BA /* FilteredList.swift */,
@@ -594,6 +597,7 @@
 				764F94D023D34EF2008C0D09 /* DateTimePicker.swift in Sources */,
 				76D2ADE823D65F9D009FFD5E /* HasRepeatMode.swift in Sources */,
 				76068E6123C3CF7B008E53C4 /* ModalTitle.swift in Sources */,
+				762E557623DB29D800CB1521 /* SelectTaskRepeatModeView.swift in Sources */,
 				761F244123C1667C008AA2B7 /* MProject+CoreDataProperties.swift in Sources */,
 				768A23E123C8C8DD00AE8B83 /* MStep+CoreDataClass.swift in Sources */,
 				76EF17C723BCE17400C1CD11 /* AddTaskViewModel.swift in Sources */,

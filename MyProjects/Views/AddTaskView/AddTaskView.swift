@@ -45,10 +45,12 @@ struct AddTaskView: View {
                 AddStepView(model: self.model.stepsModel.stepViewModel, newStep: self.model.stepsModel.newStep, keyboard: self.keyboard) {
                     self.model.stepsModel.steps.append(self.model.stepsModel.stepViewModel)
                 }
-            } else {
+            } else if (self.model.modalType == .addNotification) {
                 AddNotificationView(notification: self.model.notificationsModel.notificationToAdd, keyboard: self.keyboard, isNew: self.model.notificationsModel.isNew) {
                     self.model.notificationsModel.notifications.append(self.model.notificationsModel.notificationToAdd)
                 }
+            } else {
+                SelectTaskRepeatModeView(taskModel: self.model, keyboard: self.keyboard)
             }
         }
     }

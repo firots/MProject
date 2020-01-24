@@ -10,6 +10,7 @@ import Foundation
 
 class AddTaskViewModel: AddMObjectViewModel {
     @Published var editVisible = false
+    @Published var repeatModeConfiguration: ConfigureRepeatModeViewModel<MTask>
     let project: MProject?
     let task: MTask?
     
@@ -18,6 +19,7 @@ class AddTaskViewModel: AddMObjectViewModel {
     init(_ task: MTask?, _ project: MProject?) {
         self.project = project
         self.task = task
+        self.repeatModeConfiguration = ConfigureRepeatModeViewModel(from: task, type: .task)
         
         var steps = [StepCellViewModel]()
         

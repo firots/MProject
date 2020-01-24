@@ -11,7 +11,7 @@ import Combine
 
 class TasksViewModel: ObservableObject {
     @Published var showAdd = false
-    @Published var taskFilter = 0
+    @Published var taskFilter: Int
     @Published var predicate: NSPredicate?
     
     var modalType = ModalType.addTask
@@ -28,7 +28,8 @@ class TasksViewModel: ObservableObject {
     private var filterTasksPublisher: AnyPublisher<NSPredicate?, Never> {
         $taskFilter
             .map { taskFilter in
-                self.getPredicate(filter: taskFilter)
+                self.project?.stateFilter = taskFilter
+                return self.getPredicate(filter: taskFilter)
             }
             .eraseToAnyPublisher()
     }
@@ -53,6 +54,7 @@ class TasksViewModel: ObservableObject {
     
     init(project: MProject?) {
         taskFilterTypeNames.insert("All", at: 0)
+        self.taskFilter = project?.stateFilter ?? 1
         self.project = project
 
         filterTasksPublisher

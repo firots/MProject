@@ -32,6 +32,7 @@ extension MProject {
     @NSManaged public var priotory: Int
     @NSManaged public var saved: Bool
     @NSManaged public var progress: Float
+    @NSManaged public var stateFilter: Int
     
     public var tasks: [MTask] {
         let set = task as? Set<MTask> ?? []

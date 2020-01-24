@@ -33,7 +33,7 @@ struct ProjectCellView: View {
                     
                 }.foregroundColor(Color(.label))
             }
-            .padding(.bottom, 5)
+            .padding(.vertical, 5)
         }
         .onAppear() {
             self.model.progress = self.model.project.wrappedProgress

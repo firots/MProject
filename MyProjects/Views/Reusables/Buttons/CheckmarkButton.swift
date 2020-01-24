@@ -14,6 +14,9 @@ struct CheckmarkButton: View {
     var body: some View {
         let status = model.status
         return Button(action: {
+            if status == .active {
+                self.model.status = .done
+            }
             self.model.action?()
         }) {
             if status == .active {
