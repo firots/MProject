@@ -91,15 +91,11 @@ struct TasksView: View {
                 
                 VStack(alignment: .leading) {
                     taskCellNameAndSteps(task)
-                        .padding(.bottom, 5)
                     
                     taskCellStartDates(task)
                         .padding(.bottom, 5)
                     
                     taskCellEndDates(task)
-                        .padding(.bottom, 5)
-                    
-                    taskIcons(task)
                         .padding(.bottom, 5)
                     
                 }.foregroundColor(Color(.label))
@@ -110,8 +106,7 @@ struct TasksView: View {
     
     private func taskIcons(_ task: MTask) -> some View {
         HStack {
-            Image(systemName: "flag.circle.fill")
-                .foregroundColor(MObjectPriority.colors[task.priority])
+
             
             if task.wrappedRepeatMode != .none {
                 Image(systemName: "arrow.clockwise.circle.fill")
@@ -127,21 +122,31 @@ struct TasksView: View {
     
     private func taskCellNameAndSteps(_ task: MTask) -> some View {
         HStack {
+            Image(systemName: "flag.circle.fill")
+                .foregroundColor(MObjectPriority.colors[task.priority])
+            
             Text(task.wrappedName)
                  .strikethrough(task.wrappedStatus == .done, color: nil)
                  .lineLimit(1)
+
+            //taskIcons(task)
              
-             Spacer()
-             
-             if !task.steps.isEmpty {
-                 
-                 Text("\(task.completedSteps.count)/\(task.steps.count)")
+            Spacer()
+                
+            showSteps(task)
+        }
+    }
+    
+    private func showSteps(_ task: MTask) -> some View {
+        HStack {
+            if !task.steps.isEmpty {
+                Text("\(task.completedSteps.count)/\(task.steps.count)")
                     .strikethrough(task.steps.count == task.completedSteps.count, color: nil)
                     .font(.system(size: 20, design: .monospaced))
                     .bold()
                     .lineLimit(1)
                     .foregroundColor(Color(.systemGray))
-             }
+            }
         }
     }
     
@@ -205,26 +210,34 @@ struct TasksView: View {
     }
     
     func checkmarkButton(_ task: MTask) -> some View {
-        CheckmarkButton(status: task.wrappedStatus) {
-            if task.wrappedStatus == .active {
-                task.wrappedStatus = .done
-                Haptic.feedback(.medium)
-                self.saveChanges()
-            } else if task.wrappedStatus == .done {
-                task.wrappedStatus = .active
+        ZStack {
+            CheckmarkButton(status: task.wrappedStatus) {
                 if task.wrappedStatus == .active {
-                    Haptic.feedback(.light)
+                    task.wrappedStatus = .done
+                    Haptic.feedback(.medium)
+                    self.saveChanges()
+                } else if task.wrappedStatus == .done {
+                    task.wrappedStatus = .active
+                    if task.wrappedStatus == .active {
+                        Haptic.feedback(.light)
+                    } else {
+                        Haptic.notify(.error)
+                    }
+                    self.saveChanges()
                 } else {
-                    Haptic.notify(.error)
+                    Haptic.notify(.warning)
+                    self.model.taskToEdit = task
+                    self.model.modalType = .addTask
+                    self.model.showAdd = true
                 }
-                self.saveChanges()
-            } else {
-                Haptic.notify(.warning)
-                self.model.taskToEdit = task
-                self.model.modalType = .addTask
-                self.model.showAdd = true
+            }
+            
+            VStack {
+                
+                Spacer()
             }
         }
+
     }
 }
 

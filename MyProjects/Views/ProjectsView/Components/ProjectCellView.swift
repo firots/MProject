@@ -36,9 +36,6 @@ struct ProjectCellView: View {
                         taskCellEndDates()
                             .padding(.bottom, 5)
                         
-                        projectIcons()
-                            .padding(.bottom, 5)
-                        
                     }.foregroundColor(Color(.label))
                 }
                 .padding(.vertical, 5)
@@ -50,31 +47,28 @@ struct ProjectCellView: View {
         .listRowBackground(Color(.systemBackground))
     }
     
-    private func projectIcons() -> some View {
-        HStack {
-            Image(systemName: "flag.circle.fill")
-                .foregroundColor(MObjectPriority.colors[model.project.priority])
-            
-            if !model.project.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
-                Image(systemName: "bell.circle.fill")
-                    .foregroundColor(Color(.systemGray))
-            }
-        }
-    }
-    
     private func progressView() -> some View {
         CircularProgressBarView(color: MObjectStatus.barColors[model.project.status], text: "\(model.project.progressPercentage)%", width: 60, thickness: 5, progress: model.progress)
     }
     
     private func taskCellNameAndSteps() -> some View {
         HStack {
+            Image(systemName: "flag.circle.fill")
+                .foregroundColor(MObjectPriority.colors[model.project.priority])
+            
             Text(model.project.wrappedName)
                 .strikethrough(model.project.wrappedStatus == .done, color: nil)
                  .lineLimit(1)
              
              Spacer()
              
+            
              if !model.project.tasks.isEmpty {
+                
+                /*if !model.project.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
+                    Image(systemName: "bell.circle.fill")
+                        .foregroundColor(Color(.systemGray))
+                }*/
                  
                 Text("\(model.project.completedTasks.count)/\(model.project.tasks.count)")
                     .strikethrough(model.project.tasks.count == model.project.completedTasks.count, color: nil)
