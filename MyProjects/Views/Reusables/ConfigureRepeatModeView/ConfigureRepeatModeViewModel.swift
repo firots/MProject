@@ -108,8 +108,8 @@ public enum RepeatMode: Int {
     
     static var descriptions = [
         "Does not repeat",
-        "Repeats every x hour",
-        "Repeats every x day",
+        "Repeats every x hours",
+        "Repeats every x days",
         "Repeats every x weeks on selected week days",
         "Repeats every x months on selected month days",
     ]
