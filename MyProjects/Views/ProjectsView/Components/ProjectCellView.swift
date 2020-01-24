@@ -16,29 +16,50 @@ struct ProjectCellView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: TasksView(project: model.project)) {
-            HStack {
-                progressView()
-                .padding(.trailing)
-                
-                VStack(alignment: .leading) {
-                    taskCellNameAndSteps()
-                        .padding(.bottom, 5)
+        
+        ZStack {
+            NavigationLink(destination: TasksView(project: model.project)) {
+                EmptyView()
+            }.buttonStyle(PlainButtonStyle())
+            Group {
+                HStack {
+                    progressView()
+                    .padding(.trailing)
                     
-                    taskCellStartDates()
-                        .padding(.bottom, 5)
-                    
-                    taskCellEndDates()
-                        .padding(.bottom, 5)
-                    
-                }.foregroundColor(Color(.label))
+                    VStack(alignment: .leading) {
+                        taskCellNameAndSteps()
+                            .padding(.bottom, 5)
+                        
+                        taskCellStartDates()
+                            .padding(.bottom, 5)
+                        
+                        taskCellEndDates()
+                            .padding(.bottom, 5)
+                        
+                        projectIcons()
+                            .padding(.bottom, 5)
+                        
+                    }.foregroundColor(Color(.label))
+                }
+                .padding(.vertical, 5)
             }
-            .padding(.vertical, 5)
         }
         .onAppear() {
             self.model.progress = self.model.project.wrappedProgress
         }
         .listRowBackground(Color(.systemBackground))
+    }
+    
+    private func projectIcons() -> some View {
+        HStack {
+            Image(systemName: "flag.circle.fill")
+                .foregroundColor(MObjectPriotory.colors[model.project.priotory])
+            
+            if !model.project.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
+                Image(systemName: "bell.circle.fill")
+                    .foregroundColor(Color(.systemOrange))
+            }
+        }
     }
     
     private func progressView() -> some View {

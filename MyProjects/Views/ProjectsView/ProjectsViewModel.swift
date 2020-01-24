@@ -43,5 +43,4 @@ class ProjectsViewModel: ObservableObject {
         .assign(to: \.predicate, on: self)
         .store(in: &cancellableSet)
     }
-    
 }

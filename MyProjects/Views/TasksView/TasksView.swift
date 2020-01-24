@@ -99,10 +99,30 @@ struct TasksView: View {
                     taskCellEndDates(task)
                         .padding(.bottom, 5)
                     
+                    taskIcons(task)
+                        .padding(.bottom, 5)
+                    
                 }.foregroundColor(Color(.label))
             }
             .padding(.bottom, 5)
         }.listRowBackground(cellBackgroundColor)
+    }
+    
+    private func taskIcons(_ task: MTask) -> some View {
+        HStack {
+            Image(systemName: "flag.circle.fill")
+                .foregroundColor(MObjectPriotory.colors[task.priotory])
+            
+            if task.wrappedRepeatMode != .none {
+                Image(systemName: "arrow.clockwise.circle.fill")
+                    .foregroundColor(Color(.systemPurple))
+            }
+            
+            if !task.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
+                Image(systemName: "bell.circle.fill")
+                    .foregroundColor(Color(.systemOrange))
+            }
+        }
     }
     
     private func taskCellNameAndSteps(_ task: MTask) -> some View {

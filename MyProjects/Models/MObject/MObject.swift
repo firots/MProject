@@ -125,6 +125,19 @@ extension MObject {
     }
 }
 
+public enum MObjectPriotory: Int {
+    case veryLow
+    case low
+    case medium
+    case high
+    case veryHigh
+    
+    static let names = ["Very Low", "Low", "Medium", "High", "Very High"]
+    static let all = [veryLow, low, medium, high, veryHigh]
+    static let colors = [Color(.systemGray), Color(.systemGreen), Color(.systemBlue), Color(.systemYellow), Color(.systemRed) ]
+    
+}
+
 public enum MObjectStatus: Int {
     case active
     case waiting

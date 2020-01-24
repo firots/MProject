@@ -38,18 +38,4 @@ class AddNotificationViewModel: ObservableObject {
         
         mObject = mNot?.task != nil ? mNot?.task : mNot?.project
     }
-    
-    func refreshOnDB() {
-        //delete from core data
-        
-        //recreate on core data
-    }
-    
-    func deleteOnDB() {
-        
-    }
-    
-    func createOnDB() {
-        
-    }
 }

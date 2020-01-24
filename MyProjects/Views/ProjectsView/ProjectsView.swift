@@ -11,7 +11,6 @@ import SwiftUI
 struct ProjectsView: View {
     @ObservedObject private var model: ProjectsViewModel
     @Environment(\.managedObjectContext) private var moc
-    @State private var refresh = false
     
     init() {
         model = ProjectsViewModel()
@@ -22,6 +21,7 @@ struct ProjectsView: View {
             VStack {
                 HStack {
                     Text(Date().toClassic()).padding(.leading, 20)
+                    MObjectNavigationButtons()
                     Spacer()
                 }
                 ZStack {
