@@ -23,6 +23,7 @@ class AddMObjectViewModel: ObservableObject {
     @Published var hasAutoStart = false
     @Published var modalType = ModalType.notes
     @Published var showExpiredWarning = false
+    @Published var priority = MObjectPriority.medium.rawValue
 
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -72,6 +73,7 @@ class AddMObjectViewModel: ObservableObject {
             details = o.details ?? ""
             started = o.started
             ended = o.ended
+            self.priority = o.priority
             if let deadline = o.deadline {
                 hasDeadline = true
                 self.deadline = deadline

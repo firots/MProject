@@ -17,6 +17,7 @@ extension MTask {
         t.syncSteps(with: model.stepsModel.steps, context: moc)
         t.syncNotifications(with: model.notificationsModel.notifications, context: moc)
         t.repeatMode = model.repeatModeConfiguration.repeatMode
+        t.priority = model.priority
         if model.repeatModeConfiguration.wrappedRepeatMode != .none {
             model.repeatModeConfiguration.bind(to: t)
         }

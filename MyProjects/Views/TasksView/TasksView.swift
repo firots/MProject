@@ -111,7 +111,7 @@ struct TasksView: View {
     private func taskIcons(_ task: MTask) -> some View {
         HStack {
             Image(systemName: "flag.circle.fill")
-                .foregroundColor(MObjectPriotory.colors[task.priotory])
+                .foregroundColor(MObjectPriority.colors[task.priority])
             
             if task.wrappedRepeatMode != .none {
                 Image(systemName: "arrow.clockwise.circle.fill")
@@ -120,7 +120,7 @@ struct TasksView: View {
             
             if !task.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
                 Image(systemName: "bell.circle.fill")
-                    .foregroundColor(Color(.systemOrange))
+                    .foregroundColor(Color(.systemPurple))
             }
         }
     }

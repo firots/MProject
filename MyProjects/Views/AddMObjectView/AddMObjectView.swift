@@ -18,6 +18,9 @@ struct AddMObjectView: View {
     var body: some View {
         Group {
             mainSection()
+            
+            prioritySection()
+            
             if model is AddTaskViewModel {
                 repeatModeSection()
             }
@@ -106,6 +109,32 @@ struct AddMObjectView: View {
 
             detailsButton()
         }
+    }
+    
+    func prioritySection() -> some View {
+        Section {
+            VStack {
+                Picker(selection: $model.priority.animation(), label: Text("Priority")) {
+                    ForEach(0..<MObjectPriority.all.count) { index in
+                        Image(systemName: "flag.circle.fill")
+                            .resizable()
+                            .frame(width:24, height: 24)
+                            .aspectRatio(contentMode: .fill)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .background(MObjectPriority.colors[model.priority])
+                .cornerRadius(8)
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
+                
+                Text("\(MObjectPriority.names[model.priority]) Priority")
+                    .font(.footnote)
+                    .padding(.horizontal)
+
+            }
+        }
+
     }
     
     func detailsButton() -> some View {

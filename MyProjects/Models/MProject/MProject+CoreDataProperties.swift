@@ -29,7 +29,7 @@ extension MProject {
     @NSManaged public var deadline: Date?
     @NSManaged public var task: NSSet?
     @NSManaged public var notification: NSSet?
-    @NSManaged public var priotory: Int
+    @NSManaged public var priority: Int
     @NSManaged public var saved: Bool
     @NSManaged public var progress: Float
     @NSManaged public var stateFilter: Int

@@ -19,7 +19,7 @@ protocol MObject: class {
     var status: Int { get  set }
     var ended: Date? { get  set }
     var lastModified: Date? { get  set }
-    var priotory: Int { get set }
+    var priority: Int { get set }
     var notification: NSSet? { get  set }
     var saved: Bool { get set }
 }
@@ -125,7 +125,7 @@ extension MObject {
     }
 }
 
-public enum MObjectPriotory: Int {
+public enum MObjectPriority: Int {
     case veryLow
     case low
     case medium
@@ -134,7 +134,7 @@ public enum MObjectPriotory: Int {
     
     static let names = ["Very Low", "Low", "Medium", "High", "Very High"]
     static let all = [veryLow, low, medium, high, veryHigh]
-    static let colors = [Color(.systemGray), Color(.systemGreen), Color(.systemBlue), Color(.systemYellow), Color(.systemRed) ]
+    static let colors = [Color(.systemGray), Color(.systemGreen), Color(.systemBlue), Color(.systemOrange), Color(.systemRed) ]
     
 }
 

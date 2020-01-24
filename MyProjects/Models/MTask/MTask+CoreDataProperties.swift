@@ -26,7 +26,7 @@ extension MTask: HasRepeatMode {
     @NSManaged public var ended: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var project: MProject?
-    @NSManaged public var priotory: Int
+    @NSManaged public var priority: Int
     @NSManaged public var step: NSSet?
     @NSManaged public var notification: NSSet?
     @NSManaged public var saved: Bool

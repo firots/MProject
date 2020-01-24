@@ -53,11 +53,11 @@ struct ProjectCellView: View {
     private func projectIcons() -> some View {
         HStack {
             Image(systemName: "flag.circle.fill")
-                .foregroundColor(MObjectPriotory.colors[model.project.priotory])
+                .foregroundColor(MObjectPriority.colors[model.project.priority])
             
             if !model.project.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
                 Image(systemName: "bell.circle.fill")
-                    .foregroundColor(Color(.systemOrange))
+                    .foregroundColor(Color(.systemPurple))
             }
         }
     }
