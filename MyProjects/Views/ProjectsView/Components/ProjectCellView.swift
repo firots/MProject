@@ -57,7 +57,7 @@ struct ProjectCellView: View {
             
             if !model.project.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
                 Image(systemName: "bell.circle.fill")
-                    .foregroundColor(Color(.systemPurple))
+                    .foregroundColor(Color(.systemGray))
             }
         }
     }

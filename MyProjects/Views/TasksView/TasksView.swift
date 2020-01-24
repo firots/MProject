@@ -115,12 +115,12 @@ struct TasksView: View {
             
             if task.wrappedRepeatMode != .none {
                 Image(systemName: "arrow.clockwise.circle.fill")
-                    .foregroundColor(Color(.systemPurple))
+                    .foregroundColor(Color(.systemGray))
             }
             
             if !task.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
                 Image(systemName: "bell.circle.fill")
-                    .foregroundColor(Color(.systemPurple))
+                    .foregroundColor(Color(.systemGray))
             }
         }
     }
