@@ -92,16 +92,28 @@ extension HasRepeatMode {
         let now = Date()
         var fireDate = calendar.date(bySetting: .minute, value: startMinute, of: now)!
         
-        if fireDate <= now {
-            fireDate.addHours(1)
-            
-            while(fireDate.hoursPassed(from: startDate) % repeatPeriod != 0 || fireDate < startDate ) {
-                fireDate.addHours(1)
-            }
+        
+        func isInPeriod() -> Bool {
+            fireDate.hoursPassed(from: startDate) % repeatPeriod == 0
         }
-
+        
+        func isFireDate() -> Bool {
+            if fireDate <= now || fireDate < startDate {
+                return false
+            } else if !isInPeriod() {
+                return false
+            }
+            return true
+        }
+    
+        while(!isFireDate()) {
+            fireDate.addHours(1)
+        }
         nextFireDate = fireDate
     }
+
+        
+    
     
     private func setFireDateForDaily() {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
@@ -109,16 +121,28 @@ extension HasRepeatMode {
         let now = Date()
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
-        if fireDate <= now {
-            fireDate.addDays(1)
-            
-            while (fireDate.daysPassed(from: startDate) % repeatPeriod != 0 || fireDate < startDate ) {
-                fireDate.addDays(1)
-            }
+        func isInPeriod() -> Bool {
+            fireDate.daysPassed(from: startDate) % repeatPeriod == 0
         }
-
+        
+        func isFireDate() -> Bool {
+            if fireDate <= now || fireDate < startDate {
+                return false
+            } else if !isInPeriod() {
+                return false
+            }
+            return true
+        }
+            
+        while (!isFireDate()) {
+            fireDate.addDays(1)
+        }
+        
         nextFireDate = fireDate
     }
+
+        
+    
     
     private func setFireDateForWeeklyAndMonthly() {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
