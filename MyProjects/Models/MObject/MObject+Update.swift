@@ -11,6 +11,12 @@ import Foundation
 extension MObject {
     func update() {
         let now = Date()
+        
+        if let task = self as? MTask {
+            
+        }
+        
+        
         if let d = deadline, now >= d {
             wrappedStatus = .failed
         } else if wrappedStatus == .waiting, let s = started, now >= s {

@@ -92,6 +92,7 @@
 		76FEB7EC23DC92770028DBA0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEB7EB23DC92770028DBA0 /* DataManager.swift */; };
 		76FEB7F023DC99EE0028DBA0 /* MObject+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEB7EF23DC99EE0028DBA0 /* MObject+Update.swift */; };
 		76FEB7F223DCA8D70028DBA0 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEB7F123DCA8D70028DBA0 /* LocalNotifications.swift */; };
+		76FEB7F423DCE6580028DBA0 /* MTask+Clone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEB7F323DCE6580028DBA0 /* MTask+Clone.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -182,6 +183,7 @@
 		76FEB7EB23DC92770028DBA0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		76FEB7EF23DC99EE0028DBA0 /* MObject+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+Update.swift"; sourceTree = "<group>"; };
 		76FEB7F123DCA8D70028DBA0 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
+		76FEB7F323DCE6580028DBA0 /* MTask+Clone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+Clone.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 				7681B67D23C383DA0068254B /* MTask+CoreDataProperties.swift */,
 				7681B68723C3B3360068254B /* MTask+CreateOrSync.swift */,
 				7673533723CA1065002C1194 /* MTask+ChangeState.swift */,
+				76FEB7F323DCE6580028DBA0 /* MTask+Clone.swift */,
 			);
 			path = MTask;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */,
 				764F94CC23D33865008C0D09 /* ConfigureRepeatModeView.swift in Sources */,
 				764F94CE23D33881008C0D09 /* ConfigureRepeatModeViewModel.swift in Sources */,
+				76FEB7F423DCE6580028DBA0 /* MTask+Clone.swift in Sources */,
 				7621991723CBCA8F004B6541 /* MObjectStatePicker.swift in Sources */,
 				76038F6F23D521FF0021260D /* ConfigureDailyView.swift in Sources */,
 				764F94C923D3382E008C0D09 /* AddNotificationViewModel.swift in Sources */,
