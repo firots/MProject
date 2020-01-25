@@ -11,7 +11,7 @@ import CoreData
 
 extension MNotification {
     static func create(from viewModel: AddNotificationViewModel?, context moc: NSManagedObjectContext) -> MNotification {
-        let notification = createBase(context: moc)
+        let notification = createBase(context: moc, model: viewModel)
         if let viewModel = viewModel {
             notification.details = viewModel.details
             notification.title = viewModel.title
@@ -23,22 +23,48 @@ extension MNotification {
                 viewModel.repeatModeConfiguration.bind(to: notification)
             }
             notification.setNextFireDate()
-            notification.createOnIOSIfNear()
         }
         return notification
     }
     
     func createOnIOSIfNear() {
-        guard let nextFireDate = nextFireDate else { return }
-        let now = Date()
-        if nextFireDate.hoursPassed(from: now) <= 2 {
-            LocalNotifications.shared.create(from: self)
+        print("CREATE ON IOS IF NEAR")
+        guard let nextFireDate = self.nextFireDate else { return }
+        if isNextFireDateValid() {
+            let now = Date()
+            if nextFireDate.hoursPassed(from: now) <= 4 {
+                LocalNotifications.shared.create(from: self)
+            }
         }
     }
     
-    static func createBase(context moc: NSManagedObjectContext) -> MNotification {
+    func isMobjectActiveOrWaiting() -> Bool {
+        if let mObject = mObject {
+            if mObject.wrappedStatus == .active || mObject.wrappedStatus == .waiting {
+                return true
+            }
+        }
+        return false
+    }
+    
+    var mObject: MObject? {
+        return task ?? project
+    }
+    
+    func isNextFireDateValid() -> Bool {
+        guard let nextFireDate = self.nextFireDate else { return false }
+        if !isMobjectActiveOrWaiting() { return false }
+        if let deadline = mObject?.deadline, nextFireDate > deadline {
+            return false
+        } else if nextFireDate <= Date() {
+            return false
+        }
+        return true
+    }
+    
+    static func createBase(context moc: NSManagedObjectContext, model: AddNotificationViewModel? ) -> MNotification {
         let notification = MNotification(context: moc)
-        notification.id = UUID()
+        notification.id = model?.id ?? UUID()
         notification.created = Date()
         return notification
     }

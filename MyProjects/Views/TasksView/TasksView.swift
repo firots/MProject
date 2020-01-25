@@ -215,10 +215,12 @@ struct TasksView: View {
                 if task.wrappedStatus == .active {
                     task.wrappedStatus = .done
                     Haptic.feedback(.medium)
+                    task.deleteNotificationsFromIOS()
                     self.saveChanges()
                 } else if task.wrappedStatus == .done {
                     task.wrappedStatus = .active
                     if task.wrappedStatus == .active {
+                        task.resetNotificationsOnIOS()
                         Haptic.feedback(.light)
                     } else {
                         Haptic.notify(.error)

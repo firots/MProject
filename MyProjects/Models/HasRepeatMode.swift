@@ -52,10 +52,10 @@ extension HasRepeatMode {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         return calendar.component(.weekOfYear, from: startDate)
     }
-    
+
     func setNextFireDate() {
         DispatchQueue.global(qos: .userInitiated).async {
-            if self.isNextFireDateValid() { return }
+            if self.isNextFireDateStillInFuture() { return }
             
             switch self.wrappedRepeatMode {
                 case .none:
@@ -164,7 +164,7 @@ extension HasRepeatMode {
         
     }
     
-    private func isNextFireDateValid() -> Bool {
+    private func isNextFireDateStillInFuture() -> Bool {
         if let nextFireDate = self.nextFireDate, nextFireDate > Date() { return true }
         return false
     }

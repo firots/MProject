@@ -13,8 +13,8 @@ extension MObject {
     func clearNotifications(context moc: NSManagedObjectContext) {
         for notification in notifications {
             moc.delete(notification)
-            LocalNotifications.shared.delete(id: notification.wrappedID)
         }
+        deleteNotificationsFromIOS()
     }
     
     func syncNotifications(with notificationModels: [AddNotificationViewModel], context moc: NSManagedObjectContext) {
@@ -28,6 +28,7 @@ extension MObject {
             } else if let project = self as? MProject {
                 notification.project = project
             }
+            notification.createOnIOSIfNear()
             notifications.append(notification)
         }
         

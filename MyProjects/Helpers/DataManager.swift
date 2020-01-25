@@ -15,14 +15,14 @@ class DataManager {
     private let context: NSManagedObjectContext
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
-    var notificationPredicate = NSPredicate(format: "date != nil")
+    var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     
     private init() {
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     
     func syncAll() {
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.main.async {
             self.syncTasks()
             self.syncProjects()
             self.syncNotifications()
@@ -58,17 +58,20 @@ class DataManager {
     }
     
     func syncNotifications() {
+        LocalNotifications.shared.deleteAll()
         let fetchRequest: NSFetchRequest<MNotification> = MNotification.fetchRequest()
         let sort = NSSortDescriptor(key: #keyPath(MNotification.nextFireDate), ascending: true)
         
         fetchRequest.predicate = notificationPredicate
         fetchRequest.sortDescriptors = [sort]
-
+        fetchRequest.fetchLimit = 32
+        
         do {
             let notifications = try context.fetch(fetchRequest)
             for notification in notifications {
-                print(notification.nextFireDate?.toRelative())
+                notification.createOnIOSIfNear()
             }
+
         } catch {
             fatalError("Unable to fetch notifications.")
         }

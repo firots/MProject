@@ -64,13 +64,8 @@ extension MObject {
                 self.ended = nil
             }
             
-            if newValue == .failed || newValue == .done {
-                deleteNotificationsFromIOS()
-            }
-
             if newValue == .active && isExpired {
                 self.status = MObjectStatus.failed.rawValue
-                deleteNotificationsFromIOS()
             } else {
                 self.status = newValue.rawValue
             }

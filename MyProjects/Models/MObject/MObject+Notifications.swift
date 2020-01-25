@@ -10,6 +10,11 @@ import Foundation
 
 
 extension MObject {
+    func resetNotificationsOnIOS() {
+        deleteNotificationsFromIOS()
+        createNotificationsOnIOS()
+    }
+    
     func deleteNotificationsFromIOS() {
         for notification in notifications {
             LocalNotifications.shared.delete(id: notification.wrappedID)
@@ -17,14 +22,8 @@ extension MObject {
     }
     
     func createNotificationsOnIOS() {
-        /* create ios notifications from core data */
-        if wrappedStatus == .active {
-            //create user defined notifications which is not expired
-            createNotificationsOnIOS()
-        }
-        else if wrappedStatus == .waiting {
-            createActivationNotificationsOnIOS()
-            createDeadlineNotificationsOnIOS()
+        for notification in notifications {
+            notification.createOnIOSIfNear()
         }
     }
     
@@ -42,10 +41,5 @@ extension MObject {
                 //create deadline notifications
             }
         }
-    }
-    
-    func resetNotificationsOnIOS() {
-        deleteNotificationsFromIOS()
-        createNotificationsOnIOS()
     }
 }

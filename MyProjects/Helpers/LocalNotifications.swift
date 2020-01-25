@@ -17,25 +17,22 @@ class LocalNotifications {
     }
     
     func deleteAll() {
-        
+        print("DELETE ALL NOTIFICATIONS")
     }
     
     func delete(id: UUID) {
-        
+        print("DELETE FROM IOS")
     }
     
     func create(from model: MNotification) {
+        print("CREATE ON IOS FROM MODEL")
         guard let id = model.id else { return }
-        guard let title = model.title, let date = model.nextFireDate else {
-            delete(id: id)
-            return
-        }
-        
+        guard let title = model.title, let date = model.nextFireDate else { return }
         create(id: id, title: title, message: model.description, date: date)
     }
     
     func create(id: UUID, title: String, message: String, date: Date) {
-        delete(id: id)
+        print("CREATED ON IOS \(date.toRelative())")
         
         
     }
