@@ -25,17 +25,14 @@ struct StepsView: View {
             }
             if model.steps.count > 0 {
                 Section {
-                    ForEach(0..<model.steps.count, id: \.self) { index in
+                    ForEach(model.steps) { step in
                         VStack {
-                            StepCellView(model: self.model.steps[index]) {
+                            StepCellView(model: step) {
                                 withAnimation {
                                     self.model.newStep = false
-                                    self.model.stepViewModel = self.model.steps[index]
+                                    self.model.stepViewModel = step
                                     self.modalAction?()
                                 }
-                            }
-                            if index < self.model.steps.count - 1 {
-                                 Divider()
                             }
                         }.contentShape(Rectangle())
                     }

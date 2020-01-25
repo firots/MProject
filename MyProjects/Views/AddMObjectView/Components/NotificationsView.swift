@@ -24,8 +24,8 @@ struct NotificationsView: View {
     
     func listNotifications() -> some View {
         Section {
-            ForEach (0..<model.notifications.count, id: \.self) { index in
-                self.notificationCell(index)
+            ForEach (model.notifications) { notification in
+                self.notificationCell(notification)
             }
             .onDelete(perform: delete)
         }
@@ -35,9 +35,8 @@ struct NotificationsView: View {
         model.notifications.remove(atOffsets: offsets)
     }
     
-    func notificationCell(_ index: Int) -> some View {
-        let notification = self.model.notifications[index]
-        return HStack {
+    func notificationCell(_ notification: AddNotificationViewModel) -> some View {
+        HStack {
             Text(notification.id.uuidString)
         }.onTapGesture {
             self.model.isNew = false

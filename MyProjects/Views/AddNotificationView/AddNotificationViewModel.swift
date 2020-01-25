@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AddNotificationViewModel: ObservableObject {
+class AddNotificationViewModel: ObservableObject, Identifiable {
     /* uuid will be transferred to notification center */
     var id: UUID
     @Published var title: String
