@@ -11,9 +11,9 @@ import Foundation
 
 extension MObject {
     func deleteNotificationsFromIOS() {
-        /* get notifications from
-         core data and delete them from ios notifications by id
-        */
+        for notification in notifications {
+            LocalNotifications.shared.delete(id: notification.wrappedID)
+        }
     }
     
     func createNotificationsOnIOS() {

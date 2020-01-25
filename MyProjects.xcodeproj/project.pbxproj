@@ -89,6 +89,9 @@
 		76FDE0DB23CE1C5A00E3EEA2 /* DismissGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0DA23CE1C5A00E3EEA2 /* DismissGuardian.swift */; };
 		76FDE0DD23CE422500E3EEA2 /* MObject+SetMutualFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0DC23CE422500E3EEA2 /* MObject+SetMutualFields.swift */; };
 		76FDE0E023CE425C00E3EEA2 /* MObject+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE0DF23CE425C00E3EEA2 /* MObject+Notifications.swift */; };
+		76FEB7EC23DC92770028DBA0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEB7EB23DC92770028DBA0 /* DataManager.swift */; };
+		76FEB7F023DC99EE0028DBA0 /* MObject+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEB7EF23DC99EE0028DBA0 /* MObject+Update.swift */; };
+		76FEB7F223DCA8D70028DBA0 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEB7F123DCA8D70028DBA0 /* LocalNotifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +179,9 @@
 		76FDE0DA23CE1C5A00E3EEA2 /* DismissGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissGuardian.swift; sourceTree = "<group>"; };
 		76FDE0DC23CE422500E3EEA2 /* MObject+SetMutualFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+SetMutualFields.swift"; sourceTree = "<group>"; };
 		76FDE0DF23CE425C00E3EEA2 /* MObject+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+Notifications.swift"; sourceTree = "<group>"; };
+		76FEB7EB23DC92770028DBA0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		76FEB7EF23DC99EE0028DBA0 /* MObject+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+Update.swift"; sourceTree = "<group>"; };
+		76FEB7F123DCA8D70028DBA0 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,8 +484,10 @@
 		76FDE0D723CE0BBC00E3EEA2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				76FEB7EB23DC92770028DBA0 /* DataManager.swift */,
 				76FDE0D823CE0BCA00E3EEA2 /* Haptics.swift */,
 				7625E11C23C5239900F81CCA /* Keyboard.swift */,
+				76FEB7F123DCA8D70028DBA0 /* LocalNotifications.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -491,6 +499,7 @@
 				76FDE0DC23CE422500E3EEA2 /* MObject+SetMutualFields.swift */,
 				76FDE0DF23CE425C00E3EEA2 /* MObject+Notifications.swift */,
 				7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */,
+				76FEB7EF23DC99EE0028DBA0 /* MObject+Update.swift */,
 			);
 			path = MObject;
 			sourceTree = "<group>";
@@ -626,10 +635,13 @@
 				765BA58623C2313E007F835D /* Date+ToString.swift in Sources */,
 				766FE81223D0BE3D0055180B /* MNotification+CoreDataClass.swift in Sources */,
 				76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */,
+				76FEB7F023DC99EE0028DBA0 /* MObject+Update.swift in Sources */,
 				761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */,
 				76FD61AD23B929AE00D21B21 /* ContentView.swift in Sources */,
+				76FEB7EC23DC92770028DBA0 /* DataManager.swift in Sources */,
 				76F06B6123DA3E39002CE0E3 /* CircularProgressBarView.swift in Sources */,
 				76FD61A823B929AE00D21B21 /* SceneDelegate.swift in Sources */,
+				76FEB7F223DCA8D70028DBA0 /* LocalNotifications.swift in Sources */,
 				764F94C723D3381E008C0D09 /* AddNotificationView.swift in Sources */,
 				76FDE0D923CE0BCA00E3EEA2 /* Haptics.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */,

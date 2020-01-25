@@ -8,8 +8,9 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
-protocol MObject: class {
+protocol MObject: NSManagedObject {
     var id: UUID? { get  set }
     var name: String? { get  set }
     var details: String? { get  set }
@@ -62,9 +63,14 @@ extension MObject {
             } else {
                 self.ended = nil
             }
+            
+            if newValue == .failed || newValue == .done {
+                deleteNotificationsFromIOS()
+            }
 
             if newValue == .active && isExpired {
                 self.status = MObjectStatus.failed.rawValue
+                deleteNotificationsFromIOS()
             } else {
                 self.status = newValue.rawValue
             }

@@ -13,7 +13,7 @@ extension MObject {
     func clearNotifications(context moc: NSManagedObjectContext) {
         for notification in notifications {
             moc.delete(notification)
-            //also delete from system
+            LocalNotifications.shared.delete(id: notification.wrappedID)
         }
     }
     

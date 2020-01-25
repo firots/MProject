@@ -23,8 +23,17 @@ extension MNotification {
                 viewModel.repeatModeConfiguration.bind(to: notification)
             }
             notification.setNextFireDate()
+            notification.createOnIOSIfNear()
         }
         return notification
+    }
+    
+    func createOnIOSIfNear() {
+        guard let nextFireDate = nextFireDate else { return }
+        let now = Date()
+        if nextFireDate.hoursPassed(from: now) <= 2 {
+            LocalNotifications.shared.create(from: self)
+        }
     }
     
     static func createBase(context moc: NSManagedObjectContext) -> MNotification {
