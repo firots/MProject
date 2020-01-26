@@ -40,6 +40,9 @@ class LocalNotifications {
             for _ in 1...3 {
                 nextFireDate.addHours(1)
                 if model.isNextFireDateValid(for: nextFireDate) {
+                    if nextFireDate.hoursPassed(from: Date()) > 4 {
+                        return
+                    }
                     let subID = UUID()
                     create(id: subID, title: model.wrappedTitle, message: model.wrappedMessage, date: nextFireDate)
                     model.subID.append(subID)

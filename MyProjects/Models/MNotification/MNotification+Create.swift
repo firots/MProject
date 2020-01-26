@@ -75,4 +75,13 @@ extension MNotification {
         notification.created = Date()
         return notification
     }
+    
+    func deleteFromIOS() {
+        LocalNotifications.shared.delete(id: wrappedID)
+        nextFireDate = nil
+        for subID in subID {
+            LocalNotifications.shared.delete(id: subID)
+        }
+        subID.removeAll()
+    }
 }
