@@ -16,21 +16,23 @@ class DataManager {
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
+    var completion: (() -> Void)?
+    var cancelled = false
     
     private init() {
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     
     func syncAll() {
-        DispatchQueue.main.async {
-            self.syncTasks()
-            self.syncProjects()
-            self.syncNotifications()
-            
-            if self.context.hasChanges {
-                try? self.context.save()
-            }
+        self.syncTasks()
+        self.syncProjects()
+        self.syncNotifications()
+        
+        if self.context.hasChanges {
+            try? self.context.save()
         }
+        
+        self.completion?()
     }
     
     func syncTasks()  {
@@ -41,6 +43,9 @@ class DataManager {
             let tasks = try context.fetch(fetchRequest)
             for task in tasks {
                 task.update()
+                if cancelled {
+                    return
+                }
             }
         } catch {
             fatalError("Unable to fetch tasks.")
@@ -55,6 +60,9 @@ class DataManager {
             let projects = try context.fetch(fetchRequest)
             for project in projects {
                 project.update()
+                if cancelled {
+                    return
+                }
             }
         } catch {
             fatalError("Unable to fetch tasks.")
@@ -74,6 +82,9 @@ class DataManager {
             let notifications = try context.fetch(fetchRequest)
             for notification in notifications {
                 notification.createOnIOSIfNear()
+                if cancelled {
+                    return
+                }
             }
 
         } catch {
@@ -85,6 +96,10 @@ class DataManager {
     
     func rescheduleNotifications() {
         
+    }
+    
+    func cancel() {
+        cancelled = true
     }
     
     

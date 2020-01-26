@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().backgroundColor = .clear
         DataManager.shared.syncAll()
+        
+        //BackgroundManager.shared.register()
         application.setMinimumBackgroundFetchInterval(1685)
         return true
     }
