@@ -9,22 +9,28 @@
 import Foundation
 
 extension MTask {
-    public func timeToRepeat() -> Bool {
-        if wrappedRepeatMode == .none { return false }
-        setNextFireDate()
+    public func repeatIfNeeded() {
+        if wrappedRepeatMode == .none { return } //not repeating type
         
-        guard let nextFireDate = self.nextFireDate else { return false }
+        if repeatTask != nil { return } //already has repeated task
         
-        let now = Date()
+        setNextFireDate() //set the nextfiredate
         
-        if now >= nextFireDate {
-            wrappedStatus = .failed
-            
-            /* repeat code */
-        }
+        guard let nextFireDate = self.nextFireDate else { return } //be sure next fire date is valid
         
-        return false
-        
+        /*let newTask = self.clone()
+         clone will have nextfiredate as its repeatstartdate
+         startdate as current date
+         
+         will copy steps to itself in active state
+         
+         will copy all notifications by:
+            get time diff between current repeatstartdate and nextfiredate
+            add diff to notificaon date if notif state is none
+            else if notifstate is repeating add it to notifrepeatstartdate
+         
+ 
+        */
     }
     
 }

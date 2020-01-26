@@ -112,9 +112,6 @@ extension HasRepeatMode {
         nextFireDate = fireDate
     }
 
-        
-    
-    
     private func setFireDateForDaily() {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         

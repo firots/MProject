@@ -32,16 +32,25 @@ extension MNotification {
         guard let nextFireDate = self.nextFireDate else { return }
         if isNextFireDateValid() {
             let now = Date()
+            print(nextFireDate.hoursPassed(from: now))
             if nextFireDate.hoursPassed(from: now) <= 4 {
                 LocalNotifications.shared.create(from: self)
             }
+        } else {
+            self.nextFireDate = nil
         }
     }
     
-    func isMobjectActiveOrWaiting() -> Bool {
+    func isValidForMObjectStatus(for nextFireDate: Date) -> Bool {
         if let mObject = mObject {
-            if mObject.wrappedStatus == .active || mObject.wrappedStatus == .waiting {
+            if mObject.wrappedStatus == .active {
                 return true
+            } else if mObject.wrappedStatus == .waiting {
+                if let startDate = mObject.started {
+                    if nextFireDate >= startDate {
+                        return true
+                    }
+                }
             }
         }
         return false
@@ -53,7 +62,7 @@ extension MNotification {
     
     func isNextFireDateValid() -> Bool {
         guard let nextFireDate = self.nextFireDate else { return false }
-        if !isMobjectActiveOrWaiting() { return false }
+        if !isValidForMObjectStatus(for: nextFireDate) { return false }
         if let deadline = mObject?.deadline, nextFireDate > deadline {
             return false
         } else if nextFireDate <= Date() {
