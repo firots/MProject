@@ -44,7 +44,7 @@ extension MTask {
         */
         
         for notification in notifications {
-            notification.nextFireDate = nil //delete fire date for notifications since the new copy is created
+            notification.deleteFromIOS()
         }
     }
     
