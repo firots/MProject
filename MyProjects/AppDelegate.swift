@@ -18,7 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().backgroundColor = .clear
         DataManager.shared.syncAll()
+        application.setMinimumBackgroundFetchInterval(1685)
         return true
+    }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // fetch data from internet now
+        DataManager.shared.syncAll()
+        completionHandler(.newData)
     }
 
     // MARK: UISceneSession Lifecycle

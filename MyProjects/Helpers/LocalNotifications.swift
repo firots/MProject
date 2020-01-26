@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class LocalNotifications {
     
@@ -17,24 +18,48 @@ class LocalNotifications {
     }
     
     func deleteAll() {
-        print("DELETE ALL NOTIFICATIONS")
+        print("DELETE ALL NOTIFICATIONS ON IOS")
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func delete(id: UUID) {
         print("DELETE FROM IOS")
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
     func create(from model: MNotification) {
         print("CREATE ON IOS FROM MODEL")
         guard let id = model.id else { return }
-        guard let title = model.title, let date = model.nextFireDate else { return }
-        create(id: id, title: title, message: model.description, date: date)
+        guard let date = model.nextFireDate else { return }
+        create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
     }
     
     func create(id: UUID, title: String, message: String, date: Date) {
         print("CREATED ON IOS \(date.toRelative())")
         
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.subtitle = message
+        content.sound = UNNotificationSound.default
+
+        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+
+        // choose a random identifier
+        let request = UNNotificationRequest(identifier: id.uuidString, content: content, trigger: trigger)
+
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
     }
     
+    func register() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("All set!")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

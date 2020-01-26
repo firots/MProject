@@ -19,7 +19,7 @@ extension MNotification: HasRepeatMode {
     /* Main */
     @NSManaged public var id: UUID?
     @NSManaged public var title: String?
-    @NSManaged public var details: String?
+    @NSManaged public var message: String?
     @NSManaged public var date: Date?
     @NSManaged public var created: Date?
     @NSManaged public var nextFireDate: Date?
@@ -44,4 +44,11 @@ extension MNotification: HasRepeatMode {
         return created ?? Date()
     }
     
+    public var wrappedTitle: String {
+        title?.emptyHolder(mObject?.wrappedName ?? "Undefined Notification") ?? "Undefined Notification"
+    }
+    
+    public var wrappedMessage: String {
+        message ?? ""
+    }
 }

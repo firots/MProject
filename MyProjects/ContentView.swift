@@ -35,6 +35,9 @@ struct ContentView: View {
                 .font(.system(size: 24))
             }.tag(2)
         }.accentColor(Color(.systemPurple))
+            .onAppear() {
+                LocalNotifications.shared.register()
+        }
     }
 }
 

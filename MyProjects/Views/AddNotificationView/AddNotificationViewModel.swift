@@ -12,7 +12,7 @@ class AddNotificationViewModel: ObservableObject, Identifiable {
     /* uuid will be transferred to notification center */
     var id: UUID
     @Published var title: String
-    @Published var details: String
+    @Published var message: String
     @Published var date: Date
     
     /* can belong to project or task*/
@@ -31,7 +31,7 @@ class AddNotificationViewModel: ObservableObject, Identifiable {
         date = mNot?.date ?? Date()
         
         title = mNot?.title ?? ""
-        details = mNot?.details ?? ""
+        message = mNot?.message ?? ""
         
         mNotification = mNot
         repeatModeConfiguration = ConfigureRepeatModeViewModel(from: mNot, type: .notification)

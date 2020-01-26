@@ -13,7 +13,7 @@ extension MNotification {
     static func create(from viewModel: AddNotificationViewModel?, context moc: NSManagedObjectContext) -> MNotification {
         let notification = createBase(context: moc, model: viewModel)
         if let viewModel = viewModel {
-            notification.details = viewModel.details
+            notification.message = viewModel.message
             notification.title = viewModel.title
             notification.repeatMode = viewModel.repeatModeConfiguration.repeatMode
             

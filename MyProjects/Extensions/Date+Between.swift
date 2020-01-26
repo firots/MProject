@@ -37,7 +37,7 @@ extension Date {
         
         return components
     }
-    
+
     func weekDifference(from date: Date) -> Int {
         let startWeek = date
             .withZeroHourAndMinutes()

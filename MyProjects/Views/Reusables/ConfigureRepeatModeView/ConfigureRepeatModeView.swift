@@ -20,9 +20,13 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
         }
     }
     
+    var mainSectionFooter: String {
+        model.type == .notification ? "Starts to repeat from the start date and time. The start time is also the time the notification will be sent." : "Starts to repeat from the start date and time. The start time is also when new task will be created."
+    }
+    
     func mainSection() -> some View {
         Group {
-            Section(footer: Text("Starts to repeat from the start date and time. The start time is also the time the notification will be sent.")) {
+            Section(footer: Text(mainSectionFooter)) {
                 DateTimePickerLimitless(date: $model.repeatStartDate)
             }
             
