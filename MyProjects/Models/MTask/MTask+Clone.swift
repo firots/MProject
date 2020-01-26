@@ -21,6 +21,8 @@ extension MTask {
         /*let newTask = self.clone()
          clone will have nextfiredate as its repeatstartdate
          startdate as current date
+         repeatTask = clone
+         clone.repeatedfrom = self
          
          will copy steps to itself in active state
          
