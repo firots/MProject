@@ -11,6 +11,7 @@
         <attribute name="repeatPeriod" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeatStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="selectedDays" optional="YES" attributeType="Transformable"/>
+        <attribute name="subID" optional="YES" attributeType="Transformable"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="notification" inverseEntity="MProject"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="notification" inverseEntity="MTask"/>
@@ -80,7 +81,7 @@
         <relationship name="step" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MStep" inverseName="task" inverseEntity="MStep"/>
     </entity>
     <elements>
-        <element name="MNotification" positionX="-36" positionY="144" width="128" height="238"/>
+        <element name="MNotification" positionX="-36" positionY="144" width="128" height="253"/>
         <element name="MProject" positionX="-45" positionY="0" width="128" height="268"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="133"/>
         <element name="MTask" positionX="-45" positionY="63" width="128" height="373"/>

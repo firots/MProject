@@ -11,10 +11,10 @@ import CoreData
 
 extension MObject {
     func clearNotifications(context moc: NSManagedObjectContext) {
+        deleteNotificationsFromIOS()
         for notification in notifications {
             moc.delete(notification)
         }
-        deleteNotificationsFromIOS()
     }
     
     func syncNotifications(with notificationModels: [AddNotificationViewModel], context moc: NSManagedObjectContext) {

@@ -20,12 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DataManager.shared.syncAll()
         
         //BackgroundManager.shared.register()
-        application.setMinimumBackgroundFetchInterval(1685)
+        application.setMinimumBackgroundFetchInterval(1800)
         return true
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // fetch data from internet now
         DataManager.shared.syncAll()
         completionHandler(.newData)
     }

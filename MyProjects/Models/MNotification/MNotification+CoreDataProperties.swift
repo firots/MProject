@@ -34,6 +34,7 @@ extension MNotification: HasRepeatMode {
     @NSManaged public var repeatMode: Int
     @NSManaged public var repeatStartDate: Date?
     @NSManaged public var repeatPeriod: Int
+    @NSManaged public var subID: [UUID]
 
     /* Optional Handling */
     public var wrappedID: UUID {

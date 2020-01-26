@@ -32,6 +32,20 @@ class LocalNotifications {
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
         create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
+    
+        model.subID.removeAll()
+        
+        if model.wrappedRepeatMode == .hour {
+            var nextFireDate = date
+            for _ in 1...3 {
+                nextFireDate.addHours(1)
+                if model.isNextFireDateValid(for: nextFireDate) {
+                    let subID = UUID()
+                    create(id: subID, title: model.wrappedTitle, message: model.wrappedMessage, date: nextFireDate)
+                    model.subID.append(subID)
+                }
+            }
+        }
     }
     
     func create(id: UUID, title: String, message: String, date: Date) {
@@ -39,7 +53,8 @@ class LocalNotifications {
         
         let content = UNMutableNotificationContent()
         content.title = title
-        content.subtitle = message
+    
+        content.body = message
         content.sound = UNNotificationSound.default
 
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)

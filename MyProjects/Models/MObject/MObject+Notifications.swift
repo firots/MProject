@@ -19,6 +19,10 @@ extension MObject {
         for notification in notifications {
             LocalNotifications.shared.delete(id: notification.wrappedID)
             notification.nextFireDate = nil
+            for subID in notification.subID {
+                LocalNotifications.shared.delete(id: subID)
+            }
+            notification.subID.removeAll()
         }
     }
     
