@@ -15,11 +15,15 @@ extension MTask {
         
         if repeatTask != nil { return } //already has repeated task
         
-        setNextFireDate() //set the nextfiredate
-        
         guard let nextFireDate = self.nextFireDate else { return } //be sure next fire date is valid
         
-        if force == false && nextFireDate < Date() { return } //its not time yet
+        if force == false && nextFireDate > Date() { return } //its not time yet
+        
+        setNextFireDate() //set the nextfiredate
+        
+        
+        
+        print("OH I WILL REPEAT NOW")
         
         /*let newTask = self.clone()
          clone will have nextfiredate as its repeatstartdate
@@ -35,7 +39,8 @@ extension MTask {
             else if notifstate is repeating add it to notifrepeatstartdate
          
          create nextfiredate for all notifications
- 
+         
+         call repeatifneeded on new task in case missed some repeats
         */
         
         for notification in notifications {

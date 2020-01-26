@@ -21,6 +21,8 @@ extension MTask {
         if model.repeatModeConfiguration.wrappedRepeatMode != .none {
             model.repeatModeConfiguration.bind(to: t)
         }
+        t.nextFireDate = nil
+        t.setNextFireDate()
         return t
     }
     

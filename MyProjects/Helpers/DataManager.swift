@@ -26,6 +26,10 @@ class DataManager {
             self.syncTasks()
             self.syncProjects()
             self.syncNotifications()
+            
+            if self.context.hasChanges {
+                try? self.context.save()
+            }
         }
     }
     
