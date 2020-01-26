@@ -30,10 +30,12 @@ extension MNotification {
     func createOnIOSIfNear() {
         print("CREATE ON IOS IF NEAR")
         guard let nextFireDate = self.nextFireDate else { return }
+        print("0")
         if isNextFireDateValid() {
+            print("1")
             let now = Date()
-            print(nextFireDate.hoursPassed(from: now))
             if nextFireDate.hoursPassed(from: now) <= 4 {
+                print("2")
                 LocalNotifications.shared.create(from: self)
             }
         } else {

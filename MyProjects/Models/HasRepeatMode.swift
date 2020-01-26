@@ -54,28 +54,27 @@ extension HasRepeatMode {
     }
 
     func setNextFireDate() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            if self.isNextFireDateStillInFuture() { return }
-            
-            switch self.wrappedRepeatMode {
-                case .none:
-                    self.setFireDateForNone()
-                case .hour:
-                    self.setFireDateForHourly()
-                case .day:
-                    self.setFireDateForDaily()
-                case .week:
-                    self.setFireDateForWeeklyAndMonthly()
-                case .month:
-                    self.setFireDateForWeeklyAndMonthly()
-            }
-            
-            if let nextFireDate = self.nextFireDate, !self.isInRange(date: nextFireDate) {
-                self.nextFireDate = nil
-            }
-            
-            print(self.nextFireDate?.toRelative() ?? "no fire date")
+        if self.isNextFireDateStillInFuture() { return }
+        
+        switch self.wrappedRepeatMode {
+            case .none:
+                self.setFireDateForNone()
+            case .hour:
+                self.setFireDateForHourly()
+            case .day:
+                self.setFireDateForDaily()
+            case .week:
+                self.setFireDateForWeeklyAndMonthly()
+            case .month:
+                self.setFireDateForWeeklyAndMonthly()
         }
+        
+        if let nextFireDate = self.nextFireDate, !self.isInRange(date: nextFireDate) {
+            self.nextFireDate = nil
+        }
+        
+        print(self.nextFireDate?.toRelative() ?? "no fire date")
+        
     }
     
     private func setFireDateForNone() {

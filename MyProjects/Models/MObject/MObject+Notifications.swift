@@ -18,6 +18,7 @@ extension MObject {
     func deleteNotificationsFromIOS() {
         for notification in notifications {
             LocalNotifications.shared.delete(id: notification.wrappedID)
+            notification.nextFireDate = nil
         }
     }
     

@@ -19,10 +19,10 @@ extension MObject {
         }
         
         if let task = self as? MTask {
-            task.repeatIfNeeded()
+            task.repeatIfNeeded(force: false)
             
             if task.repeatTask != nil {
-                return
+                return //do not go futher and create fire date for notifications
             }
         }
         

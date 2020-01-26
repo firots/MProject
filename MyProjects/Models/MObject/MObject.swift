@@ -66,8 +66,15 @@ extension MObject {
             
             if newValue == .active && isExpired {
                 self.status = MObjectStatus.failed.rawValue
+                
             } else {
                 self.status = newValue.rawValue
+            }
+            
+            if self.status == MObjectStatus.failed.rawValue || self.status == MObjectStatus.done.rawValue {
+                if let task = self as? MTask {
+                    task.repeatIfNeeded(force: true)
+                }
             }
         }
     }
