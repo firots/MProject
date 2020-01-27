@@ -44,11 +44,9 @@ extension MTask {
          call repeatifneeded on new task in case missed some repeats
         */
         
-        setNextFireDate()
         
-        for notification in notifications {
-            notification.deleteFromIOS()
-        }
+        
+        deleteNotificationsFromIOS(clearFireDate: true)
         
         
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
@@ -103,6 +101,8 @@ extension MTask {
         repeatTask = task
         task.repeatedFrom = self
     
+        self.setNextFireDate()
+        
         return task
         
     }

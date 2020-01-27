@@ -11,7 +11,7 @@ import CoreData
 
 extension MObject {
     func clearNotifications(context moc: NSManagedObjectContext) {
-        deleteNotificationsFromIOS()
+        deleteNotificationsFromIOS(clearFireDate: true)
         for notification in notifications {
             moc.delete(notification)
         }

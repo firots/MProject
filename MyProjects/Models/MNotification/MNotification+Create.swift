@@ -30,7 +30,6 @@ extension MNotification {
     func createOnIOSIfNear() {
         print("CREATE ON IOS IF NEAR")
         guard let nextFireDate = self.nextFireDate else { return }
-        
         if isNextFireDateValid(for: nextFireDate) {
             LocalNotifications.shared.create(from: self)
         } else {
@@ -74,9 +73,11 @@ extension MNotification {
         return notification
     }
     
-    func deleteFromIOS() {
+    func deleteFromIOS(clearFireDate: Bool) {
         LocalNotifications.shared.delete(id: wrappedID)
-        nextFireDate = nil
+        if clearFireDate {
+            nextFireDate = nil
+        }
         for subID in subID {
             LocalNotifications.shared.delete(id: subID)
         }

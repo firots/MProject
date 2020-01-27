@@ -66,7 +66,6 @@ extension MObject {
             
             if newValue == .active && isExpired {
                 self.status = MObjectStatus.failed.rawValue
-                
             } else {
                 self.status = newValue.rawValue
             }
