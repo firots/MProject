@@ -70,7 +70,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          BackgroundManager.shared.scheduleAppRefresh()
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
-
 }
 
