@@ -97,7 +97,7 @@ extension HasRepeatMode {
         }
         
         func isFireDate() -> Bool {
-            if fireDate <= now || fireDate < startDate {
+            if fireDate <= now || fireDate <= startDate {
                 return false
             } else if !isInPeriod() {
                 return false
@@ -122,7 +122,7 @@ extension HasRepeatMode {
         }
         
         func isFireDate() -> Bool {
-            if fireDate <= now || fireDate < startDate {
+            if fireDate <= now || fireDate <= startDate {
                 return false
             } else if !isInPeriod() {
                 return false
@@ -163,7 +163,7 @@ extension HasRepeatMode {
         }
         
         func isFireDate() -> Bool {
-            if fireDate <= now || fireDate < startDate {
+            if fireDate <= now || fireDate <= startDate {
                 return false
             } else if !isSelectedDay() {
                 return false

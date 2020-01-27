@@ -39,6 +39,7 @@ extension MTask: HasRepeatMode {
     @NSManaged public var repeatStartDate: Date?
     @NSManaged public var repeatPeriod: Int
     @NSManaged public var repeatTask: MTask?
+    @NSManaged public var repeatedFrom: MTask?
     
     public var steps: [MStep] {
         let set = step as? Set<MStep> ?? []

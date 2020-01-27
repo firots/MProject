@@ -32,7 +32,7 @@ class BackgroundManager {
         
         let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
        // Fetch no earlier than 15 minutes from now
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
             
         do {
             try BGTaskScheduler.shared.submit(request)

@@ -17,7 +17,7 @@ extension MObject {
         } else if wrappedStatus == .waiting, let s = started, now >= s {
             wrappedStatus = .active
         }
-        
+
         if let task = self as? MTask {
             task.repeatIfNeeded(force: false)
             
