@@ -46,13 +46,19 @@ extension MTask {
         
         setNextFireDate()
         
-        let newTask = clone()
-        
-        
-        
         for notification in notifications {
             notification.deleteFromIOS()
         }
+        
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+            let _ = self.clone()
+        }
+        
+        
+        
+        
+
     }
     
     func clone() -> MTask? {
@@ -69,12 +75,12 @@ extension MTask {
             viewModel.repeatModeConfiguration.repeatStartDate = self.nextFireDate ?? Date()
         }
         
-        viewModel.started = Date()
-        
         viewModel.statusIndex = MObjectStatus.active.rawValue
         
         let hourDiff = (self.nextFireDate ?? Date()).hoursPassed(from: self.repeatStartDate)
-        print(hourDiff)
+        
+        
+        viewModel.started?.addHours(hourDiff)
         
         for notification in viewModel.notificationsModel.notifications {
             if notification.repeatModeConfiguration.wrappedRepeatMode == .none {
@@ -96,13 +102,7 @@ extension MTask {
         
         repeatTask = task
         task.repeatedFrom = self
-        
-        task.setNextFireDate()
-        
-        
-        print(task.repeatStartDate?.toRelative())
-        print(task.nextFireDate?.toRelative())
-        
+    
         return task
         
     }
