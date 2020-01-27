@@ -46,18 +46,25 @@ class BackgroundManager {
 
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
-        let appRefreshOperation = DataManager()
-        queue.addOperation(appRefreshOperation)
+        DispatchQueue.main.async {
+            let appRefreshOperation = DataManager()
+            
+            DispatchQueue.global().async {
+                queue.addOperation(appRefreshOperation)
 
-        task.expirationHandler = {
-            queue.cancelAllOperations()
+                task.expirationHandler = {
+                    queue.cancelAllOperations()
+                }
+
+                let lastOperation = queue.operations.last
+                lastOperation?.completionBlock = {
+                    task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
+                }
+
+                self.scheduleAppRefresh()
+            }
+
         }
 
-        let lastOperation = queue.operations.last
-        lastOperation?.completionBlock = {
-            task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
-        }
-
-        scheduleAppRefresh()
     }
 }
