@@ -6,7 +6,7 @@
 //  Copyright © 2020 Firot. All rights reserved.
 //
 
-/*import Foundation
+import Foundation
 import BackgroundTasks
 
 class BackgroundManager {
@@ -18,6 +18,7 @@ class BackgroundManager {
     
     func register() {
         print("registered")
+        
         BGTaskScheduler.shared.register(forTaskWithIdentifier:
         "com.firot.MyProjects.refresh",
         using: nil)
@@ -28,39 +29,35 @@ class BackgroundManager {
     
     func scheduleAppRefresh() {
         print("scheduled")
-       let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
+        
+        let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
        // Fetch no earlier than 15 minutes from now
-       request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
             
-       do {
-          try BGTaskScheduler.shared.submit(request)
-       } catch {
-          print("Could not schedule app refresh: \(error)")
-       }
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print("Could not schedule app refresh: \(error)")
+        }
     }
     
     func handleAppRefresh(task: BGAppRefreshTask) {
-      // Schedule a new refresh task
-      scheduleAppRefresh()
+        print("App refresh")
 
-      // Create an operation that performs the main part of the background task
-        let operation = DataManager.shared
-      
-      // Provide an expiration handler for the background task
-      // that cancels the operation
-      task.expirationHandler = {
-         operation.cancel()
-      }
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        let appRefreshOperation = DataManager()
+        queue.addOperation(appRefreshOperation)
 
-      // Inform the system that the background task is complete
-      // when the operation completes
-      operation.completion = {
-         task.setTaskCompleted(success: !operation.cancelled)
-      }
+        task.expirationHandler = {
+            queue.cancelAllOperations()
+        }
 
-      // Start the operation
-        operation.syncAll()
+        let lastOperation = queue.operations.last
+        lastOperation?.completionBlock = {
+            task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
+        }
+
+        scheduleAppRefresh()
     }
-    
-    
-}*/
+}

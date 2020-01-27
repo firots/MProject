@@ -17,18 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().backgroundColor = .clear
-        DataManager.shared.syncAll()
         
-        //BackgroundManager.shared.register()
-        application.setMinimumBackgroundFetchInterval(1800)
+        let dataManager = DataManager()
+        dataManager.start()
+        
+        BackgroundManager.shared.register()
         return true
     }
     
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        DataManager.shared.syncAll()
-        completionHandler(.newData)
-    }
-
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

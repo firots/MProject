@@ -32,10 +32,7 @@ extension MNotification {
         guard let nextFireDate = self.nextFireDate else { return }
         
         if isNextFireDateValid(for: nextFireDate) {
-            let now = Date()
-            if nextFireDate.hoursPassed(from: now) <= 4 {
-                LocalNotifications.shared.create(from: self)
-            }
+            LocalNotifications.shared.create(from: self)
         } else {
             self.nextFireDate = nil
         }

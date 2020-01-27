@@ -10,29 +10,32 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class DataManager {
-    static let shared = DataManager()
+class DataManager: Operation {
     private let context: NSManagedObjectContext
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
-    var completion: (() -> Void)?
-    var cancelled = false
-    
-    private init() {
+
+    override init() {
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        super.init()
     }
     
-    func syncAll() {
+    override func main() {
         self.syncTasks()
         self.syncProjects()
         self.syncNotifications()
         
-        if self.context.hasChanges {
-            try? self.context.save()
+        if !isCancelled {
+            if self.context.hasChanges {
+                try? self.context.save()
+            }
         }
         
-        self.completion?()
+        var now = Date()
+        now.addMinutes(1)
+        LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
+        print(now.toRelative())
     }
     
     func syncTasks()  {
@@ -43,7 +46,7 @@ class DataManager {
             let tasks = try context.fetch(fetchRequest)
             for task in tasks {
                 task.update()
-                if cancelled {
+                if isCancelled {
                     return
                 }
             }
@@ -60,7 +63,7 @@ class DataManager {
             let projects = try context.fetch(fetchRequest)
             for project in projects {
                 project.update()
-                if cancelled {
+                if isCancelled {
                     return
                 }
             }
@@ -76,13 +79,13 @@ class DataManager {
         
         fetchRequest.predicate = notificationPredicate
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.fetchLimit = 32
+        fetchRequest.fetchLimit = 64
         
         do {
             let notifications = try context.fetch(fetchRequest)
             for notification in notifications {
                 notification.createOnIOSIfNear()
-                if cancelled {
+                if isCancelled {
                     return
                 }
             }
@@ -91,16 +94,5 @@ class DataManager {
             fatalError("Unable to fetch notifications.")
         }
         
-        
     }
-    
-    func rescheduleNotifications() {
-        
-    }
-    
-    func cancel() {
-        cancelled = true
-    }
-    
-    
 }

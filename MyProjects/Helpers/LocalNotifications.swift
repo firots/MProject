@@ -37,12 +37,9 @@ class LocalNotifications {
         
         if model.wrappedRepeatMode == .hour {
             var nextFireDate = date
-            for _ in 1...3 {
-                nextFireDate.addHours(1)
+            for _ in 1...24 {
+                nextFireDate.addHours(model.repeatPeriod)
                 if model.isNextFireDateValid(for: nextFireDate) {
-                    if nextFireDate.hoursPassed(from: Date()) > 4 {
-                        return
-                    }
                     let subID = UUID()
                     create(id: subID, title: model.wrappedTitle, message: model.wrappedMessage, date: nextFireDate)
                     model.subID.append(subID)
