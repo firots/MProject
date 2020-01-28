@@ -13,22 +13,17 @@ import CoreData
 class MObjectFilterContainer: ObservableObject {
     var project: MProject?
     
+    var statusFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
+    
     @Published var dateFilter: MObjectDateFilterType
     @Published var statusFilter: Int
     @Published var sortBy: MObjectSortType
     @Published var ascending: Bool
-    var statusFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
+    @Published var statusPredicate: NSPredicate?
     
-    @Published var statusPredicate: NSPredicate? {
-        didSet {
-            setPredicate()
-        }
-    }
-    @Published var datePredicate: NSPredicate? {
-        didSet {
-            setPredicate()
-        }
-    }
+    
+    @Published var datePredicate: NSPredicate?
+    
     @Published var predicate: NSCompoundPredicate?
     
     private var cancellableSet: Set<AnyCancellable> = []
@@ -58,14 +53,30 @@ class MObjectFilterContainer: ObservableObject {
         .assign(to: \.datePredicate, on: self)
         .store(in: &cancellableSet)
         
+        predicatePublisher
+            .receive(on: RunLoop.main)
+            .map {p in
+                self.combinePredicates()
+        }
+        .assign(to: \.predicate, on: self)
+        .store(in: &cancellableSet)
+        
         
         statusPredicate = getStatusPredicate(filter: statusFilter)
-        
         datePredicate = getDatePredicate(from: dateFilter)
+        predicate = combinePredicates()
     }
     
-    func setPredicate() {
-        predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate ?? NSPredicate(format: "id != %@", UUID().uuidString), datePredicate ?? NSPredicate(format: "id != %@", UUID().uuidString)])
+    func combinePredicates() -> NSCompoundPredicate {
+        NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate, datePredicate].compactMap { $0 })
+    }
+    
+    private var predicatePublisher: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest(statusFilterPublisher, dateFilterPublisher)
+            .map { status, date in
+                true
+        }
+        .eraseToAnyPublisher()
     }
     
 
@@ -117,14 +128,17 @@ extension MObjectFilterContainer {
         var dateTo: Date?
         switch filter {
         case .today:
-            dateFrom = calendar.startOfDay(for: Date())
-            dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom!)
+            let interval = calendar.dateInterval(of: .day, for: Date())
+            dateFrom = interval?.start
+            dateTo = interval?.end
         case .week:
-            dateFrom = Date().withFirstDayOfWeek().withZeroHourAndMinutes()
-            dateTo = calendar.date(byAdding: .day, value: 7, to: dateFrom!)
+            let interval = calendar.dateInterval(of: .weekOfYear, for: Date())
+            dateFrom = interval?.start
+            dateTo = interval?.end
         case .month:
-            dateFrom = Date().withFirstDayOfMonth().withZeroHourAndMinutes()
-            dateTo = calendar.date(byAdding: .day, value: 30, to: dateFrom!)
+            let interval = calendar.dateInterval(of: .month, for: Date())
+            dateFrom = interval?.start
+            dateTo = interval?.end
         default:
             dateTo = nil
             dateFrom = nil
