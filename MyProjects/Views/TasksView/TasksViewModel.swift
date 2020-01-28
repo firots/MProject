@@ -11,8 +11,11 @@ import Combine
 
 class TasksViewModel: ObservableObject {
     @Published var showAdd = false
-    @Published var taskFilter: Int
+    @Published var taskStatusFilter: Int
     @Published var predicate: NSPredicate?
+    @Published var showActionSheet = false
+    
+    var actionSheetType = MObjectActionSheetType.sort
     
     var modalType = ModalType.addTask
     
@@ -26,7 +29,7 @@ class TasksViewModel: ObservableObject {
     let project: MProject?
     
     private var filterTasksPublisher: AnyPublisher<NSPredicate?, Never> {
-        $taskFilter
+        $taskStatusFilter
             .map { taskFilter in
                 self.project?.stateFilter = taskFilter
                 return self.getPredicate(filter: taskFilter)
@@ -54,7 +57,7 @@ class TasksViewModel: ObservableObject {
     
     init(project: MProject?) {
         taskFilterTypeNames.insert("All", at: 0)
-        self.taskFilter = project?.stateFilter ?? 1
+        self.taskStatusFilter = project?.stateFilter ?? 1
         self.project = project
 
         filterTasksPublisher
@@ -65,7 +68,7 @@ class TasksViewModel: ObservableObject {
         .assign(to: \.predicate, on: self)
         .store(in: &cancellableSet)
         
-        predicate = getPredicate(filter: taskFilter)
+        predicate = getPredicate(filter: taskStatusFilter)
     }
 
     enum ModalType {

@@ -23,8 +23,6 @@ struct TasksView: View {
                 HStack {
                     Text(Date().toClassic()).padding(.leading, 20)
                     Spacer()
-                    
-                    
                 }
                 ZStack {
                     listTasks()
@@ -33,7 +31,14 @@ struct TasksView: View {
             }
             hoveringButtons()
         }
-        .navigationBarItems(trailing: MObjectSortButtons())
+        .navigationBarItems(trailing: MObjectSortButtons(sortAction: {
+            self.model.actionSheetType = .sort
+            self.model.showActionSheet = true
+            
+        }, filterAction: {
+            self.model.actionSheetType = .filter
+            self.model.showActionSheet = true
+        }))
         .navigationBarTitle(model.project?.wrappedName ?? "My Tasks")
         .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {
@@ -41,6 +46,9 @@ struct TasksView: View {
             } else {
                 AddProjectView(context: self.moc, project: self.model.project)
             }
+        }
+        .actionSheet(isPresented: $model.showActionSheet) {
+            ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Dismiss Action Sheet"))])
         }
     }
     

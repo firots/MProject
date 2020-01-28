@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct MObjectSortButtons: View {
+    var sortAction: (() -> Void)?
+    var filterAction: (() -> Void)?
+    
     var body: some View {
         HStack {
             sortMObjects()
@@ -19,7 +22,7 @@ struct MObjectSortButtons: View {
     
     func sortMObjects() -> some View {
         Button(action: {
-            
+            self.sortAction?()
         }) {
             Image(systemName: "arrow.up.arrow.down.circle.fill")
                 .resizable()
@@ -30,7 +33,7 @@ struct MObjectSortButtons: View {
     
     func filterMObjects() -> some View {
         Button(action: {
-            
+            self.filterAction?()
         }) {
             Image(systemName: "calendar.circle.fill")
                 .resizable()
@@ -38,26 +41,5 @@ struct MObjectSortButtons: View {
         }
     }
 }
-    
-    
-    
 
 
-enum MObjectSorter: Int {
-    case none
-    case priority
-    case alphabetic
-    case creation
-    case started
-    case deadline
-    
-    static let all = [MObjectSorter.none, MObjectSorter.priority, MObjectSorter.alphabetic, MObjectSorter.creation, MObjectSorter.started, MObjectSorter.deadline]
-    
-    static var names = ["None", "Priority", "Alphabetic", "Date Created", "Date Started", "Deadline"]
-}
-
-struct MObjectSortButtons_Previews: PreviewProvider {
-    static var previews: some View {
-        MObjectSortButtons()
-    }
-}
