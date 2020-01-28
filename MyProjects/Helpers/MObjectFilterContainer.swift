@@ -19,7 +19,7 @@ class MObjectFilterContainer: ObservableObject {
     @Published var ascending: Bool
     var statusFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
     
-    @Published var predicate: NSPredicate?
+    @Published var statusPredicate: NSPredicate?
     
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -32,28 +32,28 @@ class MObjectFilterContainer: ObservableObject {
         self.ascending = ascending
         self.project = project
         
-        filterPublisher
+        statusFilterPublisher
             .receive(on: RunLoop.main)
             .map {predicate in
                 predicate
         }
-        .assign(to: \.predicate, on: self)
+        .assign(to: \.statusPredicate, on: self)
         .store(in: &cancellableSet)
         
-        predicate = getPredicate(filter: statusFilter)
+        statusPredicate = getStatusPredicate(filter: statusFilter)
     }
     
-    private var filterPublisher: AnyPublisher<NSPredicate?, Never> {
+    private var statusFilterPublisher: AnyPublisher<NSPredicate?, Never> {
         $statusFilter
             .map { taskFilter in
                 self.project?.stateFilter = taskFilter
-                return self.getPredicate(filter: taskFilter)
+                return self.getStatusPredicate(filter: taskFilter)
             }
             .eraseToAnyPublisher()
     }
     
     
-    func getPredicate(filter: Int) -> NSPredicate? {
+    func getStatusPredicate(filter: Int) -> NSPredicate? {
         if filter == 0 {
             if self.project == nil {
                 return nil

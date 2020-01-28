@@ -71,7 +71,7 @@ struct TasksView: View {
     }
     
     private func listTasks() -> some View {
-        FilteredList(predicate: model.filterContainer.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
+        FilteredList(predicate: model.filterContainer.statusPredicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
         }.padding(.top, 10)
     }

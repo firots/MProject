@@ -50,7 +50,7 @@ struct ProjectsView: View {
     }
     
     private func listProjects() -> some View {
-        FilteredList(predicate: model.filterContainer.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
+        FilteredList(predicate: model.filterContainer.statusPredicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
             self.projectCell(project)
         }.padding(.top, 5)
     }
