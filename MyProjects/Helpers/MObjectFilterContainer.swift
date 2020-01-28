@@ -158,10 +158,13 @@ extension MObjectFilterContainer {
 
 
 enum MObjectDateFilterType: Int {
-    case all
+    case anytime
     case today
     case week
     case month
+    
+    static var all = [MObjectDateFilterType.anytime, MObjectDateFilterType.today, MObjectDateFilterType.week, MObjectDateFilterType.month]
+    static var names = ["Any Time", "Today", "This Week", "This Month"]
 }
 
 enum MObjectActionSheetType: Int {

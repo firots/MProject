@@ -14,6 +14,6 @@ class ProjectsViewModel: ObservableObject {
     @Published var filterContainer: MObjectFilterContainer
 
     init() {
-        filterContainer = MObjectFilterContainer(project: nil, dateFilter: MObjectDateFilterType.all, statusFilter: 0, sortBy: .none, ascending: true)
+        filterContainer = MObjectFilterContainer(project: nil, dateFilter: MObjectDateFilterType.anytime, statusFilter: 0, sortBy: .none, ascending: true)
     }
 }

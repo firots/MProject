@@ -48,8 +48,37 @@ struct TasksView: View {
             }
         }
         .actionSheet(isPresented: $model.showActionSheet) {
-            ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Dismiss Action Sheet"))])
+            dateFilterActionSheet()
         }
+    }
+    
+    private func dateFilterActionSheet() -> ActionSheet {
+        ActionSheet(
+            title: Text("Filter Tasks"),
+            message: Text("Show Tasks with start date of"),
+            buttons: [
+                    .default(
+                        Text("Today"),
+                        action: {
+                         self.model.filterContainer.dateFilter = .today
+                    }),
+                    .default(
+                        Text("This Week"),
+                        action: {
+                         self.model.filterContainer.dateFilter = .week
+                    }),
+                    .default(
+                        Text("This Month"),
+                        action: {
+                         self.model.filterContainer.dateFilter = .month
+                    }),
+                    .default(
+                        Text("All"),
+                        action: {
+                         self.model.filterContainer.dateFilter = .anytime
+                    }),
+                    .cancel()
+            ])
     }
     
     private func hoveringButtons() -> some View {
