@@ -48,7 +48,9 @@ extension MTask {
         
         deleteNotificationsFromIOS(clearFireDate: true)
         
-        let _ = self.clone(force: force)
+        let repeated = self.clone(force: force)
+        
+        repeated?.repeatIfNeeded(force: false)
     }
     
     func clone(force: Bool) -> MTask? {
