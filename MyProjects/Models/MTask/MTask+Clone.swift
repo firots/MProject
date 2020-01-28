@@ -69,8 +69,16 @@ extension MTask {
         
         viewModel.statusIndex = MObjectStatus.active.rawValue
         
-        let hourDiff = (self.nextFireDate ?? Date()).hoursPassed(from: self.repeatStartDate)
         
+        var hourDiff = (self.nextFireDate ?? Date()).hoursPassed(from: self.repeatStartDate)
+        
+        if hourDiff == 0 {
+            if repeatMode == RepeatMode.hour.rawValue {
+                hourDiff = repeatPeriod
+            }
+        }
+        
+        viewModel.started = self.started
         viewModel.started?.addHours(hourDiff)
         
         for notification in viewModel.notificationsModel.notifications {

@@ -55,7 +55,7 @@ struct TasksView: View {
     private func dateFilterActionSheet() -> ActionSheet {
         ActionSheet(
             title: Text("Filter Tasks"),
-            message: Text("Show Tasks with start date of"),
+            message: Text("Show Tasks of"),
             buttons: [
                     .default(
                         Text("Today"),
