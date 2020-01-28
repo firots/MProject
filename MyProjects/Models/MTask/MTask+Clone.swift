@@ -77,7 +77,7 @@ extension MTask {
         
         let hourDiff = (self.nextFireDate ?? Date()).hoursPassed(from: self.repeatStartDate)
         
-        
+        print(viewModel.started?.toRelative())
         viewModel.started?.addHours(hourDiff)
         
         for notification in viewModel.notificationsModel.notifications {
@@ -102,6 +102,10 @@ extension MTask {
         task.repeatedFrom = self
     
         self.setNextFireDate()
+        
+        if managedObjectContext?.hasChanges == true {
+            try? managedObjectContext?.save()
+        }
         
         return task
         

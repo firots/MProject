@@ -101,7 +101,7 @@ extension MObject {
         self.details = model.details.emptyIsNil()
 
         if self.saved == false && model.status == .active  {
-            self.started = Date()
+            self.started = model.started ?? Date()
         }
         else if model.hasAutoStart == true && model.status == .waiting {
             self.started = model.autoStart
