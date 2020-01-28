@@ -17,8 +17,6 @@ class BackgroundManager {
     }
     
     func register() {
-        print("registered")
-        
         BGTaskScheduler.shared.register(forTaskWithIdentifier:
         "com.firot.MyProjects.refresh",
         using: nil)
@@ -28,8 +26,6 @@ class BackgroundManager {
     }
     
     func scheduleAppRefresh() {
-        print("scheduled")
-        
         let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
        // Fetch no earlier than 15 minutes from now
         request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
@@ -42,8 +38,6 @@ class BackgroundManager {
     }
     
     func handleAppRefresh(task: BGAppRefreshTask) {
-        print("App refresh")
-
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         DispatchQueue.main.async {

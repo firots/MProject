@@ -23,7 +23,7 @@ struct TasksView: View {
                 HStack {
                     Text(Date().toClassic()).padding(.leading, 20)
                     Spacer()
-                    MObjectSortButtons()
+                    
                     
                 }
                 ZStack {
@@ -33,6 +33,7 @@ struct TasksView: View {
             }
             hoveringButtons()
         }
+        .navigationBarItems(trailing: MObjectSortButtons())
         .navigationBarTitle(model.project?.wrappedName ?? "My Tasks")
         .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {

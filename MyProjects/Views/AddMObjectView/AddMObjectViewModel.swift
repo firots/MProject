@@ -13,7 +13,7 @@ import Combine
 class AddMObjectViewModel: ObservableObject {
     @Published var name = ""
     @Published var details = ""
-    @Published var deadline = Date()
+    @Published var deadline = Date(timeIntervalSinceNow: 60 * 60)
     @Published var hasDeadline = false
     @Published var statusIndex: Int
     @Published var showModal = false
@@ -66,6 +66,8 @@ class AddMObjectViewModel: ObservableObject {
     }
     
     init(mObject: MObject?) {
+        
+        
         self.statusIndex = MObjectStatus.all.firstIndex(of: MObjectStatus(rawValue: mObject?.status ?? MObjectStatus.active.rawValue) ?? MObjectStatus.active) ?? 1
         
         if let o = mObject {

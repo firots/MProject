@@ -22,7 +22,6 @@ struct ProjectsView: View {
                 HStack {
                     Text(Date().toClassic()).padding(.leading, 20)
                     Spacer()
-                    MObjectSortButtons()
                 }
                 ZStack {
                     listProjects()
@@ -31,6 +30,7 @@ struct ProjectsView: View {
             }
             addButton()
         }
+        .navigationBarItems(trailing: MObjectSortButtons())
         .navigationBarTitle("My Projects")
         .sheet(isPresented: $model.showAddProject)  {
             AddProjectView(context: self.moc, project: nil)

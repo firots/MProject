@@ -10,11 +10,11 @@ import SwiftUI
 
 struct MObjectSortButtons: View {
     var body: some View {
-        VStack {
+        HStack {
             sortMObjects()
             filterMObjects()
-        }
-        .padding(.trailing, 20)
+        }.padding(.top)
+            
     }
     
     func sortMObjects() -> some View {
