@@ -139,6 +139,10 @@ extension MObjectFilterContainer {
             let interval = calendar.dateInterval(of: .month, for: Date())
             dateFrom = interval?.start
             dateTo = interval?.end
+        case .year:
+            let interval = calendar.dateInterval(of: .year, for: Date())
+            dateFrom = interval?.start
+            dateTo = interval?.end
         default:
             dateTo = nil
             dateFrom = nil
@@ -162,9 +166,10 @@ enum MObjectDateFilterType: Int {
     case today
     case week
     case month
+    case year
     
-    static var all = [MObjectDateFilterType.anytime, MObjectDateFilterType.today, MObjectDateFilterType.week, MObjectDateFilterType.month]
-    static var names = ["Any Time", "Today", "This Week", "This Month"]
+    static var all = [MObjectDateFilterType.anytime, MObjectDateFilterType.today, MObjectDateFilterType.week, MObjectDateFilterType.month, MObjectDateFilterType.year]
+    static var names = ["All", "Today's", "This Week's", "This Month's", "This Year's"]
 }
 
 enum MObjectActionSheetType: Int {
