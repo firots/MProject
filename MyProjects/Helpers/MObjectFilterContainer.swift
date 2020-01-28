@@ -10,25 +10,67 @@ import Foundation
 import Combine
 import CoreData
 
-struct MObjectFilterContainer {
-    var dateFilter: MObjectDateFilterType
-    var statusFilter: Int
-    var sortBy: MObjectSortType
-    var ascending: Bool
-    var taskFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
+class MObjectFilterContainer: ObservableObject {
+    var project: MProject?
     
-    var predicate: NSPredicate?
+    @Published var dateFilter: MObjectDateFilterType
+    @Published var statusFilter: Int
+    @Published var sortBy: MObjectSortType
+    @Published var ascending: Bool
+    var statusFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
+    
+    @Published var predicate: NSPredicate?
     
     private var cancellableSet: Set<AnyCancellable> = []
     
     
-    init(dateFilter: MObjectDateFilterType, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool) {
-        taskFilterTypeNames.insert("All", at: 0)
+    init(project: MProject?, dateFilter: MObjectDateFilterType, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool) {
+        statusFilterTypeNames.insert("All", at: 0)
         self.dateFilter = dateFilter
         self.statusFilter = statusFilter
         self.sortBy = sortBy
         self.ascending = ascending
+        self.project = project
+        
+        filterPublisher
+            .receive(on: RunLoop.main)
+            .map {predicate in
+                predicate
+        }
+        .assign(to: \.predicate, on: self)
+        .store(in: &cancellableSet)
+        
+        predicate = getPredicate(filter: statusFilter)
     }
+    
+    private var filterPublisher: AnyPublisher<NSPredicate?, Never> {
+        $statusFilter
+            .map { taskFilter in
+                self.project?.stateFilter = taskFilter
+                return self.getPredicate(filter: taskFilter)
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    
+    func getPredicate(filter: Int) -> NSPredicate? {
+        if filter == 0 {
+            if self.project == nil {
+                return nil
+            } else {
+                return NSPredicate(format: "project == %@", self.project!)
+            }
+        } else {
+            if self.project == nil {
+                return NSPredicate(format: "status == %d", MObjectStatus.all[filter - 1].rawValue)
+            } else {
+                return NSPredicate(format: "status == %d AND project == %@", MObjectStatus.all[filter - 1].rawValue, self.project!)
+            }
+        }
+    }
+    
+    
+    
     
 }
 

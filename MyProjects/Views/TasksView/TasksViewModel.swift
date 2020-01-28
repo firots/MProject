@@ -11,64 +11,23 @@ import Combine
 
 class TasksViewModel: ObservableObject {
     @Published var showAdd = false
-    @Published var taskStatusFilter: Int
-    @Published var predicate: NSPredicate?
     @Published var showActionSheet = false
+    @Published var filterContainer: MObjectFilterContainer
     
     var actionSheetType = MObjectActionSheetType.sort
-    
     var modalType = ModalType.addTask
-    
     var taskToEdit: MTask?
-
-    var taskFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
-    
-    private var cancellableSet: Set<AnyCancellable> = []
-    
-    
     let project: MProject?
     
-    private var filterTasksPublisher: AnyPublisher<NSPredicate?, Never> {
-        $taskStatusFilter
-            .map { taskFilter in
-                self.project?.stateFilter = taskFilter
-                return self.getPredicate(filter: taskFilter)
-            }
-            .eraseToAnyPublisher()
-    }
     
     
-    func getPredicate(filter: Int) -> NSPredicate? {
-        if filter == 0 {
-            if self.project == nil {
-                return nil
-            } else {
-                return NSPredicate(format: "project == %@", self.project!)
-            }
-        } else {
-            if self.project == nil {
-                return NSPredicate(format: "status == %d", MObjectStatus.all[filter - 1].rawValue)
-            } else {
-                return NSPredicate(format: "status == %d AND project == %@", MObjectStatus.all[filter - 1].rawValue, self.project!)
-            }
-        }
-    }
+
     
     
     init(project: MProject?) {
-        taskFilterTypeNames.insert("All", at: 0)
-        self.taskStatusFilter = project?.stateFilter ?? 1
         self.project = project
+        filterContainer = MObjectFilterContainer(project: project, dateFilter: MObjectDateFilterType.all, statusFilter: 0, sortBy: .none, ascending: true)
 
-        filterTasksPublisher
-            .receive(on: RunLoop.main)
-            .map {predicate in
-                predicate
-        }
-        .assign(to: \.predicate, on: self)
-        .store(in: &cancellableSet)
-        
-        predicate = getPredicate(filter: taskStatusFilter)
     }
 
     enum ModalType {

@@ -11,36 +11,9 @@ import Combine
 
 class ProjectsViewModel: ObservableObject {
     @Published var showAddProject = false
-    @Published var projectFilter = 1
-    @Published var predicate: NSPredicate?
+    @Published var filterContainer: MObjectFilterContainer
 
-    var projectFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
-    
-    private var cancellableSet: Set<AnyCancellable> = []
-    
-
-
-    private var filterProjectsPublisher: AnyPublisher<NSPredicate?, Never> {
-        $projectFilter
-            .map { projectFilter in
-                if projectFilter == 0 {
-                    return nil
-                } else {
-                    return NSPredicate(format: "status == %d", MObjectStatus.all[projectFilter - 1].rawValue)
-                }
-            }
-            .eraseToAnyPublisher()
-    }
-    
     init() {
-        projectFilterTypeNames.insert("All", at: 0)
-        
-        filterProjectsPublisher
-            .receive(on: RunLoop.main)
-            .map {predicate in
-                predicate
-        }
-        .assign(to: \.predicate, on: self)
-        .store(in: &cancellableSet)
+        filterContainer = MObjectFilterContainer(project: nil, dateFilter: MObjectDateFilterType.all, statusFilter: 0, sortBy: .none, ascending: true)
     }
 }

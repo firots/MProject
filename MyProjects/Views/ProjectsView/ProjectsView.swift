@@ -39,9 +39,9 @@ struct ProjectsView: View {
     
     private func projectFilter() -> some View {
         VStack {
-            Picker(selection: $model.projectFilter, label: Text("Show")) {
+            Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
                 ForEach(0..<MObjectStatus.all.count + 1) { index in
-                    Text(self.model.projectFilterTypeNames[index])
+                    Text(self.model.filterContainer.statusFilterTypeNames[index])
                 }
             }.pickerStyle(SegmentedPickerStyle())
             .background(Color(.systemBackground))
@@ -50,7 +50,7 @@ struct ProjectsView: View {
     }
     
     private func listProjects() -> some View {
-        FilteredList(predicate: model.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.projectFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.projectFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
+        FilteredList(predicate: model.filterContainer.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
             self.projectCell(project)
         }.padding(.top, 5)
     }

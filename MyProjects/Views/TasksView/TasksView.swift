@@ -71,7 +71,7 @@ struct TasksView: View {
     }
     
     private func listTasks() -> some View {
-        FilteredList(predicate: model.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.taskFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.taskFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
+        FilteredList(predicate: model.filterContainer.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
         }.padding(.top, 10)
     }
@@ -79,9 +79,9 @@ struct TasksView: View {
 
     private func taskFilter() -> some View {
         VStack {
-            Picker(selection: $model.taskFilter, label: Text("Show")) {
+            Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
                 ForEach(0..<MObjectStatus.all.count + 1) { index in
-                    Text(self.model.taskFilterTypeNames[index])
+                    Text(self.model.filterContainer.statusFilterTypeNames[index])
                 }
             }.pickerStyle(SegmentedPickerStyle())
             .background(Color(.systemBackground))
