@@ -30,7 +30,6 @@ class DataManager: Operation {
         var now = Date()
         now.addMinutes(1)
         LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
-        print(now.toRelative())
     }
     
     func syncTasks()  {

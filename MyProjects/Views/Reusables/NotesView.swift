@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NotesView: View {
     @Binding var notes: String
+    var title: String
     @State var jenas = true
     @ObservedObject var keyboard: KeyboardResponder
     @Environment(\.presentationMode) var presentationMode
@@ -17,7 +18,7 @@ struct NotesView: View {
     var body: some View {
         return VStack {
             ZStack {
-                ModalTitle(title: "Details", edit: false) {
+                ModalTitle(title: title, edit: false) {
                     self.presentationMode.wrappedValue.dismiss()
                 }
                 KeyboardDoneButton(show: $jenas)

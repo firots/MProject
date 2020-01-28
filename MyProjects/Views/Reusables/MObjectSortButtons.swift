@@ -32,7 +32,7 @@ struct MObjectSortButtons: View {
         Button(action: {
             
         }) {
-            Image(systemName: "line.horizontal.3.decrease.circle.fill")
+            Image(systemName: "calendar.circle.fill")
                 .resizable()
                 .frame(width: 24, height: 24)
         }

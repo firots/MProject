@@ -14,6 +14,7 @@ class AddNotificationViewModel: ObservableObject, Identifiable {
     @Published var title: String
     @Published var message: String
     @Published var date: Date
+    @Published var showModal = false
     
     /* can belong to project or task*/
     var mObject: MObject?

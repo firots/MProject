@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dataManager = DataManager()
         dataManager.start()
-        application.setMinimumBackgroundFetchInterval(1800)
+        application.setMinimumBackgroundFetchInterval(10000)
         //BackgroundManager.shared.register()
         return true
     }

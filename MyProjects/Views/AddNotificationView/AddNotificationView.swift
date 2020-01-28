@@ -29,6 +29,8 @@ struct AddNotificationView: View {
             RepeatModePicker(model: $model.repeatModeConfiguration, desc: RepeatMode.descriptions[model.repeatModeConfiguration.repeatMode])
             
             Form {
+                messageButton()
+                
                 if model.repeatModeConfiguration.repeatMode == RepeatMode.none.rawValue {
                     oneTimeRepeat()
                 } else {
@@ -39,7 +41,24 @@ struct AddNotificationView: View {
             .padding(.bottom, keyboard.currentHeight)
             .background(Color(.systemGroupedBackground))
         }
+        .sheet(isPresented: $model.showModal) {
+            NotesView(notes: self.$model.message, title: "Message", keyboard: self.keyboard)
+        }
         .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    func messageButton() -> some View {
+        HStack {
+            CellImageView(systemName: "pencil.circle.fill")
+            Text(self.model.message.emptyHolder("Message"))
+                .foregroundColor(Color(.placeholderText))
+                .lineLimit(3)
+            Spacer()
+        }.accentColor(Color(.systemPurple))
+        .contentShape(Rectangle())
+        .onTapGesture {
+            self.model.showModal = true
+        }
     }
     
     func titleBar() -> some View {
