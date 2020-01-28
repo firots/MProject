@@ -27,4 +27,8 @@ extension Date {
     func withFirstDayOfMonth() -> Date {
         Calendar.current.date(bySetting: .day, value: 1, of: self)!
     }
+    
+    func withFirstDayOfWeek() -> Date {
+        Calendar.current.date(bySetting: .weekday, value: 1, of: self)!
+    }
 }
