@@ -21,8 +21,8 @@ struct ProjectsView: View {
             VStack {
                 HStack {
                     Text(Date().toClassic()).padding(.leading, 20)
-                    MObjectNavigationButtons()
                     Spacer()
+                    MObjectSortButtons()
                 }
                 ZStack {
                     listProjects()

@@ -41,7 +41,7 @@
 		766FE81223D0BE3D0055180B /* MNotification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */; };
 		766FE81323D0BE3D0055180B /* MNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */; };
 		766FE81623D0C82B0055180B /* MNotification+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81523D0C82B0055180B /* MNotification+Create.swift */; };
-		7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */; };
+		7671A36023CE718200EF714F /* MObjectSortButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7671A35F23CE718200EF714F /* MObjectSortButtons.swift */; };
 		7673533823CA1065002C1194 /* MTask+ChangeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533723CA1065002C1194 /* MTask+ChangeState.swift */; };
 		7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533923CA11F1002C1194 /* MStep+Create.swift */; };
 		7673533C23CA52F1002C1194 /* StepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673533B23CA52F1002C1194 /* StepsView.swift */; };
@@ -132,7 +132,7 @@
 		766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataClass.swift"; sourceTree = "<group>"; };
 		766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		766FE81523D0C82B0055180B /* MNotification+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+Create.swift"; sourceTree = "<group>"; };
-		7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObjectNavigationButtons.swift; sourceTree = "<group>"; };
+		7671A35F23CE718200EF714F /* MObjectSortButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObjectSortButtons.swift; sourceTree = "<group>"; };
 		7673533723CA1065002C1194 /* MTask+ChangeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+ChangeState.swift"; sourceTree = "<group>"; };
 		7673533923CA11F1002C1194 /* MStep+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MStep+Create.swift"; sourceTree = "<group>"; };
 		7673533B23CA52F1002C1194 /* StepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsView.swift; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 				7621991A23CBD50A004B6541 /* AddStepView.swift */,
 				76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */,
 				76FDE0DA23CE1C5A00E3EEA2 /* DismissGuardian.swift */,
-				7671A35F23CE718200EF714F /* MObjectNavigationButtons.swift */,
+				7671A35F23CE718200EF714F /* MObjectSortButtons.swift */,
 				7623EEF823D2102D007B1B0D /* TopWarningView.swift */,
 				764F94C323D3341C008C0D09 /* RepeatModePicker.swift */,
 				764F94CF23D34EF2008C0D09 /* DateTimePicker.swift */,
@@ -594,7 +594,7 @@
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
 				7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */,
 				762F74E723D4E47D0016CC94 /* ConfigureMonthlyView.swift in Sources */,
-				7671A36023CE718200EF714F /* MObjectNavigationButtons.swift in Sources */,
+				7671A36023CE718200EF714F /* MObjectSortButtons.swift in Sources */,
 				7681B67E23C383DA0068254B /* MTask+CoreDataClass.swift in Sources */,
 				76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */,
 				76FDE0DB23CE1C5A00E3EEA2 /* DismissGuardian.swift in Sources */,

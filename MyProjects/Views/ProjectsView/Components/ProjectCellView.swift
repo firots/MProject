@@ -28,7 +28,8 @@ struct ProjectCellView: View {
                     
                     VStack(alignment: .leading) {
                         taskCellNameAndSteps()
-                            .padding(.bottom, 5)
+                        
+                        tasks()
                         
                         taskCellStartDates()
                             .padding(.bottom, 5)
@@ -53,30 +54,41 @@ struct ProjectCellView: View {
     
     private func taskCellNameAndSteps() -> some View {
         HStack {
-            Image(systemName: "flag.circle.fill")
-                .foregroundColor(MObjectPriority.colors[model.project.priority])
-            
             Text(model.project.wrappedName)
                 .strikethrough(model.project.wrappedStatus == .done, color: nil)
                  .lineLimit(1)
              
              Spacer()
-             
             
-             if !model.project.tasks.isEmpty {
-                
-                /*if !model.project.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
-                    Image(systemName: "bell.circle.fill")
-                        .foregroundColor(Color(.systemGray))
-                }*/
-                 
-                Text("\(model.project.completedTasks.count)/\(model.project.tasks.count)")
-                    .strikethrough(model.project.tasks.count == model.project.completedTasks.count, color: nil)
-                    .font(.system(size: 20, design: .monospaced))
-                    .bold()
-                    .lineLimit(1)
+            projectIcons()
+            
+    
+        }
+    }
+    
+    private func projectIcons() -> some View {
+        HStack {
+            if !model.project.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
+                Image(systemName: "bell.circle.fill")
                     .foregroundColor(Color(.systemGray))
-             }
+            }
+            
+            Image(systemName: "flag.circle.fill")
+                .foregroundColor(MObjectPriority.colors[model.project.priority])
+        }
+    }
+
+    
+    private func tasks() -> some View {
+        Group {
+            if !model.project.tasks.isEmpty {
+               Text("\(model.project.completedTasks.count)/\(model.project.tasks.count)")
+                   .strikethrough(model.project.tasks.count == model.project.completedTasks.count, color: nil)
+                   .font(.system(size: 20, design: .monospaced))
+                   .bold()
+                   .lineLimit(1)
+                   .foregroundColor(Color(.systemGray))
+            }
         }
     }
     

@@ -22,8 +22,9 @@ struct TasksView: View {
             VStack {
                 HStack {
                     Text(Date().toClassic()).padding(.leading, 20)
-                    MObjectNavigationButtons()
                     Spacer()
+                    MObjectSortButtons()
+                    
                 }
                 ZStack {
                     listTasks()
@@ -92,6 +93,9 @@ struct TasksView: View {
                 VStack(alignment: .leading) {
                     taskCellNameAndSteps(task)
                     
+                    showSteps(task)
+                        .padding(.bottom, 5)
+                    
                     taskCellStartDates(task)
                         .padding(.bottom, 5)
                     
@@ -106,34 +110,32 @@ struct TasksView: View {
     
     private func taskIcons(_ task: MTask) -> some View {
         HStack {
-
-            
-            if task.wrappedRepeatMode != .none {
-                Image(systemName: "arrow.clockwise.circle.fill")
-                    .foregroundColor(Color(.systemGray))
-            }
-            
             if !task.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
                 Image(systemName: "bell.circle.fill")
                     .foregroundColor(Color(.systemGray))
             }
+            
+            if task.wrappedRepeatMode != .none && task.repeatTask == nil {
+                Image(systemName: "arrow.clockwise.circle.fill")
+                    .foregroundColor(Color(.systemGray))
+            }
+            
+            Image(systemName: "flag.circle.fill")
+                .foregroundColor(MObjectPriority.colors[task.priority])
         }
     }
     
     private func taskCellNameAndSteps(_ task: MTask) -> some View {
         HStack {
-            Image(systemName: "flag.circle.fill")
-                .foregroundColor(MObjectPriority.colors[task.priority])
-            
             Text(task.wrappedName)
                  .strikethrough(task.wrappedStatus == .done, color: nil)
                  .lineLimit(1)
 
-            //taskIcons(task)
-             
             Spacer()
+            
+            taskIcons(task)
                 
-            showSteps(task)
+            
         }
     }
     
