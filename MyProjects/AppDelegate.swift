@@ -20,11 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dataManager = DataManager()
         dataManager.start()
-        
-        BackgroundManager.shared.register()
+        application.setMinimumBackgroundFetchInterval(1800)
+        //BackgroundManager.shared.register()
         return true
     }
     
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let manager = DataManager()
+        manager.start()
+        
+        if manager.isCancelled {
+            completionHandler(.failed)
+        } else {
+            completionHandler(.newData)
+        }
+    }
+    
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

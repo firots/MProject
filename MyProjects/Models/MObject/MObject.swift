@@ -72,7 +72,9 @@ extension MObject {
             
             if self.status == MObjectStatus.failed.rawValue || self.status == MObjectStatus.done.rawValue {
                 if let task = self as? MTask {
-                    task.repeatIfNeeded(force: true)
+                    DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+                        task.repeatIfNeeded(force: true)
+                    }
                 }
             }
         }

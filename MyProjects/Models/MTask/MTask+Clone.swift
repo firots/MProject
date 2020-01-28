@@ -48,18 +48,10 @@ extension MTask {
         
         deleteNotificationsFromIOS(clearFireDate: true)
         
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-            let _ = self.clone()
-        }
-        
-        
-        
-        
-
+        let _ = self.clone(force: force)
     }
     
-    func clone() -> MTask? {
+    func clone(force: Bool) -> MTask? {
         guard let context = self.managedObjectContext else { return nil }
         
         let viewModel = AddTaskViewModel(self, self.project)
@@ -77,7 +69,6 @@ extension MTask {
         
         let hourDiff = (self.nextFireDate ?? Date()).hoursPassed(from: self.repeatStartDate)
         
-        print(viewModel.started?.toRelative())
         viewModel.started?.addHours(hourDiff)
         
         for notification in viewModel.notificationsModel.notifications {
@@ -103,9 +94,12 @@ extension MTask {
     
         self.setNextFireDate()
         
-        if managedObjectContext?.hasChanges == true {
-            try? managedObjectContext?.save()
+        if force == true {
+            if managedObjectContext?.hasChanges == true {
+                try? managedObjectContext?.save()
+            }
         }
+
         
         return task
         
