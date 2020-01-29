@@ -9,9 +9,20 @@
 import Foundation
 import Combine
 
-class ProjectsViewModel: ObservableObject {
+class ProjectsViewModel: MObjectsViewModel {
     @Published var showAddProject = false
+    @Published var showActionSheet = false
     @Published var filterContainer: MObjectFilterContainer
+    
+    var actionSheetType = MObjectActionSheetType.sort
+    
+    var fContainer: MObjectFilterContainer {
+        get {
+            return filterContainer
+        } set {
+            filterContainer = newValue
+        }
+    }
 
     init() {
         filterContainer = MObjectFilterContainer(project: nil, dateFilter: MObjectDateFilterType.anytime, statusFilter: 0, sortBy: .none, ascending: true)

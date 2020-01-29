@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct ProjectsView: View {
-    @ObservedObject private var model: ProjectsViewModel
+struct ProjectsView: View, HasMObjectActionList  {
+    @ObservedObject var model: ProjectsViewModel
     @Environment(\.managedObjectContext) private var moc
     
     init() {
@@ -30,10 +30,20 @@ struct ProjectsView: View {
             }
             addButton()
         }
-        .navigationBarItems(trailing: MObjectSortButtons())
-        .navigationBarTitle("My Projects")
+        .navigationBarItems(trailing: MObjectSortButtons(sortAction: {
+            self.model.actionSheetType = .sort
+            self.model.showActionSheet = true
+            
+        }, filterAction: {
+            self.model.actionSheetType = .filter
+            self.model.showActionSheet = true
+        }))
+        .navigationBarTitle("\(MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue]) Projects")
         .sheet(isPresented: $model.showAddProject)  {
             AddProjectView(context: self.moc, project: nil)
+        }
+        .actionSheet(isPresented: $model.showActionSheet) {
+            dateFilterActionSheet()
         }
     }
     
@@ -50,7 +60,7 @@ struct ProjectsView: View {
     }
     
     private func listProjects() -> some View {
-        FilteredList(predicate: model.filterContainer.statusPredicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
+        FilteredList(predicate: model.filterContainer.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
             self.projectCell(project)
         }.padding(.top, 5)
     }

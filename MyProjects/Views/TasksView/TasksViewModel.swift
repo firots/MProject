@@ -9,10 +9,18 @@
 import Foundation
 import Combine
 
-class TasksViewModel: ObservableObject {
+class TasksViewModel: MObjectsViewModel {
     @Published var showAdd = false
     @Published var showActionSheet = false
     @Published var filterContainer: MObjectFilterContainer
+    
+    var fContainer: MObjectFilterContainer {
+        get {
+            return filterContainer
+        } set {
+            filterContainer = newValue
+        }
+    }
     
     var actionSheetType = MObjectActionSheetType.sort
     var modalType = ModalType.addTask

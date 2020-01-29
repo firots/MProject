@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct TasksView: View {
-    @ObservedObject private var model: TasksViewModel
+struct TasksView: View, HasMObjectActionList {
+    @ObservedObject var model: TasksViewModel
     @Environment(\.managedObjectContext) private var moc
     @State private var sheetOn = false
     
@@ -39,7 +39,7 @@ struct TasksView: View {
             self.model.actionSheetType = .filter
             self.model.showActionSheet = true
         }))
-            .navigationBarTitle(model.project?.wrappedName ?? " \(MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue]) Tasks")
+            .navigationBarTitle(model.project?.wrappedName ?? "\(MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue]) Tasks")
         .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {
                 AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
@@ -50,40 +50,6 @@ struct TasksView: View {
         .actionSheet(isPresented: $model.showActionSheet) {
             dateFilterActionSheet()
         }
-    }
-    
-    private func dateFilterActionSheet() -> ActionSheet {
-        ActionSheet(
-            title: Text("Filter Tasks"),
-            message: Text("Show Tasks of"),
-            buttons: [
-                    .default(
-                        Text("Today"),
-                        action: {
-                         self.model.filterContainer.dateFilter = .today
-                    }),
-                    .default(
-                        Text("This Week"),
-                        action: {
-                         self.model.filterContainer.dateFilter = .week
-                    }),
-                    .default(
-                        Text("This Month"),
-                        action: {
-                         self.model.filterContainer.dateFilter = .month
-                    }),
-                    .default(
-                        Text("This Year"),
-                        action: {
-                         self.model.filterContainer.dateFilter = .year
-                    }),
-                    .default(
-                        Text("All"),
-                        action: {
-                         self.model.filterContainer.dateFilter = .anytime
-                    }),
-                    .cancel()
-            ])
     }
     
     private func hoveringButtons() -> some View {
