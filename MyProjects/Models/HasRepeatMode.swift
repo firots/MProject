@@ -88,7 +88,7 @@ extension HasRepeatMode {
     private func setFireDateForHourly() {
         guard let startDate = repeatStartDate else { fatalError("start date is nil")}
         
-        let now = Date()
+        let now = self is MTask ? startDate: Date()
         var fireDate = calendar.date(bySetting: .minute, value: startMinute, of: now)!
         
         
@@ -114,7 +114,7 @@ extension HasRepeatMode {
     private func setFireDateForDaily() {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         
-        let now = Date()
+        let now = self is MTask ? startDate: Date()
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         func isInPeriod() -> Bool {
@@ -143,7 +143,7 @@ extension HasRepeatMode {
     private func setFireDateForWeeklyAndMonthly() {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         
-        let now = Date()
+        let now = self is MTask ? startDate: Date()
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         func isInPeriod() -> Bool {
