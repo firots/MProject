@@ -32,7 +32,20 @@ extension MProject {
     @NSManaged public var priority: Int
     @NSManaged public var saved: Bool
     @NSManaged public var progress: Float
-    @NSManaged public var stateFilter: Int
+    
+    /* Filter and Sort Tasks */
+    @NSManaged public var statusFilter: Int
+    @NSManaged public var dateFilter: Int
+    @NSManaged public var sortTasksBy: String?
+    @NSManaged public var tasksAscending: Bool
+    
+    public var wrappedDateFilter: MObjectDateFilterType {
+        MObjectDateFilterType(rawValue: dateFilter) ?? .anytime
+    }
+    
+    public var wrappedSortTasksBy: MObjectSortType {
+        MObjectSortType(rawValue: sortTasksBy ?? MObjectSortType.created.rawValue) ?? .created
+    }
     
     public var tasks: [MTask] {
         let set = task as? Set<MTask> ?? []

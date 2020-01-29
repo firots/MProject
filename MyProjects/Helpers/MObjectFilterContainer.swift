@@ -14,6 +14,8 @@ class MObjectFilterContainer: ObservableObject {
     var project: MProject?
     var statusFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
     
+    var type: MObjectType
+    
     @Published var sortBy: MObjectSortType
     @Published var ascending: Bool
     
@@ -28,13 +30,14 @@ class MObjectFilterContainer: ObservableObject {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(project: MProject?, dateFilter: MObjectDateFilterType, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool) {
+    init(project: MProject?, type: MObjectType, dateFilter: MObjectDateFilterType, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool) {
         statusFilterTypeNames.insert("All", at: 0)
         self.dateFilter = dateFilter
         self.statusFilter = statusFilter
         self.sortBy = sortBy
         self.ascending = ascending
         self.project = project
+        self.type = type
         self.sortDescriptor = NSSortDescriptor(key: sortBy.rawValue, ascending: ascending)
         
         initFiltering()
@@ -79,17 +82,43 @@ extension MObjectFilterContainer {
     private var sortByPublisher: AnyPublisher<MObjectSortType, Never> {
         $sortBy
             .map { sort in
-                sort
+                self.saveSortBy(value: sort)
+                return sort
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func saveSortBy(value: MObjectSortType) {
+        if self.type == .task {
+            if let project = self.project {
+                project.sortTasksBy = value.rawValue
+            } else {
+                Settings.shared.taskViewSettings.sortBy = value
+            }
+        } else {
+            Settings.shared.projectsViewSettings.sortBy = value
+        }
     }
     
     private var ascendingPublisher: AnyPublisher<Bool, Never> {
         $ascending
             .map { asc in
-                asc
+                self.saveAscending(value: asc)
+                return asc
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func saveAscending(value: Bool) {
+        if type == .task {
+            if let project = project {
+                project.tasksAscending = value
+            } else {
+                Settings.shared.taskViewSettings.ascending = value
+            }
+        } else {
+            Settings.shared.projectsViewSettings.ascending = value
+        }
     }
     
     private var sortDescriptorPublisher: AnyPublisher<Bool, Never> {
@@ -161,11 +190,22 @@ extension MObjectFilterContainer {
     private var statusFilterPublisher: AnyPublisher<NSPredicate?, Never> {
         $statusFilter
             .map { taskFilter in
-                self.project?.stateFilter = taskFilter
-                /* to do: set settings main task state filter here */
+                self.saveStatusfilter(value: taskFilter)
                 return self.getStatusPredicate(filter: taskFilter)
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func saveStatusfilter(value: Int) {
+        if type == .task {
+            if let project = project {
+                project.statusFilter = value
+            } else {
+                Settings.shared.taskViewSettings.statusFilter = value
+            }
+        } else {
+            Settings.shared.projectsViewSettings.statusFilter = value
+        }
     }
     
     private func getStatusPredicate(filter: Int) -> NSPredicate? {
@@ -190,10 +230,22 @@ extension MObjectFilterContainer {
     private var dateFilterPublisher: AnyPublisher<NSPredicate?, Never> {
         $dateFilter
             .map { dateFilter in
-                /* to do: set settings main task date filter here and projedt date filrer */
-                self.getDatePredicate(from: dateFilter)
+                self.saveDateFilter(value: dateFilter)
+                return self.getDatePredicate(from: dateFilter)
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func saveDateFilter(value: MObjectDateFilterType) {
+        if self.type == .task {
+            if let project = project {
+                project.dateFilter = value.rawValue
+            } else {
+                Settings.shared.taskViewSettings.dateFilter = value
+            }
+        } else {
+            Settings.shared.projectsViewSettings.dateFilter = value
+        }
     }
     
     private func getDatePredicate(from filter: MObjectDateFilterType) -> NSPredicate? {
@@ -235,7 +287,7 @@ extension MObjectFilterContainer {
 
 
 
-enum MObjectDateFilterType: Int {
+public enum MObjectDateFilterType: Int {
     case anytime
     case today
     case week
@@ -246,12 +298,12 @@ enum MObjectDateFilterType: Int {
     static var names = ["All", "Today's", "This Week's", "This Month's", "This Year's"]
 }
 
-enum MObjectActionSheetType: Int {
+public enum MObjectActionSheetType: Int {
     case sort
     case filter
 }
     
-enum MObjectSortType: String {
+public enum MObjectSortType: String {
     case none
     case priority
     case name

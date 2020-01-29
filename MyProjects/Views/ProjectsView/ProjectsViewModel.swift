@@ -25,6 +25,6 @@ class ProjectsViewModel: MObjectsViewModel {
     }
 
     init() {
-        filterContainer = MObjectFilterContainer(project: nil, dateFilter: MObjectDateFilterType.anytime, statusFilter: 0, sortBy: .created, ascending: false)
+        filterContainer = MObjectFilterContainer(project: nil, type: .project, dateFilter: Settings.shared.projectsViewSettings.dateFilter, statusFilter: Settings.shared.projectsViewSettings.statusFilter, sortBy: Settings.shared.projectsViewSettings.sortBy, ascending: Settings.shared.projectsViewSettings.ascending)
     }
 }

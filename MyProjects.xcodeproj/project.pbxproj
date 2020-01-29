@@ -59,6 +59,7 @@
 		7694099123D5EE9800E40B95 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */; };
 		7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */; };
 		76C9589123E1B15D007EBC63 /* MObjectActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C9589023E1B15D007EBC63 /* MObjectActionList.swift */; };
+		76C9589323E1FAA7007EBC63 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C9589223E1FAA7007EBC63 /* Settings.swift */; };
 		76D2ADE823D65F9D009FFD5E /* HasRepeatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */; };
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
@@ -152,6 +153,7 @@
 		7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+SyncNotifications.swift"; sourceTree = "<group>"; };
 		76C9589023E1B15D007EBC63 /* MObjectActionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObjectActionList.swift; sourceTree = "<group>"; };
+		76C9589223E1FAA7007EBC63 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasRepeatMode.swift; sourceTree = "<group>"; };
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				76FEB7F123DCA8D70028DBA0 /* LocalNotifications.swift */,
 				76FD284223DDF3C8003B543C /* BackgroundManager.swift */,
 				7602C62123E0C87A00DECF0B /* MObjectFilterContainer.swift */,
+				76C9589223E1FAA7007EBC63 /* Settings.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76C9589323E1FAA7007EBC63 /* Settings.swift in Sources */,
 				7602C62223E0C87A00DECF0B /* MObjectFilterContainer.swift in Sources */,
 				7681B68823C3B3360068254B /* MTask+CreateOrSync.swift in Sources */,
 				7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */,

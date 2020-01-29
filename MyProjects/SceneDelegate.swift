@@ -44,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
         
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        Settings.shared.save()
         //BackgroundManager.shared.scheduleAppRefresh()
     }
 
@@ -71,8 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         
         //BackgroundManager.shared.scheduleAppRefresh()
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        
+        Settings.shared.save()
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 }

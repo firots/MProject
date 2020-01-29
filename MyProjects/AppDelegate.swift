@@ -12,6 +12,8 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Settings.load()
+        
         // Override point for customization after application launch.
         UISwitch.appearance().onTintColor = .systemPurple
         UITableView.appearance().separatorStyle = .none
@@ -20,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dataManager = DataManager()
         dataManager.start()
-        application.setMinimumBackgroundFetchInterval(10000)
+        application.setMinimumBackgroundFetchInterval(4500)
         //BackgroundManager.shared.register()
         return true
     }
