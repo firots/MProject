@@ -38,7 +38,7 @@ struct ProjectsView: View, HasMObjectActionList  {
             self.model.actionSheetType = .filter
             self.model.showActionSheet = true
         }))
-        .navigationBarTitle("\(MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue]) Projects")
+        .navigationBarTitle(MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue])
         .sheet(isPresented: $model.showAddProject)  {
             AddProjectView(context: self.moc, project: nil)
         }

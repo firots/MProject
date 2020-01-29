@@ -39,7 +39,7 @@ struct TasksView: View, HasMObjectActionList {
             self.model.actionSheetType = .filter
             self.model.showActionSheet = true
         }))
-            .navigationBarTitle(model.project?.wrappedName ?? "\(MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue]) Tasks")
+            .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue])
         .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {
                 AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
