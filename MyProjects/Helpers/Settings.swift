@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Settings: ObservableObject, Codable {
+class Settings: Codable {
     var taskViewSettings: TasksViewSettings
     var projectsViewSettings: TasksViewSettings
     
@@ -18,6 +18,11 @@ class Settings: ObservableObject, Codable {
     }
     
     func save() {
+        MObjectFilterContainer.latestInstance?.savePreferences()
+        
+        
+        print(MObjectFilterContainer.latestInstance?.type)
+        
         let encoder = JSONEncoder()
         
         if let data = try? encoder.encode(self) {

@@ -52,7 +52,7 @@ struct AddMObjectView: View {
             HStack {
                 CellImageView(systemName: "arrow.clockwise.circle.fill")
                 Text("Repeat Mode")
-                Spacer()
+                Spacer(minLength: 32)
                 Text(taskModel.repeatModeConfiguration.wrappedRepeatMode != .none ? taskModel.repeatModeConfiguration.repeatText :
                     "None")
                     .foregroundColor(Color(.secondaryLabel))

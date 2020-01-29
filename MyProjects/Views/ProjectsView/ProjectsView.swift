@@ -44,6 +44,10 @@ struct ProjectsView: View, HasMObjectActionList  {
         }
         .actionSheet(isPresented: $model.showActionSheet) {
             actionSheet()
+        }.onDisappear() {
+            self.model.filterContainer.savePreferences()
+        }.onAppear() {
+            MObjectFilterContainer.latestInstance = self.model.filterContainer
         }
     }
     
