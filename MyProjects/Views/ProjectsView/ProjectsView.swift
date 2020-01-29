@@ -30,7 +30,7 @@ struct ProjectsView: View, HasMObjectActionList  {
             }
             addButton()
         }
-        .navigationBarItems(trailing: MObjectSortButtons(sortAction: {
+        .navigationBarItems(trailing: MObjectSortButtons(ascending: $model.filterContainer.ascending, sortAction: {
             self.model.actionSheetType = .sort
             self.model.showActionSheet = true
             

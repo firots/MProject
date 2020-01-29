@@ -80,7 +80,7 @@ extension HasMObjectActionList {
                             self.model.fContainer.sortBy = .priority
                     }),
                     .default(
-                        Text("Alphabetic"),
+                        Text("Name"),
                         action: {
                          self.model.fContainer.sortBy = .name
                     }),

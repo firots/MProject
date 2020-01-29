@@ -53,7 +53,8 @@ struct AddMObjectView: View {
                 CellImageView(systemName: "arrow.clockwise.circle.fill")
                 Text("Repeat Mode")
                 Spacer()
-                Text("\(RepeatMode.names[taskModel.repeatModeConfiguration.repeatMode].capitalizingFirstLetter())")
+                Text(taskModel.repeatModeConfiguration.wrappedRepeatMode != .none ? taskModel.repeatModeConfiguration.repeatText :
+                    "None")
                     .foregroundColor(Color(.secondaryLabel))
                     .padding(.trailing, 8)
             }

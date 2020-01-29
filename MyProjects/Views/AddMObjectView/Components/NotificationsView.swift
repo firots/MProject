@@ -37,7 +37,9 @@ struct NotificationsView: View {
     
     func notificationCell(_ notification: AddNotificationViewModel) -> some View {
         HStack {
-            Text(notification.id.uuidString)
+            CellImageView(systemName: "bell.circle.fill")
+            Text(notification.repeatModeConfiguration.wrappedRepeatMode != .none ? notification.repeatModeConfiguration.repeatText :
+                notification.date.toRelative())
         }.onTapGesture {
             self.model.isNew = false
             self.model.notificationToAdd = notification

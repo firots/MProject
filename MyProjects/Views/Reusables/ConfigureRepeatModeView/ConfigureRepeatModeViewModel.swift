@@ -29,6 +29,29 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
     var wrappedRepeatMode: RepeatMode {
         return RepeatMode(rawValue: repeatMode) ?? .none
     }
+    
+    var repeatText: String {
+        switch wrappedRepeatMode {
+        case .none:
+            return ""
+        case .hour:
+            let periodString = repeatHoursPeriod > 1 ? "\(repeatHoursPeriod) hours" : "hour"
+            return "Repeats every \(periodString) at \(repeatStartDate.toTime())."
+        case .day:
+            let periodString = repeatDaysPeriod > 1 ? "\(repeatHoursPeriod) days" : "day"
+            return "Repeats every \(periodString) at \(repeatStartDate.toTime())"
+        case.week:
+            let periodString = repeatWeeksPeriod > 1 ? "\(repeatWeeksPeriod) weeks" : "week"
+            let daysArr = selectedDayOfWeekIndex.map { Calendar.current.weekdaySymbols[$0] }
+            let repeatDaysString = daysArr.joined(separator: ", ")
+            return "Repeats every \(periodString) at \(repeatStartDate.toTime()) on days: \(repeatDaysString)"
+        case.month:
+            let periodString = repeatMonthsPeriod > 1 ? "\(repeatMonthsPeriod) months" : "month"
+            let daysArr = selectedDayOfMonthIndex.map { String($0 + 1) }
+            let repeatDaysString = daysArr.joined(separator: ", ")
+            return "Repeats every \(periodString) at \(repeatStartDate.toTime()) on days: \(repeatDaysString)"
+        }
+    }
 
     init(from notification: T?, type: RepeatModeObjectType) {
         self.type = type

@@ -9,15 +9,33 @@
 import SwiftUI
 
 struct MObjectSortButtons: View {
+    @Binding var ascending: Bool
     var sortAction: (() -> Void)?
     var filterAction: (() -> Void)?
     
     var body: some View {
         HStack {
+            setAscending()
             sortMObjects()
             filterMObjects()
         }.padding(.top)
             
+    }
+    
+    func setAscending() -> some View {
+        Button(action: {
+            withAnimation {
+                self.ascending.toggle()
+            }
+            
+        }) {
+            Image(systemName: "arrow.up.circle.fill")
+                .resizable()
+                .frame(width: 24, height: 24)
+                .rotationEffect(ascending ? .degrees(0) : .degrees(180))
+                .animation(.spring())
+
+        }
     }
     
     func sortMObjects() -> some View {

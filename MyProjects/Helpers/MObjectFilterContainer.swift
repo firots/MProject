@@ -262,5 +262,5 @@ enum MObjectSortType: String {
     
     static let all = [MObjectSortType.none, MObjectSortType.priority, MObjectSortType.name, MObjectSortType.created, MObjectSortType.started, MObjectSortType.deadline]
     
-    static var names = ["None", "Priority", "Alphabetic", "Date Created", "Date Started", "Deadline"]
+    static var names = ["None", "Priority", "Name", "Date Created", "Date Started", "Deadline"]
 }

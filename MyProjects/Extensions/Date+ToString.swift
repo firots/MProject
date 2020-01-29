@@ -27,6 +27,15 @@ extension Date {
         return "\(date) \(time)"
     }
     
+    func toTime() -> String {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        
+        let time = timeFormatter.string(from: self)
+        
+        return time
+    }
+    
     func toClassic() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
