@@ -113,7 +113,10 @@ extension MObjectFilterContainer {
     }
     
     private func getSortDescriptor() -> NSSortDescriptor {
-        NSSortDescriptor(key: sortBy.rawValue, ascending: ascending)
+        if sortBy == .name {
+            return NSSortDescriptor(key: sortBy.rawValue, ascending: ascending, selector: #selector(NSString.caseInsensitiveCompare))
+        }
+        return NSSortDescriptor(key: sortBy.rawValue, ascending: ascending)
     }
     
     public func savePreferences() {
