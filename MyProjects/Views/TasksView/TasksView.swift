@@ -48,7 +48,7 @@ struct TasksView: View, HasMObjectActionList {
             }
         }
         .actionSheet(isPresented: $model.showActionSheet) {
-            dateFilterActionSheet()
+            actionSheet()
         }
     }
     
@@ -71,7 +71,7 @@ struct TasksView: View, HasMObjectActionList {
     }
     
     private func listTasks() -> some View {
-        FilteredList(predicate: model.filterContainer.predicate, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
+        FilteredList(predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
         }.padding(.top, 10)
     }

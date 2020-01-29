@@ -29,7 +29,7 @@ class TasksViewModel: MObjectsViewModel {
     
     init(project: MProject?) {
         self.project = project
-        filterContainer = MObjectFilterContainer(project: project, dateFilter: MObjectDateFilterType.anytime, statusFilter: 0, sortBy: .none, ascending: true)
+        filterContainer = MObjectFilterContainer(project: project, dateFilter: MObjectDateFilterType.anytime, statusFilter: 0, sortBy: .created, ascending: false)
 
     }
 

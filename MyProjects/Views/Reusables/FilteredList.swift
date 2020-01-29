@@ -33,8 +33,8 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         }
     }
     
-    init(predicate: NSPredicate?, placeholder: PlaceholderViewModel, @ViewBuilder content: @escaping (T) -> Content) {
-        self.fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [], predicate: predicate)
+    init(predicate: NSPredicate?, sorter: NSSortDescriptor, placeholder: PlaceholderViewModel, @ViewBuilder content: @escaping (T) -> Content) {
+        self.fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [sorter], predicate: predicate)
         self.content = content
         self.placeholder = placeholder
         self.predicate = predicate
@@ -49,10 +49,10 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     }
 }
 
-struct FilteredProjectsList_Previews: PreviewProvider {
+/*struct FilteredProjectsList_Previews: PreviewProvider {
     static var previews: some View {
         FilteredList(predicate: nil, placeholder: PlaceholderViewModel(title: "Hello There", subtitle: "This is an empty placeholder", image: UIImage(named: "pencil"))) {_ in
             Text("Test")
         }
     }
-}
+}*/

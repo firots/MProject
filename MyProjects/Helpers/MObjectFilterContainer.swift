@@ -12,18 +12,18 @@ import CoreData
 
 class MObjectFilterContainer: ObservableObject {
     var project: MProject?
-    
     var statusFilterTypeNames: [String] = MObjectStatus.names.map( {$0.capitalizingFirstLetter()} )
+    
+    @Published var sortBy: MObjectSortType
+    @Published var ascending: Bool
+    
+    @Published var sortDescriptor: NSSortDescriptor
     
     @Published var dateFilter: MObjectDateFilterType
     @Published var statusFilter: Int
-    @Published var sortBy: MObjectSortType
-    @Published var ascending: Bool
+    
     @Published var statusPredicate: NSPredicate?
-    
-    
     @Published var datePredicate: NSPredicate?
-    
     @Published var predicate: NSCompoundPredicate?
     
     private var cancellableSet: Set<AnyCancellable> = []
@@ -35,7 +35,82 @@ class MObjectFilterContainer: ObservableObject {
         self.sortBy = sortBy
         self.ascending = ascending
         self.project = project
+        self.sortDescriptor = NSSortDescriptor(key: sortBy.rawValue, ascending: ascending)
         
+        initFiltering()
+        initSorting()
+        
+       
+    }
+}
+
+
+/* Sorting */
+extension MObjectFilterContainer {
+    
+    func initSorting() {
+        sortByPublisher
+            .receive(on: RunLoop.main)
+            .map {sort in
+                sort
+        }
+        .assign(to: \.sortBy, on: self)
+        .store(in: &cancellableSet)
+        
+        ascendingPublisher
+            .receive(on: RunLoop.main)
+            .map {sort in
+                sort
+        }
+        .assign(to: \.ascending, on: self)
+        .store(in: &cancellableSet)
+        
+        sortDescriptorPublisher
+            .receive(on: RunLoop.main)
+            .map {sort in
+                self.getSortDescriptor()
+        }
+        .assign(to: \.sortDescriptor, on: self)
+        .store(in: &cancellableSet)
+        
+        self.sortDescriptor = getSortDescriptor()
+    }
+    
+    private var sortByPublisher: AnyPublisher<MObjectSortType, Never> {
+        $sortBy
+            .map { sort in
+                sort
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private var ascendingPublisher: AnyPublisher<Bool, Never> {
+        $ascending
+            .map { asc in
+                asc
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private var sortDescriptorPublisher: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest(sortByPublisher, ascendingPublisher)
+            .map { sort, asc in
+                true
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    private func getSortDescriptor() -> NSSortDescriptor {
+        NSSortDescriptor(key: sortBy.rawValue, ascending: ascending)
+    }
+}
+
+
+
+
+/* Filtering */
+extension MObjectFilterContainer {
+    func initFiltering() {
         statusFilterPublisher
             .receive(on: RunLoop.main)
             .map {predicate in
@@ -67,6 +142,7 @@ class MObjectFilterContainer: ObservableObject {
         predicate = combinePredicates()
     }
     
+    
     func combinePredicates() -> NSCompoundPredicate {
         NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate, datePredicate].compactMap { $0 })
     }
@@ -78,8 +154,6 @@ class MObjectFilterContainer: ObservableObject {
         }
         .eraseToAnyPublisher()
     }
-    
-
 }
 
 /* Object Status Filter Publishers */
@@ -177,16 +251,16 @@ enum MObjectActionSheetType: Int {
     case filter
 }
     
-enum MObjectSortType: Int {
+enum MObjectSortType: String {
     case none
     case priority
-    case alphabetic
-    case creation
+    case name
+    case created
     case started
     case deadline
     case status
     
-    static let all = [MObjectSortType.none, MObjectSortType.priority, MObjectSortType.alphabetic, MObjectSortType.creation, MObjectSortType.started, MObjectSortType.deadline]
+    static let all = [MObjectSortType.none, MObjectSortType.priority, MObjectSortType.name, MObjectSortType.created, MObjectSortType.started, MObjectSortType.deadline]
     
     static var names = ["None", "Priority", "Alphabetic", "Date Created", "Date Started", "Deadline"]
 }

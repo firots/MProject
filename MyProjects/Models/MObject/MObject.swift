@@ -101,7 +101,7 @@ extension MObject {
     func setMutualFields(from model: AddMObjectViewModel) {
         self.name = model.name.emptyIsNil()
         self.details = model.details.emptyIsNil()
-
+        self.priority = model.priority
         if self.saved == false && model.status == .active  {
             self.started = model.started ?? Date()
         }
