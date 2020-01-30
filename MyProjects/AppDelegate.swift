@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,12 +23,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dataManager = DataManager()
         dataManager.start()
-        application.setMinimumBackgroundFetchInterval(4500)
-        //BackgroundManager.shared.register()
+        //application.setMinimumBackgroundFetchInterval(4500)
+        registerBackgroundMode()
         return true
     }
     
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    
+    func registerBackgroundMode() {
+        BGTaskScheduler.shared.register(forTaskWithIdentifier:
+        "com.firot.MyProjects.refresh",
+        using: nil)
+          {task in
+             self.handleAppRefresh(task: task as! BGAppRefreshTask)
+          }
+    }
+    
+    
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
+       // Fetch no earlier than 15 minutes from now
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
+            
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print("Could not schedule app refresh: \(error)")
+        }
+    }
+    
+    func handleAppRefresh(task: BGAppRefreshTask) {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        DispatchQueue.main.async {
+            let appRefreshOperation = DataManager()
+            
+            DispatchQueue.global().async {
+                queue.addOperation(appRefreshOperation)
+
+                task.expirationHandler = {
+                    queue.cancelAllOperations()
+                }
+
+                let lastOperation = queue.operations.last
+                lastOperation?.completionBlock = {
+                    task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
+                }
+
+                self.scheduleAppRefresh()
+            }
+
+        }
+
+    }
+    
+    /*func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let manager = DataManager()
         manager.start()
         
@@ -36,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             completionHandler(.newData)
         }
-    }
+    }*/
     
 
     // MARK: UISceneSession Lifecycle
