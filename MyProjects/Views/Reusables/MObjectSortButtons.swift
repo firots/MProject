@@ -52,6 +52,7 @@ struct MObjectSortButtons: View {
     func filterMObjects() -> some View {
         Button(action: {
             self.filterAction?()
+
         }) {
             Image(systemName: "calendar.circle.fill")
                 .resizable()

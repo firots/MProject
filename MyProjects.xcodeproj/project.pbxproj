@@ -168,7 +168,7 @@
 		76EF17C823BCE1AF00C1CD11 /* AddProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectViewModel.swift; sourceTree = "<group>"; };
 		76F06B6023DA3E39002CE0E3 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		76F06B6323DA51D2002CE0E3 /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
-		76FD61A223B929AE00D21B21 /* MyProjects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyProjects.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76FD61A223B929AE00D21B21 /* MProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FD61A523B929AE00D21B21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76FD61A723B929AE00D21B21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		76FD61AA23B929AE00D21B21 /* MyProjects.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyProjects.xcdatamodel; sourceTree = "<group>"; };
@@ -417,7 +417,7 @@
 		76FD61A323B929AE00D21B21 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				76FD61A223B929AE00D21B21 /* MyProjects.app */,
+				76FD61A223B929AE00D21B21 /* MProject.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -535,7 +535,7 @@
 			);
 			name = MyProjects;
 			productName = MyProjects;
-			productReference = 76FD61A223B929AE00D21B21 /* MyProjects.app */;
+			productReference = 76FD61A223B929AE00D21B21 /* MProject.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -821,7 +821,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firot.MyProjects;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MProject;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -843,7 +843,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.firot.MyProjects;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MProject;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

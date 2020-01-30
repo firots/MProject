@@ -8,10 +8,11 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-
+    
     var body: some View {
         TabView {
             NavigationView {
