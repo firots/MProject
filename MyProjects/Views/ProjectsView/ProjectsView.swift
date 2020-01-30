@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ProjectsView: View, HasMObjectActionList  {
+struct ProjectsView: View, MObjectLister  {
     @ObservedObject var model: ProjectsViewModel
     @Environment(\.managedObjectContext) private var moc
     

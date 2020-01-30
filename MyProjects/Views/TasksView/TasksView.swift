@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TasksView: View, HasMObjectActionList {
+struct TasksView: View, MObjectLister {
     @ObservedObject var model: TasksViewModel
     @Environment(\.managedObjectContext) private var moc
     @State private var sheetOn = false
@@ -32,12 +32,9 @@ struct TasksView: View, HasMObjectActionList {
             hoveringButtons()
         }
         .navigationBarItems(trailing: MObjectSortButtons(ascending: $model.filterContainer.ascending, sortAction: {
-            self.model.actionSheetType = .sort
-            self.model.showActionSheet = true
-            
+            self.sortButtonAction()
         }, filterAction: {
-            self.model.actionSheetType = .filter
-            self.model.showActionSheet = true
+            self.filterButtonAction()
         }))
             .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue])
         .sheet(isPresented: self.$model.showAdd)  {

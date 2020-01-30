@@ -12,20 +12,31 @@ import SwiftUI
 protocol MObjectsViewModel: ObservableObject {
     var fContainer: MObjectFilterContainer { get  set }
     var actionSheetType: MObjectActionSheetType { get set }
+    var showActionSheet: Bool { get set }
 }
 
-protocol HasMObjectActionList {
+protocol MObjectLister {
     associatedtype T: MObjectsViewModel
     var model: T { get set }
 }
 
-extension HasMObjectActionList {
+extension MObjectLister {
     var mObjectName: String {
         if self is TasksView {
             return "Tasks"
         } else {
             return "Projects"
         }
+    }
+    
+    func filterButtonAction() {
+        model.actionSheetType = .filter
+        model.showActionSheet = true
+    }
+    
+    func sortButtonAction() {
+        model.actionSheetType = .sort
+        model.showActionSheet = true
     }
     
     public func actionSheet() -> ActionSheet {
