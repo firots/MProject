@@ -31,12 +31,21 @@ extension MObjectLister {
     
     func filterButtonAction() {
         model.actionSheetType = .filter
-        model.showActionSheet = true
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            model.showActionSheet = true
+        } else {
+
+        }
     }
     
     func sortButtonAction() {
         model.actionSheetType = .sort
-        model.showActionSheet = true
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            model.showActionSheet = true
+        } else {
+
+        }
     }
     
     public func actionSheet() -> ActionSheet {

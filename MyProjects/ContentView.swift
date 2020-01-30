@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    //@ObservedObject var model = ContentViewModel()
     
     var body: some View {
         TabView {
@@ -54,3 +54,20 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+/*class ContentViewModel: ObservableObject {
+    @Published var content: (() -> AnyView)? {
+        didSet {
+            withAnimation {
+                showContent = content == nil ? false: true
+            }
+        }
+    }
+    @Published var showContent = false
+    static var shared: ContentViewModel?
+    
+    init() {
+        ContentViewModel.shared = self
+    }
+}*/
