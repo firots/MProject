@@ -40,6 +40,7 @@ struct NotificationsView: View {
             CellImageView(systemName: "bell.circle.fill")
             Text(notification.repeatModeConfiguration.wrappedRepeatMode != .none ? notification.repeatModeConfiguration.repeatText :
                 notification.date.toRelative())
+                .foregroundColor(Color(.secondaryLabel))
         }.onTapGesture {
             self.model.isNew = false
             self.model.notificationToAdd = notification
