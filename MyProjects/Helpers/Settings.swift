@@ -35,8 +35,6 @@ class Settings: Codable {
             let decoder = JSONDecoder()
             if let loadedSettings = try? decoder.decode(Settings.self, from: savedSettings) {
                 Settings.shared = loadedSettings
-                
-                print(loadedSettings.taskViewSettings.statusFilter)
             }
         }
     }

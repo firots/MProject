@@ -16,7 +16,17 @@ extension MObject {
             wrappedStatus = .failed
         } else if wrappedStatus == .waiting, let s = started, now >= s {
             wrappedStatus = .active
+        } else {
+            if let d = deadline, now < d {
+                deadline = d /* update ui */
+            } else if let s = started, now < s {
+                started = s
+            }
         }
+        
+
+        
+
 
         if let task = self as? MTask {
             task.repeatIfNeeded(force: false)
