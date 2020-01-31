@@ -20,7 +20,8 @@ struct ProjectCellView: View {
         ZStack {
             NavigationLink(destination: TasksView(project: model.project)) {
                 EmptyView()
-            }.buttonStyle(PlainButtonStyle())
+                }
+            .buttonStyle(PlainButtonStyle())
             Group {
                 HStack {
                     progressView()

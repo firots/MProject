@@ -56,6 +56,23 @@ struct ProjectsView: View, MObjectLister  {
                 }
             }.pickerStyle(SegmentedPickerStyle())
             .background(Color(.systemBackground))
+            
+            if UIDevice.current.userInterfaceIdiom != .phone {
+                dateFilter()
+            }
+            
+            Spacer()
+        }
+    }
+    
+    private func dateFilter() -> some View {
+        VStack {
+            Picker(selection: $model.filterContainer.dateFilter, label: Text("Show")) {
+                ForEach(0..<MObjectDateFilterType.all.count) { index in
+                    Text(MObjectDateFilterType.shortNames[index])
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            .background(Color(.systemBackground))
             Spacer()
         }
     }
@@ -63,7 +80,7 @@ struct ProjectsView: View, MObjectLister  {
     private func listProjects() -> some View {
         FilteredList(predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
             self.projectCell(project)
-        }.padding(.top, 5)
+        }.padding(.top, topPadding)
     }
     
     private func addButton() -> some View {

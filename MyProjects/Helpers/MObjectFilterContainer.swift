@@ -278,6 +278,7 @@ public enum MObjectDateFilterType: Int {
     
     static var all = [MObjectDateFilterType.anytime, MObjectDateFilterType.today, MObjectDateFilterType.week, MObjectDateFilterType.month, MObjectDateFilterType.year]
     static var names = ["Anytime", "Today", "This Week", "This Month", "This Year"]
+    static var shortNames = ["Anytime", "Today", "This W", "This M", "This Y"]
 }
 
 public enum MObjectActionSheetType: Int {
