@@ -87,37 +87,39 @@ struct TasksView: View, MObjectLister {
     private func listTasks() -> some View {
         FilteredList(predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
-        }.padding(.top, topPadding)
+        }.padding(.top, 10)
     }
     
 
     private func taskFilter() -> some View {
         VStack {
-            Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
-                ForEach(0..<MObjectStatus.all.count + 1) { index in
-                    Text(self.model.filterContainer.statusFilterTypeNames[index])
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            .background(Color(.systemBackground))
             
-            if UIDevice.current.userInterfaceIdiom != .phone {
-                dateFilter()
+            HStack {
+                Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
+                    ForEach(0..<MObjectStatus.all.count + 1) { index in
+                        Text(self.model.filterContainer.statusFilterTypeNames[index])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .background(Color(.systemBackground))
+                
+                if UIDevice.current.userInterfaceIdiom != .phone {
+                    dateFilter()
+                }
             }
+
             
             Spacer()
         }
     }
     
     private func dateFilter() -> some View {
-        VStack {
-            Picker(selection: $model.filterContainer.dateFilter, label: Text("Show")) {
-                ForEach(0..<MObjectDateFilterType.all.count) { index in
-                    Text(MObjectDateFilterType.names[index])
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            .background(Color(.systemBackground))
-            Spacer()
-        }
+        Picker(selection: $model.filterContainer.dateFilter, label: Text("Show")) {
+            ForEach(0..<MObjectDateFilterType.all.count) { index in
+                Text(MObjectDateFilterType.names[index])
+            }
+        }.pickerStyle(SegmentedPickerStyle())
+        .background(Color(.systemBackground))
+        
     }
     
     private func taskCell(_ task: MTask) -> some View {
