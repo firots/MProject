@@ -13,6 +13,7 @@ class TasksViewModel: MObjectsViewModel {
     @Published var showAdd = false
     @Published var showActionSheet = false
     @Published var filterContainer: MObjectFilterContainer
+    @Published var showSortPopUp = false
     
     var fContainer: MObjectFilterContainer {
         get {

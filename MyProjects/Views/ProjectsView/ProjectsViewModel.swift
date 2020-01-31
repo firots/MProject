@@ -13,6 +13,7 @@ class ProjectsViewModel: MObjectsViewModel {
     @Published var showAddProject = false
     @Published var showActionSheet = false
     @Published var filterContainer: MObjectFilterContainer
+    @Published var showSortPopUp = false
     
     var actionSheetType = MObjectActionSheetType.sort
     

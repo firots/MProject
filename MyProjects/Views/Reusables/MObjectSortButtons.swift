@@ -8,19 +8,18 @@
 
 import SwiftUI
 
-struct MObjectSortButtons<Content: View>: View {
+struct MObjectSortButtons: View {
     @Binding var ascending: Bool
     var sortAction: (() -> Void)?
     var filterAction: (() -> Void)?
-    var sortPopOver: (() -> Content)?
     
     var body: some View {
         HStack {
             setAscending()
             if UIDevice.current.userInterfaceIdiom == .phone {
-                sortMObjects()
                 filterMObjects()
             }
+            sortMObjects()
 
         }.padding(.top)
             

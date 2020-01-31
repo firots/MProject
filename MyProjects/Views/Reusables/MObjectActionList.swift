@@ -13,6 +13,7 @@ protocol MObjectsViewModel: ObservableObject {
     var fContainer: MObjectFilterContainer { get  set }
     var actionSheetType: MObjectActionSheetType { get set }
     var showActionSheet: Bool { get set }
+    var showSortPopUp: Bool { get set }
 }
 
 protocol MObjectLister {
@@ -45,12 +46,11 @@ extension MObjectLister {
     
     
     func sortButtonAction() {
-        
         if UIDevice.current.userInterfaceIdiom == .phone {
             model.actionSheetType = .sort
             model.showActionSheet = true
         } else {
-
+            model.showSortPopUp = true
         }
     }
     
@@ -63,25 +63,34 @@ extension MObjectLister {
     
     func setSortBy(to sorter: MObjectSortType) {
         let fContainer = model.fContainer
-        if let project = fContainer.project {
-            project.sortTasksBy = sorter.rawValue
-         } else if fContainer.type == .task {
-             Settings.shared.taskViewSettings.sortBy = sorter
-         } else {
-             Settings.shared.projectsViewSettings.sortBy = sorter
-         }
+        fContainer.sortBy = sorter
     }
     
     public func sortPopOver() -> some View {
         Group {
-            ForEach(0..<MObjectSortType.all.count) { index in
+            Text("Sort By")
+                .foregroundColor(.secondary)
+                .padding(.top, 20)
+            Divider()
+            ForEach(1..<MObjectSortType.all.count) { index in
                 Button(action: {
                     self.setSortBy(to: MObjectSortType.all[index])
+                    self.model.showSortPopUp = false
                 }) {
                     Text(MObjectSortType.names[index])
-                }
+                        .font(.system(size: 18))
+                }.padding()
+                Divider()
             }
-        }
+            Button(action: {
+                self.model.showSortPopUp = false
+            }) {
+                Text("Cancel")
+                    .font(.system(size: 18))
+                    .foregroundColor(Color(.systemRed))
+            }.padding()
+            Divider()
+        }.padding(.vertical, 100)
     }
     
     public func dateFilterActionSheet() -> ActionSheet {

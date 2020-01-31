@@ -34,10 +34,11 @@ struct ProjectsView: View, MObjectLister  {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()
-        },
-           sortPopOver:{
-            self.sortPopOver()
-        }))
+        })
+            .popover(isPresented: $model.showSortPopUp) {
+                self.sortPopOver()
+            }
+        )
         .navigationBarTitle(MObjectDateFilterType.names[model.filterContainer.dateFilter])
         .sheet(isPresented: $model.showAddProject)  {
             AddProjectView(context: self.moc, project: nil)

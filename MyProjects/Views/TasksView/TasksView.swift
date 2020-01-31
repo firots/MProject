@@ -15,7 +15,6 @@ struct TasksView: View, MObjectLister {
     @State private var sheetOn = false
     
     init(project: MProject?) {
-        print("qqq")
         model = TasksViewModel(project: project)
     }
     
@@ -44,10 +43,11 @@ struct TasksView: View, MObjectLister {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()
-        },
-           sortPopOver:{
-            self.sortPopOver()
-        }))
+        })
+            .popover(isPresented: $model.showSortPopUp) {
+                self.sortPopOver()
+            }
+        )
         .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter])
         .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {
