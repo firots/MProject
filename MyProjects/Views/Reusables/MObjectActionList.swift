@@ -43,6 +43,7 @@ extension MObjectLister {
         UIDevice.current.userInterfaceIdiom == .phone ? 10 : 40
     }
     
+    
     func sortButtonAction() {
         
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -60,40 +61,27 @@ extension MObjectLister {
         return sortActionSheet()
     }
     
-    public func dateFilterMActionSheet() -> MActionSheetViewModel {
+    func setSortBy(to sorter: MObjectSortType) {
         let fContainer = model.fContainer
-        
-        func setDateFilter(to dateFilter: MObjectDateFilterType) {
-            if let project = fContainer.project {
-                project.dateFilter = dateFilter.rawValue
-            } else if fContainer.type == .task {
-                Settings.shared.taskViewSettings.dateFilter = dateFilter.rawValue
-            } else {
-                Settings.shared.projectsViewSettings.dateFilter = dateFilter.rawValue
+        if let project = fContainer.project {
+            project.sortTasksBy = sorter.rawValue
+         } else if fContainer.type == .task {
+             Settings.shared.taskViewSettings.sortBy = sorter
+         } else {
+             Settings.shared.projectsViewSettings.sortBy = sorter
+         }
+    }
+    
+    public func sortPopOver() -> some View {
+        Group {
+            ForEach(0..<MObjectSortType.all.count) { index in
+                Button(action: {
+                    self.setSortBy(to: MObjectSortType.all[index])
+                }) {
+                    Text(MObjectSortType.names[index])
+                }
             }
         }
-        
-        let actionSheet = MActionSheetViewModel(show: true, title: "Show", items: [
-            MActionSheetItem(text: "Today", color: UIColor.systemPurple) {
-                setDateFilter(to: .today)
-            },
-            MActionSheetItem(text: "This Week", color: UIColor.systemPurple) {
-                setDateFilter(to: .week)
-            },
-            MActionSheetItem(text: "This Month", color: UIColor.systemPurple) {
-                setDateFilter(to: .month)
-            },
-            MActionSheetItem(text: "This Year", color: UIColor.systemPurple) {
-                setDateFilter(to: .year)
-            },
-            MActionSheetItem(text: "All Time", color: UIColor.systemPurple) {
-                setDateFilter(to: .anytime)
-            },
-            MActionSheetItem(text: "Cancel", color: UIColor.systemRed) {
-                
-            },
-        ])
-        return actionSheet
     }
     
     public func dateFilterActionSheet() -> ActionSheet {

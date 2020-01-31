@@ -8,10 +8,11 @@
 
 import SwiftUI
 
-struct MObjectSortButtons: View {
+struct MObjectSortButtons<Content: View>: View {
     @Binding var ascending: Bool
     var sortAction: (() -> Void)?
     var filterAction: (() -> Void)?
+    var sortPopOver: (() -> Content)?
     
     var body: some View {
         HStack {
