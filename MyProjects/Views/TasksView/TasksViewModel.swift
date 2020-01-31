@@ -30,7 +30,7 @@ class TasksViewModel: MObjectsViewModel {
     init(project: MProject?) {
         self.project = project
         filterContainer = MObjectFilterContainer(project: project, type: .task,
-            dateFilter: project?.wrappedDateFilter ?? Settings.shared.taskViewSettings.dateFilter,
+            dateFilter: project?.wrappedDateFilter.rawValue ?? Settings.shared.taskViewSettings.dateFilter,
             statusFilter: project?.statusFilter ?? Settings.shared.taskViewSettings.statusFilter,
             sortBy: project?.wrappedSortTasksBy ?? Settings.shared.taskViewSettings.sortBy,
             ascending: project?.tasksAscending ?? Settings.shared.taskViewSettings.ascending

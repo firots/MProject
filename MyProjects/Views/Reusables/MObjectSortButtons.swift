@@ -16,8 +16,11 @@ struct MObjectSortButtons: View {
     var body: some View {
         HStack {
             setAscending()
-            sortMObjects()
-            filterMObjects()
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                sortMObjects()
+                filterMObjects()
+            }
+
         }.padding(.top)
             
     }
@@ -52,7 +55,6 @@ struct MObjectSortButtons: View {
     func filterMObjects() -> some View {
         Button(action: {
             self.filterAction?()
-
         }) {
             Image(systemName: "calendar.circle.fill")
                 .resizable()

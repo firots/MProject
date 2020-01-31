@@ -11,6 +11,7 @@ import SwiftUI
 struct TasksView: View, MObjectLister {
     @ObservedObject var model: TasksViewModel
     @Environment(\.managedObjectContext) private var moc
+    @Environment(\.presentationMode) var presentationMode
     @State private var sheetOn = false
     
     init(project: MProject?) {
@@ -36,7 +37,7 @@ struct TasksView: View, MObjectLister {
         }, filterAction: {
             self.filterButtonAction()
         }))
-        .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue])
+        .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter])
         .sheet(isPresented: self.$model.showAdd)  {
             if self.model.modalType == .addTask {
                 AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
@@ -58,12 +59,17 @@ struct TasksView: View, MObjectLister {
             Spacer()
             if model.project != nil {
                 HoveringButton(color: Color(.systemPurple), image: Image(systemName: "pencil")) {
-                    self.model.modalType = .addProject
-                    self.model.taskToEdit = nil
-                    self.model.showAdd = true
+                    if self.model.project?.managedObjectContext != nil {
+                        self.model.modalType = .addProject
+                        self.model.taskToEdit = nil
+                        self.model.showAdd = true
+                    }
                 }
             }
             HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
+                if let project = self.model.project, project.managedObjectContext == nil {
+                    return
+                }
                 self.model.modalType = .addTask
                 self.model.taskToEdit = nil
                 self.model.showAdd = true
@@ -74,7 +80,7 @@ struct TasksView: View, MObjectLister {
     private func listTasks() -> some View {
         FilteredList(predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
-        }.padding(.top, 10)
+        }.padding(.top, topPadding)
     }
     
 
@@ -83,6 +89,23 @@ struct TasksView: View, MObjectLister {
             Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
                 ForEach(0..<MObjectStatus.all.count + 1) { index in
                     Text(self.model.filterContainer.statusFilterTypeNames[index])
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            .background(Color(.systemBackground))
+            
+            if UIDevice.current.userInterfaceIdiom != .phone {
+                dateFilter()
+            }
+            
+            Spacer()
+        }
+    }
+    
+    private func dateFilter() -> some View {
+        VStack {
+            Picker(selection: $model.filterContainer.dateFilter, label: Text("Show")) {
+                ForEach(0..<MObjectDateFilterType.all.count) { index in
+                    Text(MObjectDateFilterType.names[index])
                 }
             }.pickerStyle(SegmentedPickerStyle())
             .background(Color(.systemBackground))

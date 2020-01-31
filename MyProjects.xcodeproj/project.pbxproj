@@ -39,6 +39,7 @@
 		764F94D023D34EF2008C0D09 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F94CF23D34EF2008C0D09 /* DateTimePicker.swift */; };
 		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
+		7660F40723E4762E00E131F0 /* MActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7660F40623E4762E00E131F0 /* MActionSheet.swift */; };
 		766FE81223D0BE3D0055180B /* MNotification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */; };
 		766FE81323D0BE3D0055180B /* MNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */; };
 		766FE81623D0C82B0055180B /* MNotification+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81523D0C82B0055180B /* MNotification+Create.swift */; };
@@ -132,6 +133,7 @@
 		764F94CF23D34EF2008C0D09 /* DateTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
 		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
+		7660F40623E4762E00E131F0 /* MActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MActionSheet.swift; sourceTree = "<group>"; };
 		766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataClass.swift"; sourceTree = "<group>"; };
 		766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		766FE81523D0C82B0055180B /* MNotification+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+Create.swift"; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				76ED8CFF23D487320035A0A3 /* MultiSelectorGridView.swift */,
 				76F06B6023DA3E39002CE0E3 /* CircularProgressBarView.swift */,
 				76C9589023E1B15D007EBC63 /* MObjectActionList.swift */,
+				7660F40623E4762E00E131F0 /* MActionSheet.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,
 				76FD61C123B92B3D00D21B21 /* SettingsViewModel.swift in Sources */,
+				7660F40723E4762E00E131F0 /* MActionSheet.swift in Sources */,
 				76895C5523C67FA600867607 /* NotesView.swift in Sources */,
 				76D802F323C941E70088556A /* String+NoNewline.swift in Sources */,
 				7681B67F23C383DA0068254B /* MTask+CoreDataProperties.swift in Sources */,

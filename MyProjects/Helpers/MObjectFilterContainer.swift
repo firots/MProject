@@ -23,7 +23,7 @@ class MObjectFilterContainer: ObservableObject {
     
     @Published var sortDescriptor: NSSortDescriptor
     
-    @Published var dateFilter: MObjectDateFilterType
+    @Published var dateFilter: Int
     @Published var statusFilter: Int
     
     @Published var statusPredicate: NSPredicate?
@@ -32,7 +32,7 @@ class MObjectFilterContainer: ObservableObject {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(project: MProject?, type: MObjectType, dateFilter: MObjectDateFilterType, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool) {
+    init(project: MProject?, type: MObjectType, dateFilter: Int, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool) {
         statusFilterTypeNames.insert("All", at: 0)
         self.dateFilter = dateFilter
         self.statusFilter = statusFilter
@@ -217,10 +217,10 @@ extension MObjectFilterContainer {
             .eraseToAnyPublisher()
     }
     
-    private func saveDateFilter(value: MObjectDateFilterType) {
+    private func saveDateFilter(value: Int) {
         if self.type == .task {
-            if let project = project, project.dateFilter != value.rawValue {
-                project.dateFilter = value.rawValue
+            if let project = project, project.dateFilter != value {
+                project.dateFilter = value
             } else {
                 Settings.shared.taskViewSettings.dateFilter = value
             }
@@ -229,10 +229,11 @@ extension MObjectFilterContainer {
         }
     }
     
-    private func getDatePredicate(from filter: MObjectDateFilterType) -> NSPredicate? {
+    private func getDatePredicate(from filter: Int) -> NSPredicate? {
         let calendar = Calendar.current
         var dateFrom: Date?
         var dateTo: Date?
+        let filter = MObjectDateFilterType(rawValue: filter) ?? MObjectDateFilterType.anytime
         switch filter {
         case .today:
             let interval = calendar.dateInterval(of: .day, for: Date())
@@ -276,7 +277,7 @@ public enum MObjectDateFilterType: Int {
     case year
     
     static var all = [MObjectDateFilterType.anytime, MObjectDateFilterType.today, MObjectDateFilterType.week, MObjectDateFilterType.month, MObjectDateFilterType.year]
-    static var names = ["All", "Today", "This Week", "This Month", "This Year"]
+    static var names = ["Anytime", "Today", "This Week", "This Month", "This Year"]
 }
 
 public enum MObjectActionSheetType: Int {

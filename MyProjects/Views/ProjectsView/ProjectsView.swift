@@ -31,14 +31,11 @@ struct ProjectsView: View, MObjectLister  {
             addButton()
         }
         .navigationBarItems(trailing: MObjectSortButtons(ascending: $model.filterContainer.ascending, sortAction: {
-            self.model.actionSheetType = .sort
-            self.model.showActionSheet = true
-            
+            self.sortButtonAction()
         }, filterAction: {
-            self.model.actionSheetType = .filter
-            self.model.showActionSheet = true
+            self.filterButtonAction()
         }))
-        .navigationBarTitle(MObjectDateFilterType.names[model.filterContainer.dateFilter.rawValue])
+        .navigationBarTitle(MObjectDateFilterType.names[model.filterContainer.dateFilter])
         .sheet(isPresented: $model.showAddProject)  {
             AddProjectView(context: self.moc, project: nil)
         }

@@ -42,7 +42,7 @@ class Settings: Codable {
 }
 
 struct TasksViewSettings: Codable {
-    var dateFilter = MObjectDateFilterType.anytime
+    var dateFilter = 0
     var statusFilter = 0
     
     var sortBy = MObjectSortType.created
@@ -55,7 +55,7 @@ struct TasksViewSettings: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        dateFilter = try MObjectDateFilterType(rawValue: container.decode(Int.self, forKey: .dateFilter)) ?? MObjectDateFilterType.anytime
+        dateFilter = try container.decode(Int.self, forKey: .dateFilter)
         sortBy = try MObjectSortType(rawValue: container.decode(String.self, forKey: .sortBy)) ?? MObjectSortType.created
         statusFilter =  try container.decode(Int.self, forKey: .statusFilter)
         ascending =  try container.decode(Bool.self, forKey: .ascending)
@@ -64,7 +64,7 @@ struct TasksViewSettings: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(dateFilter.rawValue, forKey: .dateFilter)
+        try container.encode(dateFilter, forKey: .dateFilter)
         try container.encode(statusFilter, forKey: .statusFilter)
         try container.encode(sortBy.rawValue, forKey: .sortBy)
         try container.encode(ascending, forKey: .ascending)
