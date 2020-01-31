@@ -18,11 +18,18 @@ struct TasksView: View, MObjectLister {
         model = TasksViewModel(project: project)
     }
     
+    var isLargeTitle: Bool {
+        (UIDevice.current.userInterfaceIdiom != .phone && model.project != nil)
+    }
+    
     var body: some View {
         ZStack {
             VStack {
                 HStack {
-                    Text(Date().toClassic()).padding(.leading, 20)
+                    if isLargeTitle {
+                        Spacer()
+                    }
+                    Text(Date().toClassic()).padding(.leading, isLargeTitle ? 0 : 20)
                     Spacer()
                 }
                 ZStack {
