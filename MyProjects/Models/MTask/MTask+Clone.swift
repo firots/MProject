@@ -11,7 +11,7 @@ import CoreData
 
 extension MTask {
     public func repeatIfNeeded(force: Bool) {
-        print("REPEAT IF NEEDED")
+        //print("REPEAT IF NEEDED")
         if wrappedRepeatMode == .none { return } //not repeating type
         
         if repeatTask != nil { return } //already has repeated task
@@ -24,7 +24,7 @@ extension MTask {
         
         
         
-        print("OH I WILL REPEAT NOW")
+        //print("OH I WILL REPEAT NOW")
         
         /*let newTask = self.clone()
          clone will have nextfiredate as its repeatstartdate+

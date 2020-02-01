@@ -20,7 +20,7 @@ struct ProjectsView: View, MObjectLister  {
         ZStack {
             VStack {
                 HStack {
-                    Text(Date().toClassic()).padding(.leading, 20)
+                    Text(Date().toClassic()).padding(.leading, 22)
                     Spacer()
                 }
                 ZStack {

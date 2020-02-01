@@ -73,7 +73,7 @@ extension HasRepeatMode {
             self.nextFireDate = nil
         }
         
-        print(self.nextFireDate?.toRelative() ?? "no fire date")
+        //print(self.nextFireDate?.toRelative() ?? "no fire date")
         
     }
     

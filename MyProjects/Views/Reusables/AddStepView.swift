@@ -26,7 +26,9 @@ struct AddStepView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 }
+                #if !targetEnvironment(macCatalyst)
                 KeyboardDoneButton(show: $jenas)
+                #endif
             }
             self.statePicker()
             TextView(text: $model.name, isEditing: $jenas)

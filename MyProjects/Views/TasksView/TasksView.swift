@@ -29,7 +29,7 @@ struct TasksView: View, MObjectLister {
                     if isLargeTitle {
                         Spacer()
                     }
-                    Text(Date().toClassic()).padding(.leading, isLargeTitle ? 0 : 20)
+                    Text(Date().toClassic()).padding(.leading, isLargeTitle ? 0 : 22)
                     Spacer()
                 }
                 ZStack {
@@ -79,6 +79,7 @@ struct TasksView: View, MObjectLister {
             }
             HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
                 if let project = self.model.project, project.managedObjectContext == nil {
+                    self.presentationMode.wrappedValue.dismiss()
                     return
                 }
                 self.model.modalType = .addTask

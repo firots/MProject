@@ -18,17 +18,17 @@ class LocalNotifications {
     }
     
     func deleteAll() {
-        print("DELETE ALL NOTIFICATIONS ON IOS")
+        //print("DELETE ALL NOTIFICATIONS ON IOS")
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func delete(id: UUID) {
-        print("DELETE FROM IOS")
+        //print("DELETE FROM IOS")
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
     func create(from model: MNotification) {
-        print("CREATE ON IOS FROM MODEL")
+        //print("CREATE ON IOS FROM MODEL")
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
         create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
@@ -49,7 +49,7 @@ class LocalNotifications {
     }
     
     func create(id: UUID, title: String, message: String, date: Date) {
-        print("CREATED ON IOS \(date.toRelative())")
+        //print("CREATED ON IOS \(date.toRelative())")
         
         let content = UNMutableNotificationContent()
         content.title = title

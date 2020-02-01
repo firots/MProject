@@ -13,6 +13,7 @@ struct ModalTitle: View {
     var action: (() -> Void)?
     let editable: Bool
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.editMode) var editMode
     
     
     init(title: String, edit: Bool, action: (() -> Void)?) {
@@ -26,7 +27,7 @@ struct ModalTitle: View {
     }
     
     func titleBar() -> some View {
-        VStack {
+        return VStack {
             Spacer().frame(height: 20)
             ZStack {
                 HStack {
@@ -36,10 +37,14 @@ struct ModalTitle: View {
                     
                     Spacer()
                     
-                    if editable {
-                        EditButton()
-                        .foregroundColor(Color(.systemPurple))
+                    if editable && editMode?.wrappedValue == .active {
+                        self.editButton()
                         Spacer().frame(width: 20)
+                    } else  {
+                        #if targetEnvironment(macCatalyst)
+                        self.closeButton()
+                        Spacer().frame(width: 20)
+                        #endif
                     }
                 }
                 
@@ -53,6 +58,15 @@ struct ModalTitle: View {
         }
     }
     
+    func editButton() -> some View {
+        Button("Done") {
+            withAnimation {
+                self.editMode?.wrappedValue = .inactive
+            }
+        }
+        .foregroundColor(Color(.systemPurple))
+    }
+    
     func saveButton() -> some View {
         Button("Save") {
             self.action?()
@@ -61,7 +75,7 @@ struct ModalTitle: View {
     }
     
     func closeButton() -> some View {
-        Button("Cancel") {
+        Button("Close") {
             self.presentationMode.wrappedValue.dismiss()
         }
         .foregroundColor(Color(.systemPurple))

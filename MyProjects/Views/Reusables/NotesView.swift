@@ -21,7 +21,9 @@ struct NotesView: View {
                 ModalTitle(title: title, edit: false) {
                     self.presentationMode.wrappedValue.dismiss()
                 }
+                #if !targetEnvironment(macCatalyst)
                 KeyboardDoneButton(show: $jenas)
+                #endif
             }
             TextView(text: $notes, isEditing: $jenas)
             .padding(.bottom, keyboard.currentHeight)

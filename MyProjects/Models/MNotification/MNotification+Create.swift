@@ -28,7 +28,7 @@ extension MNotification {
     }
     
     func createOnIOSIfNear() {
-        print("CREATE ON IOS IF NEAR")
+        //print("CREATE ON IOS IF NEAR")
         guard let nextFireDate = self.nextFireDate else { return }
         if isNextFireDateValid(for: nextFireDate) {
             LocalNotifications.shared.create(from: self)
