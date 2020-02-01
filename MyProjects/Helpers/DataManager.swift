@@ -15,6 +15,7 @@ class DataManager: Operation {
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
+    var taksDeduplicatePredicate: NSPredicate? = nil
 
     override func main() {
         self.syncTasks()
@@ -30,6 +31,22 @@ class DataManager: Operation {
         var now = Date()
         now.addMinutes(1)
         LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
+    }
+    
+    
+    func deduplicateTasks() {
+        let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
+        do {
+            let tasks = try context.fetch(fetchRequest)
+            for task in tasks {
+                task.deduplicate(context: context)
+                if isCancelled {
+                    return
+                }
+            }
+        } catch {
+            fatalError("Unable to fetch tasks.")
+        }
     }
     
     func syncTasks()  {
