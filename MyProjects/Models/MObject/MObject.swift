@@ -121,7 +121,7 @@ extension MObject {
         }
         
         self.wrappedStatus = MObjectStatus.all[model.statusIndex]
-        
+        self.lastModified = Date()
         self.saved = true
     }
     

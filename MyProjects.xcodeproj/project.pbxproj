@@ -11,6 +11,7 @@
 		76038F6F23D521FF0021260D /* ConfigureDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76038F6E23D521FF0021260D /* ConfigureDailyView.swift */; };
 		76038F7123D522510021260D /* ConfigureHourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76038F7023D522510021260D /* ConfigureHourlyView.swift */; };
 		76068E6123C3CF7B008E53C4 /* ModalTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76068E6023C3CF7B008E53C4 /* ModalTitle.swift */; };
+		7609764E23E5B9670017E166 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7609764D23E5B9670017E166 /* CloudKit.framework */; };
 		7614E90823D754C6004CA385 /* Date+Between.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614E90723D754C6004CA385 /* Date+Between.swift */; };
 		7614E90A23D7B102004CA385 /* Date+AddTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614E90923D7B102004CA385 /* Date+AddTime.swift */; };
 		7619856023DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7619855F23DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift */; };
@@ -103,6 +104,7 @@
 		76038F6E23D521FF0021260D /* ConfigureDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureDailyView.swift; sourceTree = "<group>"; };
 		76038F7023D522510021260D /* ConfigureHourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureHourlyView.swift; sourceTree = "<group>"; };
 		76068E6023C3CF7B008E53C4 /* ModalTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTitle.swift; sourceTree = "<group>"; };
+		7609764D23E5B9670017E166 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		7614E90723D754C6004CA385 /* Date+Between.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Between.swift"; sourceTree = "<group>"; };
 		7614E90923D7B102004CA385 /* Date+AddTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+AddTime.swift"; sourceTree = "<group>"; };
 		7619855F23DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+deleteWithChilds.swift"; sourceTree = "<group>"; };
@@ -198,12 +200,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7609764E23E5B9670017E166 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7609764C23E5B9670017E166 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7609764D23E5B9670017E166 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		761F243C23C15A4B008AA2B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +422,7 @@
 			children = (
 				76FD61A423B929AE00D21B21 /* MyProjects */,
 				76FD61A323B929AE00D21B21 /* Products */,
+				7609764C23E5B9670017E166 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

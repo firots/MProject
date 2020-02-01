@@ -16,10 +16,10 @@ struct MObjectSortButtons: View {
     var body: some View {
         HStack {
             setAscending()
+            sortMObjects()
             if UIDevice.current.userInterfaceIdiom == .phone {
                 filterMObjects()
             }
-            sortMObjects()
 
         }.padding(.top)
             

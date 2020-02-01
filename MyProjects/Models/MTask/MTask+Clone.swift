@@ -97,10 +97,11 @@ extension MTask {
             viewModel.deadline = deadline
         }
         
-        let task = MTask.createOrSync(from: viewModel, context: context, task: nil, project: project)
+        let task = MTask.createOrSync(from: viewModel, context: context, task: nil, project: project, originalID: original ?? wrappedID)
         
         repeatTask = task
         task.repeatedFrom = self
+        task.repeatedID = self.wrappedID
     
         self.setNextFireDate()
         

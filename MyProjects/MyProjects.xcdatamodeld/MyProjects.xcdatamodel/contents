@@ -68,7 +68,9 @@
         <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nextFireDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="original" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="priority" optional="YES" attributeType="Integer 64" defaultValueString="2" usesScalarValueType="YES"/>
+        <attribute name="repeatedID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="repeatEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="repeatMode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeatPeriod" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -82,11 +84,16 @@
         <relationship name="repeatedFrom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="repeatTask" inverseEntity="MTask"/>
         <relationship name="repeatTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="repeatedFrom" inverseEntity="MTask"/>
         <relationship name="step" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MStep" inverseName="task" inverseEntity="MStep"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="MNotification" positionX="-36" positionY="144" width="128" height="253"/>
         <element name="MProject" positionX="-45" positionY="0" width="128" height="313"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="133"/>
-        <element name="MTask" positionX="-45" positionY="63" width="128" height="373"/>
+        <element name="MTask" positionX="-45" positionY="63" width="128" height="403"/>
     </elements>
 </model>
