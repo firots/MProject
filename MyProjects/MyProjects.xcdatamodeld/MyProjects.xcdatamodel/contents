@@ -68,9 +68,9 @@
         <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nextFireDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="original" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="originalID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="priority" optional="YES" attributeType="Integer 64" defaultValueString="2" usesScalarValueType="YES"/>
-        <attribute name="repeatedID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="repeatCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeatEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="repeatMode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeatPeriod" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

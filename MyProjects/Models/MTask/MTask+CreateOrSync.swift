@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension MTask {
-    static func createOrSync(from model: AddTaskViewModel, context moc: NSManagedObjectContext, task: MTask?, project: MProject?, originalID: UUID?) -> MTask {
+    static func createOrSync(from model: AddTaskViewModel, context moc: NSManagedObjectContext, task: MTask?, project: MProject?) -> MTask {
         let t = task ?? createBase(context: moc)
         t.setMutualFields(from: model)
         if project != nil { t.project = project }
@@ -22,9 +22,6 @@ extension MTask {
         }
         t.nextFireDate = nil
         t.setNextFireDate()
-        if let original = originalID {
-            t.original = original
-        }
         return t
     }
     

@@ -30,7 +30,8 @@ extension MTask: HasRepeatMode {
     @NSManaged public var step: NSSet?
     @NSManaged public var notification: NSSet?
     @NSManaged public var saved: Bool
-    @NSManaged public var original: UUID?
+    @NSManaged public var originalID: UUID?
+    
     
     /* Repeat Section */
     @NSManaged public var nextFireDate: Date?
@@ -41,7 +42,7 @@ extension MTask: HasRepeatMode {
     @NSManaged public var repeatPeriod: Int
     @NSManaged public var repeatTask: MTask?
     @NSManaged public var repeatedFrom: MTask?
-    @NSManaged public var repeatedID: UUID?
+    @NSManaged public var repeatCount: Int
     
     public var steps: [MStep] {
         let set = step as? Set<MStep> ?? []

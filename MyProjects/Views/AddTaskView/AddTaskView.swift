@@ -79,7 +79,7 @@ struct AddTaskView: View {
     }
     
     func save() {
-        let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project, originalID: nil)
+        let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project)
 
         if self.moc.hasChanges {
             do {
