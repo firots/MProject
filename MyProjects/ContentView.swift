@@ -22,13 +22,26 @@ struct ContentView: View {
                     .font(.system(size: 24))
             }.tag(0)
             
-            NavigationView {
-                ProjectsView()
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                NavigationView {
+                    ProjectsView()
                 }.navigationViewStyle(DoubleColumnNavigationViewStyle())
-            .tabItem {
-                Image(systemName: "tray.2")
-                .font(.system(size: 24))
-            }.tag(1)
+                .tabItem {
+                    Image(systemName: "tray.2")
+                    .font(.system(size: 24))
+                }.tag(1)
+            } else {
+                NavigationView {
+                    ProjectsView()
+                }.navigationViewStyle(DoubleColumnNavigationViewStyle())
+                    .padding()
+                .tabItem {
+                    Image(systemName: "tray.2")
+                    .font(.system(size: 24))
+                }.tag(1)
+            }
+            
+
             
             SettingsView()
             .tabItem {

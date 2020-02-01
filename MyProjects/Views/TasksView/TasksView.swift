@@ -25,13 +25,7 @@ struct TasksView: View, MObjectLister {
     var body: some View {
         ZStack {
             VStack {
-                HStack {
-                    if isLargeTitle {
-                        Spacer()
-                    }
-                    Text(Date().toClassic()).padding(.leading, isLargeTitle ? 0 : 22)
-                    Spacer()
-                }
+                titleDate()
                 ZStack {
                     listTasks()
                     taskFilter()
@@ -65,6 +59,19 @@ struct TasksView: View, MObjectLister {
         }
     }
     
+    func titleDate() -> some View {
+        Group {
+            if !isLargeTitle {
+                HStack {
+                    Text(Date().toClassic()).padding(.leading, isLargeTitle ? 0 : 22)
+                    Spacer()
+                }
+            } else {
+                Spacer()
+            }
+        }
+    }
+    
     private func hoveringButtons() -> some View {
         VStack {
             Spacer()
@@ -92,27 +99,22 @@ struct TasksView: View, MObjectLister {
     private func listTasks() -> some View {
         FilteredList(predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
-        }.padding(.top, 10)
+        }.padding(.top, topPadding)
     }
     
 
     private func taskFilter() -> some View {
         VStack {
-            
-            HStack {
-                Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
-                    ForEach(0..<MObjectStatus.all.count + 1) { index in
-                        Text(self.model.filterContainer.statusFilterTypeNames[index])
-                    }
-                }.pickerStyle(SegmentedPickerStyle())
-                .background(Color(.systemBackground))
-                
-                if UIDevice.current.userInterfaceIdiom != .phone {
-                    dateFilter()
+            Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
+                ForEach(0..<MObjectStatus.all.count + 1) { index in
+                    Text(self.model.filterContainer.statusFilterTypeNames[index])
                 }
-            }
-
+            }.pickerStyle(SegmentedPickerStyle())
+            .background(Color(.systemBackground))
             
+            if UIDevice.current.userInterfaceIdiom != .phone {
+                dateFilter()
+            }
             Spacer()
         }
     }
