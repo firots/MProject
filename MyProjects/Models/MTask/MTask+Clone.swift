@@ -29,7 +29,6 @@ extension MTask {
     
     
     public func repeatIfNeeded(force: Bool, context: NSManagedObjectContext) {
-        print("REPEAT IF NEEDED")
         if wrappedRepeatMode == .none { return } //not repeating type
         
         if repeated == true { return } //already has repeated task
@@ -120,7 +119,6 @@ extension MTask {
         let newTaskOriginalID = originalID ?? wrappedID
         let newTaskRepeatCount = repeatCount + 1
         
-        print(newTaskRepeatCount)
         let task = MTask.createOrSync(from: viewModel, context: context, task: nil, project: project, originalID: newTaskOriginalID, repeatCount: newTaskRepeatCount)
         
         self.repeated = true
