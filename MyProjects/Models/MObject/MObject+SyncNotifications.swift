@@ -39,7 +39,7 @@ extension MObject {
         }
         
         if moc.hasChanges {
-            try? moc.save()
+            try? moc.mSave()
         }
     }
 }

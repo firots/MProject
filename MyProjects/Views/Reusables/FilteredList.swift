@@ -45,7 +45,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
             let object = results[index]
             moc.deleteWithChilds(object)
         }
-        if moc.hasChanges { try? moc.save() }
+        if moc.hasChanges { try? moc.mSave() }
     }
 }
 

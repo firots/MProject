@@ -83,7 +83,7 @@ struct AddTaskView: View {
 
         if self.moc.hasChanges {
             do {
-                try self.moc.save()
+                try self.moc.mSave()
             } catch {
                 print(error.localizedDescription)
             }

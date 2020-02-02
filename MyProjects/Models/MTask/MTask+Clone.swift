@@ -34,7 +34,7 @@ extension MTask {
             }
             
             if context.hasChanges {
-                try? context.save()
+                try? context.mSave()
             }
         }
     }
@@ -152,7 +152,7 @@ extension MTask {
         
         if force == true {
             if context.hasChanges == true {
-                try? context.save()
+                try? context.mSave()
             }
         }
 

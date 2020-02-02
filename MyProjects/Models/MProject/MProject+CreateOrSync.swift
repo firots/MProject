@@ -20,7 +20,6 @@ extension MProject {
     static func createBase(context moc: NSManagedObjectContext) -> MProject {
         let project = MProject(context: moc)
         project.id = UUID()
-        project.created = Date()
         project.details = ""
 
         return project

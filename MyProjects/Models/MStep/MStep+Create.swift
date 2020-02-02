@@ -15,7 +15,6 @@ extension MStep {
         step.id = model.id
         step.name = model.name
         step.status = MStepStatus.all[model.statusIndex].rawValue
-        step.created = model.created
         step.rank = rank
         return step
     }

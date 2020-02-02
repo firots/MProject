@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import CoreData
 
-protocol MObject: NSManagedObject {
+protocol MObject: NSManagedObject, HasDateStamp {
     var id: UUID? { get  set }
     var name: String? { get  set }
     var details: String? { get  set }
@@ -125,7 +125,6 @@ extension MObject {
         }
         
         self.setStatus(to: MObjectStatus.all[model.statusIndex], context: context)
-        self.lastModified = Date()
         self.saved = true
     }
     

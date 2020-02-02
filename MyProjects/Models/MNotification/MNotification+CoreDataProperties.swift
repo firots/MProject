@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension MNotification: HasRepeatMode {
+extension MNotification: HasRepeatMode, HasDateStamp {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MNotification> {
         return NSFetchRequest<MNotification>(entityName: "MNotification")
     }
@@ -22,6 +22,7 @@ extension MNotification: HasRepeatMode {
     @NSManaged public var message: String?
     @NSManaged public var date: Date?
     @NSManaged public var created: Date?
+    @NSManaged public var lastModified: Date?
     @NSManaged public var nextFireDate: Date?
     
     /* Belongs to */

@@ -4,6 +4,7 @@
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="nextFireDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="repeatEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -49,6 +50,7 @@
     <entity name="MStep" representedClassName="MStep" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -90,9 +92,9 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="MNotification" positionX="-36" positionY="144" width="128" height="253"/>
+        <element name="MNotification" positionX="-36" positionY="144" width="128" height="268"/>
         <element name="MProject" positionX="-45" positionY="0" width="128" height="313"/>
-        <element name="MStep" positionX="-36" positionY="126" width="128" height="133"/>
+        <element name="MStep" positionX="-36" positionY="126" width="128" height="148"/>
         <element name="MTask" positionX="-45" positionY="63" width="128" height="388"/>
     </elements>
 </model>

@@ -25,6 +25,8 @@ extension MTask {
         }
         if let originalID = originalID {
             t.originalID = originalID
+        } else {
+            t.originalID = t.id
         }
         
         t.nextFireDate = nil
@@ -54,14 +56,13 @@ extension MTask {
         }
 
         if moc.hasChanges {
-            try? moc.save()
+            try? moc.mSave()
         }
     }
     
     static func createBase(context moc: NSManagedObjectContext) -> MTask {
         let task = MTask(context: moc)
         task.id = UUID()
-        task.created = Date()
         task.details = ""
 
         return task

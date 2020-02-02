@@ -35,7 +35,7 @@ class DataManager: Operation {
             
             if !self.isCancelled {
                 if self.context.hasChanges {
-                    try? self.context.save()
+                    try? self.context.mSave()
                 }
             }
             

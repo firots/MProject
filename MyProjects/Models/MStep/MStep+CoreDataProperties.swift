@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension MStep {
+extension MStep: HasDateStamp {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MStep> {
         return NSFetchRequest<MStep>(entityName: "MStep")
@@ -21,6 +21,7 @@ extension MStep {
     @NSManaged public var name: String?
     @NSManaged public var status: Int
     @NSManaged public var created: Date?
+    @NSManaged public var lastModified: Date?
     @NSManaged public var task: MTask?
     @NSManaged public var rank: Int
     

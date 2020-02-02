@@ -22,4 +22,30 @@ extension NSManagedObjectContext {
         }
         delete(object)
     }
+    
+    func mSave() throws {
+        
+        for object in self.updatedObjects {
+            if let datestampObject = object as? HasDateStamp {
+                datestampObject.lastModified = Date()
+            }
+        }
+        
+        for object in self.insertedObjects {
+            if let datestampObject = object as? HasDateStamp {
+                let now = Date()
+                if datestampObject.created == nil {
+                    datestampObject.created = now
+                }
+                datestampObject.lastModified = now
+            }
+        }
+
+        try save()
+    }
+}
+
+protocol HasDateStamp: class {
+    var lastModified: Date? { get set }
+    var created: Date? { get set }
 }

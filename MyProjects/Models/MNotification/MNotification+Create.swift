@@ -70,7 +70,6 @@ extension MNotification {
     static func createBase(context moc: NSManagedObjectContext, model: AddNotificationViewModel? ) -> MNotification {
         let notification = MNotification(context: moc)
         notification.id = model?.id ?? UUID()
-        notification.created = Date()
         return notification
     }
     
