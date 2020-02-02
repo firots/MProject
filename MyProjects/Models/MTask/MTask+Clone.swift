@@ -37,10 +37,6 @@ extension MTask {
         
         if force == false && nextFireDate > Date() { return } //its not time yet
         
-        
-
-        print("OH I WILL REPEAT NOW")
-        
         /*let newTask = self.clone()
          clone will have nextfiredate as its repeatstartdate+
          startdate as current date+

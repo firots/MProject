@@ -11,11 +11,23 @@ import CoreData
 import SwiftUI
 
 class DataManager: Operation {
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let context: NSManagedObjectContext
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     var taksDeduplicatePredicate: NSPredicate? = nil
+    
+    override init() {
+        let state = UIApplication.shared.applicationState
+        if state == .background {
+            print("App in Background")
+            context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+        } else {
+            print("App in F Ground")
+            context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        }
+        super.init()
+    }
 
     override func main() {
         self.syncTasks()
