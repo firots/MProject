@@ -20,31 +20,29 @@ class DataManager: Operation {
     override init() {
         let state = UIApplication.shared.applicationState
         if state == .background {
-            print("App in Background")
             context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
         } else {
-            print("App in F Ground")
-            context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
         }
         super.init()
     }
 
     override func main() {
-        self.syncTasks()
-        self.syncProjects()
-        self.syncNotifications()
-        
-        if !isCancelled {
-            if self.context.hasChanges {
-                try? self.context.save()
+        context.perform {
+            self.syncTasks()
+            self.syncProjects()
+            self.syncNotifications()
+            
+            if !self.isCancelled {
+                if self.context.hasChanges {
+                    try? self.context.save()
+                }
             }
+            
+            var now = Date()
+            now.addMinutes(1)
+            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
         }
-        
-        var now = Date()
-        now.addMinutes(1)
-        LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
-        
-
     }
     
     

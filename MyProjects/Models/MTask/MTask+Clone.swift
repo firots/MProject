@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension MTask {
-    public func setPreviousRepeatedMode(context: NSManagedObjectContext) {
+    public func setPreviousRepeatedMode(to state: Bool, context: NSManagedObjectContext) {
         guard let originalID = originalID else { return }
         let predicate = NSPredicate(format: "originalID == %@ AND repeatCount == %d", originalID.uuidString, repeatCount - 1)
         
@@ -20,7 +20,7 @@ extension MTask {
         context.perform{
             do {
                 let task = try context.fetch(fetchRequest).first
-                task?.repeated = false
+                task?.repeated = state
             } catch {
                 fatalError("Unable to fetch tasks.")
             }
