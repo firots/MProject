@@ -15,6 +15,7 @@ extension NSManagedObjectContext {
             mObject.clearNotifications(context: self)
             if let task = mObject as? MTask {
                 task.clearSteps(context: self)
+                task.setPreviousRepeatedMode(context: self)
             } else if let project = mObject as? MProject {
                 project.clearTasks(context: self)
             }

@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 extension MTask {
-    static func createOrSync(from model: AddTaskViewModel, context moc: NSManagedObjectContext, task: MTask?, project: MProject?) -> MTask {
+    static func createOrSync(from model: AddTaskViewModel, context moc: NSManagedObjectContext, task: MTask?, project: MProject?, originalID: UUID?, repeatCount: Int) -> MTask {
         let t = task ?? createBase(context: moc)
-        t.setMutualFields(from: model)
+        t.setMutualFields(from: model, context: moc)
         if project != nil { t.project = project }
         t.syncSteps(with: model.stepsModel.steps, context: moc)
         t.syncNotifications(with: model.notificationsModel.notifications, context: moc)
@@ -20,6 +20,13 @@ extension MTask {
         if model.repeatModeConfiguration.wrappedRepeatMode != .none {
             model.repeatModeConfiguration.bind(to: t)
         }
+        if repeatCount > 0 {
+            t.repeatCount = repeatCount
+        }
+        if let originalID = originalID {
+            t.originalID = originalID
+        }
+        
         t.nextFireDate = nil
         t.setNextFireDate()
         return t

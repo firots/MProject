@@ -7,15 +7,16 @@
 //
 
 import Foundation
+import CoreData
 
 extension MObject {
-    func update() {
+    func update(_ context: NSManagedObjectContext) {
         let now = Date()
         
         if let d = deadline, now >= d {
-            wrappedStatus = .failed
+            setStatus(to: .failed, context: context)
         } else if wrappedStatus == .waiting, let s = started, now >= s {
-            wrappedStatus = .active
+            setStatus(to: .active, context: context)
         } else {
             if let d = deadline, now < d {
                 deadline = d /* update ui */
@@ -24,14 +25,10 @@ extension MObject {
             }
         }
         
-
-        
-
-
         if let task = self as? MTask {
-            task.repeatIfNeeded(force: false)
+            task.repeatIfNeeded(force: false, context: context)
             
-            if task.repeatTask != nil {
+            if task.repeated == true {
                 return //do not go futher and create fire date for notifications
             }
         }

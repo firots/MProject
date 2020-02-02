@@ -54,29 +54,33 @@ extension MObject {
         return true
     }
     
-    public var wrappedStatus: MObjectStatus {
-        get {
-            return MObjectStatus(rawValue: status) ?? .active
-        } set {
-            if (newValue == .failed && self.wrappedStatus != MObjectStatus.failed) || (newValue == .done && self.wrappedStatus != MObjectStatus.done) {
-                self.ended = Date()
-            } else {
-                self.ended = nil
-            }
-            
-            if newValue == .active && isExpired {
-                self.status = MObjectStatus.failed.rawValue
-            } else {
-                self.status = newValue.rawValue
-            }
-            
-            if self.status == MObjectStatus.failed.rawValue || self.status == MObjectStatus.done.rawValue {
-                if let task = self as? MTask {
-                    DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-                        task.repeatIfNeeded(force: true)
+    public func setStatus(to newStatus: MObjectStatus, context: NSManagedObjectContext) {
+        if (newStatus == .failed && self.wrappedStatus != MObjectStatus.failed) || (newStatus == .done && self.wrappedStatus != MObjectStatus.done) {
+            self.ended = Date()
+        } else {
+            self.ended = nil
+        }
+        
+        if newStatus == .active && isExpired {
+            self.status = MObjectStatus.failed.rawValue
+        } else {
+            self.status = newStatus.rawValue
+        }
+        
+        if self.status == MObjectStatus.failed.rawValue || self.status == MObjectStatus.done.rawValue {
+            if let task = self as? MTask {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if let context = self.managedObjectContext {
+                        task.repeatIfNeeded(force: true, context: context )
                     }
                 }
             }
+        }
+    }
+    
+    public var wrappedStatus: MObjectStatus {
+        get {
+            return MObjectStatus(rawValue: status) ?? .active
         }
     }
     
@@ -98,7 +102,7 @@ extension MObject {
     
     
     
-    func setMutualFields(from model: AddMObjectViewModel) {
+    func setMutualFields(from model: AddMObjectViewModel, context: NSManagedObjectContext) {
         self.name = model.name.emptyIsNil()
         self.details = model.details.emptyIsNil()
         self.priority = model.priority
@@ -120,7 +124,7 @@ extension MObject {
             self.deadline = nil
         }
         
-        self.wrappedStatus = MObjectStatus.all[model.statusIndex]
+        self.setStatus(to: MObjectStatus.all[model.statusIndex], context: context)
         self.lastModified = Date()
         self.saved = true
     }

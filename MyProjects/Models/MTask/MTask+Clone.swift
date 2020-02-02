@@ -10,21 +10,37 @@ import Foundation
 import CoreData
 
 extension MTask {
-    public func repeatIfNeeded(force: Bool) {
-        //print("REPEAT IF NEEDED")
+    public func setPreviousRepeatedMode(context: NSManagedObjectContext) {
+        guard let originalID = originalID else { return }
+        let predicate = NSPredicate(format: "originalID == %@ AND repeatCount == %d", originalID.uuidString, repeatCount - 1)
+        
+        let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
+        fetchRequest.predicate = predicate
+        
+        context.perform{
+            do {
+                let task = try context.fetch(fetchRequest).first
+                task?.repeated = false
+            } catch {
+                fatalError("Unable to fetch tasks.")
+            }
+        }
+    }
+    
+    
+    public func repeatIfNeeded(force: Bool, context: NSManagedObjectContext) {
+        print("REPEAT IF NEEDED")
         if wrappedRepeatMode == .none { return } //not repeating type
         
-        if repeatTask != nil { return } //already has repeated task
+        if repeated == true { return } //already has repeated task
         
         guard let nextFireDate = self.nextFireDate else { return } //be sure next fire date is valid
         
         if force == false && nextFireDate > Date() { return } //its not time yet
         
         
-        
-        
-        
-        //print("OH I WILL REPEAT NOW")
+
+        print("OH I WILL REPEAT NOW")
         
         /*let newTask = self.clone()
          clone will have nextfiredate as its repeatstartdate+
@@ -48,9 +64,11 @@ extension MTask {
         
         deleteNotificationsFromIOS(clearFireDate: true)
         
-        let repeated = self.clone(force: force)
-        
-        repeated?.repeatIfNeeded(force: false)
+        let repeatedTask = self.clone(force: force)
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            repeated?.setStatus(to: .done, context: context)
+        }*/
+        repeatedTask?.repeatIfNeeded(force: false, context: context)
     }
     
     func clone(force: Bool) -> MTask? {
@@ -59,6 +77,7 @@ extension MTask {
         let viewModel = AddTaskViewModel(self, self.project)
         
         for step in viewModel.stepsModel.steps {
+            step.step = nil
             step.statusIndex = MStepStatus.active.rawValue
             step.id = UUID()
         }
@@ -82,6 +101,7 @@ extension MTask {
         viewModel.started?.addHours(hourDiff)
         
         for notification in viewModel.notificationsModel.notifications {
+            notification.mNotification = nil
             if notification.repeatModeConfiguration.wrappedRepeatMode == .none {
                 notification.date.addHours(hourDiff)
             } else {
@@ -97,18 +117,19 @@ extension MTask {
             viewModel.deadline = deadline
         }
         
-        let task = MTask.createOrSync(from: viewModel, context: context, task: nil, project: project)
+        let newTaskOriginalID = originalID ?? wrappedID
+        let newTaskRepeatCount = repeatCount + 1
         
-        repeatTask = task
-        task.repeatedFrom = self
-        task.originalID = originalID ?? wrappedID
-        task.repeatCount = repeatCount + 1
-    
+        print(newTaskRepeatCount)
+        let task = MTask.createOrSync(from: viewModel, context: context, task: nil, project: project, originalID: newTaskOriginalID, repeatCount: newTaskRepeatCount)
+        
+        self.repeated = true
+        
         self.setNextFireDate()
         
         if force == true {
-            if managedObjectContext?.hasChanges == true {
-                try? managedObjectContext?.save()
+            if context.hasChanges == true {
+                try? context.save()
             }
         }
 

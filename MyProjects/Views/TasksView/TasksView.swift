@@ -164,7 +164,7 @@ struct TasksView: View, MObjectLister {
                     .foregroundColor(Color(.systemGray))
             }
             
-            if task.wrappedRepeatMode != .none && task.repeatTask == nil {
+            if task.wrappedRepeatMode != .none && task.repeated == false {
                 Image(systemName: "arrow.clockwise.circle.fill")
                     .foregroundColor(Color(.systemGray))
             }
@@ -176,7 +176,7 @@ struct TasksView: View, MObjectLister {
     
     private func taskCellNameAndSteps(_ task: MTask) -> some View {
         HStack {
-            Text(task.wrappedName)
+            Text("\(task.wrappedName) \(task.repeatCount)")
                  .strikethrough(task.wrappedStatus == .done, color: nil)
                  .lineLimit(1)
 
@@ -264,12 +264,12 @@ struct TasksView: View, MObjectLister {
         ZStack {
             CheckmarkButton(status: task.wrappedStatus) {
                 if task.wrappedStatus == .active {
-                    task.wrappedStatus = .done
+                    task.setStatus(to: .done, context: self.moc)
                     Haptic.feedback(.medium)
                     task.deleteNotificationsFromIOS(clearFireDate: true)
                     self.saveChanges()
                 } else if task.wrappedStatus == .done {
-                    task.wrappedStatus = .active
+                    task.setStatus(to: .active, context: self.moc)
                     if task.wrappedStatus == .active {
                         task.resyncNotifications()
                         Haptic.feedback(.light)

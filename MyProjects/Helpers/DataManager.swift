@@ -11,28 +11,27 @@ import CoreData
 import SwiftUI
 
 class DataManager: Operation {
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     var taksDeduplicatePredicate: NSPredicate? = nil
 
     override func main() {
-        context.performAndWait {
-            self.syncTasks()
-            self.syncProjects()
-            self.syncNotifications()
-            
-            if !isCancelled {
-                if self.context.hasChanges {
-                    try? self.context.save()
-                }
+        self.syncTasks()
+        self.syncProjects()
+        self.syncNotifications()
+        
+        if !isCancelled {
+            if self.context.hasChanges {
+                try? self.context.save()
             }
-            
-            var now = Date()
-            now.addMinutes(1)
-            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
         }
+        
+        var now = Date()
+        now.addMinutes(1)
+        LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
+        
 
     }
     
@@ -59,7 +58,7 @@ class DataManager: Operation {
         do {
             let tasks = try context.fetch(fetchRequest)
             for task in tasks {
-                task.update()
+                task.update(self.context)
                 if isCancelled {
                     return
                 }
@@ -76,7 +75,7 @@ class DataManager: Operation {
         do {
             let projects = try context.fetch(fetchRequest)
             for project in projects {
-                project.update()
+                project.update(context)
                 if isCancelled {
                     return
                 }
