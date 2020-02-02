@@ -133,9 +133,6 @@ extension MObjectFilterContainer {
     }
 }
 
-
-
-
 /* Filtering */
 extension MObjectFilterContainer {
     func initFiltering() {
