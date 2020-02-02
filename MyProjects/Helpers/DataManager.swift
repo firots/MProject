@@ -16,15 +16,15 @@ class DataManager: Operation {
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     var taksDeduplicatePredicate: NSPredicate? = nil
+    static var shared: DataManager?
     
     override init() {
-        let state = UIApplication.shared.applicationState
-        if state == .background {
-            context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
-        } else {
-            context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
-        }
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
         super.init()
+    }
+    
+    init(context: NSManagedObjectContext) {
+        self.context = context
     }
 
     override func main() {
