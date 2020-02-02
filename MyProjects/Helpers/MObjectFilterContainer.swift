@@ -127,7 +127,7 @@ extension MObjectFilterContainer {
         
         if let project = project {
             if project.managedObjectContext?.hasChanges == true {
-                try? project.managedObjectContext?.mSave()
+                try? project.managedObjectContext?.save()
             }
         }
     }
