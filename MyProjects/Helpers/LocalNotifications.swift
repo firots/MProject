@@ -9,12 +9,12 @@
 import Foundation
 import UserNotifications
 
-class LocalNotifications {
+class LocalNotifications: NSObject {
     
     static let shared = LocalNotifications()
     
-    private init() {
-        
+    override private init() {
+        super.init()
     }
     
     func deleteAll() {
@@ -76,5 +76,12 @@ class LocalNotifications {
                 
             }*/
         }
+    }
+}
+
+extension LocalNotifications: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print(notification.description)
+        completionHandler(.alert)
     }
 }

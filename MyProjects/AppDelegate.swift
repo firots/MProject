@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Settings.load()
         
+        UNUserNotificationCenter.current().delegate = LocalNotifications.shared
+        
         // Override point for customization after application launch.
         UISwitch.appearance().onTintColor = .systemPurple
         UITableView.appearance().separatorStyle = .none
@@ -103,7 +105,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -132,7 +133,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
-
 
     // MARK: - Core Data Saving support
 
