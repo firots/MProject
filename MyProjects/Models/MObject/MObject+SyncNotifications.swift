@@ -18,18 +18,24 @@ extension MObject {
     }
     
     func syncNotifications(with notificationModels: [AddNotificationViewModel], context moc: NSManagedObjectContext) {
-        clearNotifications(context: moc)
-        
-        var notifications = [MNotification]()
+        var editedOrNewNotifications = [MNotification]()
+        var notificationsToDelete = notifications
         for notificationModel in notificationModels {
-            let notification = MNotification.create(from: notificationModel, context: moc)
+            let notification = MNotification.createOrSync(from: notificationModel, context: moc)
             if let task = self as? MTask {
                 notification.task = task
             } else if let project = self as? MProject {
                 notification.project = project
             }
             notification.createOnIOSIfNear()
-            notifications.append(notification)
+            editedOrNewNotifications.append(notification)
+            
+            notificationsToDelete.removeAll(where: { $0.wrappedID == notificationModel.id })
+        }
+        
+        for deletedNotification in notificationsToDelete {
+            deletedNotification.deleteFromIOS(clearFireDate: true)
+            moc.delete(deletedNotification)
         }
         
         if moc.hasChanges {

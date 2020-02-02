@@ -13,6 +13,7 @@ class StepCellViewModel: ObservableObject, Identifiable {
     @Published var editing: Bool
     @Published var statusIndex: Int
     var created: Date
+    var step: MStep?
     
     init(name: String?) {
         self.id = UUID()
@@ -28,6 +29,7 @@ class StepCellViewModel: ObservableObject, Identifiable {
         self.statusIndex = MStepStatus.all.firstIndex(of: step.wrappedStatus) ?? 0
         self.created = step.wrappedCreated
         self.editing = false
+        self.step = step
     }
 }
 

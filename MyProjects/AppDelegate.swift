@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentContainer(name: "MyProjects")
-        container.viewContext.automaticallyMergesChangesFromParent = true
+       
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -124,6 +124,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  Check the error message to determine what the actual problem was.
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
+            } else {
+                 container.viewContext.automaticallyMergesChangesFromParent = true
             }
         })
         

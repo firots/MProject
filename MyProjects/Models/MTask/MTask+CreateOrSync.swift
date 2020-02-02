@@ -32,13 +32,18 @@ extension MTask {
     }
     
     func syncSteps(with stepModels: [StepCellViewModel], context moc: NSManagedObjectContext) {
-        clearSteps(context: moc)
-        var steps = [MStep]()
+        var newOrModifiedSteps = [MStep]()
+        var stepsToDelete = steps
 
         for (i, stepModel) in stepModels.enumerated() {
-            let step = MStep.create(from: stepModel, context: moc, rank: i)
+            let step = MStep.createOrSync(from: stepModel, context: moc, rank: i)
             step.task = self
-            steps.append(step)
+            newOrModifiedSteps.append(step)
+            stepsToDelete.removeAll( where : { $0.wrappedID == stepModel.id })
+        }
+        
+        for deletedStep in stepsToDelete {
+            moc.delete(deletedStep)
         }
 
         if moc.hasChanges {

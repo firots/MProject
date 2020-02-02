@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 extension MStep {
-    static func create(from model: StepCellViewModel, context moc: NSManagedObjectContext, rank: Int) -> MStep {
-        let step = MStep(context: moc)
+    static func createOrSync(from model: StepCellViewModel, context moc: NSManagedObjectContext, rank: Int) -> MStep {
+        let step = model.step ?? MStep(context: moc)
         step.id = model.id
         step.name = model.name
         step.status = MStepStatus.all[model.statusIndex].rawValue
