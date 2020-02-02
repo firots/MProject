@@ -11,26 +11,29 @@ import CoreData
 import SwiftUI
 
 class DataManager: Operation {
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     var taksDeduplicatePredicate: NSPredicate? = nil
 
     override func main() {
-        self.syncTasks()
-        self.syncProjects()
-        self.syncNotifications()
-        
-        if !isCancelled {
-            if self.context.hasChanges {
-                try? self.context.save()
+        context.performAndWait {
+            self.syncTasks()
+            self.syncProjects()
+            self.syncNotifications()
+            
+            if !isCancelled {
+                if self.context.hasChanges {
+                    try? self.context.save()
+                }
             }
+            
+            var now = Date()
+            now.addMinutes(1)
+            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
         }
-        
-        var now = Date()
-        now.addMinutes(1)
-        LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
+
     }
     
     

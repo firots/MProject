@@ -13,6 +13,7 @@
 		76068E6123C3CF7B008E53C4 /* ModalTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76068E6023C3CF7B008E53C4 /* ModalTitle.swift */; };
 		7609764E23E5B9670017E166 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7609764D23E5B9670017E166 /* CloudKit.framework */; };
 		760F997323E63CE20032AEEE /* MTask+ClearDuplicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F997223E63CE20032AEEE /* MTask+ClearDuplicates.swift */; };
+		760F997523E64C540032AEEE /* IAPHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F997423E64C540032AEEE /* IAPHandler.swift */; };
 		7614E90823D754C6004CA385 /* Date+Between.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614E90723D754C6004CA385 /* Date+Between.swift */; };
 		7614E90A23D7B102004CA385 /* Date+AddTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7614E90923D7B102004CA385 /* Date+AddTime.swift */; };
 		7619856023DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7619855F23DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift */; };
@@ -107,6 +108,7 @@
 		76068E6023C3CF7B008E53C4 /* ModalTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTitle.swift; sourceTree = "<group>"; };
 		7609764D23E5B9670017E166 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		760F997223E63CE20032AEEE /* MTask+ClearDuplicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTask+ClearDuplicates.swift"; sourceTree = "<group>"; };
+		760F997423E64C540032AEEE /* IAPHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHandler.swift; sourceTree = "<group>"; };
 		7614E90723D754C6004CA385 /* Date+Between.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Between.swift"; sourceTree = "<group>"; };
 		7614E90923D7B102004CA385 /* Date+AddTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+AddTime.swift"; sourceTree = "<group>"; };
 		7619855F23DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+deleteWithChilds.swift"; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 				76FEB7F123DCA8D70028DBA0 /* LocalNotifications.swift */,
 				7602C62123E0C87A00DECF0B /* MObjectFilterContainer.swift */,
 				76C9589223E1FAA7007EBC63 /* Settings.swift */,
+				760F997423E64C540032AEEE /* IAPHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				76D2ADE823D65F9D009FFD5E /* HasRepeatMode.swift in Sources */,
 				76068E6123C3CF7B008E53C4 /* ModalTitle.swift in Sources */,
 				762E557623DB29D800CB1521 /* SelectTaskRepeatModeView.swift in Sources */,
+				760F997523E64C540032AEEE /* IAPHandler.swift in Sources */,
 				761F244123C1667C008AA2B7 /* MProject+CoreDataProperties.swift in Sources */,
 				768A23E123C8C8DD00AE8B83 /* MStep+CoreDataClass.swift in Sources */,
 				76EF17C723BCE17400C1CD11 /* AddTaskViewModel.swift in Sources */,

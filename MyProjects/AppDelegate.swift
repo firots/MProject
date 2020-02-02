@@ -56,26 +56,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleAppRefresh(task: BGAppRefreshTask) {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
-        DispatchQueue.main.async {
-            let appRefreshOperation = DataManager()
-            
-            DispatchQueue.global().async {
-                queue.addOperation(appRefreshOperation)
 
-                task.expirationHandler = {
-                    queue.cancelAllOperations()
-                }
+        let appRefreshOperation = DataManager()
+        
+        queue.addOperation(appRefreshOperation)
 
-                let lastOperation = queue.operations.last
-                lastOperation?.completionBlock = {
-                    task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
-                }
-
-                self.scheduleAppRefresh()
-            }
-
+        task.expirationHandler = {
+            queue.cancelAllOperations()
         }
 
+        let lastOperation = queue.operations.last
+        lastOperation?.completionBlock = {
+            task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
+        }
+
+        self.scheduleAppRefresh()
     }
     
     /*func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -113,6 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentContainer(name: "MyProjects")
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

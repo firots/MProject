@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
     
     var body: some View {
         TabView {
@@ -53,10 +53,8 @@ struct ContentView: View {
                 LocalNotifications.shared.register()
         }
         .onReceive(timer) { _ in
-            DispatchQueue.main.async {
-                let dm = DataManager()
-                dm.start()
-            }
+            let dm = DataManager()
+            dm.start()
         }
     }
 }
