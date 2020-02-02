@@ -33,6 +33,7 @@ extension MTask {
                         context.deleteWithChilds(task)
                     }
                 }
+                //tasks.last?.setPreviousRepeatedMode(to: true, context: context)
             }
         } catch {
             fatalError("Unable to fetch tasks.")

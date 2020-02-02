@@ -12,19 +12,38 @@ import CoreData
 extension MTask {
     public func setPreviousRepeatedMode(to state: Bool, context: NSManagedObjectContext) {
         guard let originalID = originalID else { return }
-        let predicate = NSPredicate(format: "originalID == %@ AND repeatCount == %d", originalID.uuidString, repeatCount - 1)
+        let predicate = NSPredicate(format: "(originalID == %@ OR id == %@) AND repeatCount == %d",originalID.uuidString, originalID.uuidString, repeatCount - 1)
         
         let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
         fetchRequest.predicate = predicate
-        
-        context.perform{
+        context.perform {
             do {
-                let task = try context.fetch(fetchRequest).first
-                task?.repeated = state
+                if let task = try context.fetch(fetchRequest).first {
+                    //task.repeated = state
+                    task.repeatMode = RepeatMode.none.rawValue
+                }
+                
             } catch {
                 fatalError("Unable to fetch tasks.")
             }
         }
+    }
+    
+    public func hasRepeatedTask(context: NSManagedObjectContext) -> Bool {
+        guard let originalID = originalID else { return false }
+        let predicate = NSPredicate(format: "(originalID == %@ OR originalID == %@) AND repeatCount > %d",originalID.uuidString, wrappedID.uuidString, repeatCount)
+        
+        let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
+        fetchRequest.predicate = predicate
+        var tasks = [MTask]()
+        context.performAndWait {
+            do {
+                tasks = try context.fetch(fetchRequest)
+            } catch {
+                fatalError("Unable to fetch tasks.")
+            }
+        }
+        return !tasks.isEmpty
     }
     
     
@@ -60,10 +79,10 @@ extension MTask {
         deleteNotificationsFromIOS(clearFireDate: true)
         
         let repeatedTask = self.clone(force: force)
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            repeated?.setStatus(to: .done, context: context)
-        }*/
-        repeatedTask?.repeatIfNeeded(force: false, context: context)
+        
+        if force == false {
+            repeatedTask?.repeatIfNeeded(force: false, context: context)
+        }
     }
     
     func clone(force: Bool) -> MTask? {
@@ -117,7 +136,8 @@ extension MTask {
         
         let task = MTask.createOrSync(from: viewModel, context: context, task: nil, project: project, originalID: newTaskOriginalID, repeatCount: newTaskRepeatCount)
         
-        self.repeated = true
+        //self.repeated = true
+        self.repeatMode = RepeatMode.none.rawValue
         
         self.setNextFireDate()
         

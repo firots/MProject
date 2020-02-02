@@ -46,7 +46,7 @@ class DataManager: Operation {
     }
     
     
-    func deduplicateTasks() {
+    /*func deduplicateTasks() {
         let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
         do {
             let tasks = try context.fetch(fetchRequest)
@@ -59,7 +59,7 @@ class DataManager: Operation {
         } catch {
             fatalError("Unable to fetch tasks.")
         }
-    }
+    }*/
     
     func syncTasks()  {
         let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()

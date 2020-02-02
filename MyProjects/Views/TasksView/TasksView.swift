@@ -164,9 +164,9 @@ struct TasksView: View, MObjectLister {
                     .foregroundColor(Color(.systemGray))
             }
             
-            if task.wrappedRepeatMode != .none && task.repeated == false {
+            if task.wrappedRepeatMode != .none {
                 Image(systemName: "arrow.clockwise.circle.fill")
-                    .foregroundColor(Color(.systemGray))
+                    .foregroundColor(Color(task.repeated == false ? .systemGray: .systemRed))
             }
             
             Image(systemName: "flag.circle.fill")
