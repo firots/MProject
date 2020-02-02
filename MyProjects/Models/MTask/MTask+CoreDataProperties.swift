@@ -50,6 +50,10 @@ extension MTask: HasRepeatMode {
         }
     }
     
+    public var wrappedOriginalID: UUID {
+        originalID ?? wrappedID
+    }
+    
     public var completedSteps: [MStep] {
         steps.filter({ $0.status == MStepStatus.done.rawValue })
     }

@@ -10,29 +10,38 @@ import Foundation
 import CoreData
 
 extension MTask {
-    public func setPreviousRepeatedMode(to state: Bool, context: NSManagedObjectContext) {
+    /*public func setPreviousRepeatedMode(to state: Bool, context: NSManagedObjectContext) {
         guard let originalID = originalID else { return }
-        let predicate = NSPredicate(format: "(originalID == %@ OR id == %@) AND repeatCount == %d",originalID.uuidString, originalID.uuidString, repeatCount - 1)
+        let predicate = NSPredicate(format: "(originalID == %@ OR id == %@) AND repeatCount < %d",originalID.uuidString, originalID.uuidString, repeatCount)
+        
+        let sort = NSSortDescriptor(key: #keyPath(MTask.repeatCount), ascending: false)
         
         let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
         fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = [sort]
+        
         context.perform {
             do {
                 if let task = try context.fetch(fetchRequest).first {
-                    //task.repeated = state
-                    task.repeatMode = RepeatMode.none.rawValue
+                    if state == false && task.hasRepeatedTask(context: context) {
+                        return
+                    }
+                    task.repeated = state
                 }
                 
             } catch {
                 fatalError("Unable to fetch tasks.")
             }
+            
+            if context.hasChanges {
+                try? context.save()
+            }
         }
     }
     
     public func hasRepeatedTask(context: NSManagedObjectContext) -> Bool {
-        guard let originalID = originalID else { return false }
-        let predicate = NSPredicate(format: "(originalID == %@ OR originalID == %@) AND repeatCount > %d",originalID.uuidString, wrappedID.uuidString, repeatCount)
-        
+        let predicate = NSPredicate(format: "(originalID == %@ OR originalID == %@) AND repeatCount > %d", wrappedOriginalID.uuidString, wrappedID.uuidString, repeatCount)
+
         let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
         fetchRequest.predicate = predicate
         var tasks = [MTask]()
@@ -44,7 +53,7 @@ extension MTask {
             }
         }
         return !tasks.isEmpty
-    }
+    }*/
     
     
     public func repeatIfNeeded(force: Bool, context: NSManagedObjectContext) {
