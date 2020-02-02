@@ -45,6 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         Settings.shared.save()
         (UIApplication.shared.delegate as? AppDelegate)?.scheduleDatabaseCleaning()
+        (UIApplication.shared.delegate as? AppDelegate)?.scheduleAppRefresh()
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -72,6 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //BackgroundManager.shared.scheduleAppRefresh()
         Settings.shared.save()
         (UIApplication.shared.delegate as? AppDelegate)?.scheduleDatabaseCleaning()
+        (UIApplication.shared.delegate as? AppDelegate)?.scheduleAppRefresh()
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 }

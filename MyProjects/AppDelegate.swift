@@ -30,9 +30,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Downcast the parameter to a processing task as this identifier is used for a processing request.
             self.handleDatabaseCleaning(task: task as! BGProcessingTask)
         }
-
         
+        registerBackgroundMode()
+
         return true
+    }
+    
+    func registerBackgroundMode() {
+        BGTaskScheduler.shared.register(forTaskWithIdentifier:
+        "com.firot.MyProjects.refresh",
+        using: nil)
+          {task in
+             self.handleAppRefresh(task: task as! BGAppRefreshTask)
+          }
+    }
+    
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
+        // Fetch no earlier than 15 minutes from now
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
+        
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print("Could not schedule app refresh: \(error)")
+            print("Could not schedule database cleaning: \(error)")
+        }
+    }
+    
+    func handleAppRefresh(task: BGAppRefreshTask) {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        
+
+        let appRefreshOperation = DataManager()
+
+
+        queue.addOperation(appRefreshOperation)
+
+        task.expirationHandler = {
+            queue.cancelAllOperations()
+        }
+
+        let lastOperation = queue.operations.last
+        lastOperation?.completionBlock = {
+            task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
+        }
+        
+        self.scheduleAppRefresh()
     }
     
     func scheduleDatabaseCleaning() {
