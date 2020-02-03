@@ -17,18 +17,20 @@ class DataManager: Operation {
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     var taksDeduplicatePredicate: NSPredicate? = nil
     static var shared: DataManager?
+    var text: String?
     
     override init() {
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
         super.init()
     }
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext, text: String) {
         self.context = context
+        self.text = text
     }
 
     override func main() {
-        context.perform {
+        context.performAndWait {
             self.syncTasks()
             self.syncProjects()
             self.syncNotifications()
@@ -41,7 +43,8 @@ class DataManager: Operation {
             
             var now = Date()
             now.addMinutes(1)
-            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "called 1 minute ago", date: now)
+            
+            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "F: \(self.text)", date: now)
         }
     }
     

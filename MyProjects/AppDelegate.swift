@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queue.maxConcurrentOperationCount = 1
         
 
-        let appRefreshOperation = DataManager()
+        let appRefreshOperation = DataManager(context: persistentContainer.newBackgroundContext(), text: "refresh")
 
 
         queue.addOperation(appRefreshOperation)
@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        let cleanDatabaseOperation = DataManager(context: persistentContainer.newBackgroundContext())
+        let cleanDatabaseOperation = DataManager(context: persistentContainer.newBackgroundContext(), text: "process")
 
         cleanDatabaseOperation.completionBlock = {
             let success = !cleanDatabaseOperation.isCancelled
