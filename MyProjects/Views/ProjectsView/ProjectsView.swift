@@ -41,7 +41,11 @@ struct ProjectsView: View, MObjectLister  {
         )
         .navigationBarTitle(MObjectDateFilterType.names[model.filterContainer.dateFilter])
         .sheet(isPresented: $model.showAddProject)  {
-            AddProjectView(context: self.moc, project: nil)
+            if Settings.shared.pro == false && self.moc.hasProjectLimitReached() {
+                PurchaseView()
+            } else {
+                AddProjectView(context: self.moc, project: nil)
+            }
         }
         .actionSheet(isPresented: $model.showActionSheet) {
             actionSheet()

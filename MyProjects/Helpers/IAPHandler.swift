@@ -32,8 +32,12 @@ protocol IAPHandlerDelegate: class {
 
 
 final class IAPHandler: NSObject {
-    static let shared = IAPHandler()
+    //static let shared = IAPHandler()
     
+    override init() {
+        super.init()
+    }
+
     let CONSUMABLE_PURCHASE_PRODUCT_ID = "testpurchase"
     let NON_CONSUMABLE_PURCHASE_PRODUCT_ID = "mprojectgold001"
     

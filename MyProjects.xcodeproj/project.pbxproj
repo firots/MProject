@@ -29,6 +29,7 @@
 		7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */; };
 		7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11A23C5063400F81CCA /* AddMObjectView.swift */; };
 		7625E11D23C5239900F81CCA /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11C23C5239900F81CCA /* Keyboard.swift */; };
+		762774E323E8B71000AD8677 /* UIColor-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762774E223E8B71000AD8677 /* UIColor-Custom.swift */; };
 		762D720523E8986E006D08AA /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D720423E8986E006D08AA /* PurchaseView.swift */; };
 		762D720723E898B9006D08AA /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D720623E898B9006D08AA /* PurchaseViewModel.swift */; };
 		762E557623DB29D800CB1521 /* SelectTaskRepeatModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762E557523DB29D800CB1521 /* SelectTaskRepeatModeView.swift */; };
@@ -126,6 +127,7 @@
 		7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectViewModel.swift; sourceTree = "<group>"; };
 		7625E11A23C5063400F81CCA /* AddMObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectView.swift; sourceTree = "<group>"; };
 		7625E11C23C5239900F81CCA /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		762774E223E8B71000AD8677 /* UIColor-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Custom.swift"; sourceTree = "<group>"; };
 		762AE7B623DDC52500594A69 /* MyProjects.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyProjects.entitlements; sourceTree = "<group>"; };
 		762D720423E8986E006D08AA /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		762D720623E898B9006D08AA /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				7614E90923D7B102004CA385 /* Date+AddTime.swift */,
 				76E53C3A23D9063C0084EC1A /* Date+NowWithZero.swift */,
 				7619855F23DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift */,
+				762774E223E8B71000AD8677 /* UIColor-Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				764F94C423D3341C008C0D09 /* RepeatModePicker.swift in Sources */,
 				7623EEF923D2102D007B1B0D /* TopWarningView.swift in Sources */,
 				7614E90A23D7B102004CA385 /* Date+AddTime.swift in Sources */,
+				762774E323E8B71000AD8677 /* UIColor-Custom.swift in Sources */,
 				764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */,
 				76E0A08D23D3D9C000E0B06C /* Date+Remeans.swift in Sources */,
 				76FD61C723B92BDF00D21B21 /* ProjectsViewModel.swift in Sources */,

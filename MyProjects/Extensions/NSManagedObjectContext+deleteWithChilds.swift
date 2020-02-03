@@ -43,6 +43,22 @@ extension NSManagedObjectContext {
 
         try save()
     }
+    
+    func hasTaskLimitReached() -> Bool {
+        let num = try? count(for: MTask.fetchRequest())
+        if num ?? 0 >= 100 {
+            return true
+        }
+        return false
+    }
+    
+    func hasProjectLimitReached() -> Bool {
+        let num = try? count(for: MProject.fetchRequest())
+        if num ?? 0 >= 10 {
+            return true
+        }
+        return false
+    }
 }
 
 protocol HasDateStamp: class {

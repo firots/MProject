@@ -43,9 +43,13 @@ struct TasksView: View, MObjectLister {
             }
         )
         .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter])
-        .sheet(isPresented: self.$model.showAdd)  {
+        .sheet(isPresented: self.$model.showModal)  {
             if self.model.modalType == .addTask {
-                AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
+                if Settings.shared.pro == false && self.moc.hasTaskLimitReached() {
+                    PurchaseView()
+                } else {
+                    AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
+                }
             } else {
                 AddProjectView(context: self.moc, project: self.model.project)
             }
@@ -112,7 +116,7 @@ struct TasksView: View, MObjectLister {
                         if self.model.project?.managedObjectContext != nil {
                             self.model.modalType = .addProject
                             self.model.taskToEdit = nil
-                            self.model.showAdd = true
+                            self.model.showModal = true
                         }
                     }
                 }
@@ -123,7 +127,7 @@ struct TasksView: View, MObjectLister {
                     }
                     self.model.modalType = .addTask
                     self.model.taskToEdit = nil
-                    self.model.showAdd = true
+                    self.model.showModal = true
                 }
             }
 
@@ -174,7 +178,7 @@ struct TasksView: View, MObjectLister {
             } else {
                 self.model.taskToEdit = task
                 self.model.modalType = .addTask
-                self.model.showAdd = true
+                self.model.showModal = true
             }
         }) {
             HStack {
@@ -324,7 +328,7 @@ struct TasksView: View, MObjectLister {
                     Haptic.notify(.warning)
                     self.model.taskToEdit = task
                     self.model.modalType = .addTask
-                    self.model.showAdd = true
+                    self.model.showModal = true
                 }
             }
             

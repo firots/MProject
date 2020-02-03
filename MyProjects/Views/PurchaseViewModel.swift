@@ -11,32 +11,47 @@ import Foundation
 class PurchaseViewModel: ObservableObject, IAPHandlerDelegate {
     @Published var showAlert = false
     @Published var loading = true
-    var alertType = IAPHandlerAlertType.disabled
+    @Published var price = ""
+    
+    @Published var message = ""
+    
+    lazy var iAPHandler = IAPHandler()
     
     init() {
         IAP()
     }
     
     func productRequested(id: String, price: String) {
-        loading = false
+        DispatchQueue.main.async {
+            self.loading = false
+            self.price = price
+        }
+        
     }
     
     func productRequestEnded() {
-        loading = false
+        DispatchQueue.main.async {
+            self.loading = false
+        }
     }
     
     func IAP() {
-        IAPHandler.shared.delegate = self
-        IAPHandler.shared.fetchAvailableProducts()
-        IAPHandler.shared.purchaseStatusBlock = {[weak self] (type) in
-            if type == .purchased {
-                self?.alertType = .purchased
-                Settings.shared.pro = true
-            } else if type == .restored {
-                self?.alertType = .purchased
-                Settings.shared.pro = true
-            } else if type == .failed {
-                self?.alertType = .failed
+        iAPHandler.delegate = self
+        iAPHandler.fetchAvailableProducts()
+        iAPHandler.purchaseStatusBlock = {type in
+            DispatchQueue.main.async {
+                if type == .purchased {
+                    self.message = type.message()
+                    Settings.shared.pro = true
+                    self.showAlert = true
+                } else if type == .restored {
+                    self.message = type.message()
+                    Settings.shared.pro = true
+                    self.showAlert = true
+                } else if type == .failed {
+                    self.message = type.message()
+                    self.showAlert = true
+                }
             }
         }
     }

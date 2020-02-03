@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 class TasksViewModel: MObjectsViewModel {
-    @Published var showAdd = false
+    @Published var showModal = false
     @Published var showActionSheet = false
     @Published var filterContainer: MObjectFilterContainer
     @Published var showSortPopUp = false
@@ -50,6 +50,7 @@ class TasksViewModel: MObjectsViewModel {
     enum ModalType {
         case addTask
         case addProject
+        case purchase
     }
 
 }
