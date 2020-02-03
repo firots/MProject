@@ -52,7 +52,7 @@ struct NotificationsView: View {
         Section {
             HStack {
                 CellImageView(systemName: "plus.circle.fill")
-                Text("Add Notification")
+                Text("Add Reminder")
                 .foregroundColor(Color(.systemPurple))
                 Spacer()
             }

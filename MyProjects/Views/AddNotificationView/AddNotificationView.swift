@@ -62,7 +62,7 @@ struct AddNotificationView: View {
     }
     
     func titleBar() -> some View {
-        ModalTitle(title: model.mNotification == nil ? "Add Notification": "Edit Notification", edit: false) {
+        ModalTitle(title: model.mNotification == nil ? "Add Reminder": "Edit Reminder", edit: false) {
             self.save()
             self.presentationMode.wrappedValue.dismiss()
         }
