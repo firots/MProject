@@ -40,12 +40,12 @@ class DataManager: Operation {
                     try? self.context.mSave()
                 }
             }
-            
-            var now = Date()
-            now.addMinutes(1)
-            
-            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "F: \(self.text ?? "no")", date: now)
         }
+        
+        var now = Date()
+        now.addMinutes(1)
+        
+        LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "F: \(self.text ?? "no")", date: now)
     }
     
     
