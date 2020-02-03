@@ -14,7 +14,6 @@ struct MObjectSortButtons: View {
     @Binding var editMode: Bool
     var sortAction: (() -> Void)?
     var filterAction: (() -> Void)?
-    var editAction: (() -> Void)?
     
     let buttonSize: CGFloat = 27
     
@@ -28,7 +27,6 @@ struct MObjectSortButtons: View {
             }
 
         }.padding(.top)
-            
     }
     
     func editButton() -> some View {

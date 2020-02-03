@@ -44,7 +44,7 @@ class DataManager: Operation {
             var now = Date()
             now.addMinutes(1)
             
-            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "F: \(self.text)", date: now)
+            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "F: \(self.text ?? "no")", date: now)
         }
     }
     
