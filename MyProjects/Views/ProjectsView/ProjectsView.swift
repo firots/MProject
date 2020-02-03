@@ -30,7 +30,7 @@ struct ProjectsView: View, MObjectLister  {
             }
             addButton()
         }
-        .navigationBarItems(trailing: MObjectSortButtons(ascending: $model.filterContainer.ascending, sortAction: {
+        .navigationBarItems(trailing: MObjectSortButtons(hasEdit: false, ascending: $model.filterContainer.ascending, editMode: $model.multiSelection, sortAction: {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()

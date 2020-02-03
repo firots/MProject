@@ -33,7 +33,7 @@ struct TasksView: View, MObjectLister {
             }
             hoveringButtons()
         }
-        .navigationBarItems(trailing: MObjectSortButtons(ascending: $model.filterContainer.ascending, sortAction: {
+        .navigationBarItems(trailing: MObjectSortButtons(hasEdit: true, ascending: $model.filterContainer.ascending, editMode: $model.selectionEnabled, sortAction: {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()
@@ -50,12 +50,27 @@ struct TasksView: View, MObjectLister {
                 AddProjectView(context: self.moc, project: self.model.project)
             }
         }
+        .alert(isPresented: $model.showMultiDeletionAlert) {
+            multiDeletionAlert()
+        }
         .actionSheet(isPresented: $model.showActionSheet) {
             actionSheet()
         }.onDisappear() {
             self.model.filterContainer.savePreferences()
         }.onAppear() {
             MObjectFilterContainer.latestInstance = self.model.filterContainer
+        }
+    }
+    
+    func multiDeletionAlert() -> Alert {
+        if model.selectedTasks.isEmpty {
+            return Alert(title: Text("No Tasks Selected"), message: Text("Select the tasks you want to delete by tapping them"), dismissButton: .default(Text("Okay")))
+            
+            
+        } else {
+            return Alert(title: Text("Warning"), message: Text("Are you sure you want to delete \(model.selectedTasks.count) tasks?"), primaryButton: .destructive(Text("Delete")) {
+                self.deleteSelectedTasks()
+                } , secondaryButton: .cancel())
         }
     }
     
@@ -72,27 +87,41 @@ struct TasksView: View, MObjectLister {
         }
     }
     
+    private func deleteSelectedTasks() {
+        for task in self.model.selectedTasks {
+            self.moc.deleteWithChilds(task)
+        }
+        self.model.selectedTasks.removeAll()
+    }
+    
     private func hoveringButtons() -> some View {
         VStack {
             Spacer()
-            if model.project != nil {
-                HoveringButton(color: Color(.systemPurple), image: Image(systemName: "pencil")) {
-                    if self.model.project?.managedObjectContext != nil {
-                        self.model.modalType = .addProject
-                        self.model.taskToEdit = nil
-                        self.model.showAdd = true
+            if model.selectionEnabled {
+                HoveringButton(color: Color(.systemRed), image: Image(systemName: "trash.fill")) {
+                    self.model.showMultiDeletionAlert = true
+                }
+            } else {
+                if model.project != nil {
+                    HoveringButton(color: Color(.systemPurple), image: Image(systemName: "pencil")) {
+                        if self.model.project?.managedObjectContext != nil {
+                            self.model.modalType = .addProject
+                            self.model.taskToEdit = nil
+                            self.model.showAdd = true
+                        }
                     }
                 }
-            }
-            HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
-                if let project = self.model.project, project.managedObjectContext == nil {
-                    self.presentationMode.wrappedValue.dismiss()
-                    return
+                HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
+                    if let project = self.model.project, project.managedObjectContext == nil {
+                        self.presentationMode.wrappedValue.dismiss()
+                        return
+                    }
+                    self.model.modalType = .addTask
+                    self.model.taskToEdit = nil
+                    self.model.showAdd = true
                 }
-                self.model.modalType = .addTask
-                self.model.taskToEdit = nil
-                self.model.showAdd = true
             }
+
         }
     }
     
@@ -131,13 +160,22 @@ struct TasksView: View, MObjectLister {
     
     private func taskCell(_ task: MTask) -> some View {
         Button(action: {
-            self.model.taskToEdit = task
-            self.model.modalType = .addTask
-            self.model.showAdd = true
+            if self.model.selectionEnabled {
+                if self.model.selectedTasks.contains(task) {
+                    self.model.selectedTasks.removeAll( where: { $0 == task })
+                } else {
+                    self.model.selectedTasks.append(task)
+                }
+            } else {
+                self.model.taskToEdit = task
+                self.model.modalType = .addTask
+                self.model.showAdd = true
+            }
         }) {
             HStack {
                 checkmarkButton(task)
                     .padding(.trailing)
+
                 
                 VStack(alignment: .leading) {
                     taskCellNameAndSteps(task)
@@ -154,7 +192,7 @@ struct TasksView: View, MObjectLister {
                 }.foregroundColor(Color(.label))
             }
             .padding(.bottom, 5)
-        }.listRowBackground(cellBackgroundColor)
+        }.listRowBackground(self.model.selectedTasks.contains(task) ? Color(.systemGray4): cellBackgroundColor)
     }
     
     private func taskIcons(_ task: MTask) -> some View {

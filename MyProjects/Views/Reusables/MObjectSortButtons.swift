@@ -9,12 +9,16 @@
 import SwiftUI
 
 struct MObjectSortButtons: View {
+    let hasEdit: Bool
     @Binding var ascending: Bool
+    @Binding var editMode: Bool
     var sortAction: (() -> Void)?
     var filterAction: (() -> Void)?
+    var editAction: (() -> Void)?
     
     var body: some View {
         HStack {
+            editButton()
             setAscending()
             sortMObjects()
             if UIDevice.current.userInterfaceIdiom == .phone {
@@ -23,6 +27,25 @@ struct MObjectSortButtons: View {
 
         }.padding(.top)
             
+    }
+    
+    func editButton() -> some View {
+        Group {
+            if hasEdit {
+                Button(action: {
+                    withAnimation {
+                        self.editMode.toggle()
+                    }
+                    
+                }) {
+                    Image(systemName: editMode ? "ellipsis.circle.fill" : "ellipsis.circle")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .animation(.spring())
+                }
+            }
+        }
+        
     }
     
     func setAscending() -> some View {

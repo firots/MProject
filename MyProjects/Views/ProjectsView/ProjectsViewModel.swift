@@ -14,6 +14,7 @@ class ProjectsViewModel: MObjectsViewModel {
     @Published var showActionSheet = false
     @Published var filterContainer: MObjectFilterContainer
     @Published var showSortPopUp = false
+    @Published var multiSelection = false
     
     var actionSheetType = MObjectActionSheetType.sort
     

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().backgroundColor = .clear
-        
+        print(UIDevice.current.identifierForVendor!.uuidString)
         let dm = DataManager()
         dm.start()
 

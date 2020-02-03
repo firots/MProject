@@ -25,7 +25,7 @@ struct HoveringButton: View {
                     .padding(0)
                     .background(color)
                     .clipShape(Circle())
-                    .shadow(color: Color(.systemPurple), radius: 4, x: 0, y: 0)
+                    .shadow(color: color, radius: 4, x: 0, y: 0)
 
                 }
                 .foregroundColor(Color(.systemBackground))

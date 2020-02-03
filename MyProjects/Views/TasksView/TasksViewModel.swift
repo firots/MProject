@@ -14,6 +14,15 @@ class TasksViewModel: MObjectsViewModel {
     @Published var showActionSheet = false
     @Published var filterContainer: MObjectFilterContainer
     @Published var showSortPopUp = false
+    @Published var selectionEnabled = false {
+        didSet {
+            if selectionEnabled == false {
+                selectedTasks.removeAll()
+            }
+        }
+    }
+    @Published var selectedTasks = [MTask]()
+    @Published var showMultiDeletionAlert = false
     
     var fContainer: MObjectFilterContainer {
         get {
