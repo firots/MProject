@@ -11,6 +11,7 @@ import Foundation
 class Settings: Codable {
     var taskViewSettings: TasksViewSettings
     var projectsViewSettings: TasksViewSettings
+    var pro = false
     
     init() {
         taskViewSettings = TasksViewSettings()

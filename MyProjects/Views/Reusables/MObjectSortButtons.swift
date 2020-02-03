@@ -38,7 +38,7 @@ struct MObjectSortButtons: View {
                     }
                     
                 }) {
-                    Image(systemName: editMode ? "pencil.circle.fill" : "pencil.circle")
+                    Image(systemName: editMode ? "checkmark.circle.fill" : "pencil.circle.fill")
                         .resizable()
                         .frame(width: buttonSize, height: buttonSize)
                         .animation(.spring())
