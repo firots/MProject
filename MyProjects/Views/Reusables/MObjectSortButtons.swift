@@ -16,6 +16,8 @@ struct MObjectSortButtons: View {
     var filterAction: (() -> Void)?
     var editAction: (() -> Void)?
     
+    let buttonSize: CGFloat = 27
+    
     var body: some View {
         HStack {
             editButton()
@@ -40,7 +42,7 @@ struct MObjectSortButtons: View {
                 }) {
                     Image(systemName: editMode ? "pencil.circle.fill" : "pencil.circle")
                         .resizable()
-                        .frame(width: 24, height: 24)
+                        .frame(width: buttonSize, height: buttonSize)
                         .animation(.spring())
                 }
             }
@@ -57,7 +59,7 @@ struct MObjectSortButtons: View {
         }) {
             Image(systemName: "arrow.up.circle.fill")
                 .resizable()
-                .frame(width: 24, height: 24)
+                .frame(width: buttonSize, height: buttonSize)
                 .rotationEffect(ascending ? .degrees(0) : .degrees(180))
                 .animation(.spring())
 
@@ -70,7 +72,7 @@ struct MObjectSortButtons: View {
         }) {
             Image(systemName: "arrow.up.arrow.down.circle.fill")
                 .resizable()
-                .frame(width: 24, height: 24)
+                .frame(width: buttonSize, height: buttonSize)
 
         }
     }
@@ -81,7 +83,7 @@ struct MObjectSortButtons: View {
         }) {
             Image(systemName: "calendar.circle.fill")
                 .resizable()
-                .frame(width: 24, height: 24)
+                .frame(width: buttonSize, height: buttonSize)
         }
     }
 }
