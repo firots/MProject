@@ -38,7 +38,7 @@ struct MObjectSortButtons: View {
                     }
                     
                 }) {
-                    Image(systemName: editMode ? "ellipsis.circle.fill" : "ellipsis.circle")
+                    Image(systemName: editMode ? "pencil.circle.fill" : "pencil.circle")
                         .resizable()
                         .frame(width: 24, height: 24)
                         .animation(.spring())

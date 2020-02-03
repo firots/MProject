@@ -72,6 +72,7 @@ struct TasksView: View, MObjectLister {
                 self.deleteSelectedTasks()
                 } , secondaryButton: .cancel())
         }
+        
     }
     
     func titleDate() -> some View {
@@ -92,6 +93,10 @@ struct TasksView: View, MObjectLister {
             self.moc.deleteWithChilds(task)
         }
         self.model.selectedTasks.removeAll()
+        
+        if moc.hasChanges {
+            try? moc.save()
+        }
     }
     
     private func hoveringButtons() -> some View {
