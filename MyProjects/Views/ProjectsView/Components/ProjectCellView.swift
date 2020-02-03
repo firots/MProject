@@ -31,6 +31,7 @@ struct ProjectCellView: View {
                         taskCellNameAndSteps()
                         
                         tasks()
+                        .padding(.bottom, 5)
                         
                         taskCellStartDates()
                             .padding(.bottom, 5)

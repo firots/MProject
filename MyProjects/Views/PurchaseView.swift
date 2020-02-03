@@ -41,9 +41,10 @@ struct PurchaseView: View {
                  
                  restoreButton()
             }
-            Spacer()
 
-        }.padding()
+        }
+        .padding()
+        .frame(alignment: .center)
         .alert(isPresented: $model.showAlert) {
             Alert(title: Text(""), message: Text(model.message), dismissButton: .default(Text("Okay")) {
                 if Settings.shared.pro == true {
@@ -83,7 +84,7 @@ struct PurchaseView: View {
         Image("mp_logo_gold")
             .renderingMode(.original)
             .resizable()
-            .frame(width: 125, height: 125)
+            .frame(width: 128, height: 128)
             .cornerRadius(25)
     }
     

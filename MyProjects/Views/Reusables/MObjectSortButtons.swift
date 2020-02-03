@@ -42,6 +42,7 @@ struct MObjectSortButtons: View {
                         .resizable()
                         .frame(width: buttonSize, height: buttonSize)
                         .animation(.spring())
+                        .foregroundColor(Color(editMode ? .systemBlue : .systemPurple))
                 }
             }
         }
