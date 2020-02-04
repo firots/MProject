@@ -55,10 +55,10 @@ struct TasksView: View, MObjectLister {
             }
         }
         .onDisappear() {
-            self.model.filterContainer.savePreferences()
+            //self.model.filterContainer.savePreferences()
         }
         .onAppear() {
-            MObjectFilterContainer.latestInstance = self.model.filterContainer
+            //MObjectFilterContainer.latestInstance = self.model.filterContainer
         }
         .alert(isPresented: $model.showMultiDeletionAlert) {
             multiDeletionAlert()

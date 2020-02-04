@@ -19,7 +19,7 @@ class Settings: Codable {
     }
     
     func save() {
-        MObjectFilterContainer.latestInstance?.savePreferences()
+        //MObjectFilterContainer.latestInstance?.savePreferences()
         
         let encoder = JSONEncoder()
         

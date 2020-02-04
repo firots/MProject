@@ -50,9 +50,9 @@ struct ProjectsView: View, MObjectLister  {
         .actionSheet(isPresented: $model.showActionSheet) {
             actionSheet()
         }.onDisappear() {
-            self.model.filterContainer.savePreferences()
+            //self.model.filterContainer.savePreferences()
         }.onAppear() {
-            MObjectFilterContainer.latestInstance = self.model.filterContainer
+            //MObjectFilterContainer.latestInstance = self.model.filterContainer
         }
     }
     

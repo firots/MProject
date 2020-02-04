@@ -18,19 +18,19 @@ class MObjectFilterContainer: ObservableObject {
     
     static weak var latestInstance: MObjectFilterContainer?
     
-    @Published var sortBy: MObjectSortType
-    @Published var ascending: Bool
+    @Published var sortBy: MObjectSortType { didSet {  savePreferences() } }
+    @Published var ascending: Bool { didSet {  savePreferences() } }
     
     @Published var sortDescriptor: NSSortDescriptor
     
-    @Published var dateFilter: Int
-    @Published var statusFilter: Int
+    @Published var dateFilter: Int { didSet {  savePreferences() } }
+    @Published var statusFilter: Int { didSet {  savePreferences() } }
     
     @Published var statusPredicate: NSPredicate?
     @Published var datePredicate: NSPredicate?
     @Published var predicate: NSCompoundPredicate?
     
-    @Published var showDetails: Bool
+    @Published var showDetails: Bool { didSet {  savePreferences() } }
     
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -139,11 +139,14 @@ extension MObjectFilterContainer {
         self.saveSortBy(value: sortBy)
         self.saveShowDetails(value: showDetails)
         
-        if let project = project {
-            if project.managedObjectContext?.hasChanges == true {
-                try? project.managedObjectContext?.save()
+        DispatchQueue.main.async {
+            if let project = self.project {
+                if project.managedObjectContext?.hasChanges == true {
+                    try? project.managedObjectContext?.save()
+                }
             }
         }
+
     }
 }
 
