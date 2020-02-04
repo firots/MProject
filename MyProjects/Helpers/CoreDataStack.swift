@@ -31,6 +31,9 @@ class CoreDataStack {
             fatalError("###\(#function): Failed to load persistent stores:\(error)")
         })
         
+        
+        //try? container.initializeCloudKitSchema(options: [NSPersistentCloudKitContainerSchemaInitializationOptions.printSchema])
+        
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.transactionAuthor = appTransactionAuthorName
         
@@ -159,7 +162,7 @@ extension CoreDataStack {
             
             // Fetch history received from outside the app since the last token
             let historyFetchRequest = NSPersistentHistoryTransaction.fetchRequest!
-            historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
+            //historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
             let request = NSPersistentHistoryChangeRequest.fetchHistory(after: lastHistoryToken)
             request.fetchRequest = historyFetchRequest
 
@@ -229,7 +232,7 @@ extension CoreDataStack {
         fetchRequest.predicate = NSPredicate(format: "originalID == %@ AND repeatCount == %d", originalID.uuidString, mTask.repeatCount)
         
         // Return if there are no duplicates.
-        guard var duplicatedMTasks = try? performingContext.fetch(fetchRequest), !duplicatedMTasks.isEmpty else {
+        guard var duplicatedMTasks = try? performingContext.fetch(fetchRequest), duplicatedMTasks.count > 1 else {
             return
         }
         print("###\(#function): Deduplicating task with name: \(mTask.wrappedName), count: \(duplicatedMTasks.count)")
@@ -251,6 +254,9 @@ extension CoreDataStack {
         duplicatedMTasks.forEach { mTask in
             defer { performingContext.deleteWithChilds(mTask) }
             
+            for notification in mTask.notifications {
+                notification.createOnIOSIfNear()
+            }
             /*guard let project = mTask.project else { return }
             project.task?.removeObjk
             winner.project = project*/

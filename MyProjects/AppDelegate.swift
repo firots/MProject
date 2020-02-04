@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queue.maxConcurrentOperationCount = 1
         
 
-        let appRefreshOperation = DataManager(context: persistentContainer.newBackgroundContext(), text: "refresh")
+        let appRefreshOperation = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "refresh")
 
 
         queue.addOperation(appRefreshOperation)
@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        let cleanDatabaseOperation = DataManager(context: persistentContainer.newBackgroundContext(), text: "process")
+        let cleanDatabaseOperation = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "process")
 
         cleanDatabaseOperation.completionBlock = {
             let success = !cleanDatabaseOperation.isCancelled
@@ -122,27 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
 
-    
-    /*func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let manager = DataManager()
-        manager.start()
-        
-        if manager.isCancelled {
-            completionHandler(.failed)
-        } else {
-            completionHandler(.newData)
-        }
-    }*/
-    
 
     // MARK: UISceneSession Lifecycle
 
@@ -159,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-    lazy var persistentContainer: NSPersistentContainer = {
+    /*lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -189,13 +169,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
         return container
-    }()
+    }()*/
+    
+    
+    lazy var coreDataStack: CoreDataStack = { return CoreDataStack() }()
     
 
     // MARK: - Core Data Saving support
 
     func saveContext () {
-        let context = persistentContainer.viewContext
+        let context = coreDataStack.persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.mSave()

@@ -20,7 +20,7 @@ class DataManager: Operation {
     var text: String?
     
     override init() {
-        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+        context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.newBackgroundContext()
         super.init()
     }
     

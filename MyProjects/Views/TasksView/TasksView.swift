@@ -231,7 +231,7 @@ struct TasksView: View, MObjectLister {
     
     private func taskCellNameAndSteps(_ task: MTask) -> some View {
         HStack {
-            Text("\(task.wrappedName)")
+            Text("\(task.wrappedName) \(task.repeatCount)")
                  .strikethrough(task.wrappedStatus == .done, color: nil)
                  .lineLimit(1)
 

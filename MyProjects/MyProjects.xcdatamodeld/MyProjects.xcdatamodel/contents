@@ -16,11 +16,6 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="notification" inverseEntity="MProject"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="notification" inverseEntity="MTask"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="MProject" representedClassName="MProject" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -42,11 +37,6 @@
         <attribute name="tasksAscending" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="notification" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MNotification" inverseName="project" inverseEntity="MNotification"/>
         <relationship name="task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTask" inverseName="project" inverseEntity="MTask"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="MStep" representedClassName="MStep" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -56,11 +46,6 @@
         <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="step" inverseEntity="MTask"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="MTask" representedClassName="MTask" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -86,11 +71,6 @@
         <relationship name="notification" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MNotification" inverseName="task" inverseEntity="MNotification"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="task" inverseEntity="MProject"/>
         <relationship name="step" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MStep" inverseName="task" inverseEntity="MStep"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="MNotification" positionX="-36" positionY="144" width="128" height="268"/>
