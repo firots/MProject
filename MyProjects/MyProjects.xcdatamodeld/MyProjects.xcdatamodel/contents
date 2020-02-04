@@ -34,6 +34,7 @@
         <attribute name="priority" optional="YES" attributeType="Integer 64" defaultValueString="2" usesScalarValueType="YES"/>
         <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="saved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="showTaskDetails" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="sortTasksBy" optional="YES" attributeType="String"/>
         <attribute name="started" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -93,7 +94,7 @@
     </entity>
     <elements>
         <element name="MNotification" positionX="-36" positionY="144" width="128" height="268"/>
-        <element name="MProject" positionX="-45" positionY="0" width="128" height="313"/>
+        <element name="MProject" positionX="-45" positionY="0" width="128" height="328"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="148"/>
         <element name="MTask" positionX="-45" positionY="63" width="128" height="388"/>
     </elements>

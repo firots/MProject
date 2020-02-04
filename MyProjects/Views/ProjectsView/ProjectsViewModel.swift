@@ -15,6 +15,7 @@ class ProjectsViewModel: MObjectsViewModel {
     @Published var filterContainer: MObjectFilterContainer
     @Published var showSortPopUp = false
     @Published var multiSelection = false
+    @Published var showDetails = true
     
     var actionSheetType = MObjectActionSheetType.sort
     
@@ -27,6 +28,6 @@ class ProjectsViewModel: MObjectsViewModel {
     }
 
     init() {
-        filterContainer = MObjectFilterContainer(project: nil, type: .project, dateFilter: Settings.shared.projectsViewSettings.dateFilter, statusFilter: Settings.shared.projectsViewSettings.statusFilter, sortBy: Settings.shared.projectsViewSettings.sortBy, ascending: Settings.shared.projectsViewSettings.ascending)
+        filterContainer = MObjectFilterContainer(project: nil, type: .project, dateFilter: Settings.shared.projectsViewSettings.dateFilter, statusFilter: Settings.shared.projectsViewSettings.statusFilter, sortBy: Settings.shared.projectsViewSettings.sortBy, ascending: Settings.shared.projectsViewSettings.ascending, showDetails: true)
     }
 }

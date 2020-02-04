@@ -12,6 +12,7 @@ struct MObjectSortButtons: View {
     let hasEdit: Bool
     @Binding var ascending: Bool
     @Binding var editMode: Bool
+    @Binding var showDetails: Bool
     var sortAction: (() -> Void)?
     var filterAction: (() -> Void)?
     
@@ -19,6 +20,7 @@ struct MObjectSortButtons: View {
     
     var body: some View {
         HStack {
+            detailButton()
             editButton()
             setAscending()
             sortMObjects()
@@ -47,6 +49,24 @@ struct MObjectSortButtons: View {
             }
         }
         
+    }
+    
+    func detailButton() -> some View {
+        Group {
+            if hasEdit {
+                Button(action: {
+                    withAnimation {
+                        self.showDetails.toggle()
+                    }
+                    
+                }) {
+                    Image(systemName: showDetails ? "info.circle.fill" : "info.circle")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                        .animation(.spring())
+                }
+            }
+        }
     }
     
     func setAscending() -> some View {

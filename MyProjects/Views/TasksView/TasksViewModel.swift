@@ -25,11 +25,7 @@ class TasksViewModel: MObjectsViewModel {
     @Published var showMultiDeletionAlert = false
     
     var fContainer: MObjectFilterContainer {
-        get {
-            return filterContainer
-        } set {
-            filterContainer = newValue
-        }
+        filterContainer
     }
     
     var actionSheetType = MObjectActionSheetType.sort
@@ -43,10 +39,11 @@ class TasksViewModel: MObjectsViewModel {
             dateFilter: project?.wrappedDateFilter.rawValue ?? Settings.shared.taskViewSettings.dateFilter,
             statusFilter: project?.statusFilter ?? Settings.shared.taskViewSettings.statusFilter,
             sortBy: project?.wrappedSortTasksBy ?? Settings.shared.taskViewSettings.sortBy,
-            ascending: project?.tasksAscending ?? Settings.shared.taskViewSettings.ascending
+            ascending: project?.tasksAscending ?? Settings.shared.taskViewSettings.ascending,
+            showDetails: project?.showTaskDetails ?? Settings.shared.taskViewSettings.showDetails
         )
     }
-
+    
     enum ModalType {
         case addTask
         case addProject

@@ -38,6 +38,7 @@ extension MProject {
     @NSManaged public var dateFilter: Int
     @NSManaged public var sortTasksBy: String?
     @NSManaged public var tasksAscending: Bool
+    @NSManaged public var showTaskDetails: Bool
     
     public var wrappedDateFilter: MObjectDateFilterType {
         MObjectDateFilterType(rawValue: dateFilter) ?? .anytime

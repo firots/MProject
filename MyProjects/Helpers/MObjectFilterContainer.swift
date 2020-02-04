@@ -30,9 +30,11 @@ class MObjectFilterContainer: ObservableObject {
     @Published var datePredicate: NSPredicate?
     @Published var predicate: NSCompoundPredicate?
     
+    @Published var showDetails: Bool
+    
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(project: MProject?, type: MObjectType, dateFilter: Int, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool) {
+    init(project: MProject?, type: MObjectType, dateFilter: Int, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool, showDetails: Bool) {
         statusFilterTypeNames.insert("All", at: 0)
         self.dateFilter = dateFilter
         self.statusFilter = statusFilter
@@ -40,6 +42,7 @@ class MObjectFilterContainer: ObservableObject {
         self.ascending = ascending
         self.project = project
         self.type = type
+        self.showDetails = showDetails
         self.sortDescriptor = NSSortDescriptor(key: sortBy.rawValue, ascending: ascending)
         
         initFiltering()
@@ -68,6 +71,16 @@ extension MObjectFilterContainer {
                 sort
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func saveShowDetails(value: Bool) {
+        if self.type == .task {
+            if let project = self.project, project.showTaskDetails != value {
+                project.showTaskDetails = value
+            } else {
+                Settings.shared.taskViewSettings.showDetails = value
+            }
+        }
     }
     
     private func saveSortBy(value: MObjectSortType) {
@@ -124,6 +137,7 @@ extension MObjectFilterContainer {
         self.saveDateFilter(value: dateFilter)
         self.saveAscending(value: ascending)
         self.saveSortBy(value: sortBy)
+        self.saveShowDetails(value: showDetails)
         
         if let project = project {
             if project.managedObjectContext?.hasChanges == true {

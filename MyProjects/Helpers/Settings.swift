@@ -49,6 +49,8 @@ struct TasksViewSettings: Codable {
     var sortBy = MObjectSortType.created
     var ascending = false
     
+    var showDetails = true
+    
     init() {
         
     }
@@ -60,6 +62,7 @@ struct TasksViewSettings: Codable {
         sortBy = try MObjectSortType(rawValue: container.decode(String.self, forKey: .sortBy)) ?? MObjectSortType.created
         statusFilter =  try container.decode(Int.self, forKey: .statusFilter)
         ascending =  try container.decode(Bool.self, forKey: .ascending)
+        showDetails = try container.decode(Bool.self, forKey: .showDetails)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -69,6 +72,7 @@ struct TasksViewSettings: Codable {
         try container.encode(statusFilter, forKey: .statusFilter)
         try container.encode(sortBy.rawValue, forKey: .sortBy)
         try container.encode(ascending, forKey: .ascending)
+        try container.encode(showDetails, forKey: .showDetails)
         
     }
     
@@ -77,6 +81,7 @@ struct TasksViewSettings: Codable {
         case statusFilter
         case sortBy
         case ascending
+        case showDetails
        
     }
 }

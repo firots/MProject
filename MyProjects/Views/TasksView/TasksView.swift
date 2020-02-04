@@ -33,7 +33,7 @@ struct TasksView: View, MObjectLister {
             }
             hoveringButtons()
         }
-        .navigationBarItems(trailing: MObjectSortButtons(hasEdit: true, ascending: $model.filterContainer.ascending, editMode: $model.selectionEnabled, sortAction: {
+        .navigationBarItems(trailing: MObjectSortButtons(hasEdit: true, ascending: $model.filterContainer.ascending, editMode: $model.selectionEnabled, showDetails: $model.filterContainer.showDetails, sortAction: {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()
@@ -54,15 +54,18 @@ struct TasksView: View, MObjectLister {
                 AddProjectView(context: self.moc, project: self.model.project)
             }
         }
+        .onDisappear() {
+            print(self.model.filterContainer.showDetails)
+            self.model.filterContainer.savePreferences()
+        }
+        .onAppear() {
+            MObjectFilterContainer.latestInstance = self.model.filterContainer
+        }
         .alert(isPresented: $model.showMultiDeletionAlert) {
             multiDeletionAlert()
         }
         .actionSheet(isPresented: $model.showActionSheet) {
             actionSheet()
-        }.onDisappear() {
-            self.model.filterContainer.savePreferences()
-        }.onAppear() {
-            MObjectFilterContainer.latestInstance = self.model.filterContainer
         }
     }
     
@@ -189,14 +192,20 @@ struct TasksView: View, MObjectLister {
                 VStack(alignment: .leading) {
                     taskCellNameAndSteps(task)
                     
-                    showSteps(task)
-                        .padding(.bottom, 5)
-                    
-                    taskCellStartDates(task)
-                        .padding(.bottom, 5)
-                    
-                    taskCellEndDates(task)
-                        .padding(.bottom, 5)
+                    if model.filterContainer.showDetails {
+                        showSteps(task)
+                            .padding(.bottom, 5)
+                            .transition(.slide)
+                        
+                        taskCellStartDates(task)
+                            .padding(.bottom, 5)
+                            .transition(.slide)
+                        
+                        taskCellEndDates(task)
+                            .padding(.bottom, 5)
+                            .transition(.slide)
+                    }
+
                     
                 }.foregroundColor(Color(.label))
             }

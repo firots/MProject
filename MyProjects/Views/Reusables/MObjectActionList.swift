@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 protocol MObjectsViewModel: ObservableObject {
-    var fContainer: MObjectFilterContainer { get  set }
+    var fContainer: MObjectFilterContainer { get }
     var actionSheetType: MObjectActionSheetType { get set }
     var showActionSheet: Bool { get set }
     var showSortPopUp: Bool { get set }
