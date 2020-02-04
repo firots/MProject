@@ -231,9 +231,16 @@ struct TasksView: View, MObjectLister {
     
     private func taskCellNameAndSteps(_ task: MTask) -> some View {
         HStack {
-            Text("\(task.wrappedName) \(task.repeatCount)")
-                 .strikethrough(task.wrappedStatus == .done, color: nil)
-                 .lineLimit(1)
+            VStack {
+                Text("\(task.wrappedName) \(task.repeatCount)")
+                     .strikethrough(task.wrappedStatus == .done, color: nil)
+                     .lineLimit(1)
+                
+                if task.originalID != nil {
+                    Text(task.originalID!.uuidString)
+                }
+            }
+
 
             Spacer()
             
@@ -244,7 +251,7 @@ struct TasksView: View, MObjectLister {
     }
     
     private func showSteps(_ task: MTask) -> some View {
-        HStack {
+        Group {
             if !task.steps.isEmpty {
                 Text("\(task.completedSteps.count)/\(task.steps.count)")
                     .strikethrough(task.steps.count == task.completedSteps.count, color: nil)

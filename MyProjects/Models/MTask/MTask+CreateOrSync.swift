@@ -25,8 +25,6 @@ extension MTask {
         }
         if let originalID = originalID {
             t.originalID = originalID
-        } else {
-            t.originalID = t.id
         }
         
         t.nextFireDate = nil
@@ -55,9 +53,9 @@ extension MTask {
             moc.delete(deletedStep)
         }
 
-        if moc.hasChanges {
+        /*if moc.hasChanges {
             try? moc.mSave()
-        }
+        }*/
     }
     
     static func createBase(context moc: NSManagedObjectContext) -> MTask {
