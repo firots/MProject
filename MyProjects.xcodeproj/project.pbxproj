@@ -65,6 +65,7 @@
 		7694099123D5EE9800E40B95 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */; };
 		7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */; };
 		76A59D9023E9D26F0051F034 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A59D8F23E9D26F0051F034 /* LazyView.swift */; };
+		76A59D9223E9EF9F0051F034 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A59D9123E9EF9F0051F034 /* CoreDataStack.swift */; };
 		76C9589123E1B15D007EBC63 /* MObjectActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C9589023E1B15D007EBC63 /* MObjectActionList.swift */; };
 		76C9589323E1FAA7007EBC63 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C9589223E1FAA7007EBC63 /* Settings.swift */; };
 		76D2ADE823D65F9D009FFD5E /* HasRepeatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */; };
@@ -165,6 +166,7 @@
 		7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		7694099A23D61FCC00E40B95 /* MObject+SyncNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MObject+SyncNotifications.swift"; sourceTree = "<group>"; };
 		76A59D8F23E9D26F0051F034 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		76A59D9123E9EF9F0051F034 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		76C9589023E1B15D007EBC63 /* MObjectActionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObjectActionList.swift; sourceTree = "<group>"; };
 		76C9589223E1FAA7007EBC63 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasRepeatMode.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 				7602C62123E0C87A00DECF0B /* MObjectFilterContainer.swift */,
 				76C9589223E1FAA7007EBC63 /* Settings.swift */,
 				760F997423E64C540032AEEE /* IAPHandler.swift */,
+				76A59D9123E9EF9F0051F034 /* CoreDataStack.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				76E53C3B23D9063C0084EC1A /* Date+NowWithZero.swift in Sources */,
 				762F74E923D4E4A90016CC94 /* ConfigureWeeklyView.swift in Sources */,
 				76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */,
+				76A59D9223E9EF9F0051F034 /* CoreDataStack.swift in Sources */,
 				7619856023DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
 				7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */,
