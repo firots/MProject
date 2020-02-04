@@ -18,7 +18,7 @@ struct ProjectCellView: View {
     var body: some View {
         
         ZStack {
-            NavigationLink(destination: TasksView(project: model.project)) {
+            NavigationLink(destination: LazyView(TasksView(project: self.model.project))) {
                 EmptyView()
                 }
             .buttonStyle(PlainButtonStyle())

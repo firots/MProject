@@ -21,16 +21,34 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
 
     var body: some View {
         Group {
-            if results.count > 0 {
-                List {
-                    ForEach(results, id: \.self) { result in
-                        self.content(result)
-                    }.onDelete(perform: removeItems)
-                }.listStyle(GroupedListStyle())
+            if !results.isEmpty {
+                if results.count < 50 {
+                    animatedList()
+                } else {
+                    nonAnimatedList()
+                }
+
             } else {
                 PlaceholderView(model: placeholder)
             }
         }
+    }
+    
+    func animatedList() -> some View {
+        List {
+            ForEach(results, id: \.self) { result in
+                self.content(result)
+            }.onDelete(perform: removeItems)
+        }.listStyle(GroupedListStyle())
+    }
+    
+    func nonAnimatedList() -> some View {
+        List {
+            ForEach(results, id: \.self) { result in
+                self.content(result)
+            }.onDelete(perform: removeItems)
+        }.listStyle(GroupedListStyle())
+        .id(UUID())
     }
     
     init(predicate: NSPredicate?, sorter: NSSortDescriptor, placeholder: PlaceholderViewModel, @ViewBuilder content: @escaping (T) -> Content) {
