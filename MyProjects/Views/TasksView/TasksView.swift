@@ -55,7 +55,6 @@ struct TasksView: View, MObjectLister {
             }
         }
         .onDisappear() {
-            print(self.model.filterContainer.showDetails)
             self.model.filterContainer.savePreferences()
         }
         .onAppear() {
