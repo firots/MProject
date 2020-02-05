@@ -32,6 +32,8 @@ class MObjectFilterContainer: ObservableObject {
     
     @Published var showDetails: Bool { didSet {  savePreferences() } }
     
+    @Published var listID = UUID()
+    
     private var cancellableSet: Set<AnyCancellable> = []
     
     init(project: MProject?, type: MObjectType, dateFilter: Int, statusFilter: Int, sortBy: MObjectSortType, ascending: Bool, showDetails: Bool) {
@@ -120,6 +122,7 @@ extension MObjectFilterContainer {
             .map { sort, asc in
                 self.sortBy = sort
                 self.ascending = asc
+                self.listID = UUID()
                 return self.getSortDescriptor()
         }
         .eraseToAnyPublisher()
@@ -176,6 +179,7 @@ extension MObjectFilterContainer {
             .map { status, date in
                 self.statusPredicate = status
                 self.datePredicate = date
+                self.listID = UUID()
                 return self.combinePredicates()
         }
         .eraseToAnyPublisher()

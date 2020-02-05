@@ -13,6 +13,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     @State private var predicate: NSPredicate?
     @Environment(\.managedObjectContext) var moc
 
+    private let listID: UUID
     private var fetchRequest: FetchRequest<T>
     private var results: FetchedResults<T> {
         fetchRequest.wrappedValue }
@@ -22,11 +23,12 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     var body: some View {
         Group {
             if !results.isEmpty {
-                if results.count < 50 {
-                    animatedList()
-                } else {
-                    nonAnimatedList()
-                }
+                List {
+                    ForEach(results, id: \.self) { result in
+                        self.content(result)
+                    }.onDelete(perform: removeItems)
+                }.listStyle(GroupedListStyle())
+                        .id(listID)
 
             } else {
                 PlaceholderView(model: placeholder)
@@ -34,28 +36,13 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         }
     }
     
-    func animatedList() -> some View {
-        List {
-            ForEach(results, id: \.self) { result in
-                self.content(result)
-            }.onDelete(perform: removeItems)
-        }.listStyle(GroupedListStyle())
-    }
-    
-    func nonAnimatedList() -> some View {
-        List {
-            ForEach(results, id: \.self) { result in
-                self.content(result)
-            }.onDelete(perform: removeItems)
-        }.listStyle(GroupedListStyle())
-        .id(UUID())
-    }
-    
-    init(predicate: NSPredicate?, sorter: NSSortDescriptor, placeholder: PlaceholderViewModel, @ViewBuilder content: @escaping (T) -> Content) {
+    init(listID: UUID, predicate: NSPredicate?, sorter: NSSortDescriptor, placeholder: PlaceholderViewModel, @ViewBuilder content: @escaping (T) -> Content) {
         self.fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [sorter], predicate: predicate)
         self.content = content
         self.placeholder = placeholder
+        self.listID = listID
         self.predicate = predicate
+        
     }
     
     private func removeItems(at offsets: IndexSet) {

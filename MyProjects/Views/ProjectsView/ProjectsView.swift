@@ -86,7 +86,7 @@ struct ProjectsView: View, MObjectLister  {
     }
     
     private func listProjects() -> some View {
-        FilteredList(predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
+        FilteredList(listID: model.filterContainer.listID, predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyProjectTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyProjectSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (project: MProject) in
             self.projectCell(project)
         }.padding(.top, topPadding)
     }

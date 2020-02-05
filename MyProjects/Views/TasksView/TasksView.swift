@@ -137,12 +137,11 @@ struct TasksView: View, MObjectLister {
     }
     
     private func listTasks() -> some View {
-        FilteredList(predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
+        FilteredList(listID: model.filterContainer.listID,predicate: model.filterContainer.predicate, sorter: model.filterContainer.sortDescriptor, placeholder: PlaceholderViewModel(title: MObjectStatus.emptyTaskTitles[model.filterContainer.statusFilter], subtitle: MObjectStatus.emptyTaskSubtitles[model.filterContainer.statusFilter], image: UIImage(named: "pencil"))) { (task: MTask) in
             self.taskCell(task)
         }.padding(.top, topPadding)
     }
     
-
     private func taskFilter() -> some View {
         VStack {
             Picker(selection: $model.filterContainer.statusFilter, label: Text("Show")) {
