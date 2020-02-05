@@ -102,7 +102,7 @@ struct AddMObjectView: View {
     }
     
     func mainSection() -> some View {
-        Section {
+        Section(footer: Text(model.created != nil ? "Created \(model.created!.toRelative())" : "")) {
             HStack {
                 CellImageView(systemName: "info.circle.fill")
                 TextField("\(modelName.capitalizingFirstLetter()) Name", text: $model.name)

@@ -87,6 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let request = BGProcessingTaskRequest(identifier: "com.firot.MyProjects.db_organizer")
         request.requiresNetworkConnectivity = false
         request.requiresExternalPower = true
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
         
         do {
             try BGTaskScheduler.shared.submit(request)

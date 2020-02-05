@@ -14,6 +14,9 @@ class AddProjectViewModel: AddMObjectViewModel {
     
     init(project: MProject?) {
         self.project = project
+        
         super.init(mObject: project)
+        
+        self.created = project?.created
     }
 }

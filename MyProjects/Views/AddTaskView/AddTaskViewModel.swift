@@ -23,6 +23,7 @@ class AddTaskViewModel: AddMObjectViewModel {
         self.repeatModeConfiguration = ConfigureRepeatModeViewModel(from: task, type: .task)
         self.pCellViewModel = pCellViewModel
         
+        
         var steps = [StepCellViewModel]()
         
         if let task = task {
@@ -35,6 +36,7 @@ class AddTaskViewModel: AddMObjectViewModel {
         stepsModel = StepsViewModel(steps: steps)
         super.init(mObject: task)
         
+        self.created = task?.created
 
     }
 }

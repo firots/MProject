@@ -24,6 +24,7 @@ class AddMObjectViewModel: ObservableObject {
     @Published var modalType = ModalType.notes
     @Published var showExpiredWarning = false
     @Published var priority = MObjectPriority.medium.rawValue
+    var created: Date?
 
     private var cancellableSet: Set<AnyCancellable> = []
     
