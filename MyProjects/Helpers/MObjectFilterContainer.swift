@@ -308,8 +308,9 @@ public enum MObjectSortType: String {
     case started
     case deadline
     case status
+    case lastModified
     
-    static let all = [MObjectSortType.none, MObjectSortType.priority, MObjectSortType.name, MObjectSortType.created, MObjectSortType.started, MObjectSortType.deadline]
+    static let all = [MObjectSortType.none, MObjectSortType.priority, MObjectSortType.name, MObjectSortType.status, MObjectSortType.created, MObjectSortType.lastModified, MObjectSortType.started, MObjectSortType.deadline]
     
-    static var names = ["None", "Priority", "Name", "Date Created", "Date Started", "Deadline"]
+    static var names = ["None", "Priority", "Name", "Status", "Date Created", "Date Modified", "Date Started", "Deadline"]
 }

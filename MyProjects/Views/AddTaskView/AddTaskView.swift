@@ -16,8 +16,8 @@ struct AddTaskView: View {
     var moc: NSManagedObjectContext
     @Environment(\.editMode) var editMode
     
-    init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext) {
-        model = AddTaskViewModel(task, project)
+    init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext, pCellViewModel: ProjectCellViewModel?) {
+        model = AddTaskViewModel(task, project, pCellViewModel: pCellViewModel)
         keyboard = KeyboardResponder()
         self.moc = moc
     }
@@ -80,6 +80,8 @@ struct AddTaskView: View {
     
     func save() {
         let _ = MTask.createOrSync(from: self.model, context: self.moc, task: self.model.task, project: self.model.project, originalID: nil, repeatCount: 0)
+        
+        model.pCellViewModel?.refreshProgress()
 
         if self.moc.hasChanges {
             do {
@@ -103,6 +105,6 @@ struct AddTaskView_Previews: PreviewProvider {
     @Environment(\.managedObjectContext) static var moc
     
     static var previews: some View {
-        AddTaskView(task: nil, project: nil, context: moc)
+        AddTaskView(task: nil, project: nil, context: moc, pCellViewModel: nil)
     }
 }

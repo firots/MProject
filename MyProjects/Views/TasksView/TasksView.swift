@@ -14,8 +14,8 @@ struct TasksView: View, MObjectLister {
     @Environment(\.presentationMode) var presentationMode
     @State private var sheetOn = false
     
-    init(project: MProject?) {
-        model = TasksViewModel(project: project)
+    init(project: MProject?, pCellViewModel: ProjectCellViewModel?) {
+        model = TasksViewModel(project: project, pCellViewModel: pCellViewModel)
     }
     
     var isLargeTitle: Bool {
@@ -33,7 +33,7 @@ struct TasksView: View, MObjectLister {
             }
             hoveringButtons()
         }
-        .navigationBarItems(trailing: MObjectSortButtons(hasEdit: true, ascending: $model.filterContainer.ascending, editMode: $model.selectionEnabled, showDetails: $model.filterContainer.showDetails, sortAction: {
+        .navigationBarItems(trailing: MObjectSortButtons(hasEdit: true, hasDetails: !isLargeList(), ascending: $model.filterContainer.ascending, editMode: $model.selectionEnabled, showDetails: $model.filterContainer.showDetails, sortAction: {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()
@@ -48,7 +48,7 @@ struct TasksView: View, MObjectLister {
                 if Settings.shared.pro == false && self.moc.hasTaskLimitReached() {
                     PurchaseView()
                 } else {
-                    AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc)
+                    AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc, pCellViewModel: self.model.pCellViewModel)
                 }
             } else {
                 AddProjectView(context: self.moc, project: self.model.project)
@@ -169,14 +169,19 @@ struct TasksView: View, MObjectLister {
         
     }
     
+    private func toggleSelection(of task: MTask) {
+        if self.model.selectedTasks.contains(task) {
+            self.model.selectedTasks.removeAll( where: { $0 == task })
+        } else {
+            self.model.selectedTasks.append(task)
+        }
+
+    }
+    
     private func taskCell(_ task: MTask) -> some View {
         Button(action: {
             if self.model.selectionEnabled {
-                if self.model.selectedTasks.contains(task) {
-                    self.model.selectedTasks.removeAll( where: { $0 == task })
-                } else {
-                    self.model.selectedTasks.append(task)
-                }
+                self.toggleSelection(of: task)
             } else {
                 self.model.taskToEdit = task
                 self.model.modalType = .addTask
@@ -186,15 +191,11 @@ struct TasksView: View, MObjectLister {
             HStack {
                 checkmarkButton(task)
                     .padding(.trailing)
-
                 
-                VStack(alignment: .leading) {
-                    taskCellNameAndSteps(task)
-                    
-                    if model.filterContainer.showDetails {
-                        showSteps(task)
-                            .padding(.bottom, 5)
-                            .transition(.slide)
+                
+                if isLargeList() {
+                    HStack {
+                        taskCellNameAndSteps(task)
                         
                         taskCellStartDates(task)
                             .padding(.bottom, 5)
@@ -203,10 +204,33 @@ struct TasksView: View, MObjectLister {
                         taskCellEndDates(task)
                             .padding(.bottom, 5)
                             .transition(.slide)
-                    }
-
                     
-                }.foregroundColor(Color(.label))
+                        taskIcons(task).frame(minWidth: 60, alignment: .trailing)
+                        
+                    }.foregroundColor(Color(.label))
+                } else {
+                    VStack(alignment: .leading) {
+                        taskCellNameAndSteps(task)
+                        
+                        if model.filterContainer.showDetails {
+                            showSteps(task)
+                                .padding(.bottom, 5)
+                                .transition(.slide)
+                            
+                            taskCellStartDates(task)
+                                .padding(.bottom, 5)
+                                .transition(.slide)
+                            
+                            taskCellEndDates(task)
+                                .padding(.bottom, 5)
+                                .transition(.slide)
+                        }
+
+                        
+                    }.foregroundColor(Color(.label))
+                }
+                
+
             }
             .padding(.bottom, 5)
         }.listRowBackground(self.model.selectedTasks.contains(task) ? Color(.systemGray4): cellBackgroundColor)
@@ -234,10 +258,25 @@ struct TasksView: View, MObjectLister {
             Text(task.wrappedName)
                  .strikethrough(task.wrappedStatus == .done, color: nil)
                  .lineLimit(1)
+            
+            if isLargeList() {
+                Spacer()
+                
+                
+                showSteps(task)
+                    .transition(.slide)
+            }
+
 
             Spacer()
             
-            taskIcons(task)
+
+            if !isLargeList() {
+                taskIcons(task)
+            }
+            
+            
+            
                 
             
         }
@@ -256,6 +295,11 @@ struct TasksView: View, MObjectLister {
         }
     }
     
+    private func isLargeList() -> Bool {
+        model.project == nil && UIDevice.current.userInterfaceIdiom != .phone
+    }
+
+    
     private func taskCellEndDates(_ task: MTask) -> some View {
         HStack {
             Text(task.secondDate)
@@ -263,7 +307,10 @@ struct TasksView: View, MObjectLister {
                 .lineLimit(1)
                 .foregroundColor(Color(.systemGray))
             
-            Spacer()
+            if !isLargeList() {
+                Spacer()
+            }
+            
             
             if task.deadline != nil && (task.wrappedStatus == .active || task.wrappedStatus == .waiting )  {
                 Text(task.deadline!.remeans())
@@ -271,6 +318,10 @@ struct TasksView: View, MObjectLister {
                 .font(.system(size: 20, design: .monospaced))
                 .lineLimit(1)
                 .foregroundColor(Color(.systemRed))
+            }
+            
+            if isLargeList() {
+                Spacer()
             }
             
             
@@ -284,7 +335,9 @@ struct TasksView: View, MObjectLister {
                 .lineLimit(1)
                 .foregroundColor(Color(.systemGray))
             
-            Spacer()
+            if !isLargeList() {
+                Spacer()
+            }
             
             if task.started != nil && task.wrappedStatus == .waiting  {
                 Text(task.started!.remeans())
@@ -292,6 +345,10 @@ struct TasksView: View, MObjectLister {
                 .font(.system(size: 20, design: .monospaced))
                 .lineLimit(1)
                 .foregroundColor(Color(.systemOrange))
+            }
+            
+            if isLargeList() {
+                Spacer()
             }
         }
     }
@@ -318,19 +375,23 @@ struct TasksView: View, MObjectLister {
     func checkmarkButton(_ task: MTask) -> some View {
         ZStack {
             CheckmarkButton(status: task.wrappedStatus) {
+                if self.model.selectionEnabled { self.toggleSelection(of: task); return }
                 if task.wrappedStatus == .active {
                     task.setStatus(to: .done, context: self.moc)
+                    self.model.pCellViewModel?.refreshProgress()
                     Haptic.feedback(.medium)
                     task.deleteNotificationsFromIOS(clearFireDate: true)
                     self.saveChanges()
                 } else if task.wrappedStatus == .done {
                     task.setStatus(to: .active, context: self.moc)
+                    self.model.pCellViewModel?.refreshProgress()
                     if task.wrappedStatus == .active {
                         task.resyncNotifications()
                         Haptic.feedback(.light)
                     } else {
                         Haptic.notify(.error)
                     }
+                    
                     self.saveChanges()
                 } else {
                     Haptic.notify(.warning)
@@ -346,11 +407,5 @@ struct TasksView: View, MObjectLister {
             }
         }
 
-    }
-}
-
-struct TasksView_Previews: PreviewProvider {
-    static var previews: some View {
-        TasksView(project: nil)
     }
 }

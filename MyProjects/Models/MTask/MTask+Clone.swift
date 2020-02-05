@@ -97,7 +97,7 @@ extension MTask {
     func clone(force: Bool) -> MTask? {
         guard let context = self.managedObjectContext else { return nil }
         
-        let viewModel = AddTaskViewModel(self, self.project)
+        let viewModel = AddTaskViewModel(self, self.project, pCellViewModel: nil)
         
         for step in viewModel.stepsModel.steps {
             step.step = nil

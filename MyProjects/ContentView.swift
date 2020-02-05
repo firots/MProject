@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationView {
-                TasksView(project: nil)
+                TasksView(project: nil, pCellViewModel: nil)
             }.navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "largecircle.fill.circle")

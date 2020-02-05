@@ -18,7 +18,7 @@ struct ProjectCellView: View {
     var body: some View {
         
         ZStack {
-            NavigationLink(destination: LazyView(TasksView(project: self.model.project))) {
+            NavigationLink(destination: LazyView(TasksView(project: self.model.project, pCellViewModel: self.model))) {
                 EmptyView()
                 }
             .buttonStyle(PlainButtonStyle())
@@ -143,5 +143,11 @@ class ProjectCellViewModel: ObservableObject {
     init(project: MProject) {
         self.project = project
         self.progress = project.wrappedProgress
+    }
+    
+    func refreshProgress() {
+        if UIDevice.current.userInterfaceIdiom != .phone {
+            self.progress = project.wrappedProgress
+        }
     }
 }

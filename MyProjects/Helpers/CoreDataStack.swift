@@ -235,7 +235,7 @@ extension CoreDataStack {
         guard var duplicatedMTasks = try? performingContext.fetch(fetchRequest), duplicatedMTasks.count > 1 else {
             return
         }
-        print("###\(#function): Deduplicating task with name: \(mTask.wrappedName), count: \(duplicatedMTasks.count)")
+        //print("###\(#function): Deduplicating task with name: \(mTask.wrappedName), count: \(duplicatedMTasks.count)")
         
         duplicatedMTasks.sort {
             $0.wrappedCreated < $1.wrappedCreated

@@ -23,6 +23,7 @@ class TasksViewModel: MObjectsViewModel {
     }
     @Published var selectedTasks = [MTask]()
     @Published var showMultiDeletionAlert = false
+    weak var pCellViewModel: ProjectCellViewModel?
     
     var fContainer: MObjectFilterContainer {
         filterContainer
@@ -33,8 +34,9 @@ class TasksViewModel: MObjectsViewModel {
     var taskToEdit: MTask?
     let project: MProject?
     
-    init(project: MProject?) {
+    init(project: MProject?, pCellViewModel: ProjectCellViewModel?) {
         self.project = project
+        self.pCellViewModel = pCellViewModel
         filterContainer = MObjectFilterContainer(project: project, type: .task,
             dateFilter: project?.wrappedDateFilter.rawValue ?? Settings.shared.taskViewSettings.dateFilter,
             statusFilter: project?.statusFilter ?? Settings.shared.taskViewSettings.statusFilter,

@@ -70,7 +70,6 @@ extension MObjectLister {
         Group {
             Text("Sort By")
                 .foregroundColor(.secondary)
-                .padding(.top, 20)
             Divider()
             ForEach(1..<MObjectSortType.all.count) { index in
                 Button(action: {
@@ -79,7 +78,7 @@ extension MObjectLister {
                 }) {
                     Text(MObjectSortType.names[index])
                         .font(.system(size: 18))
-                }.padding()
+                }.padding(5)
                 Divider()
             }
             Button(action: {
@@ -88,9 +87,8 @@ extension MObjectLister {
                 Text("Cancel")
                     .font(.system(size: 18))
                     .foregroundColor(Color(.systemRed))
-            }.padding()
-            Divider()
-        }.padding(.vertical, 100)
+            }.padding(5)
+        }
     }
     
     public func dateFilterActionSheet() -> ActionSheet {
@@ -128,36 +126,23 @@ extension MObjectLister {
     }
     
     public func sortActionSheet() -> ActionSheet {
-        ActionSheet(
+        var asButtons = [ActionSheet.Button]()
+        for (i, sorter) in MObjectSortType.all.enumerated() {
+            if i > 0 {
+                asButtons.append(.default(
+                    Text(MObjectSortType.names[i]),
+                    action: {
+                        self.model.fContainer.sortBy = sorter
+                }))
+            }
+        }
+        
+        asButtons.append(.cancel())
+        
+        
+        return ActionSheet(
             title: Text("Sort \(mObjectName) by"),
             message: nil,
-            buttons: [
-                    .default(
-                        Text("Priority"),
-                        action: {
-                            self.model.fContainer.sortBy = .priority
-                    }),
-                    .default(
-                        Text("Name"),
-                        action: {
-                         self.model.fContainer.sortBy = .name
-                    }),
-                    .default(
-                        Text("Date Created"),
-                        action: {
-                         self.model.fContainer.sortBy = .created
-                    }),
-                    .default(
-                        Text("Date Started"),
-                        action: {
-                         self.model.fContainer.sortBy = .started
-                    }),
-                    .default(
-                        Text("Deadline"),
-                        action: {
-                         self.model.fContainer.sortBy = .deadline
-                    }),
-                    .cancel()
-            ])
+            buttons: asButtons )
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MObjectSortButtons: View {
     let hasEdit: Bool
+    let hasDetails: Bool
     @Binding var ascending: Bool
     @Binding var editMode: Bool
     @Binding var showDetails: Bool
@@ -20,7 +21,10 @@ struct MObjectSortButtons: View {
     
     var body: some View {
         HStack {
-            detailButton()
+            if hasDetails {
+                detailButton()
+            }
+            
             editButton()
             setAscending()
             sortMObjects()
