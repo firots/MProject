@@ -142,7 +142,7 @@ extension CoreDataStack {
      */
     @objc
     func storeRemoteChange(_ notification: Notification) {
-        print("###\(#function): Merging changes from the other persistent store coordinator.")
+        //print("###\(#function): Merging changes from the other persistent store coordinator.")
         
         // Process persistent history to merge changes from other coordinators.
         historyQueue.addOperation {
