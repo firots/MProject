@@ -13,17 +13,21 @@ import BackgroundTasks
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Settings.load()
-        
-        UNUserNotificationCenter.current().delegate = LocalNotifications.shared
-        
-        // Override point for customization after application launch.
-        UISwitch.appearance().onTintColor = .systemPurple
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().backgroundColor = .clear
-        UISegmentedControl.appearance().backgroundColor = .clear
-        let dm = DataManager()
-        dm.start()
+        if application.applicationState != .inactive {
+            Settings.load()
+            UNUserNotificationCenter.current().delegate = LocalNotifications.shared
+            
+            UISwitch.appearance().onTintColor = .systemPurple
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                UITableView.appearance().separatorStyle = .none
+            }
+            UITableView.appearance().backgroundColor = .clear
+
+            UISegmentedControl.appearance().backgroundColor = .clear
+            let dm = DataManager()
+            dm.start()
+        }
+
 
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
             // Downcast the parameter to a processing task as this identifier is used for a processing request.

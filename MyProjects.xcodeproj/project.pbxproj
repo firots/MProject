@@ -35,6 +35,7 @@
 		762E557623DB29D800CB1521 /* SelectTaskRepeatModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762E557523DB29D800CB1521 /* SelectTaskRepeatModeView.swift */; };
 		762F74E723D4E47D0016CC94 /* ConfigureMonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F74E623D4E47D0016CC94 /* ConfigureMonthlyView.swift */; };
 		762F74E923D4E4A90016CC94 /* ConfigureWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F74E823D4E4A90016CC94 /* ConfigureWeeklyView.swift */; };
+		76409E3823EB6027003061F9 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76409E3723EB6027003061F9 /* SplashScreen.swift */; };
 		764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30B23C2816600F581BA /* String+Capitalizer.swift */; };
 		764AA31023C29F6A00F581BA /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764AA30F23C29F6A00F581BA /* FilteredList.swift */; };
 		764F94C423D3341C008C0D09 /* RepeatModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F94C323D3341C008C0D09 /* RepeatModePicker.swift */; };
@@ -136,6 +137,7 @@
 		762E557523DB29D800CB1521 /* SelectTaskRepeatModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskRepeatModeView.swift; sourceTree = "<group>"; };
 		762F74E623D4E47D0016CC94 /* ConfigureMonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureMonthlyView.swift; sourceTree = "<group>"; };
 		762F74E823D4E4A90016CC94 /* ConfigureWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureWeeklyView.swift; sourceTree = "<group>"; };
+		76409E3723EB6027003061F9 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		764AA30B23C2816600F581BA /* String+Capitalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalizer.swift"; sourceTree = "<group>"; };
 		764AA30F23C29F6A00F581BA /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		764F94C323D3341C008C0D09 /* RepeatModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatModePicker.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				76FD61BD23B92A4A00D21B21 /* SettingsView */,
 				762D720423E8986E006D08AA /* PurchaseView.swift */,
 				762D720623E898B9006D08AA /* PurchaseViewModel.swift */,
+				76409E3723EB6027003061F9 /* SplashScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				76FD61AB23B929AE00D21B21 /* MyProjects.xcdatamodeld in Sources */,
 				764F94CC23D33865008C0D09 /* ConfigureRepeatModeView.swift in Sources */,
 				764F94CE23D33881008C0D09 /* ConfigureRepeatModeViewModel.swift in Sources */,
+				76409E3823EB6027003061F9 /* SplashScreen.swift in Sources */,
 				76FEB7F423DCE6580028DBA0 /* MTask+Clone.swift in Sources */,
 				7621991723CBCA8F004B6541 /* MObjectStatePicker.swift in Sources */,
 				76038F6F23D521FF0021260D /* ConfigureDailyView.swift in Sources */,
