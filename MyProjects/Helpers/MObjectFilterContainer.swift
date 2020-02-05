@@ -276,7 +276,7 @@ extension MObjectFilterContainer {
     }
     
     private func dateBetweenPredicate(_ from: Date, _ to: Date) -> NSPredicate? {
-        NSPredicate(format: "(started >= %@) AND (started <= %@)", from as NSDate, to as NSDate)
+        NSPredicate(format: "(started >= %@) AND (started <= %@) OR (deadline >= %@) AND (deadline <= %@)", from as NSDate, to as NSDate, from as NSDate, to as NSDate)
     }
 }
 

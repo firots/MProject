@@ -198,11 +198,9 @@ struct TasksView: View, MObjectLister {
                         taskCellNameAndSteps(task)
                         
                         taskCellStartDates(task)
-                            .padding(.bottom, 5)
                             .transition(.slide)
                         
                         taskCellEndDates(task)
-                            .padding(.bottom, 5)
                             .transition(.slide)
                     
                         taskIcons(task).frame(minWidth: 60, alignment: .trailing)
