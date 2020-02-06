@@ -70,6 +70,7 @@
         <attribute name="nextFireDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="originalID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="priority" optional="YES" attributeType="Integer 64" defaultValueString="2" usesScalarValueType="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeatCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repeated" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="repeatEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -92,6 +93,6 @@
         <element name="MNotification" positionX="-36" positionY="144" width="128" height="268"/>
         <element name="MProject" positionX="-45" positionY="0" width="128" height="343"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="148"/>
-        <element name="MTask" positionX="-45" positionY="63" width="128" height="433"/>
+        <element name="MTask" positionX="-45" positionY="63" width="128" height="448"/>
     </elements>
 </model>

@@ -34,7 +34,7 @@ extension MTask: HasRepeatMode {
     @NSManaged public var attachment: NSSet?
     @NSManaged public var predecessor: NSSet?
     @NSManaged public var successor: NSSet?
-    
+    @NSManaged public var rank: Int
     
     /* Repeat Section */
     @NSManaged public var nextFireDate: Date?

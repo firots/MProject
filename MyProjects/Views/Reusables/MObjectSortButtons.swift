@@ -16,11 +16,16 @@ struct MObjectSortButtons: View {
     @Binding var showDetails: Bool
     var sortAction: (() -> Void)?
     var filterAction: (() -> Void)?
+    var purchaseAction: (() -> Void)?
     
     let buttonSize: CGFloat = 27
     
     var body: some View {
         HStack {
+            if Settings.shared.isPro() == false {
+                goldButton()
+            }
+            
             if hasDetails {
                 detailButton()
             }
@@ -31,8 +36,19 @@ struct MObjectSortButtons: View {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 filterMObjects()
             }
-
         }.padding(.top)
+    }
+    
+    func goldButton() -> some View {
+        Button(action: {
+            self.purchaseAction?()
+            
+        }) {
+            Image(systemName: "heart.circle.fill")
+                .resizable()
+                .frame(width: buttonSize, height: buttonSize)
+                .foregroundColor(Color(.systemRed))
+        }
     }
     
     func editButton() -> some View {

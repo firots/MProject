@@ -28,6 +28,15 @@ class Settings: Codable {
         }
     }
     
+    func isPro() -> Bool {
+        if Settings.shared.pro == false {
+            if TARGET_OS_SIMULATOR == 0 {
+                return false
+            }
+        }
+        return true
+    }
+    
     static var shared = Settings()
     
     static func load() {

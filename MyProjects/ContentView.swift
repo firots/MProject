@@ -43,11 +43,11 @@ struct ContentView: View {
             
 
             
-            SettingsView()
+            /*SettingsView()
             .tabItem {
                 Image(systemName: "gear")
                 .font(.system(size: 24))
-            }.tag(2)
+            }.tag(2)*/
         }.accentColor(Color(.systemPurple))
             .onAppear() {
                 LocalNotifications.shared.register()

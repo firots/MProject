@@ -35,6 +35,9 @@ struct TasksView: View, MObjectLister {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()
+        }, purchaseAction: {
+            self.model.modalType = .purchase
+            self.model.showModal = true
         })
             .popover(isPresented: $model.showSortPopUp) {
                 self.sortPopOver()
@@ -43,13 +46,15 @@ struct TasksView: View, MObjectLister {
         .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter])
         .sheet(isPresented: self.$model.showModal)  {
             if self.model.modalType == .addTask {
-                if Settings.shared.pro == false && self.moc.hasTaskLimitReached() {
+                if Settings.shared.isPro() == false && self.moc.hasTaskLimitReached() {
                     PurchaseView()
                 } else {
                     AddTaskView(task: self.model.taskToEdit, project: self.model.project, context: self.moc, pCellViewModel: self.model.pCellViewModel)
                 }
-            } else {
+            } else if (self.model.modalType == .addProject) {
                 AddProjectView(context: self.moc, project: self.model.project)
+            } else {
+                PurchaseView()
             }
         }
         .alert(isPresented: $model.showMultiDeletionAlert) {

@@ -34,18 +34,26 @@ struct ProjectsView: View, MObjectLister  {
             self.sortButtonAction()
         }, filterAction: {
             self.filterButtonAction()
+        }, purchaseAction: {
+            self.model.modalType = .purchase
+            self.model.showModal = true
         })
             .popover(isPresented: $model.showSortPopUp) {
                 self.sortPopOver()
             }
         )
         .navigationBarTitle(MObjectDateFilterType.names[model.filterContainer.dateFilter])
-        .sheet(isPresented: $model.showAddProject)  {
-            if Settings.shared.pro == false && self.moc.hasProjectLimitReached() {
-                PurchaseView()
+        .sheet(isPresented: $model.showModal)  {
+            if self.model.modalType == .addProject {
+                if Settings.shared.isPro() == false && self.moc.hasProjectLimitReached() {
+                    PurchaseView()
+                } else {
+                    AddProjectView(context: self.moc, project: nil)
+                }
             } else {
-                AddProjectView(context: self.moc, project: nil)
+                PurchaseView()
             }
+
         }
         .actionSheet(isPresented: $model.showActionSheet) {
             actionSheet()
@@ -95,7 +103,8 @@ struct ProjectsView: View, MObjectLister  {
         VStack {
             Spacer()
             HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
-                self.model.showAddProject = true
+                self.model.modalType = .addProject
+                self.model.showModal = true
             }
         }
     }
