@@ -11,8 +11,6 @@ import SwiftUI
 struct TasksView: View, MObjectLister {
     @ObservedObject var model: TasksViewModel
     @Environment(\.managedObjectContext) private var moc
-    @Environment(\.presentationMode) var presentationMode
-    @State private var sheetOn = false
     
     init(project: MProject?, pCellViewModel: ProjectCellViewModel?) {
         model = TasksViewModel(project: project, pCellViewModel: pCellViewModel)
@@ -53,12 +51,6 @@ struct TasksView: View, MObjectLister {
             } else {
                 AddProjectView(context: self.moc, project: self.model.project)
             }
-        }
-        .onDisappear() {
-            //self.model.filterContainer.savePreferences()
-        }
-        .onAppear() {
-            //MObjectFilterContainer.latestInstance = self.model.filterContainer
         }
         .alert(isPresented: $model.showMultiDeletionAlert) {
             multiDeletionAlert()
@@ -124,7 +116,6 @@ struct TasksView: View, MObjectLister {
                 }
                 HoveringButton(color: Color(.systemPurple), image: Image(systemName: "plus")) {
                     if let project = self.model.project, project.managedObjectContext == nil {
-                        self.presentationMode.wrappedValue.dismiss()
                         return
                     }
                     self.model.modalType = .addTask
