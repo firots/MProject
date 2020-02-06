@@ -31,6 +31,9 @@ extension MTask: HasRepeatMode {
     @NSManaged public var notification: NSSet?
     @NSManaged public var saved: Bool
     @NSManaged public var originalID: UUID?
+    @NSManaged public var attachment: NSSet?
+    @NSManaged public var predecessor: NSSet?
+    @NSManaged public var successor: NSSet?
     
     
     /* Repeat Section */
@@ -91,5 +94,57 @@ extension MTask {
 
     @objc(removeStep:)
     @NSManaged public func removeFromStep(_ values: NSSet)
+
+}
+
+
+// MARK: Generated accessors for attachment
+extension MTask {
+
+    @objc(addAttachmentObject:)
+    @NSManaged public func addToAttachment(_ value: MAttachment)
+
+    @objc(removeAttachmentObject:)
+    @NSManaged public func removeFromAttachment(_ value: MAttachment)
+
+    @objc(addAttachment:)
+    @NSManaged public func addToAttachment(_ values: NSSet)
+
+    @objc(removeAttachment:)
+    @NSManaged public func removeFromAttachment(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for predecessor
+extension MTask {
+
+    @objc(addPredecessorObject:)
+    @NSManaged public func addToPredecessor(_ value: MTask)
+
+    @objc(removePredecessorObject:)
+    @NSManaged public func removeFromPredecessor(_ value: MTask)
+
+    @objc(addPredecessor:)
+    @NSManaged public func addToPredecessor(_ values: NSSet)
+
+    @objc(removePredecessor:)
+    @NSManaged public func removeFromPredecessor(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for successor
+extension MTask {
+
+    @objc(addSuccessorObject:)
+    @NSManaged public func addToSuccessor(_ value: MTask)
+
+    @objc(removeSuccessorObject:)
+    @NSManaged public func removeFromSuccessor(_ value: MTask)
+
+    @objc(addSuccessor:)
+    @NSManaged public func addToSuccessor(_ values: NSSet)
+
+    @objc(removeSuccessor:)
+    @NSManaged public func removeFromSuccessor(_ values: NSSet)
 
 }

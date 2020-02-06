@@ -68,6 +68,8 @@
 		76A59D9223E9EF9F0051F034 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A59D9123E9EF9F0051F034 /* CoreDataStack.swift */; };
 		76C9589123E1B15D007EBC63 /* MObjectActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C9589023E1B15D007EBC63 /* MObjectActionList.swift */; };
 		76C9589323E1FAA7007EBC63 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C9589223E1FAA7007EBC63 /* Settings.swift */; };
+		76CEBBF123EC7282007B4687 /* MAttachment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEBBEB23EC7282007B4687 /* MAttachment+CoreDataClass.swift */; };
+		76CEBBF223EC7282007B4687 /* MAttachment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEBBEC23EC7282007B4687 /* MAttachment+CoreDataProperties.swift */; };
 		76D2ADE823D65F9D009FFD5E /* HasRepeatMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */; };
 		76D802F323C941E70088556A /* String+NoNewline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D802F223C941E70088556A /* String+NoNewline.swift */; };
 		76DC6B1A23CCD33A009EABE9 /* KeyboardDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */; };
@@ -169,6 +171,8 @@
 		76A59D9123E9EF9F0051F034 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		76C9589023E1B15D007EBC63 /* MObjectActionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MObjectActionList.swift; sourceTree = "<group>"; };
 		76C9589223E1FAA7007EBC63 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		76CEBBEB23EC7282007B4687 /* MAttachment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAttachment+CoreDataClass.swift"; sourceTree = "<group>"; };
+		76CEBBEC23EC7282007B4687 /* MAttachment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAttachment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasRepeatMode.swift; sourceTree = "<group>"; };
 		76D802F223C941E70088556A /* String+NoNewline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NoNewline.swift"; sourceTree = "<group>"; };
 		76DC6B1923CCD33A009EABE9 /* KeyboardDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDoneButton.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				76D2ADE723D65F9D009FFD5E /* HasRepeatMode.swift */,
+				76CEBBF523EC7286007B4687 /* MAttachment */,
 				766FE81423D0BE430055180B /* MNotification */,
 				76FDE0DE23CE422E00E3EEA2 /* MObject */,
 				768A23E023C8C7FF00AE8B83 /* MStep */,
@@ -368,6 +373,15 @@
 				7694099023D5EE9800E40B95 /* NotificationsViewModel.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		76CEBBF523EC7286007B4687 /* MAttachment */ = {
+			isa = PBXGroup;
+			children = (
+				76CEBBEB23EC7282007B4687 /* MAttachment+CoreDataClass.swift */,
+				76CEBBEC23EC7282007B4687 /* MAttachment+CoreDataProperties.swift */,
+			);
+			path = MAttachment;
 			sourceTree = "<group>";
 		};
 		76EF17BC23BCE07100C1CD11 /* Reusables */ = {
@@ -692,6 +706,7 @@
 				764F94C923D3382E008C0D09 /* AddNotificationViewModel.swift in Sources */,
 				765BA58623C2313E007F835D /* Date+ToString.swift in Sources */,
 				766FE81223D0BE3D0055180B /* MNotification+CoreDataClass.swift in Sources */,
+				76CEBBF223EC7282007B4687 /* MAttachment+CoreDataProperties.swift in Sources */,
 				76EF17C923BCE1AF00C1CD11 /* AddProjectViewModel.swift in Sources */,
 				76FEB7F023DC99EE0028DBA0 /* MObject+Update.swift in Sources */,
 				761F244423C16EFD008AA2B7 /* MProject+CreateOrSync.swift in Sources */,
@@ -704,6 +719,7 @@
 				76FDE0D923CE0BCA00E3EEA2 /* Haptics.swift in Sources */,
 				76FD61C923B92C4D00D21B21 /* HoveringButton.swift in Sources */,
 				76FDE0E023CE425C00E3EEA2 /* MObject+Notifications.swift in Sources */,
+				76CEBBF123EC7282007B4687 /* MAttachment+CoreDataClass.swift in Sources */,
 				7673533A23CA11F1002C1194 /* MStep+Create.swift in Sources */,
 				7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */,
 				764AA30C23C2816600F581BA /* String+Capitalizer.swift in Sources */,

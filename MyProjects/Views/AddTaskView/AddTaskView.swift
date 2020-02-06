@@ -40,7 +40,7 @@ struct AddTaskView: View {
         .edgesIgnoringSafeArea(.bottom)
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
-                NotesView(notes: self.$model.details, title: "Details", keyboard: self.keyboard)
+                NotesView(notes: self.$model.details, title: "Notes", keyboard: self.keyboard)
             } else if (self.model.modalType == .addStep) {
                 AddStepView(model: self.model.stepsModel.stepViewModel, newStep: self.model.stepsModel.newStep, keyboard: self.keyboard) {
                     self.model.stepsModel.steps.append(self.model.stepsModel.stepViewModel)

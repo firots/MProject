@@ -38,7 +38,7 @@ struct AddProjectView: View {
         
         .sheet(isPresented: $model.showModal) {
             if (self.model.modalType == .notes) {
-                NotesView(notes: self.$model.details, title: "Details", keyboard: self.keyboard)
+                NotesView(notes: self.$model.details, title: "Notes", keyboard: self.keyboard)
             } else {
                 AddNotificationView(notification: self.model.notificationsModel.notificationToAdd, keyboard: self.keyboard, isNew: self.model.notificationsModel.isNew) {
                     self.model.notificationsModel.notifications.append(self.model.notificationsModel.notificationToAdd)

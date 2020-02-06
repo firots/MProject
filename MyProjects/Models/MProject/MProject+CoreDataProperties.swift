@@ -32,6 +32,7 @@ extension MProject {
     @NSManaged public var priority: Int
     @NSManaged public var saved: Bool
     @NSManaged public var progress: Float
+    @NSManaged public var attachment: NSSet?
     
     /* Filter and Sort Tasks */
     @NSManaged public var statusFilter: Int
@@ -114,5 +115,22 @@ extension MProject {
 
     @objc(removeTask:)
     @NSManaged public func removeFromTask(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for attachment
+extension MProject {
+
+    @objc(addAttachmentObject:)
+    @NSManaged public func addToAttachment(_ value: MAttachment)
+
+    @objc(removeAttachmentObject:)
+    @NSManaged public func removeFromAttachment(_ value: MAttachment)
+
+    @objc(addAttachment:)
+    @NSManaged public func addToAttachment(_ values: NSSet)
+
+    @objc(removeAttachment:)
+    @NSManaged public func removeFromAttachment(_ values: NSSet)
 
 }

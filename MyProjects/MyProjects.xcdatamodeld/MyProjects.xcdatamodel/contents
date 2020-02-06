@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="MAttachment" representedClassName="MAttachment" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="attachment" inverseEntity="MProject"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="attachment" inverseEntity="MTask"/>
+    </entity>
     <entity name="MNotification" representedClassName="MNotification" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -35,6 +45,7 @@
         <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="statusFilter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tasksAscending" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="attachment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MAttachment" inverseName="project" inverseEntity="MAttachment"/>
         <relationship name="notification" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MNotification" inverseName="project" inverseEntity="MNotification"/>
         <relationship name="task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTask" inverseName="project" inverseEntity="MTask"/>
     </entity>
@@ -68,14 +79,18 @@
         <attribute name="selectedDays" optional="YES" attributeType="Transformable"/>
         <attribute name="started" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="attachment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MAttachment" inverseName="task" inverseEntity="MAttachment"/>
         <relationship name="notification" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MNotification" inverseName="task" inverseEntity="MNotification"/>
+        <relationship name="predecessor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTask" inverseName="successor" inverseEntity="MTask"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="task" inverseEntity="MProject"/>
         <relationship name="step" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MStep" inverseName="task" inverseEntity="MStep"/>
+        <relationship name="successor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTask" inverseName="predecessor" inverseEntity="MTask"/>
     </entity>
     <elements>
+        <element name="MAttachment" positionX="-36" positionY="153" width="128" height="163"/>
         <element name="MNotification" positionX="-36" positionY="144" width="128" height="268"/>
-        <element name="MProject" positionX="-45" positionY="0" width="128" height="328"/>
+        <element name="MProject" positionX="-45" positionY="0" width="128" height="343"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="148"/>
-        <element name="MTask" positionX="-45" positionY="63" width="128" height="388"/>
+        <element name="MTask" positionX="-45" positionY="63" width="128" height="433"/>
     </elements>
 </model>
