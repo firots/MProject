@@ -201,9 +201,13 @@ struct TasksView: View, MObjectLister {
                         taskCellNameAndSteps(task)
                         
                         if model.filterContainer.showDetails {
-                            showSteps(task)
+                            projectName(task)
                                 .padding(.bottom, 5)
                                 .transition(.slide)
+                            
+                            //showSteps(task)
+                              //  .padding(.bottom, 5)
+                                //.transition(.slide)
                             
                             taskCellStartDates(task)
                                 .padding(.bottom, 5)
@@ -224,6 +228,17 @@ struct TasksView: View, MObjectLister {
         }.listRowBackground(self.model.selectedTasks.contains(task) ? Color(.systemGray4): cellBackgroundColor)
     }
     
+    private func projectName(_ task: MTask) -> some View {
+        Group {
+            if task.project != nil {
+                Text(task.project!.wrappedName)
+                .font(.subheadline)
+                .lineLimit(1)
+                .foregroundColor(Color(.systemGray))
+            }
+        }
+    }
+    
     private func taskIcons(_ task: MTask) -> some View {
         HStack {
             if !task.notifications.filter({ $0.nextFireDate != nil }).isEmpty {
@@ -238,35 +253,38 @@ struct TasksView: View, MObjectLister {
             
             Image(systemName: "flag.circle.fill")
                 .foregroundColor(MObjectPriority.colors[task.priority])
-        }
+        }.frame(minWidth: 65, alignment: .trailing)
     }
     
     private func taskCellNameAndSteps(_ task: MTask) -> some View {
         HStack {
-            Text(task.wrappedName)
-                 .strikethrough(task.wrappedStatus == .done, color: nil)
-                 .lineLimit(1)
+            VStack {
+                Text(task.wrappedName)
+                     .strikethrough(task.wrappedStatus == .done, color: nil)
+                     .lineLimit(1)
+                    .frame(width: 160, alignment: .leading)
+                
+                if isLargeList() {
+                    projectName(task)
+                    .frame(minWidth: 160, alignment: .leading)
+                }
+                
+            }
+
             
-            if isLargeList() {
+            //if isLargeList() {
                 Spacer()
                 
                 
                 showSteps(task)
                     .transition(.slide)
-            }
-
+            //}
 
             Spacer()
             
-
             if !isLargeList() {
                 taskIcons(task)
             }
-            
-            
-            
-                
-            
         }
     }
     
