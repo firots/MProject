@@ -26,11 +26,14 @@ extension MObject {
         }
         
         if let task = self as? MTask {
-            task.repeatIfNeeded(force: false, context: context)
-            
-            if task.repeated == true {
-                return //do not go futher and create fire date for notifications
+            if task.wrappedRepeatMode != .none {
+                task.repeatIfNeeded(force: false, context: context)
+                
+                if task.wrappedRepeatMode == .none {
+                    return //do not go futher and create fire date for notifications of repeated task
+                }
             }
+
         }
         
         for notification in notifications {
