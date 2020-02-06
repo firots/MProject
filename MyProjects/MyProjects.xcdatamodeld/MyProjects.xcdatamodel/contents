@@ -2,11 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="MAttachment" representedClassName="MAttachment" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="data" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="storedName" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MProject" inverseName="attachment" inverseEntity="MProject"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MTask" inverseName="attachment" inverseEntity="MTask"/>
     </entity>
@@ -87,7 +88,7 @@
         <relationship name="successor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTask" inverseName="predecessor" inverseEntity="MTask"/>
     </entity>
     <elements>
-        <element name="MAttachment" positionX="-36" positionY="153" width="128" height="163"/>
+        <element name="MAttachment" positionX="-36" positionY="153" width="128" height="178"/>
         <element name="MNotification" positionX="-36" positionY="144" width="128" height="268"/>
         <element name="MProject" positionX="-45" positionY="0" width="128" height="343"/>
         <element name="MStep" positionX="-36" positionY="126" width="128" height="148"/>

@@ -18,12 +18,13 @@ extension MAttachment {
     }
 
     @NSManaged public var id: UUID?
-    @NSManaged public var data: Data?
     @NSManaged public var type: String?
     @NSManaged public var name: String?
     @NSManaged public var created: Date?
     @NSManaged public var lastModified: Date?
     @NSManaged public var task: MTask?
     @NSManaged public var project: MProject?
+    @NSManaged public var url: URL?
+    @NSManaged public var storedName: String?
 
 }
