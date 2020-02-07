@@ -8,6 +8,6 @@
 
 "Today" = "Bugün";
 
-"repeatMonthsLead" = "Her";
-"repeatMonthsTrail" = "ayda bir tekrar eder";
-"Repeats every month" = "Her ay tekrar eder";
+"repeat.months.description" = "Her %@ ayda bir tekrar eder";
+"repeat.month.description" = "Her ay tekrar eder";
+"hourly.repeat.string" = "%@ every %@ after %@";
