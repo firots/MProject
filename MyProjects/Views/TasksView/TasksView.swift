@@ -210,10 +210,6 @@ struct TasksView: View, MObjectLister {
                                 .padding(.bottom, 5)
                                 .transition(.slide)
                             
-                            //showSteps(task)
-                              //  .padding(.bottom, 5)
-                                //.transition(.slide)
-                            
                             taskCellStartDates(task)
                                 .padding(.bottom, 5)
                                 .transition(.slide)
@@ -235,7 +231,7 @@ struct TasksView: View, MObjectLister {
     
     private func projectName(_ task: MTask) -> some View {
         Group {
-            if task.project != nil {
+            if task.project != nil && model.project == nil {
                 Text(task.project!.wrappedName)
                 .font(.subheadline)
                 .lineLimit(1)
