@@ -42,7 +42,7 @@ struct ProjectsView: View, MObjectLister  {
                 self.sortPopOver()
             }
         )
-        .navigationBarTitle(MObjectDateFilterType.names[model.filterContainer.dateFilter])
+            .navigationBarTitle(NSLocalizedString(MObjectDateFilterType.names[model.filterContainer.dateFilter], comment: ""))
         .sheet(isPresented: $model.showModal)  {
             if self.model.modalType == .addProject {
                 if Settings.shared.isPro() == false && self.moc.hasProjectLimitReached() {

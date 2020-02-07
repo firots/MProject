@@ -14,9 +14,11 @@ struct ConfigureMonthlyView: View {
     let monthDays: [String]
     
     
+    
+    
     var body: some View {
         var repeatDescription: String {
-            repeatPeriod > 1 ? "Repeats every \(repeatPeriod) months" : "Repeats every month"
+            repeatPeriod > 1 ? "\(NSLocalizedString("repeatMonthsLead", comment: "")) \(repeatPeriod) \(NSLocalizedString("repeatMonthsTrail", comment: ""))" : NSLocalizedString("Repeats every month", comment: "")
         }
 
         return Group {

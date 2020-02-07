@@ -43,7 +43,7 @@ struct TasksView: View, MObjectLister {
                 self.sortPopOver()
             }
         )
-        .navigationBarTitle(model.project?.wrappedName ?? MObjectDateFilterType.names[model.filterContainer.dateFilter])
+        .navigationBarTitle(model.project?.wrappedName ?? NSLocalizedString(MObjectDateFilterType.names[model.filterContainer.dateFilter], comment: ""))
         .sheet(isPresented: self.$model.showModal)  {
             if self.model.modalType == .addTask {
                 if Settings.shared.isPro() == false && self.moc.hasTaskLimitReached() {

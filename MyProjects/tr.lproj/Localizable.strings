@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  MyProjects
+
+  Created by Firot on 7.02.2020.
+  Copyright © 2020 Firot. All rights reserved.
+*/
+
+"Today" = "Bugün";
+
+"repeatMonthsLead" = "Her";
+"repeatMonthsTrail" = "ayda bir tekrar eder";
+"Repeats every month" = "Her ay tekrar eder";
