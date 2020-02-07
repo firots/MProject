@@ -18,10 +18,10 @@ extension MObject {
         } else if wrappedStatus == .waiting, let s = started, now >= s {
             setStatus(to: .active, context: context)
         } else {
-            if let d = deadline, now < d {
-                deadline = d /* update ui */
+            if let d = deadline, now < d { /* update ui */
+                objectWillChange.send()
             } else if let s = started, now < s {
-                started = s
+                objectWillChange.send()
             }
         }
         
