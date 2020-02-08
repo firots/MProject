@@ -71,7 +71,7 @@ struct TasksView: View, MObjectLister {
             
             
         } else {
-            return Alert(title: Text("Warning"), message: Text("Are you sure you want to delete \(model.selectedTasks.count) tasks?"), primaryButton: .destructive(Text("Delete")) {
+            return Alert(title: Text("Warning"), message: Text("Are you sure you want to permanently delete \(model.selectedTasks.count) tasks?"), primaryButton: .destructive(Text("Delete")) {
                 self.deleteSelectedTasks()
                 } , secondaryButton: .cancel())
         }

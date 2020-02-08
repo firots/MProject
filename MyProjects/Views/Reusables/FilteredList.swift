@@ -41,7 +41,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     private let timer = TimerContainer()
 
     var body: some View {
-        return ZStack {
+        ZStack {
             if !results.isEmpty {
                 List {
                     ForEach(results, id: \.self) { result in
@@ -123,7 +123,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     
     private func removeItems(at offsets: IndexSet) {
         timer.stop()
-        timer.reschedule(to: 5.0) {
+        timer.reschedule(to: 3.0) {
             self.emptyBin()
         }
         for index in offsets {
