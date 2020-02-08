@@ -104,7 +104,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         return VStack {
             Spacer()
             HStack {
-                Text("\(deletedItems.count) item deleted")
+                Text("\(deletedItems.count) deleted")
                 Button("Undo") {
                     self.timer.stop()
                     self.deletedItems.removeAll()
