@@ -49,7 +49,7 @@ struct NotificationsView: View {
     }
     
     func addNotificationButton() -> some View {
-        Section(footer: Text("Reminders sends notifications if the task/project is active when the time has come.")) {
+        Section(footer: Text("Reminders does not work when task/project is failed or done.")) {
             HStack {
                 CellImageView(systemName: "plus.circle.fill")
                 Text("Add Reminder")
