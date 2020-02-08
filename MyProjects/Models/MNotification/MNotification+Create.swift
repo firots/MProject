@@ -40,15 +40,15 @@ extension MNotification {
     
     func isValidForMObjectStatus(for nextFireDate: Date) -> Bool {
         if let mObject = mObject {
-            if mObject.wrappedStatus == .active {
+            if mObject.wrappedStatus == .active || mObject.wrappedStatus == .waiting {
                 return true
-            } else if mObject.wrappedStatus == .waiting {
+            }/* else if mObject.wrappedStatus == .waiting {
                 if let startDate = mObject.started {
                     if nextFireDate >= startDate {
                         return true
                     }
                 }
-            }
+            }*/
         }
         return false
     }
