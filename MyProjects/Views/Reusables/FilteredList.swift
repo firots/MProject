@@ -9,6 +9,24 @@
 import SwiftUI
 import CoreData
 
+class TimerContainer {
+    var timer: Timer
+    
+    init() {
+        timer = Timer()
+    }
+    
+    func reschedule(to interval: TimeInterval, action: @escaping () -> Void) {
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) {_ in
+            action()
+        }
+    }
+    
+    func stop() {
+        timer.invalidate()
+    }
+}
+
 struct FilteredList<T: NSManagedObject, Content: View>: View {
     @State private var predicate: NSPredicate?
     @Environment(\.managedObjectContext) var moc
@@ -19,19 +37,33 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         fetchRequest.wrappedValue }
     private let content: (T) -> Content
     private let placeholder: PlaceholderViewModel
+    @State private var deletedItems = [T]()
+    private let timer = TimerContainer()
 
     var body: some View {
-        Group {
+        return ZStack {
             if !results.isEmpty {
                 List {
                     ForEach(results, id: \.self) { result in
-                        self.content(result)
+                        self.contentView(result)
                     }.onDelete(perform: removeItems)
                 }.listStyle(GroupedListStyle())
                         .id(listID)
 
             } else {
                 PlaceholderView(model: placeholder)
+            }
+            if !deletedItems.isEmpty {
+                undoView()
+                    .transition(.move(edge: .bottom))
+            }
+        }
+    }
+    
+    private func contentView(_ item: T) -> some View {
+        Group {
+            if !isDeleted(item) {
+                self.content(item)
             }
         }
     }
@@ -45,12 +77,59 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         
     }
     
-    private func removeItems(at offsets: IndexSet) {
-        for index in offsets {
-            let object = results[index]
-            moc.deleteWithChilds(object)
+    private func isDeleted(_ item: T) -> Bool {
+        if deletedItems.isEmpty { return false }
+        for deletedItem in deletedItems {
+            if item.objectID == deletedItem.objectID {
+                return true
+            }
         }
-        if moc.hasChanges { try? moc.mSave() }
+        return false
+    }
+    
+    private func emptyBin()  {
+        timer.stop()
+        for item in deletedItems {
+            moc.deleteWithChilds(item)
+        }
+
+        deletedItems.removeAll()
+        
+        if moc.hasChanges {
+            try? moc.save()
+        }
+    }
+    
+    private func undoView() -> some View {
+        return VStack {
+            Spacer()
+            HStack {
+                Text("\(deletedItems.count) item deleted")
+                Button("Undo") {
+                    self.timer.stop()
+                    self.deletedItems.removeAll()
+                }
+            }
+            .padding()
+            .background(Color(.secondarySystemBackground))
+                .cornerRadius(12)
+            .frame(maxWidth: .infinity)
+            
+            Spacer()
+                .frame(height: 24)
+            
+        }
+    }
+    
+    private func removeItems(at offsets: IndexSet) {
+        timer.stop()
+        timer.reschedule(to: 5.0) {
+            self.emptyBin()
+        }
+        for index in offsets {
+            self.deletedItems.append(results[index])
+            
+        }
     }
 }
 
