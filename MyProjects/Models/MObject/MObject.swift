@@ -75,6 +75,9 @@ extension MObject {
                     }
                 }
             }
+            deleteNotificationsFromIOS(clearFireDate: true)
+        } else {
+            resyncNotifications() 
         }
     }
     
@@ -123,8 +126,6 @@ extension MObject {
         } else {
             self.deadline = nil
         }
-        
-        self.setStatus(to: MObjectStatus.all[model.statusIndex], context: context)
         self.saved = true
     }
     

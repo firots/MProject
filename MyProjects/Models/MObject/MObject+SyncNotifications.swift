@@ -27,9 +27,7 @@ extension MObject {
             } else if let project = self as? MProject {
                 notification.project = project
             }
-            notification.createOnIOSIfNear()
             editedOrNewNotifications.append(notification)
-            
             notificationsToDelete.removeAll(where: { $0.wrappedID == notificationModel.id })
         }
         

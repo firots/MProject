@@ -387,13 +387,11 @@ struct TasksView: View, MObjectLister {
                     task.setStatus(to: .done, context: self.moc)
                     self.model.pCellViewModel?.refreshProgress()
                     Haptic.feedback(.medium)
-                    task.deleteNotificationsFromIOS(clearFireDate: true)
                     self.saveChanges()
                 } else if task.wrappedStatus == .done {
                     task.setStatus(to: .active, context: self.moc)
                     self.model.pCellViewModel?.refreshProgress()
                     if task.wrappedStatus == .active {
-                        task.resyncNotifications()
                         Haptic.feedback(.light)
                     } else {
                         Haptic.notify(.error)

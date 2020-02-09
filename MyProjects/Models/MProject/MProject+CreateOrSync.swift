@@ -14,6 +14,7 @@ extension MProject {
         let p = project ?? createBase(context: moc)
         p.setMutualFields(from: model, context: moc)
         p.syncNotifications(with: model.notificationsModel.notifications, context: moc)
+        p.setStatus(to: MObjectStatus.all[model.statusIndex], context: moc)
         return p
     }
     

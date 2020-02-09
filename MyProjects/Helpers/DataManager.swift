@@ -104,13 +104,11 @@ class DataManager: Operation {
     }
     
     func syncNotifications() {
-        LocalNotifications.shared.deleteAll()
         let fetchRequest: NSFetchRequest<MNotification> = MNotification.fetchRequest()
         let sort = NSSortDescriptor(key: #keyPath(MNotification.nextFireDate), ascending: true)
         
         fetchRequest.predicate = notificationPredicate
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.fetchLimit = 64
         
         do {
             let notifications = try context.fetch(fetchRequest)

@@ -10,52 +10,6 @@ import Foundation
 import CoreData
 
 extension MTask {
-    /*public func setPreviousRepeatedMode(to state: Bool, context: NSManagedObjectContext) {
-        guard let originalID = originalID else { return }
-        let predicate = NSPredicate(format: "(originalID == %@ OR id == %@) AND repeatCount < %d",originalID.uuidString, originalID.uuidString, repeatCount)
-        
-        let sort = NSSortDescriptor(key: #keyPath(MTask.repeatCount), ascending: false)
-        
-        let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
-        fetchRequest.predicate = predicate
-        fetchRequest.sortDescriptors = [sort]
-        
-        context.perform {
-            do {
-                if let task = try context.fetch(fetchRequest).first {
-                    if state == false && task.hasRepeatedTask(context: context) {
-                        return
-                    }
-                    task.repeated = state
-                }
-                
-            } catch {
-                fatalError("Unable to fetch tasks.")
-            }
-            
-            if context.hasChanges {
-                try? context.mSave()
-            }
-        }
-    }
-    
-    public func hasRepeatedTask(context: NSManagedObjectContext) -> Bool {
-        let predicate = NSPredicate(format: "(originalID == %@ OR originalID == %@) AND repeatCount > %d", wrappedOriginalID.uuidString, wrappedID.uuidString, repeatCount)
-
-        let fetchRequest: NSFetchRequest<MTask> = MTask.fetchRequest()
-        fetchRequest.predicate = predicate
-        var tasks = [MTask]()
-        context.performAndWait {
-            do {
-                tasks = try context.fetch(fetchRequest)
-            } catch {
-                fatalError("Unable to fetch tasks.")
-            }
-        }
-        return !tasks.isEmpty
-    }*/
-    
-    
     public func repeatIfNeeded(force: Bool, context: NSManagedObjectContext) {
         if wrappedRepeatMode == .none { return } //not repeating type
         
@@ -64,26 +18,6 @@ extension MTask {
         guard let nextFireDate = self.nextFireDate else { return } //be sure next fire date is valid
         
         if force == false && nextFireDate > Date() { return } //its not time yet
-        
-        /*let newTask = self.clone()
-         clone will have nextfiredate as its repeatstartdate+
-         startdate as current date+
-         repeatTask = clone+
-         clone.repeatedfrom = self+
-         
-         will copy steps to itself in active state+
-         
-         will copy all notifications by:
-            get time diff between current repeatstartdate and repeatstartdate+
-            add diff to notificaon date if notif state is none+
-            else if notifstate is repeating add it to notifrepeatstartdate+
-         
-         create nextfiredate for all notifications
-         
-         call repeatifneeded on new task in case missed some repeats
-        */
-        
-        
         
         deleteNotificationsFromIOS(clearFireDate: true)
         

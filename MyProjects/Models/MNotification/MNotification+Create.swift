@@ -12,7 +12,6 @@ import CoreData
 extension MNotification {
     static func createOrSync(from viewModel: AddNotificationViewModel?, context moc: NSManagedObjectContext) -> MNotification {
         let notification = viewModel?.mNotification ?? createBase(context: moc, model: viewModel)
-        notification.deleteFromIOS(clearFireDate: true)
         if let viewModel = viewModel {
             notification.message = viewModel.message
             notification.title = viewModel.title
@@ -29,7 +28,7 @@ extension MNotification {
     }
     
     func createOnIOSIfNear() {
-        //print("CREATE ON IOS IF NEAR")
+        //print("$$CREATE ON IOS IF NEAR \(self.message)")
         guard let nextFireDate = self.nextFireDate else { return }
         if isNextFireDateValid(for: nextFireDate) {
             LocalNotifications.shared.create(from: self)
@@ -42,13 +41,7 @@ extension MNotification {
         if let mObject = mObject {
             if mObject.wrappedStatus == .active || mObject.wrappedStatus == .waiting {
                 return true
-            }/* else if mObject.wrappedStatus == .waiting {
-                if let startDate = mObject.started {
-                    if nextFireDate >= startDate {
-                        return true
-                    }
-                }
-            }*/
+            }
         }
         return false
     }
@@ -61,7 +54,7 @@ extension MNotification {
         if !isValidForMObjectStatus(for: nextFireDate) { return false }
         if let deadline = mObject?.deadline, nextFireDate > deadline {
             return false
-        } else if nextFireDate <= Date() {
+        } else if nextFireDate < Date() {
             return false
         }
         return true

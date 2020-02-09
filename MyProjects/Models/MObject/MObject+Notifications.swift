@@ -10,16 +10,11 @@ import Foundation
 
 
 extension MObject {
-    func resetNotificationsOnIOS(clearFireDate: Bool) {
-        deleteNotificationsFromIOS(clearFireDate: clearFireDate)
-        createNotificationsOnIOS()
-    }
-    
     func resyncNotifications() {
         for notification in notifications {
             notification.setNextFireDate()
         }
-        resetNotificationsOnIOS(clearFireDate: false)
+        createNotificationsOnIOS()
     }
     
     func deleteNotificationsFromIOS(clearFireDate: Bool) {

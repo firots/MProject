@@ -28,10 +28,14 @@ class LocalNotifications: NSObject {
     }
     
     func create(from model: MNotification) {
-        //print("CREATE ON IOS FROM MODEL")
+        //print("$$CREATED ON IOS IF NEAR \(model.message)")
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
         create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
+        
+        for subID in model.subID {
+            delete(id: subID)
+        }
     
         model.subID.removeAll()
         
