@@ -53,7 +53,7 @@ struct ContentView: View {
                 LocalNotifications.shared.register()
         }
         .onReceive(timer) { _ in
-            let dm = DataManager()
+            let dm = DataManager(isViewContext: false)
             dm.start()
         }
     }

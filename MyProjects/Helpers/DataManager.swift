@@ -18,29 +18,49 @@ class DataManager: Operation {
     var taksDeduplicatePredicate: NSPredicate? = nil
     static var shared: DataManager?
     var text: String?
+    var isViewContext: Bool
     
-    override init() {
-        context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.newBackgroundContext()
+    init(isViewContext: Bool) {
+        if isViewContext {
+            context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.viewContext
+        } else {
+            context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.newBackgroundContext()
+        }
+        self.isViewContext = isViewContext
+
         super.init()
     }
     
     init(context: NSManagedObjectContext, text: String) {
+        self.isViewContext = false
         self.context = context
         self.text = text
     }
-
-    override func main() {
-        context.performAndWait {
+    
+    func syncAll() {
+        if isViewContext {
             self.syncTasks()
             self.syncProjects()
             self.syncNotifications()
-            
-            if !self.isCancelled {
-                if self.context.hasChanges {
-                    try? self.context.mSave()
-                }
+        } else {
+            context.performAndWait {
+                self.syncTasks()
+                self.syncProjects()
+                self.syncNotifications()
             }
         }
+
+    }
+
+    override func main() {
+        syncAll()
+        
+        if !self.isCancelled {
+            if self.context.hasChanges {
+                try? self.context.mSave()
+            }
+        }
+        
         
         /*var now = Date()
         now.addMinutes(1)
