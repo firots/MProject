@@ -28,7 +28,6 @@
 		7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */; };
 		7625E11B23C5063400F81CCA /* AddMObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11A23C5063400F81CCA /* AddMObjectView.swift */; };
 		7625E11D23C5239900F81CCA /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7625E11C23C5239900F81CCA /* Keyboard.swift */; };
-		7627684023F064030028FA01 /* MNotification+SyncAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7627683F23F064020028FA01 /* MNotification+SyncAll.swift */; };
 		762774E323E8B71000AD8677 /* UIColor-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762774E223E8B71000AD8677 /* UIColor-Custom.swift */; };
 		762D720523E8986E006D08AA /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D720423E8986E006D08AA /* PurchaseView.swift */; };
 		762D720723E898B9006D08AA /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D720623E898B9006D08AA /* PurchaseViewModel.swift */; };
@@ -131,7 +130,6 @@
 		7625E11623C4F6E000F81CCA /* AddMObjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectViewModel.swift; sourceTree = "<group>"; };
 		7625E11A23C5063400F81CCA /* AddMObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMObjectView.swift; sourceTree = "<group>"; };
 		7625E11C23C5239900F81CCA /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
-		7627683F23F064020028FA01 /* MNotification+SyncAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+SyncAll.swift"; sourceTree = "<group>"; };
 		762774E223E8B71000AD8677 /* UIColor-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Custom.swift"; sourceTree = "<group>"; };
 		762AE7B623DDC52500594A69 /* MyProjects.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyProjects.entitlements; sourceTree = "<group>"; };
 		762D720423E8986E006D08AA /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
@@ -322,7 +320,6 @@
 				766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */,
 				766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */,
 				766FE81523D0C82B0055180B /* MNotification+Create.swift */,
-				7627683F23F064020028FA01 /* MNotification+SyncAll.swift */,
 			);
 			path = MNotification;
 			sourceTree = "<group>";
@@ -650,7 +647,6 @@
 				76ED8D0023D487320035A0A3 /* MultiSelectorGridView.swift in Sources */,
 				76A59D9223E9EF9F0051F034 /* CoreDataStack.swift in Sources */,
 				7619856023DA1CD3000197FC /* NSManagedObjectContext+deleteWithChilds.swift in Sources */,
-				7627684023F064030028FA01 /* MNotification+SyncAll.swift in Sources */,
 				7621991B23CBD50A004B6541 /* AddStepView.swift in Sources */,
 				7694099B23D61FCC00E40B95 /* MObject+SyncNotifications.swift in Sources */,
 				762F74E723D4E47D0016CC94 /* ConfigureMonthlyView.swift in Sources */,
@@ -874,7 +870,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyProjects/MyProjects.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"MyProjects/Preview Content\"";
 				DEVELOPMENT_TEAM = 64LWD834U3;
 				ENABLE_PREVIEWS = YES;
@@ -898,7 +894,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyProjects/MyProjects.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"MyProjects/Preview Content\"";
 				DEVELOPMENT_TEAM = 64LWD834U3;
 				ENABLE_PREVIEWS = YES;
