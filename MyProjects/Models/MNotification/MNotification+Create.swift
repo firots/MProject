@@ -27,14 +27,27 @@ extension MNotification {
         return notification
     }
     
-    func createOnIOSIfNear() {
+    func createOnIOSIfNear(clearFireDate: Bool) {
         //print("$$CREATE ON IOS IF NEAR \(self.message)")
         guard let nextFireDate = self.nextFireDate else { return }
         if isNextFireDateValid(for: nextFireDate) {
             LocalNotifications.shared.create(from: self)
         } else {
-            self.nextFireDate = nil
+            if clearFireDate {
+                self.nextFireDate = nil
+            }
         }
+    }
+    
+    func deleteFromIOS(clearFireDate: Bool) {
+        LocalNotifications.shared.delete(id: wrappedID)
+        if clearFireDate {
+            nextFireDate = nil
+        }
+        for subID in subID {
+            LocalNotifications.shared.delete(id: subID)
+        }
+        subID.removeAll()
     }
     
     func isValidForMObjectStatus(for nextFireDate: Date) -> Bool {
@@ -64,16 +77,5 @@ extension MNotification {
         let notification = MNotification(context: moc)
         notification.id = model?.id ?? UUID()
         return notification
-    }
-    
-    func deleteFromIOS(clearFireDate: Bool) {
-        LocalNotifications.shared.delete(id: wrappedID)
-        if clearFireDate {
-            nextFireDate = nil
-        }
-        for subID in subID {
-            LocalNotifications.shared.delete(id: subID)
-        }
-        subID.removeAll()
     }
 }

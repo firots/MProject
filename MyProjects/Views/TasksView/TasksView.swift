@@ -396,7 +396,6 @@ struct TasksView: View, MObjectLister {
                     } else {
                         Haptic.notify(.error)
                     }
-                    
                     self.saveChanges()
                 } else {
                     Haptic.notify(.warning)

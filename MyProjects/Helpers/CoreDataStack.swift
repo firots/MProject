@@ -162,7 +162,7 @@ extension CoreDataStack {
             
             // Fetch history received from outside the app since the last token
             let historyFetchRequest = NSPersistentHistoryTransaction.fetchRequest!
-            //historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
+            historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
             let request = NSPersistentHistoryChangeRequest.fetchHistory(after: lastHistoryToken)
             request.fetchRequest = historyFetchRequest
 
@@ -190,11 +190,58 @@ extension CoreDataStack {
                 deduplicateAndWait(mTaskObjectIDs: newMTaskObjectIDs)
             }
             
+            
+            var changedNotifications = [ChangedNotification]()
+            let mNotificationEntityName = MNotification.entity().name
+
+            for transaction in transactions where transaction.changes != nil {
+                for change in transaction.changes!
+                    where change.changedObjectID.entity.name == mNotificationEntityName {
+                        changedNotifications.append(ChangedNotification(objectID: change.changedObjectID, changeType: change.changeType))
+                }
+            }
+            
+            if !changedNotifications.isEmpty {
+                processChangedNotifications(notifications: changedNotifications)
+            }
+            
             // Update the history token using the last transaction.
             lastHistoryToken = transactions.last!.token
         }
     }
 }
+
+extension CoreDataStack {
+    struct ChangedNotification {
+        var objectID: NSManagedObjectID
+        var changeType: NSPersistentHistoryChangeType
+    }
+    
+    func processChangedNotifications(notifications: [ChangedNotification]) {
+        let taskContext = persistentContainer.newBackgroundContext()
+        
+        taskContext.performAndWait {
+            notifications.forEach { notification in
+                self.processNotification(notificationID: notification.objectID, changeType: notification.changeType, performingContext: taskContext)
+            }
+            // Save the background context to trigger a notification and merge the result into the viewContext.
+            try? taskContext.save()
+        }
+    }
+    
+    func processNotification(notificationID: NSManagedObjectID, changeType: NSPersistentHistoryChangeType, performingContext: NSManagedObjectContext) {
+        guard let mNotification = performingContext.object(with: notificationID) as? MNotification else { return }
+        
+        if changeType == .delete {
+            mNotification.deleteFromIOS(clearFireDate: false)
+        } else {
+            mNotification.createOnIOSIfNear(clearFireDate: false)
+        }
+    }
+}
+
+
+
 
 
 // MARK: - Deduplicate tags
@@ -255,7 +302,7 @@ extension CoreDataStack {
             defer { performingContext.deleteWithChilds(mTask) }
             
             for notification in mTask.notifications {
-                notification.createOnIOSIfNear()
+                notification.createOnIOSIfNear(clearFireDate: true)
             }
             /*guard let project = mTask.project else { return }
             project.task?.removeObjk

@@ -25,7 +25,7 @@ extension MObject {
     
     func createNotificationsOnIOS() {
         for notification in notifications {
-            notification.createOnIOSIfNear()
+            notification.createOnIOSIfNear(clearFireDate: true)
         }
     }
     

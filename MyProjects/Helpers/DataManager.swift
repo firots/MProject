@@ -14,7 +14,6 @@ class DataManager: Operation {
     private let context: NSManagedObjectContext
 
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
-    var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     var taksDeduplicatePredicate: NSPredicate? = nil
     static var shared: DataManager?
     var text: String?
@@ -41,12 +40,12 @@ class DataManager: Operation {
         if isViewContext {
             self.syncTasks()
             self.syncProjects()
-            self.syncNotifications()
+            MNotification.syncAll(context: context)
         } else {
             context.performAndWait {
                 self.syncTasks()
                 self.syncProjects()
-                self.syncNotifications()
+                MNotification.syncAll(context: context)
             }
         }
 
@@ -103,25 +102,5 @@ class DataManager: Operation {
         }
     }
     
-    func syncNotifications() {
-        let fetchRequest: NSFetchRequest<MNotification> = MNotification.fetchRequest()
-        let sort = NSSortDescriptor(key: #keyPath(MNotification.nextFireDate), ascending: true)
-        
-        fetchRequest.predicate = notificationPredicate
-        fetchRequest.sortDescriptors = [sort]
-        
-        do {
-            let notifications = try context.fetch(fetchRequest)
-            for notification in notifications {
-                notification.createOnIOSIfNear()
-                if isCancelled {
-                    return
-                }
-            }
 
-        } catch {
-            fatalError("Unable to fetch notifications.")
-        }
-        
-    }
 }
