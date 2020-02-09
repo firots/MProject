@@ -27,8 +27,30 @@ class LocalNotifications: NSObject {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
+    func isExist(notification: MNotification, request: UNNotificationRequest) -> Bool {
+        guard let nextFireDate = notification.nextFireDate else { return false }
+        guard let calendarTrigger = request.trigger as? UNCalendarNotificationTrigger, let nextTriggerDate = calendarTrigger.nextTriggerDate() else { return false }
+        if notification.wrappedID.uuidString == request.identifier && nextFireDate.minutesPassed(from: nextTriggerDate) < 1 {
+            return true
+        }
+        return false
+    }
+    
+    func createIfNotExist(from model: MNotification) {
+        /* to do check for repeatintervals */
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                if self.isExist(notification: model, request: request) {
+                    return
+                }
+            }
+            self.create(from: model)
+        })
+    }
+    
     func create(from model: MNotification) {
-        //print("$$CREATED ON IOS IF NEAR \(model.message)")
+        //print("###CREATED ON IOS IF NEAR \(model.message)")
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
         create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
