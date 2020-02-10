@@ -8,6 +8,7 @@
 
 import Foundation
 import UserNotifications
+import CoreData
 
 class LocalNotifications: NSObject {
     
@@ -23,12 +24,32 @@ class LocalNotifications: NSObject {
     }
     
     func delete(id: UUID) {
-        //print("DELETE FROM IOS")
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
+
+    func clearBastards(context: NSManagedObjectContext) {
+        let center = UNUserNotificationCenter.current()
+
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            if requests.isEmpty { return }
+            let activeNotifications = MNotification.getActiveNotifications(context: context)
+            var notificationsToDelete = requests
+            outerLoop: for request in requests {
+                for notification in activeNotifications {
+                    if notification.wrappedID.uuidString == request.identifier || notification.subID.contains(UUID(uuidString: request.identifier) ?? UUID()) {
+                        notificationsToDelete.removeAll(where: {$0.identifier == request.identifier})
+                        continue outerLoop
+                    }
+                }
+            }
+            for request in notificationsToDelete {
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [request.identifier])
+            }
+        })
+    }
+    
     func create(from model: MNotification) {
-        //print("###CREATED ON IOS from model \(model.message)")
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
         create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
@@ -37,8 +58,9 @@ class LocalNotifications: NSObject {
         
         if model.wrappedRepeatMode == .hour {
             if model.subID.isEmpty {
-                //print("###CREATING NEW UUID LIST \(model.message)")
-                model.subID = [UUID](repeating: UUID(), count: 36)
+                for _ in 1...36 {
+                    model.subID.append(UUID())
+                }
             }
             var nextFireDate = date
             for subID in model.subID {
@@ -53,10 +75,10 @@ class LocalNotifications: NSObject {
             }
             model.subID.removeAll()
         }
+        
     }
     
     func create(id: UUID, title: String, message: String, date: Date) {
-        //print("### CREATED ON IOS \(date.toRelative())")
         
         let content = UNMutableNotificationContent()
         content.title = title

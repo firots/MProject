@@ -42,11 +42,13 @@ class DataManager: Operation {
             self.syncTasks()
             self.syncProjects()
             self.syncNotifications()
+            LocalNotifications.shared.clearBastards(context: context)
         } else {
             context.performAndWait {
                 self.syncTasks()
                 self.syncProjects()
                 self.syncNotifications()
+                LocalNotifications.shared.clearBastards(context: context)
             }
         }
 

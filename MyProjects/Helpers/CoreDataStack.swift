@@ -12,8 +12,7 @@ import UIKit
 
 class CoreDataStack {
     let appTransactionAuthorName: String
-    
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         
         // Create a container that can load CloudKit-backed stores
@@ -218,9 +217,7 @@ extension CoreDataStack {
     }
     
     func processChangedNotifications(notifications: [ChangedNotification]) {
-        //print("###PROCESS NOT")
         let taskContext = persistentContainer.newBackgroundContext()
-        
         taskContext.performAndWait {
             notifications.forEach { notification in
                 self.processNotification(notificationID: notification.objectID, changeType: notification.changeType, performingContext: taskContext)
@@ -233,9 +230,7 @@ extension CoreDataStack {
     func processNotification(notificationID: NSManagedObjectID, changeType: NSPersistentHistoryChangeType, performingContext: NSManagedObjectContext) {
         guard let mNotification = performingContext.object(with: notificationID) as? MNotification else { return }
         
-        if changeType == .delete {
-            mNotification.deleteFromIOS(clearFireDate: false)
-        } else {
+        if changeType != .delete {
             mNotification.createOnIOSIfNear(clearFireDate: false)
         }
     }
@@ -283,7 +278,6 @@ extension CoreDataStack {
         guard var duplicatedMTasks = try? performingContext.fetch(fetchRequest), duplicatedMTasks.count > 1 else {
             return
         }
-        //print("###\(#function): Deduplicating task with name: \(mTask.wrappedName), count: \(duplicatedMTasks.count)")
         
         duplicatedMTasks.sort {
             $0.wrappedCreated < $1.wrappedCreated
