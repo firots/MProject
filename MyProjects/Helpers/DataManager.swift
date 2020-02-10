@@ -60,7 +60,7 @@ class DataManager: Operation {
         
         fetchRequest.predicate = notificationPredicate
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.fetchLimit = 64
+        fetchRequest.fetchLimit = 32
         
         do {
             var notifications = try context.fetch(fetchRequest)

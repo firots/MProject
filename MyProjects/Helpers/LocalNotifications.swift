@@ -70,6 +70,8 @@ class LocalNotifications: NSObject {
                 nextFireDate.addHours(-model.repeatPeriod)
                 if model.isNextFireDateValid(for: nextFireDate) {
                     create(id: subID, title: model.wrappedTitle, message: model.wrappedMessage, date: nextFireDate)
+                } else {
+                    delete(id: subID)
                 }
             }
         } else {
@@ -83,7 +85,7 @@ class LocalNotifications: NSObject {
     }
     
     
-    func getExistingRequests()  {
+    /*func getExistingRequests()  {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests(completionHandler: { requests in
             
@@ -101,10 +103,10 @@ class LocalNotifications: NSObject {
                 }
             }
         })
-    }
+    }*/
     
     func create(id: UUID, title: String, message: String, date: Date) {
-        print("##CREATE \(date.toRelative())")
+        //print("##CREATE \(date.toRelative())")
         let content = UNMutableNotificationContent()
         content.title = title
     
@@ -133,8 +135,10 @@ class LocalNotifications: NSObject {
     }
 }
 
-struct NotificationRequest {
+struct NotificationCandidate {
     let id: String
+    let title: String
+    let message: String
     let date: Date
 }
 

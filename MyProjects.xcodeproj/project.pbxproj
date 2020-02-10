@@ -45,6 +45,7 @@
 		764F94D023D34EF2008C0D09 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764F94CF23D34EF2008C0D09 /* DateTimePicker.swift */; };
 		765BA58623C2313E007F835D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58523C2313E007F835D /* Date+ToString.swift */; };
 		765BA58823C236E5007F835D /* String+EmptyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765BA58723C236E5007F835D /* String+EmptyHolder.swift */; };
+		76687D1C23F1DBE80059C7A3 /* MNotification+GetCandidates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76687D1B23F1DBE80059C7A3 /* MNotification+GetCandidates.swift */; };
 		766FE81223D0BE3D0055180B /* MNotification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */; };
 		766FE81323D0BE3D0055180B /* MNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */; };
 		766FE81623D0C82B0055180B /* MNotification+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766FE81523D0C82B0055180B /* MNotification+Create.swift */; };
@@ -149,6 +150,7 @@
 		764F94CF23D34EF2008C0D09 /* DateTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
 		765BA58523C2313E007F835D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		765BA58723C236E5007F835D /* String+EmptyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyHolder.swift"; sourceTree = "<group>"; };
+		76687D1B23F1DBE80059C7A3 /* MNotification+GetCandidates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+GetCandidates.swift"; sourceTree = "<group>"; };
 		766FE81023D0BE3D0055180B /* MNotification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataClass.swift"; sourceTree = "<group>"; };
 		766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		766FE81523D0C82B0055180B /* MNotification+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MNotification+Create.swift"; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				766FE81123D0BE3D0055180B /* MNotification+CoreDataProperties.swift */,
 				766FE81523D0C82B0055180B /* MNotification+Create.swift */,
 				76D6232423F0FC4700620BFB /* MNotification+GetActiveNotifications.swift */,
+				76687D1B23F1DBE80059C7A3 /* MNotification+GetCandidates.swift */,
 			);
 			path = MNotification;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 			files = (
 				76C9589323E1FAA7007EBC63 /* Settings.swift in Sources */,
 				7602C62223E0C87A00DECF0B /* MObjectFilterContainer.swift in Sources */,
+				76687D1C23F1DBE80059C7A3 /* MNotification+GetCandidates.swift in Sources */,
 				7681B68823C3B3360068254B /* MTask+CreateOrSync.swift in Sources */,
 				7625E11723C4F6E000F81CCA /* AddMObjectViewModel.swift in Sources */,
 				76FD61CC23B9335100D21B21 /* AddProjectView.swift in Sources */,
@@ -874,7 +878,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyProjects/MyProjects.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"MyProjects/Preview Content\"";
 				DEVELOPMENT_TEAM = 64LWD834U3;
 				ENABLE_PREVIEWS = YES;
@@ -898,7 +902,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyProjects/MyProjects.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"MyProjects/Preview Content\"";
 				DEVELOPMENT_TEAM = 64LWD834U3;
 				ENABLE_PREVIEWS = YES;
