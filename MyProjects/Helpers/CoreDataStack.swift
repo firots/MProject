@@ -230,7 +230,7 @@ extension CoreDataStack {
     func processNotification(notificationID: NSManagedObjectID, changeType: NSPersistentHistoryChangeType, performingContext: NSManagedObjectContext) {
         guard let mNotification = performingContext.object(with: notificationID) as? MNotification else { return }
         
-        if changeType == .insert {
+        if changeType != .delete {
             mNotification.createOnIOSIfNear(clearFireDate: false)
         }
     }
@@ -296,12 +296,21 @@ extension CoreDataStack {
         duplicatedMTasks.forEach { mTask in
             defer { performingContext.deleteWithChilds(mTask) }
             
+            
             for notification in mTask.notifications {
-                notification.createOnIOSIfNear(clearFireDate: true)
+                notification.deleteFromIOS(clearFireDate: false)
             }
+        
             /*guard let project = mTask.project else { return }
             project.task?.removeObjk
             winner.project = project*/
         }
+        
+        var notificationCandidates = [NotificationCandidate]()
+        for notification in winner.notifications {
+            notificationCandidates.append(contentsOf: notification.getCandidates())
+        }
+         
+         LocalNotifications.shared.create(from: notificationCandidates)
     }
 }

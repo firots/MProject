@@ -60,6 +60,33 @@ class DataManager: Operation {
         
         fetchRequest.predicate = notificationPredicate
         fetchRequest.sortDescriptors = [sort]
+        fetchRequest.fetchLimit = 64
+        
+        do {
+            var notifications = try context.fetch(fetchRequest)
+            notifications.reverse()
+            var notificationCandidates = [NotificationCandidate]()
+            
+            for notification in notifications {
+                notificationCandidates.append(contentsOf: notification.getCandidates())
+                if isCancelled {
+                    return
+                }
+            }
+            
+            LocalNotifications.shared.create(from: notificationCandidates)
+
+        } catch {
+            fatalError("Unable to fetch notifications.")
+        }
+    }
+    
+    /*func syncNotifications() {
+        let fetchRequest: NSFetchRequest<MNotification> = MNotification.fetchRequest()
+        let sort = NSSortDescriptor(key: #keyPath(MNotification.nextFireDate), ascending: true)
+        
+        fetchRequest.predicate = notificationPredicate
+        fetchRequest.sortDescriptors = [sort]
         fetchRequest.fetchLimit = 32
         
         do {
@@ -75,7 +102,7 @@ class DataManager: Operation {
         } catch {
             fatalError("Unable to fetch notifications.")
         }
-    }
+    }*/
 
     override func main() {
         syncAll()

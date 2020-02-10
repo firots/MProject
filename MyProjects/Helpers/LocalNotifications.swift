@@ -24,10 +24,12 @@ class LocalNotifications: NSObject {
     }
     
     func delete(id: UUID) {
+        print("@@@DELETE \(id)")
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
     func delete(id: String) {
+        print("@@@DELETE \(id)")
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
     
@@ -53,60 +55,39 @@ class LocalNotifications: NSObject {
         })
     }
     
-    let maxHourlyCreation = 12
-    
-    func create(from model: MNotification) {
-        guard let id = model.id else { return }
-        guard let date = model.nextFireDate else { return }
-        if model.wrappedRepeatMode == .hour {
-            if model.subID.isEmpty {
-                for _ in 1...maxHourlyCreation {
-                    model.subID.append(UUID())
+    func create(from candidates: [NotificationCandidate]) {
+        if candidates.isEmpty { return }
+        let center = UNUserNotificationCenter.current()
+
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            var activeRequests = requests.compactMap { $0.getCandidate() }
+            for activeRequest in activeRequests {
+                if candidates.contains(activeRequest) {
+                    activeRequests.removeAll(where: { $0 == activeRequest })
                 }
             }
-            var nextFireDate = date
-            nextFireDate.addHours((maxHourlyCreation + 1) * model.repeatPeriod)
-            for subID in model.subID {
-                nextFireDate.addHours(-model.repeatPeriod)
-                if model.isNextFireDateValid(for: nextFireDate) {
-                    create(id: subID, title: model.wrappedTitle, message: model.wrappedMessage, date: nextFireDate)
-                } else {
-                    delete(id: subID)
-                }
+            
+            var newCandidates: [NotificationCandidate] = candidates + activeRequests
+            
+            newCandidates.sort {
+                $0.date < $1.date
             }
-        } else {
-            for subID in model.subID {
-                delete(id: subID)
+            
+            newCandidates = Array(newCandidates.prefix(64))
+            
+            newCandidates.reverse()
+            
+            for (i, candidate) in newCandidates.enumerated() {
+                if i >= 64 { return }
+                self.create(id: candidate.id, title: candidate.title, message: candidate.message, date: candidate.date)
             }
-            model.subID.removeAll()
-        }
-        
-        create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
+            
+        })
     }
     
     
-    /*func getExistingRequests()  {
-        let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests(completionHandler: { requests in
-            
-            if requests.count < 64 {
-                var existingRequests = [NotificationRequest]()
-                for request in requests {
-                    if let calendarTrigger = request.trigger as? UNCalendarNotificationTrigger, let nextTriggerDate = calendarTrigger.nextTriggerDate() {
-                        let req = NotificationRequest(id: request.identifier, date: nextTriggerDate)
-                        existingRequests.append(req)
-                    }
-                }
-                
-                existingRequests.sort {
-                    $0.date < $1.date
-                }
-            }
-        })
-    }*/
-    
-    func create(id: UUID, title: String, message: String, date: Date) {
-        //print("##CREATE \(date.toRelative())")
+    func create(id: String, title: String, message: String, date: Date) {
+        print("@@@CREATE \(date.toRelative()) \(message)")
         let content = UNMutableNotificationContent()
         content.title = title
     
@@ -117,29 +98,37 @@ class LocalNotifications: NSObject {
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
 
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: id.uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
 
-        // add our notification request
         UNUserNotificationCenter.current().add(request)
     }
     
     func register() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            /*if success {
-                
-            } else if let error = error {
-                
-            }*/
+
         }
     }
 }
 
-struct NotificationCandidate {
+extension UNNotificationRequest {
+    func getCandidate() -> NotificationCandidate? {
+        guard let calendarTrigger = self.trigger as? UNCalendarNotificationTrigger, let triggerDate = calendarTrigger.nextTriggerDate() else { return nil }
+        
+        let candidate = NotificationCandidate(id: self.identifier, title: self.content.title, message: self.content.body, date: triggerDate)
+        
+        return candidate
+    }
+}
+
+struct NotificationCandidate: Identifiable, Equatable {
     let id: String
     let title: String
     let message: String
     let date: Date
+    
+    static func ==(lhs: NotificationCandidate, rhs: NotificationCandidate) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 extension LocalNotifications: UNUserNotificationCenterDelegate {

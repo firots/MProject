@@ -8,8 +8,6 @@
 
 import Foundation
 
-let maxHourlyCreation = 12
-
 extension MNotification {
     func getCandidates() -> [NotificationCandidate] {
         
@@ -19,7 +17,7 @@ extension MNotification {
         
         func createSubIDs() {
             if subID.isEmpty {
-                for _ in 1...maxHourlyCreation {
+                for _ in 1...48 {
                     subID.append(UUID())
                 }
             }

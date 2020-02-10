@@ -24,9 +24,11 @@ extension MObject {
     }
     
     func createNotificationsOnIOS() {
+        var candidates = [NotificationCandidate]()
         for notification in notifications {
-            notification.createOnIOSIfNear(clearFireDate: true)
+            candidates.append(contentsOf: notification.getCandidates())
         }
+        LocalNotifications.shared.create(from: candidates)
     }
     
     func createActivationNotificationsOnIOS() {

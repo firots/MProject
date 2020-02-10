@@ -34,7 +34,7 @@ extension MNotification {
         //print("###CREATE ON IOS IF NEAR \(self.message)")
         guard let nextFireDate = self.nextFireDate else { return }
         if isNextFireDateValid(for: nextFireDate) {
-            LocalNotifications.shared.create(from: self)
+            LocalNotifications.shared.create(from: self.getCandidates())
         } else {
             if clearFireDate {
                 self.nextFireDate = nil
