@@ -12,6 +12,7 @@ let maxHourlyCreation = 12
 
 extension MNotification {
     func getCandidates() -> [NotificationCandidate] {
+        
         var candidates = [NotificationCandidate]()
         
         guard let nextFireDate = self.nextFireDate else { return candidates }
@@ -30,7 +31,6 @@ extension MNotification {
             }
             subID.removeAll()
         }
-        
         
         func createSubCandidates() {
             createSubIDs()
@@ -52,8 +52,6 @@ extension MNotification {
             
             candidates.append(candidate)
         }
-        
-
         
         if !isNextFireDateValid(for: nextFireDate) {
             self.nextFireDate = nil
