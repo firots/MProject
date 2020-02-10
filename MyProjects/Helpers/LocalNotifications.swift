@@ -33,7 +33,6 @@ class LocalNotifications: NSObject {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
     
-
     func clearBastards(context: NSManagedObjectContext) {
         let center = UNUserNotificationCenter.current()
 
@@ -50,7 +49,7 @@ class LocalNotifications: NSObject {
                 }
             }
             for request in notificationsToDelete {
-                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                self.delete(id: request.identifier)
             }
         })
     }
@@ -61,6 +60,7 @@ class LocalNotifications: NSObject {
 
         center.getPendingNotificationRequests(completionHandler: { requests in
             var activeRequests = requests.compactMap { $0.getCandidate() }
+            
             for activeRequest in activeRequests {
                 if candidates.contains(activeRequest) {
                     activeRequests.removeAll(where: { $0 == activeRequest })
@@ -76,9 +76,8 @@ class LocalNotifications: NSObject {
             newCandidates = Array(newCandidates.prefix(64))
             
             newCandidates.reverse()
-            
-            for (i, candidate) in newCandidates.enumerated() {
-                if i >= 64 { return }
+
+            for candidate in newCandidates {
                 self.create(id: candidate.id, title: candidate.title, message: candidate.message, date: candidate.date)
             }
             
