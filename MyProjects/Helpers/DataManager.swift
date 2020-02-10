@@ -80,29 +80,6 @@ class DataManager: Operation {
             fatalError("Unable to fetch notifications.")
         }
     }
-    
-    /*func syncNotifications() {
-        let fetchRequest: NSFetchRequest<MNotification> = MNotification.fetchRequest()
-        let sort = NSSortDescriptor(key: #keyPath(MNotification.nextFireDate), ascending: true)
-        
-        fetchRequest.predicate = notificationPredicate
-        fetchRequest.sortDescriptors = [sort]
-        fetchRequest.fetchLimit = 32
-        
-        do {
-            var notifications = try context.fetch(fetchRequest)
-            notifications.reverse()
-            for notification in notifications {
-                if isCancelled {
-                    return
-                }
-                notification.createOnIOSIfNear(clearFireDate: true)
-            }
-
-        } catch {
-            fatalError("Unable to fetch notifications.")
-        }
-    }*/
 
     override func main() {
         syncAll()

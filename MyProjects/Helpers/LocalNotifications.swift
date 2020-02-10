@@ -19,17 +19,17 @@ class LocalNotifications: NSObject {
     }
     
     func deleteAll() {
-        //print("DELETE ALL NOTIFICATIONS ON IOS")
+        print("DELETE ALL NOTIFICATIONS ON IOS")
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func delete(id: UUID) {
-        print("@@@DELETE \(id)")
+        //print("@@@DELETE \(id)")
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
     func delete(id: String) {
-        print("@@@DELETE \(id)")
+        //print("@@@DELETE \(id)")
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
     
@@ -86,7 +86,7 @@ class LocalNotifications: NSObject {
     
     
     func create(id: String, title: String, message: String, date: Date) {
-        print("@@@CREATE \(date.toRelative()) \(message)")
+        //print("@@@CREATE \(date.toRelative()) \(message)")
         let content = UNMutableNotificationContent()
         content.title = title
     

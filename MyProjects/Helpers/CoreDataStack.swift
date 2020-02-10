@@ -219,9 +219,17 @@ extension CoreDataStack {
     func processChangedNotifications(notifications: [ChangedNotification]) {
         let taskContext = persistentContainer.newBackgroundContext()
         taskContext.performAndWait {
+            var candidates = [NotificationCandidate]()
             notifications.forEach { notification in
-                self.processNotification(notificationID: notification.objectID, changeType: notification.changeType, performingContext: taskContext)
+                //self.processNotification(notificationID: notification.objectID, changeType: notification.changeType, performingContext: taskContext)
+                
+                if let mNotification = taskContext.object(with: notification.objectID) as? MNotification, notification.changeType != .delete {
+                    candidates.append(contentsOf: mNotification.getCandidates())
+                }
             }
+            
+            LocalNotifications.shared.create(from: candidates)
+            
             // Save the background context to trigger a notification and merge the result into the viewContext.
             try? taskContext.save()
         }
