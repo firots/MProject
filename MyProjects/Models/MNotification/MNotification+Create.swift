@@ -12,6 +12,8 @@ import CoreData
 extension MNotification {
     static func createOrSync(from viewModel: AddNotificationViewModel?, context moc: NSManagedObjectContext) -> MNotification {
         let notification = viewModel?.mNotification ?? createBase(context: moc, model: viewModel)
+        notification.nextFireDate = nil
+        
         if let viewModel = viewModel {
             notification.message = viewModel.message
             notification.title = viewModel.title
@@ -22,6 +24,7 @@ extension MNotification {
             } else {
                 viewModel.repeatModeConfiguration.bind(to: notification)
             }
+            
             notification.setNextFireDate()
         }
         return notification

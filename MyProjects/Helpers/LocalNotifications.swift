@@ -27,6 +27,10 @@ class LocalNotifications: NSObject {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
+    func delete(id: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+    }
+    
 
     func clearBastards(context: NSManagedObjectContext) {
         let center = UNUserNotificationCenter.current()
@@ -49,20 +53,21 @@ class LocalNotifications: NSObject {
         })
     }
     
+    let maxHourlyCreation = 12
+    
     func create(from model: MNotification) {
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
-        create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
-    
         if model.wrappedRepeatMode == .hour {
             if model.subID.isEmpty {
-                for _ in 1...9 {
+                for _ in 1...maxHourlyCreation {
                     model.subID.append(UUID())
                 }
             }
             var nextFireDate = date
+            nextFireDate.addHours((maxHourlyCreation + 1) * model.repeatPeriod)
             for subID in model.subID {
-                nextFireDate.addHours(model.repeatPeriod)
+                nextFireDate.addHours(-model.repeatPeriod)
                 if model.isNextFireDateValid(for: nextFireDate) {
                     create(id: subID, title: model.wrappedTitle, message: model.wrappedMessage, date: nextFireDate)
                 }
@@ -74,10 +79,32 @@ class LocalNotifications: NSObject {
             model.subID.removeAll()
         }
         
+        create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
     }
     
-    func create(id: UUID, title: String, message: String, date: Date) { /* burda akıllı bişey yap limit doluysa ve benden onde olan varsa ekleme */
-        //print("##CREATE ON IOS \(date.toRelative())")
+    
+    func getExistingRequests()  {
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            
+            if requests.count < 64 {
+                var existingRequests = [NotificationRequest]()
+                for request in requests {
+                    if let calendarTrigger = request.trigger as? UNCalendarNotificationTrigger, let nextTriggerDate = calendarTrigger.nextTriggerDate() {
+                        let req = NotificationRequest(id: request.identifier, date: nextTriggerDate)
+                        existingRequests.append(req)
+                    }
+                }
+                
+                existingRequests.sort {
+                    $0.date < $1.date
+                }
+            }
+        })
+    }
+    
+    func create(id: UUID, title: String, message: String, date: Date) {
+        print("##CREATE \(date.toRelative())")
         let content = UNMutableNotificationContent()
         content.title = title
     
@@ -104,6 +131,11 @@ class LocalNotifications: NSObject {
             }*/
         }
     }
+}
+
+struct NotificationRequest {
+    let id: String
+    let date: Date
 }
 
 extension LocalNotifications: UNUserNotificationCenterDelegate {

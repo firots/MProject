@@ -41,11 +41,11 @@ struct NotificationsView: View {
             Text(notification.repeatModeConfiguration.wrappedRepeatMode != .none ? notification.repeatModeConfiguration.repeatText :
                 notification.date.toRelative())
                 .foregroundColor(Color(.secondaryLabel))
-        }/*.onTapGesture {
+        }.onTapGesture {
             self.model.isNew = false
             self.model.notificationToAdd = notification
             self.modalAction?()
-        }*/
+        }
     }
     
     func addNotificationButton() -> some View {
