@@ -27,55 +27,36 @@ class LocalNotifications: NSObject {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id.uuidString])
     }
     
-    func isExist(notification: MNotification, request: UNNotificationRequest) -> Bool {
-        guard let nextFireDate = notification.nextFireDate else { return false }
-        guard let calendarTrigger = request.trigger as? UNCalendarNotificationTrigger, let nextTriggerDate = calendarTrigger.nextTriggerDate() else { return false }
-        if notification.wrappedID.uuidString == request.identifier && nextFireDate.minutesPassed(from: nextTriggerDate) < 1 {
-            return true
-        }
-        return false
-    }
-    
-    func createIfNotExist(from model: MNotification) {
-        /* to do check for repeatintervals */
-        let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests(completionHandler: { requests in
-            for request in requests {
-                if self.isExist(notification: model, request: request) {
-                    return
-                }
-            }
-            self.create(from: model)
-        })
-    }
-    
     func create(from model: MNotification) {
-        //print("###CREATED ON IOS IF NEAR \(model.message)")
+        //print("###CREATED ON IOS from model \(model.message)")
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
         create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
         
-        for subID in model.subID {
-            delete(id: subID)
-        }
-    
-        model.subID.removeAll()
+
         
         if model.wrappedRepeatMode == .hour {
+            if model.subID.isEmpty {
+                //print("###CREATING NEW UUID LIST \(model.message)")
+                model.subID = [UUID](repeating: UUID(), count: 36)
+            }
             var nextFireDate = date
-            for _ in 1...36 {
+            for subID in model.subID {
                 nextFireDate.addHours(model.repeatPeriod)
                 if model.isNextFireDateValid(for: nextFireDate) {
-                    let subID = UUID()
                     create(id: subID, title: model.wrappedTitle, message: model.wrappedMessage, date: nextFireDate)
-                    model.subID.append(subID)
                 }
             }
+        } else {
+            for subID in model.subID {
+                delete(id: subID)
+            }
+            model.subID.removeAll()
         }
     }
     
     func create(id: UUID, title: String, message: String, date: Date) {
-        //print("CREATED ON IOS \(date.toRelative())")
+        //print("### CREATED ON IOS \(date.toRelative())")
         
         let content = UNMutableNotificationContent()
         content.title = title

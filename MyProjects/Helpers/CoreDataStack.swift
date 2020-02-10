@@ -218,7 +218,7 @@ extension CoreDataStack {
     }
     
     func processChangedNotifications(notifications: [ChangedNotification]) {
-        print("###PROCESS NOT")
+        //print("###PROCESS NOT")
         let taskContext = persistentContainer.newBackgroundContext()
         
         taskContext.performAndWait {

@@ -47,8 +47,10 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
                     ForEach(results, id: \.self) { result in
                         self.contentView(result)
                     }.onDelete(perform: removeItems)
-                }.listStyle(GroupedListStyle())
-                        .id(listID)
+                }
+                .listStyle(GroupedListStyle())
+                .id(listID)
+ 
 
             } else {
                 PlaceholderView(model: placeholder)
