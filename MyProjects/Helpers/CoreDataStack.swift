@@ -230,7 +230,7 @@ extension CoreDataStack {
     func processNotification(notificationID: NSManagedObjectID, changeType: NSPersistentHistoryChangeType, performingContext: NSManagedObjectContext) {
         guard let mNotification = performingContext.object(with: notificationID) as? MNotification else { return }
         
-        if changeType != .delete {
+        if changeType == .insert {
             mNotification.createOnIOSIfNear(clearFireDate: false)
         }
     }

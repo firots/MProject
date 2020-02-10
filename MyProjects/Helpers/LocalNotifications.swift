@@ -79,7 +79,7 @@ class LocalNotifications: NSObject {
     }
     
     func create(id: UUID, title: String, message: String, date: Date) {
-        
+        //print("##CREATE ON IOS \(date.toRelative())")
         let content = UNMutableNotificationContent()
         content.title = title
     
