@@ -53,12 +53,10 @@ class LocalNotifications: NSObject {
         guard let id = model.id else { return }
         guard let date = model.nextFireDate else { return }
         create(id: id, title: model.wrappedTitle, message: model.wrappedMessage, date: date)
-        
-
-        
+    
         if model.wrappedRepeatMode == .hour {
             if model.subID.isEmpty {
-                for _ in 1...36 {
+                for _ in 1...9 {
                     model.subID.append(UUID())
                 }
             }
@@ -78,7 +76,7 @@ class LocalNotifications: NSObject {
         
     }
     
-    func create(id: UUID, title: String, message: String, date: Date) {
+    func create(id: UUID, title: String, message: String, date: Date) { /* burda akıllı bişey yap limit doluysa ve benden onde olan varsa ekleme */
         //print("##CREATE ON IOS \(date.toRelative())")
         let content = UNMutableNotificationContent()
         content.title = title

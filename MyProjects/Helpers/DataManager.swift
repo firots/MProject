@@ -60,9 +60,11 @@ class DataManager: Operation {
         
         fetchRequest.predicate = notificationPredicate
         fetchRequest.sortDescriptors = [sort]
+        fetchRequest.fetchLimit = 64
         
         do {
-            let notifications = try context.fetch(fetchRequest)
+            var notifications = try context.fetch(fetchRequest)
+            notifications.reverse()
             for notification in notifications {
                 if isCancelled {
                     return
