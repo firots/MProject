@@ -39,6 +39,7 @@ class Settings: Codable {
     
     static var shared = Settings()
     
+    
     static func load() {
         let defaults = UserDefaults.standard
         if let savedSettings = defaults.object(forKey: "Settings") as? Data {
