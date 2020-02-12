@@ -31,6 +31,8 @@ extension MTask {
     func clone(force: Bool) -> MTask? {
         guard let context = self.managedObjectContext else { return nil }
         
+        guard let nextFireDate = self.nextFireDate else { return nil }
+        
         let viewModel = AddTaskViewModel(self, self.project, pCellViewModel: nil)
         
         for step in viewModel.stepsModel.steps {
@@ -40,13 +42,13 @@ extension MTask {
         }
         
         if viewModel.repeatModeConfiguration.wrappedRepeatMode != .none {
-            viewModel.repeatModeConfiguration.repeatStartDate = self.nextFireDate ?? Date()
+            viewModel.repeatModeConfiguration.repeatStartDate = nextFireDate
         }
         
         viewModel.statusIndex = MObjectStatus.active.rawValue
         
         
-        var hourDiff = (self.nextFireDate ?? Date()).hoursPassed(from: self.repeatStartDate)
+        var hourDiff = nextFireDate.hoursPassed(from: self.repeatStartDate)
         
         if hourDiff == 0 {
             if repeatMode == RepeatMode.hour.rawValue {
@@ -54,8 +56,7 @@ extension MTask {
             }
         }
         
-        viewModel.started = self.started
-        viewModel.started?.addHours(hourDiff)
+        viewModel.started = self.nextFireDate
         
         for notification in viewModel.notificationsModel.notifications {
             notification.mNotification = nil

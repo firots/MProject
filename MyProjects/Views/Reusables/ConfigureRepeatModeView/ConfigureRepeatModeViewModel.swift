@@ -76,7 +76,7 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
         
         let now = Date()
         
-        if let startDate = notification?.repeatStartDate {
+        if let startDate = notification?.repeatStartDate, notification?.repeatMode != RepeatMode.none.rawValue {
             repeatStartDate = startDate
         } else {
             var startDate = now.withZeroSeconds()

@@ -33,12 +33,14 @@ struct DateTimePicker: View {
     }
 }
 
-struct DateTimePickerLimitless: View {
+struct DateTimePickerLast24: View {
     @Binding var date: Date
     
     var body: some View {
-        Group {
-            DatePicker(selection: $date, displayedComponents: .date) {
+        var minDate = Date()
+        minDate.addHours(-24)
+        return Group {
+            DatePicker(selection: $date, in: minDate..., displayedComponents: .date) {
                 Group {
                     CellImageView(systemName: "calendar.circle.fill")
                     Text("Start Date")
@@ -46,7 +48,7 @@ struct DateTimePickerLimitless: View {
             }
             .accentColor(Color(.systemPurple))
 
-            DatePicker(selection: $date, displayedComponents: .hourAndMinute) {
+            DatePicker(selection: $date, in: minDate..., displayedComponents: .hourAndMinute) {
                 Group {
                     CellImageView(systemName: "clock.fill")
                     Text("Start Time")

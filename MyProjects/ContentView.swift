@@ -56,6 +56,10 @@ struct ContentView: View {
             let dm = DataManager(isViewContext: false)
             dm.start()
         }
+        .onAppear() {
+            let dm = DataManager(isViewContext: true)
+            dm.start()
+        }
     }
 }
 

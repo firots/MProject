@@ -27,7 +27,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     func mainSection() -> some View {
         Group {
             Section(footer: Text(mainSectionFooter)) {
-                DateTimePickerLimitless(date: $model.repeatStartDate)
+                DateTimePickerLast24(date: $model.repeatStartDate)
             }
             
             if model.repeatMode == RepeatMode.hour.rawValue {
