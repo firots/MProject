@@ -161,7 +161,7 @@ extension CoreDataStack {
             
             // Fetch history received from outside the app since the last token
             let historyFetchRequest = NSPersistentHistoryTransaction.fetchRequest!
-            historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
+            //historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
             let request = NSPersistentHistoryChangeRequest.fetchHistory(after: lastHistoryToken)
             request.fetchRequest = historyFetchRequest
 
