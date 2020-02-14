@@ -27,10 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
 
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
+        /*BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
             // Downcast the parameter to a processing task as this identifier is used for a processing request.
             self.handleDatabaseCleaning(task: task as! BGProcessingTask)
-        }
+        }*/
         
         registerBackgroundMode()
 
@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.scheduleAppRefresh()
     }
     
-    func scheduleDatabaseCleaning() {
+    /*func scheduleDatabaseCleaning() {
         let request = BGProcessingTaskRequest(identifier: "com.firot.MyProjects.db_organizer")
         request.requiresNetworkConnectivity = false
         request.requiresExternalPower = true
@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queue.addOperation(cleanDatabaseOperation)
         
         scheduleDatabaseCleaning()
-    }
+    }*/
     
     
     

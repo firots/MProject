@@ -4,7 +4,6 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>com.firot.MyProjects.db_organizer</string>
 		<string>com.firot.MyProjects.refresh</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
@@ -47,7 +46,6 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
-		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
