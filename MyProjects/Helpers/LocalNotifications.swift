@@ -86,7 +86,7 @@ class LocalNotifications: NSObject {
     
     
     func create(id: String, title: String, message: String, date: Date) {
-        print("@@@CREATE \(date.toRelative()) \(message)")
+        //print("@@@CREATE \(date.toRelative()) \(message)")
         let content = UNMutableNotificationContent()
         content.title = title
     

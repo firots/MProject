@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension MTask {
-    public func repeatIfNeeded(force: Bool, context: NSManagedObjectContext) {
+    public func repeatIfNeeded(force: Bool, context: NSManagedObjectContext, count: Int) {
         if wrappedRepeatMode == .none { return } //not repeating type
         
         if repeated == true { return } //already has repeated task
@@ -23,8 +23,8 @@ extension MTask {
         
         let repeatedTask = self.clone(force: force)
         
-        if force == false {
-            repeatedTask?.repeatIfNeeded(force: false, context: context)
+        if force == false && count < 50 {
+            repeatedTask?.repeatIfNeeded(force: false, context: context, count: count + 1)
         }
     }
     

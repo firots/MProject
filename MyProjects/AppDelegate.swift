@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UITableView.appearance().backgroundColor = .clear
 
             UISegmentedControl.appearance().backgroundColor = .clear
-            
-            //let dm = DataManager(isViewContext: true)
-            //dm.start()
         }
 
 

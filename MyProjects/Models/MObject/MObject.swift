@@ -71,7 +71,7 @@ extension MObject {
             if let task = self as? MTask {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     if let context = self.managedObjectContext {
-                        task.repeatIfNeeded(force: true, context: context )
+                        task.repeatIfNeeded(force: true, context: context, count: 1 )
                     }
                 }
             }

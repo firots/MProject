@@ -12,6 +12,8 @@ import UIKit
 
 class CoreDataStack {
     let appTransactionAuthorName: String
+    
+    var dataManagerFired = false
 
     lazy var persistentContainer: NSPersistentContainer = {
         
@@ -48,7 +50,7 @@ class CoreDataStack {
         NotificationCenter.default.addObserver(
             self, selector: #selector(type(of: self).storeRemoteChange(_:)),
             name: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator)
-        
+    
         return container
     }()
     
@@ -141,12 +143,20 @@ extension CoreDataStack {
      */
     @objc
     func storeRemoteChange(_ notification: Notification) {
-        //print("###\(#function): Merging changes from the other persistent store coordinator.")
+        print("###\(#function): Merging changes from the other persistent store coordinator.")
         
         // Process persistent history to merge changes from other coordinators.
         historyQueue.addOperation {
             self.processPersistentHistory()
         }
+        
+        
+        if dataManagerFired == false {
+            dataManagerFired = true
+            let dataManager = DataManager(context: persistentContainer.newBackgroundContext(), text: "coredatastack")
+            historyQueue.addOperation(dataManager)
+        }
+
     }
 }
 
@@ -161,7 +171,7 @@ extension CoreDataStack {
             
             // Fetch history received from outside the app since the last token
             let historyFetchRequest = NSPersistentHistoryTransaction.fetchRequest!
-            //historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
+            historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
             let request = NSPersistentHistoryChangeRequest.fetchHistory(after: lastHistoryToken)
             request.fetchRequest = historyFetchRequest
 
@@ -221,8 +231,6 @@ extension CoreDataStack {
         taskContext.performAndWait {
             var candidates = [NotificationCandidate]()
             notifications.forEach { notification in
-                //self.processNotification(notificationID: notification.objectID, changeType: notification.changeType, performingContext: taskContext)
-                
                 if let mNotification = taskContext.object(with: notification.objectID) as? MNotification, notification.changeType != .delete {
                     candidates.append(contentsOf: mNotification.getCandidates())
                 }
@@ -232,14 +240,6 @@ extension CoreDataStack {
             
             // Save the background context to trigger a notification and merge the result into the viewContext.
             try? taskContext.save()
-        }
-    }
-    
-    func processNotification(notificationID: NSManagedObjectID, changeType: NSPersistentHistoryChangeType, performingContext: NSManagedObjectContext) {
-        guard let mNotification = performingContext.object(with: notificationID) as? MNotification else { return }
-        
-        if changeType != .delete {
-            mNotification.createOnIOSIfNear(clearFireDate: false)
         }
     }
 }

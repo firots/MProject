@@ -17,41 +17,21 @@ class DataManager: Operation {
     var taksDeduplicatePredicate: NSPredicate? = nil
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     static var shared: DataManager?
-    var text: String?
-    var isViewContext: Bool
-    
-    init(isViewContext: Bool) {
-        if isViewContext {
-            context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.viewContext
-        } else {
-            context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.newBackgroundContext()
-        }
-        self.isViewContext = isViewContext
+    var text: String
 
-        super.init()
-    }
-    
     init(context: NSManagedObjectContext, text: String) {
-        self.isViewContext = false
         self.context = context
         self.text = text
     }
     
     func syncAll() {
-        if isViewContext {
+        print("###RUNDM \(self.text) \(Date().toRelative())")
+        context.performAndWait {
             self.syncTasks()
             self.syncProjects()
+            LocalNotifications.shared.clearBastards(context: context)
             self.syncNotifications()
-            //LocalNotifications.shared.clearBastards(context: context)
-        } else {
-            context.performAndWait {
-                self.syncTasks()
-                self.syncProjects()
-                self.syncNotifications()
-                LocalNotifications.shared.clearBastards(context: context)
-            }
         }
-
     }
     
     func syncNotifications() {
@@ -68,7 +48,9 @@ class DataManager: Operation {
             var notificationCandidates = [NotificationCandidate]()
             
             for notification in notifications {
-                notificationCandidates.append(contentsOf: notification.getCandidates())
+                if notification.mObject != nil {
+                    notificationCandidates.append(contentsOf: notification.getCandidates())
+                }
                 if isCancelled {
                     return
                 }
@@ -89,15 +71,6 @@ class DataManager: Operation {
                 try? self.context.mSave()
             }
         }
-        
-        /*if text != nil {
-            var now = Date()
-            now.addMinutes(1)
-            
-            LocalNotifications.shared.create(id: UUID(), title: "syncAll called", message: "F: \(self.text ?? "no")", date: now)
-        }*/
-
-        
     }
     
     func syncTasks()  {
