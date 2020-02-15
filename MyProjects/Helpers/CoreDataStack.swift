@@ -151,7 +151,7 @@ extension CoreDataStack {
     @objc
     func storeRemoteChange(_ notification: Notification) {
         if dataManagerFired == false { historyRunCount += 1 }
-        print("###\(#function): Merging changes from the other persistent store coordinator.")
+        //print("###\(#function): Merging changes from the other persistent store coordinator.")
         
         // Process persistent history to merge changes from other coordinators.
         historyQueue.addOperation {
@@ -183,7 +183,7 @@ extension CoreDataStack {
             
             // Fetch history received from outside the app since the last token
             let historyFetchRequest = NSPersistentHistoryTransaction.fetchRequest!
-            historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
+            //historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
             let request = NSPersistentHistoryChangeRequest.fetchHistory(after: lastHistoryToken)
             request.fetchRequest = historyFetchRequest
 

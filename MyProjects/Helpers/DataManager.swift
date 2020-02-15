@@ -25,7 +25,7 @@ class DataManager: Operation {
     }
     
     func syncAll() {
-        print("###RUNDM \(self.text) \(Date().toRelative())")
+        //print("###RUNDM \(self.text) \(Date().toRelative())")
         context.performAndWait {
             self.syncTasks()
             self.syncProjects()
