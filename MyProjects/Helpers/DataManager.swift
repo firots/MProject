@@ -12,7 +12,7 @@ import SwiftUI
 
 class DataManager: Operation {
     private let context: NSManagedObjectContext
-
+    
     var mObjectPredicate = NSPredicate(format: "status < %d", 2)
     var taksDeduplicatePredicate: NSPredicate? = nil
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")

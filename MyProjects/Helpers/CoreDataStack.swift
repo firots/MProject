@@ -12,6 +12,7 @@ import UIKit
 
 class CoreDataStack {
     let appTransactionAuthorName: String
+    var historyRunCount = 0
     
     var dataManagerFired = false
 
@@ -37,6 +38,8 @@ class CoreDataStack {
         
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.transactionAuthor = appTransactionAuthorName
+
+        //try? container.viewContext.setQueryGenerationFrom(.current)
         
         // Pin the viewContext to the current generation token and set it to keep itself up to date with local changes.
         container.viewContext.automaticallyMergesChangesFromParent = true
@@ -53,6 +56,10 @@ class CoreDataStack {
     
         return container
     }()
+    
+    func addObservers() {
+        
+    }
     
     
     /**
@@ -143,6 +150,7 @@ extension CoreDataStack {
      */
     @objc
     func storeRemoteChange(_ notification: Notification) {
+        if dataManagerFired == false { historyRunCount += 1 }
         print("###\(#function): Merging changes from the other persistent store coordinator.")
         
         // Process persistent history to merge changes from other coordinators.
@@ -150,11 +158,15 @@ extension CoreDataStack {
             self.processPersistentHistory()
         }
         
-        
         if dataManagerFired == false {
-            dataManagerFired = true
-            let dataManager = DataManager(context: persistentContainer.newBackgroundContext(), text: "coredatastack")
-            historyQueue.addOperation(dataManager)
+            let hRC = self.historyRunCount
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2.2) {
+                if hRC == self.historyRunCount {
+                    self.dataManagerFired = true
+                    let dataManager = DataManager(context: self.persistentContainer.newBackgroundContext(), text: "coredatastack")
+                    self.historyQueue.addOperation(dataManager)
+                }
+            }
         }
 
     }
