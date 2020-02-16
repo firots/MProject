@@ -80,7 +80,7 @@ struct AddMObjectView: View {
             dueToggle()
             
             if model.hasDeadline {
-                DateTimePicker(date: $model.deadline)
+                DateTimePicker(date: $model.deadline, text: "Date")
             }
         }
     }
@@ -89,7 +89,7 @@ struct AddMObjectView: View {
         Section(footer: Text("\(mObjectName) state will change to active when the auto start date is reached.")) {
             autoStartToggle()
             if model.hasAutoStart {
-                DateTimePicker(date: $model.autoStart)
+                DateTimePicker(date: $model.autoStart, text: "Date")
             }
         }
     }
@@ -100,11 +100,7 @@ struct AddMObjectView: View {
     
     func startDateSection() -> some View {
         Section {
-            HStack {
-                CellImageView(systemName: "calendar.circle.fill")
-                Text("Start Date")
-            }
-            DateTimePicker(date: $model.started)
+            DateTimePicker(date: $model.started, text: "Start Date")
         }
     }
     

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DateTimePicker: View {
     @Binding var date: Date
+    let text: String
     
     
     var body: some View {
@@ -17,7 +18,7 @@ struct DateTimePicker: View {
             DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
                 Group {
                     CellImageView(systemName: "calendar.circle.fill")
-                    Text("Date")
+                    Text(text)
                 }
             }
             .accentColor(Color(.systemPurple))
@@ -35,6 +36,7 @@ struct DateTimePicker: View {
 
 struct DateTimePickerLast24: View {
     @Binding var date: Date
+    let text: String
     
     var body: some View {
         var minDate = Date()
@@ -43,7 +45,7 @@ struct DateTimePickerLast24: View {
             DatePicker(selection: $date, in: minDate..., displayedComponents: .date) {
                 Group {
                     CellImageView(systemName: "calendar.circle.fill")
-                    Text("Start Date")
+                    Text(text)
                 }
             }
             .accentColor(Color(.systemPurple))
@@ -51,7 +53,7 @@ struct DateTimePickerLast24: View {
             DatePicker(selection: $date, in: minDate..., displayedComponents: .hourAndMinute) {
                 Group {
                     CellImageView(systemName: "clock.fill")
-                    Text("Start Time")
+                    Text("Repeat Start Time")
                 }
             }
             .accentColor(Color(.systemPurple))

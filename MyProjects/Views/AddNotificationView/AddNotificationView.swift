@@ -76,7 +76,7 @@ struct AddNotificationView: View {
     
     func oneTimeRepeat() -> some View {
         Section {
-            DateTimePicker(date: $model.date)
+            DateTimePicker(date: $model.date, text: "Send Date")
         }
         
     }

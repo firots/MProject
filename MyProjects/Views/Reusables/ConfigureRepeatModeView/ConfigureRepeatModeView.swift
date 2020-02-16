@@ -27,7 +27,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     func mainSection() -> some View {
         Group {
             Section(footer: Text(mainSectionFooter)) {
-                DateTimePickerLast24(date: $model.repeatStartDate)
+                DateTimePickerLast24(date: $model.repeatStartDate, text: "Repeat Start Date")
             }
             
             if model.repeatMode == RepeatMode.hour.rawValue {
@@ -67,7 +67,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
 
             if model.hasStartStop {
                 Section(header: Text("End Date")) {
-                    DateTimePicker(date: $model.repeatEndDate)
+                    DateTimePicker(date: $model.repeatEndDate, text: "Date")
                 }
             }
         }
