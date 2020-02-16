@@ -19,7 +19,7 @@ class AddMObjectViewModel: ObservableObject {
     @Published var showModal = false
     @Published var autoStart = Date()
     @Published var ended: Date?
-    @Published var started: Date?
+    @Published var started = Date()
     @Published var hasAutoStart = false
     @Published var modalType = ModalType.notes
     @Published var showExpiredWarning = false
@@ -74,7 +74,7 @@ class AddMObjectViewModel: ObservableObject {
         if let o = mObject {
             name = o.name ?? ""
             details = o.details ?? ""
-            started = o.started
+            started = o.started ?? Date()
             ended = o.ended
             self.priority = o.priority
             if let deadline = o.deadline {

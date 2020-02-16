@@ -26,6 +26,8 @@ struct AddMObjectView: View {
             }
             if model.status == .waiting {
                 autoStartSection()
+            } else {
+                startDateSection()
             }
             deadlineSection()
             notifications()
@@ -84,11 +86,25 @@ struct AddMObjectView: View {
     }
     
     func autoStartSection() -> some View {
-        Section() {
+        Section(footer: Text("\(mObjectName) state will change to active when the auto start date is reached.")) {
             autoStartToggle()
             if model.hasAutoStart {
                 DateTimePicker(date: $model.autoStart)
             }
+        }
+    }
+    
+    var mObjectName: String {
+        model is AddTaskViewModel ? "Task": "Project"
+    }
+    
+    func startDateSection() -> some View {
+        Section {
+            HStack {
+                CellImageView(systemName: "calendar.circle.fill")
+                Text("Start Date")
+            }
+            DateTimePicker(date: $model.started)
         }
     }
     

@@ -109,15 +109,12 @@ extension MObject {
         self.name = model.name.emptyIsNil()
         self.details = model.details.emptyIsNil()
         self.priority = model.priority
-        if self.saved == false && model.status == .active  {
-            self.started = model.started ?? Date()
-        }
-        else if model.hasAutoStart == true && model.status == .waiting {
+        if model.hasAutoStart == true && model.status == .waiting {
             self.started = model.autoStart
-        } else if self.wrappedStatus != .active && model.status == .active {
-            self.started = Date()
         } else if model.hasAutoStart == false && model.status == .waiting {
             self.started = nil
+        } else {
+            self.started = model.started
         }
         
         /* set deadline if user set one */

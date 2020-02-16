@@ -56,7 +56,7 @@ extension MTask {
             }
         }
         
-        viewModel.started = self.nextFireDate
+        viewModel.started = nextFireDate
         
         for notification in viewModel.notificationsModel.notifications {
             notification.mNotification = nil
