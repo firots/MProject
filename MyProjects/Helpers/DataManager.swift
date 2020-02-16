@@ -32,6 +32,7 @@ class DataManager: Operation {
             LocalNotifications.shared.clearBastards(context: context)
             self.syncNotifications()
         }
+        //print("###DM FINISH \(self.text) \(Date().toRelative())")
     }
     
     func syncNotifications() {

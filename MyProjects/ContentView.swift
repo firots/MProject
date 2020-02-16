@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    let timer = Timer.publish(every: 45, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 24, on: .main, in: .common).autoconnect()
     
     var body: some View {
         TabView {
@@ -55,15 +55,12 @@ struct ContentView: View {
         .onReceive(timer) { _ in
             self.dataManager()
         }
-        .onAppear() {
-            //self.dataManager()
-        }
     }
     
     func dataManager() {
         let context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.newBackgroundContext()
         
-        DispatchQueue.global().asyncAfter(deadline: .now() + 2.0 ) {
+        DispatchQueue.global().async {
             let dm = DataManager(context: context, text: "TIMER")
             dm.start()
         }
