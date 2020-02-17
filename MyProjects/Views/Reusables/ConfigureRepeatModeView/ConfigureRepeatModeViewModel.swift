@@ -43,17 +43,17 @@ struct ConfigureRepeatModeViewModel<T: HasRepeatMode> {
             return "\(actString) every \(periodString) after \(repeatStartDate.toTime())"
         case .day:
             let periodString = repeatDaysPeriod > 1 ? "\(repeatHoursPeriod) days" : "day"
-            return "\(actString) every \(periodString) at \(repeatStartDate.toTime())"
+            return "\(actString) every \(periodString) at \(repeatStartDate.toTime()) after \(repeatStartDate.toRelative())"
         case.week:
             let periodString = repeatWeeksPeriod > 1 ? "\(repeatWeeksPeriod) weeks" : "week"
             let daysArr = selectedDayOfWeekIndex.map { Calendar.current.weekdaySymbols[$0] }
             let repeatDaysString = daysArr.joined(separator: ", ")
-            return "\(actString) every \(periodString) at \(repeatStartDate.toTime()) on days: \(repeatDaysString)"
+            return "\(actString) every \(periodString) at \(repeatStartDate.toTime()) on days: \(repeatDaysString) after \(repeatStartDate.toRelative()) "
         case.month:
             let periodString = repeatMonthsPeriod > 1 ? "\(repeatMonthsPeriod) months" : "month"
             let daysArr = selectedDayOfMonthIndex.map { String($0 + 1) }
             let repeatDaysString = daysArr.joined(separator: ", ")
-            return "\(actString) every \(periodString) at \(repeatStartDate.toTime()) on days: \(repeatDaysString)"
+            return "\(actString) every \(periodString) at \(repeatStartDate.toTime()) on days: \(repeatDaysString)  after \(repeatStartDate.toRelative())"
         }
     }
 

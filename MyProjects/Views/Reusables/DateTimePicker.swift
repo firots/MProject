@@ -34,13 +34,14 @@ struct DateTimePicker: View {
     }
 }
 
-struct DateTimePickerLast24: View {
+struct DateTimePickerLast: View {
     @Binding var date: Date
     let text: String
+    let hours: Int
     
     var body: some View {
         var minDate = Date()
-        minDate.addHours(-24)
+        minDate.addHours(-hours)
         return Group {
             DatePicker(selection: $date, in: minDate..., displayedComponents: .date) {
                 Group {

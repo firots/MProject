@@ -10,16 +10,16 @@ import Foundation
 
 extension Date {
     func toRelative() -> String {
-        return self.toString(format: "h:mm a", isRelative: true)
+        return self.toString(isRelative: true)
     }
     
-    func toString(format: String, isRelative: Bool) -> String {
+    func toString( isRelative: Bool) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.doesRelativeDateFormatting = isRelative
 
         let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = format
+        timeFormatter.timeStyle = .short
         
         let date = dateFormatter.string(from: self)
         let time = timeFormatter.string(from: self)
@@ -29,8 +29,7 @@ extension Date {
     
     func toTime() -> String {
         let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        
+        timeFormatter.timeStyle = .short
         let time = timeFormatter.string(from: self)
         
         return time
