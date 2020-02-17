@@ -31,10 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
 
-        /*BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
             // Downcast the parameter to a processing task as this identifier is used for a processing request.
             self.handleDatabaseCleaning(task: task as! BGProcessingTask)
-        }*/
+        }
         
         registerBackgroundMode()
 
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.scheduleAppRefresh()
     }
     
-    /*func scheduleDatabaseCleaning() {
+    func scheduleDatabaseCleaning() {
         let request = BGProcessingTaskRequest(identifier: "com.firot.MyProjects.db_organizer")
         request.requiresNetworkConnectivity = false
         request.requiresExternalPower = true
@@ -121,15 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queue.addOperation(cleanDatabaseOperation)
         
         scheduleDatabaseCleaning()
-    }*/
+    }
     
     
-    
-    
-    
-    
-    
-
 
     // MARK: UISceneSession Lifecycle
 
@@ -145,40 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    // MARK: - Core Data stack
-    /*lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "MyProjects")
-       
-        
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            } else {
-                 container.viewContext.automaticallyMergesChangesFromParent = true
-            }
-        })
-        
-        return container
-    }()*/
-    
-    
+
     lazy var coreDataStack: CoreDataStack = { return CoreDataStack() }()
     
 

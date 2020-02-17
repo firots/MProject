@@ -21,7 +21,7 @@ struct ConfigureRepeatModeView<T: HasRepeatMode>: View {
     }
     
     var mainSectionFooter: String {
-        model.type == .notification ? "Starts to repeat from the start date and time (including start date). The start time is also the time the notification will be sent." : "Starts to repeat after the start date and time (start date is not included). The start time is also when new task will be created."
+        model.type == .notification ? "Starts to repeat from the start date and time. The start time is also the time the notification will be sent." : "Starts to repeat from the start date and time. The start time is also when new task will be created."
     }
     
     func mainSection() -> some View {

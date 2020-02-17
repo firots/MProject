@@ -33,7 +33,7 @@ extension MTask {
         
         guard let nextFireDate = self.nextFireDate else { return nil }
         
-        let viewModel = AddTaskViewModel(self, self.project, pCellViewModel: nil)
+        let viewModel = AddTaskViewModel(self, self.project, pCellViewModel: nil, cloning: true)
         
         for step in viewModel.stepsModel.steps {
             step.step = nil
@@ -82,8 +82,7 @@ extension MTask {
         
         //self.repeated = true
         self.repeatMode = RepeatMode.none.rawValue
-        
-        self.setNextFireDate()
+        self.nextFireDate = nil
         
         if force == true {
             if context.hasChanges == true {

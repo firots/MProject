@@ -17,7 +17,7 @@ struct AddTaskView: View {
     @Environment(\.editMode) var editMode
     
     init(task: MTask?, project: MProject?, context moc: NSManagedObjectContext, pCellViewModel: ProjectCellViewModel?) {
-        model = AddTaskViewModel(task, project, pCellViewModel: pCellViewModel)
+        model = AddTaskViewModel(task, project, pCellViewModel: pCellViewModel, cloning: false)
         keyboard = KeyboardResponder()
         self.moc = moc
     }

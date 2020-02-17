@@ -44,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
         
         Settings.shared.save()
-        //(UIApplication.shared.delegate as? AppDelegate)?.scheduleDatabaseCleaning()
+        (UIApplication.shared.delegate as? AppDelegate)?.scheduleDatabaseCleaning()
         (UIApplication.shared.delegate as? AppDelegate)?.scheduleAppRefresh()
     }
 
@@ -72,7 +72,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //BackgroundManager.shared.scheduleAppRefresh()
         Settings.shared.save()
-        //(UIApplication.shared.delegate as? AppDelegate)?.scheduleDatabaseCleaning()
+        (UIApplication.shared.delegate as? AppDelegate)?.scheduleDatabaseCleaning()
         (UIApplication.shared.delegate as? AppDelegate)?.scheduleAppRefresh()
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }

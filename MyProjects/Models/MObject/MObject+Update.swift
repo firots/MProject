@@ -37,7 +37,7 @@ extension MObject {
         }
         
         for notification in notifications {
-            notification.setNextFireDate()
+            notification.setNextFireDate(skipNow: true)
         }
     }
 }

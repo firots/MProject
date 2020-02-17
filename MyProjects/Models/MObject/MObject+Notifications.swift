@@ -12,7 +12,7 @@ import Foundation
 extension MObject {
     func resyncNotifications() {
         for notification in notifications {
-            notification.setNextFireDate()
+            notification.setNextFireDate(skipNow: true)
         }
         createNotificationsOnIOS()
     }

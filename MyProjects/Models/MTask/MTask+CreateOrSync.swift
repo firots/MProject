@@ -29,7 +29,7 @@ extension MTask {
         }
         
         t.nextFireDate = nil
-        t.setNextFireDate()
+        t.setNextFireDate(skipNow: model.cloning)
         return t
     }
     

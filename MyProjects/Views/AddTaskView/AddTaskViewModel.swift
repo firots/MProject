@@ -17,11 +17,14 @@ class AddTaskViewModel: AddMObjectViewModel {
     
     var stepsModel: StepsViewModel
     
-    init(_ task: MTask?, _ project: MProject?, pCellViewModel: ProjectCellViewModel?) {
+    let cloning: Bool
+    
+    init(_ task: MTask?, _ project: MProject?, pCellViewModel: ProjectCellViewModel?, cloning: Bool) {
         self.project = project
         self.task = task
         self.repeatModeConfiguration = ConfigureRepeatModeViewModel(from: task, type: .task)
         self.pCellViewModel = pCellViewModel
+        self.cloning = cloning
         
         
         var steps = [StepCellViewModel]()

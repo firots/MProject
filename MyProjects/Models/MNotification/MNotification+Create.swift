@@ -25,7 +25,7 @@ extension MNotification {
                 viewModel.repeatModeConfiguration.bind(to: notification)
             }
             
-            notification.setNextFireDate()
+            notification.setNextFireDate(skipNow: true)
         }
         return notification
     }
