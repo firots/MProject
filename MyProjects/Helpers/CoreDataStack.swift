@@ -163,7 +163,7 @@ extension CoreDataStack {
             DispatchQueue.global().asyncAfter(deadline: .now() + 2.2) {
                 if hRC == self.historyRunCount {
                     self.dataManagerFired = true
-                    let dataManager = DataManager(context: self.persistentContainer.newBackgroundContext(), text: "coredatastack")
+                    let dataManager = DataManager(context: self.persistentContainer.newBackgroundContext(), text: "coredatastack", async: false)
                     self.historyQueue.addOperation(dataManager)
                 }
             }

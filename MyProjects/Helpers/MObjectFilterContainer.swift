@@ -67,14 +67,6 @@ extension MObjectFilterContainer {
         self.sortDescriptor = getSortDescriptor()
     }
     
-    private var sortByPublisher: AnyPublisher<MObjectSortType, Never> {
-        $sortBy
-            .map { sort in
-                sort
-            }
-            .eraseToAnyPublisher()
-    }
-    
     private func saveShowDetails(value: Bool) {
         if self.type == .task {
             if let project = self.project, project.showTaskDetails != value {
@@ -97,14 +89,6 @@ extension MObjectFilterContainer {
         }
     }
     
-    private var ascendingPublisher: AnyPublisher<Bool, Never> {
-        $ascending
-            .map { asc in
-                asc
-            }
-            .eraseToAnyPublisher()
-    }
-    
     private func saveAscending(value: Bool) {
         if type == .task {
             if let project = self.project, project.tasksAscending != value {
@@ -118,7 +102,7 @@ extension MObjectFilterContainer {
     }
     
     private var sortDescriptorPublisher: AnyPublisher<NSSortDescriptor, Never> {
-        Publishers.CombineLatest(sortByPublisher, ascendingPublisher)
+        Publishers.CombineLatest($sortBy, $ascending)
             .map { sort, asc in
                 self.sortBy = sort
                 self.ascending = asc

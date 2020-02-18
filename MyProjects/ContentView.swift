@@ -61,7 +61,7 @@ struct ContentView: View {
         let context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.newBackgroundContext()
         
         DispatchQueue.global().async {
-            let dm = DataManager(context: context, text: "TIMER")
+            let dm = DataManager(context: context, text: "TIMER", async: false)
             dm.start()
         }
     }

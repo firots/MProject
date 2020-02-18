@@ -14,10 +14,10 @@ import BackgroundTasks
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if application.applicationState != .inactive {
-            let dm = DataManager(context: coreDataStack
-                .persistentContainer.viewContext, text: "startup")
-            dm.start()
 
+            let dm = DataManager(context: self.coreDataStack.persistentContainer.viewContext, text: "startup", async: true)
+            dm.start()
+            
             Settings.load()
             UNUserNotificationCenter.current().delegate = LocalNotifications.shared
             
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queue.maxConcurrentOperationCount = 1
         
 
-        let appRefreshOperation = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "refresh")
+        let appRefreshOperation = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "refresh", async: false)
 
 
         queue.addOperation(appRefreshOperation)
@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        let cleanDatabaseOperation = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "process")
+        let cleanDatabaseOperation = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "process", async: false)
 
         cleanDatabaseOperation.completionBlock = {
             let success = !cleanDatabaseOperation.isCancelled

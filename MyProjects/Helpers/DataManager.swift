@@ -18,20 +18,32 @@ class DataManager: Operation {
     var notificationPredicate = NSPredicate(format: "nextFireDate != nil")
     static var shared: DataManager?
     var text: String
+    var async: Bool
 
-    init(context: NSManagedObjectContext, text: String) {
+    init(context: NSManagedObjectContext, text: String, async: Bool) {
         self.context = context
         self.text = text
+        self.async = async
     }
     
     func syncAll() {
         //print("###RUNDM \(self.text) \(Date().toRelative())")
-        context.performAndWait {
-            self.syncTasks()
-            self.syncProjects()
-            LocalNotifications.shared.clearBastards(context: context)
-            self.syncNotifications()
+        if async {
+            context.perform {
+                self.syncTasks()
+                self.syncProjects()
+                LocalNotifications.shared.clearBastards(context: self.context)
+                self.syncNotifications()
+            }
+        } else {
+            context.performAndWait {
+                self.syncTasks()
+                self.syncProjects()
+                LocalNotifications.shared.clearBastards(context: context)
+                self.syncNotifications()
+            }
         }
+
         //print("###DM FINISH \(self.text) \(Date().toRelative())")
     }
     
