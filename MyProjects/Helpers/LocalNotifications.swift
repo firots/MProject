@@ -102,6 +102,18 @@ class LocalNotifications: NSObject {
         UNUserNotificationCenter.current().add(request)
     }
     
+    func createNow(id: String, title: String, message: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+    
+        content.body = message
+        content.sound = UNNotificationSound.default
+
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: nil)
+
+        UNUserNotificationCenter.current().add(request)
+    }
+    
     func register() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
 

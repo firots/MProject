@@ -70,7 +70,7 @@ extension HasRepeatMode {
         }
         
         if let nextFireDate = self.nextFireDate, !self.isInRange(date: nextFireDate) {
-            self.nextFireDate = nil
+            setNextFireDate(to: nil)
         }
         
         //print("## \(self.nextFireDate?.toRelative())")
@@ -78,9 +78,9 @@ extension HasRepeatMode {
     
     private func setFireDateForNone() {
         if let notification = self as? MNotification, let date = notification.date, date > Date()  {
-            nextFireDate = notification.date
+            setNextFireDate(to: notification.date)
         } else {
-            nextFireDate = nil
+           setNextFireDate(to: nil)
         }
     }
     
@@ -107,7 +107,13 @@ extension HasRepeatMode {
         while(!isFireDate()) {
             fireDate.addHours(1)
         }
-        nextFireDate = fireDate
+        setNextFireDate(to: fireDate)
+    }
+    
+    private func setNextFireDate(to date: Date?) {
+        if nextFireDate != date {
+            nextFireDate = date
+        }
     }
 
     private func setFireDateForDaily(skipNow: Bool) {
@@ -133,7 +139,7 @@ extension HasRepeatMode {
             fireDate.addDays(1)
         }
         
-        nextFireDate = fireDate
+        setNextFireDate(to: fireDate)
     }
 
         
@@ -176,7 +182,7 @@ extension HasRepeatMode {
             fireDate.addDays(1)
         }
         
-        nextFireDate = fireDate
+        setNextFireDate(to: fireDate)
     }
     
     private func setFireDateForMonthly() {

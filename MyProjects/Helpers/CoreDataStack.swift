@@ -244,6 +244,9 @@ extension CoreDataStack {
             var candidates = [NotificationCandidate]()
             notifications.forEach { notification in
                 if let mNotification = taskContext.object(with: notification.objectID) as? MNotification, notification.changeType != .delete {
+                    if let nextFireDate = mNotification.nextFireDate, nextFireDate < Date() {
+                        mNotification.setNextFireDate(skipNow: true)
+                    }
                     candidates.append(contentsOf: mNotification.getCandidates())
                 }
             }

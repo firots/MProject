@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UISegmentedControl.appearance().backgroundColor = .clear
         }
 
-
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
             // Downcast the parameter to a processing task as this identifier is used for a processing request.
             self.handleDatabaseCleaning(task: task as! BGProcessingTask)
@@ -49,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
         // Fetch no earlier than 15 minutes from now
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 60 * 60)
         
         do {
             try BGTaskScheduler.shared.submit(request)
@@ -63,20 +62,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         
-
         let appRefreshOperation = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "refresh")
-
-
-        queue.addOperation(appRefreshOperation)
 
         task.expirationHandler = {
             queue.cancelAllOperations()
         }
 
-        let lastOperation = queue.operations.last
-        lastOperation?.completionBlock = {
-            task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
+        appRefreshOperation.completionBlock = {
+            task.setTaskCompleted(success: !appRefreshOperation.isCancelled)
         }
+        
+        queue.addOperation(appRefreshOperation)
         
         self.scheduleAppRefresh()
     }
@@ -85,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let request = BGProcessingTaskRequest(identifier: "com.firot.MyProjects.db_organizer")
         request.requiresNetworkConnectivity = false
         request.requiresExternalPower = true
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
+        //request.earliestBeginDate = Date(timeIntervalSinceNow: 1 * 60)
         
         do {
             try BGTaskScheduler.shared.submit(request)
@@ -108,9 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         cleanDatabaseOperation.completionBlock = {
             let success = !cleanDatabaseOperation.isCancelled
-            if success {
-                // Update the last clean date to the current time.
-            }
             
             task.setTaskCompleted(success: success)
         }
