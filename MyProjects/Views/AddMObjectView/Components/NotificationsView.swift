@@ -49,7 +49,7 @@ struct NotificationsView: View {
     }
     
     func addNotificationButton() -> some View {
-        Section(footer: Text("Reminders does not work when task/project is failed or done.")) {
+        Section(footer: Text("Reminders does not work when task/project is failed or done. Repeating reminders can lose reliability after 36 hours if you force kill the app.")) {
             HStack {
                 CellImageView(systemName: "plus.circle.fill")
                 Text("Add Reminder")
