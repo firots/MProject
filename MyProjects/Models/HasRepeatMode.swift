@@ -52,44 +52,54 @@ extension HasRepeatMode {
         guard let startDate = repeatStartDate else { fatalError("start date is nil") }
         return calendar.component(.weekOfYear, from: startDate)
     }
-
+    
     func setNextFireDate(skipNow: Bool) {
         if self.isNextFireDateStillInFuture() { return }
         
-        switch self.wrappedRepeatMode {
-            case .none:
-                self.setFireDateForNone()
-            case .hour:
-                self.setFireDateForHourly(skipNow: skipNow)
-            case .day:
-                self.setFireDateForDaily(skipNow: skipNow)
-            case .week:
-                self.setFireDateForWeeklyAndMonthly(skipNow: skipNow)
-            case .month:
-                self.setFireDateForWeeklyAndMonthly(skipNow: skipNow)
-        }
-        
-        if let nextFireDate = self.nextFireDate, !self.isInRange(date: nextFireDate) {
-            setNextFireDate(to: nil)
-        }
+        let fireDate = getNextFireDate(skipNow: skipNow, after: nil)
+        setNextFireDate(to: fireDate)
         
         //print("## \(self.nextFireDate?.toRelative())")
     }
-    
-    private func setFireDateForNone() {
-        if let notification = self as? MNotification, let date = notification.date, date > Date()  {
-            setNextFireDate(to: notification.date)
+
+    func getNextFireDate(skipNow: Bool, after: Date?) -> Date? {
+        if self.isNextFireDateStillInFuture() && after == nil { return nextFireDate }
+        
+        var fireDate: Date?
+        
+        switch self.wrappedRepeatMode {
+            case .none:
+                fireDate = getFireDateForNone()
+            case .hour:
+                fireDate = getFireDateForHourly(skipNow: skipNow, after)
+            case .day:
+                fireDate = getFireDateForDaily(skipNow: skipNow, after)
+            case .week:
+                fireDate = getFireDateForWeeklyAndMonthly(skipNow: skipNow, after)
+            case .month:
+                fireDate = getFireDateForWeeklyAndMonthly(skipNow: skipNow, after)
+        }
+        
+        if let fireDate = fireDate, !self.isInRange(date: fireDate) {
+            return nil
         } else {
-           setNextFireDate(to: nil)
+            return fireDate
         }
     }
     
-    private func setFireDateForHourly(skipNow: Bool) {
-        guard let startDate = repeatStartDate else { fatalError("start date is nil")}
+    private func getFireDateForNone() -> Date? {
+        if let notification = self as? MNotification, let date = notification.date, date > Date()  {
+            return notification.date
+        } else {
+           return nil
+        }
+    }
+    
+    private func getFireDateForHourly(skipNow: Bool, _ after: Date?) -> Date? {
+        guard let startDate = repeatStartDate else { return nil }
         
-        let now = self is MTask ? startDate: Date()
+        let now = after ?? (self is MTask ? startDate: Date())
         var fireDate = calendar.date(bySetting: .minute, value: startMinute, of: now)!
-        
         
         func isInPeriod() -> Bool {
             fireDate.hoursPassed(from: startDate) % repeatPeriod == 0
@@ -107,7 +117,8 @@ extension HasRepeatMode {
         while(!isFireDate()) {
             fireDate.addHours(1)
         }
-        setNextFireDate(to: fireDate)
+        
+        return fireDate
     }
     
     private func setNextFireDate(to date: Date?) {
@@ -116,10 +127,10 @@ extension HasRepeatMode {
         }
     }
 
-    private func setFireDateForDaily(skipNow: Bool) {
-        guard let startDate = repeatStartDate else { fatalError("start date is nil") }
+    private func getFireDateForDaily(skipNow: Bool, _ after: Date?) -> Date? {
+        guard let startDate = repeatStartDate else { return nil }
         
-        let now = self is MTask ? startDate: Date()
+        let now = after ?? (self is MTask ? startDate: Date())
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         func isInPeriod() -> Bool {
@@ -139,16 +150,16 @@ extension HasRepeatMode {
             fireDate.addDays(1)
         }
         
-        setNextFireDate(to: fireDate)
+        return fireDate
     }
 
         
     
     
-    private func setFireDateForWeeklyAndMonthly(skipNow: Bool) {
-        guard let startDate = repeatStartDate else { fatalError("start date is nil") }
+    private func getFireDateForWeeklyAndMonthly(skipNow: Bool, _ after: Date?) -> Date? {
+        guard let startDate = repeatStartDate else { return nil }
         
-        let now = self is MTask ? startDate: Date()
+        let now = after ?? (self is MTask ? startDate: Date())
         var fireDate = calendar.date(bySettingHour: startHour, minute: startMinute, second: 0, of: now)!
         
         func isInPeriod() -> Bool {
@@ -182,12 +193,9 @@ extension HasRepeatMode {
             fireDate.addDays(1)
         }
         
-        setNextFireDate(to: fireDate)
+        return fireDate
     }
     
-    private func setFireDateForMonthly() {
-        
-    }
     
     private func isNextFireDateStillInFuture() -> Bool {
         if let nextFireDate = self.nextFireDate, nextFireDate > Date() { return true }

@@ -15,8 +15,8 @@ extension MTask {
         t.setMutualFields(from: model, context: moc)
         if project != nil { t.project = project }
         t.syncSteps(with: model.stepsModel.steps, context: moc)
+        t.setStatus(to: MObjectStatus.all[model.statusIndex], context: moc, noResyncNotifications: true)
         t.syncNotifications(with: model.notificationsModel.notifications, context: moc)
-        t.setStatus(to: MObjectStatus.all[model.statusIndex], context: moc)
         t.repeatMode = model.repeatModeConfiguration.repeatMode
         if model.repeatModeConfiguration.wrappedRepeatMode != .none {
             model.repeatModeConfiguration.bind(to: t)

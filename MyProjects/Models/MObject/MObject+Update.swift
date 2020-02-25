@@ -14,9 +14,9 @@ extension MObject {
         let now = Date()
         
         if let d = deadline, now >= d {
-            setStatus(to: .failed, context: context)
+            setStatus(to: .failed, context: context, noResyncNotifications: false)
         } else if wrappedStatus == .waiting, let s = started, now >= s {
-            setStatus(to: .active, context: context)
+            setStatus(to: .active, context: context, noResyncNotifications: false)
         } else {
             if let d = deadline, now < d { /* update ui */
                 objectWillChange.send()

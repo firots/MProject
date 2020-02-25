@@ -384,12 +384,12 @@ struct TasksView: View, MObjectLister {
             CheckmarkButton(status: task.wrappedStatus) {
                 if self.model.selectionEnabled { self.toggleSelection(of: task); return }
                 if task.wrappedStatus == .active {
-                    task.setStatus(to: .done, context: self.moc)
+                    task.setStatus(to: .done, context: self.moc, noResyncNotifications: false)
                     self.model.pCellViewModel?.refreshProgress()
                     Haptic.feedback(.medium)
                     self.saveChanges()
                 } else if task.wrappedStatus == .done {
-                    task.setStatus(to: .active, context: self.moc)
+                    task.setStatus(to: .active, context: self.moc, noResyncNotifications: false)
                     self.model.pCellViewModel?.refreshProgress()
                     if task.wrappedStatus == .active {
                         Haptic.feedback(.light)

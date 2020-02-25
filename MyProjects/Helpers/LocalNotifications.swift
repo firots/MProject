@@ -56,37 +56,41 @@ class LocalNotifications: NSObject {
     
     func create(from candidates: [NotificationCandidate]) {
         if candidates.isEmpty { return }
-        let center = UNUserNotificationCenter.current()
+        
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.3) {
+            let center = UNUserNotificationCenter.current()
 
-        center.getPendingNotificationRequests(completionHandler: { requests in
-            var activeRequests = requests.compactMap { $0.getCandidate() }
-            
-            for activeRequest in activeRequests {
-                if candidates.contains(activeRequest) {
-                    activeRequests.removeAll(where: { $0 == activeRequest })
+            center.getPendingNotificationRequests(completionHandler: { requests in
+                var activeRequests = requests.compactMap { $0.getCandidate() }
+                
+                for activeRequest in activeRequests {
+                    if candidates.contains(activeRequest) {
+                        activeRequests.removeAll(where: { $0 == activeRequest })
+                    }
                 }
-            }
-            
-            var newCandidates: [NotificationCandidate] = candidates + activeRequests
-            
-            newCandidates.sort {
-                $0.date < $1.date
-            }
-            
-            newCandidates = Array(newCandidates.prefix(64))
-            
-            newCandidates.reverse()
+                
+                var newCandidates: [NotificationCandidate] = candidates + activeRequests
+                
+                newCandidates.sort {
+                    $0.date < $1.date
+                }
+                
+                newCandidates = Array(newCandidates.prefix(64))
+                
+                newCandidates.reverse()
 
-            for candidate in newCandidates {
-                self.create(id: candidate.id, title: candidate.title, message: candidate.message, date: candidate.date)
-            }
+                for candidate in newCandidates {
+                    self.create(id: candidate.id, title: candidate.title, message: candidate.message, date: candidate.date)
+                }
+                
+            })
             
-        })
+        }
     }
     
     
     func create(id: String, title: String, message: String, date: Date) {
-        //print("@@@CREATE \(date.toRelative()) \(message)")
+        print("@@@CREATE \(date.toRelative()) \(message)")
         let content = UNMutableNotificationContent()
         content.title = title
     

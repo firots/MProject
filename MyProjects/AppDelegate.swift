@@ -12,6 +12,8 @@ import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    //var dataManager: DataManager?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if application.applicationState != .inactive {
             Settings.load()
@@ -25,16 +27,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             UISegmentedControl.appearance().backgroundColor = .clear
         }
+        
+        //application.setMinimumBackgroundFetchInterval(1800)
 
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
-            // Downcast the parameter to a processing task as this identifier is used for a processing request.
-            self.handleDatabaseCleaning(task: task as! BGProcessingTask)
-        }
         
         registerBackgroundMode()
 
         return true
     }
+    
+    
+    /*func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        dataManager = DataManager(context: coreDataStack.persistentContainer.newBackgroundContext(), text: "bg fetch")
+        dataManager!.syncAll()
+        
+        if dataManager!.isCancelled {
+            completionHandler(.failed)
+        } else {
+            completionHandler(.newData)
+        }
+    }*/
     
     func registerBackgroundMode() {
         BGTaskScheduler.shared.register(forTaskWithIdentifier:
@@ -43,12 +55,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           {task in
              self.handleAppRefresh(task: task as! BGAppRefreshTask)
           }
+        
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.firot.MyProjects.db_organizer", using: nil) { task in
+            self.handleDatabaseCleaning(task: task as! BGProcessingTask)
+        }
     }
     
     func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: "com.firot.MyProjects.refresh")
         // Fetch no earlier than 15 minutes from now
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 60 * 60)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 30 * 60)
         
         do {
             try BGTaskScheduler.shared.submit(request)
@@ -81,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let request = BGProcessingTaskRequest(identifier: "com.firot.MyProjects.db_organizer")
         request.requiresNetworkConnectivity = false
         request.requiresExternalPower = true
-        //request.earliestBeginDate = Date(timeIntervalSinceNow: 1 * 60)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 16 * 60)
         
         do {
             try BGTaskScheduler.shared.submit(request)

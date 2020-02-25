@@ -13,8 +13,8 @@ extension MProject {
     static func createOrSync(from model: AddProjectViewModel, context moc: NSManagedObjectContext, project: MProject?) -> MProject {
         let p = project ?? createBase(context: moc)
         p.setMutualFields(from: model, context: moc)
+        p.setStatus(to: MObjectStatus.all[model.statusIndex], context: moc, noResyncNotifications: true)
         p.syncNotifications(with: model.notificationsModel.notifications, context: moc)
-        p.setStatus(to: MObjectStatus.all[model.statusIndex], context: moc)
         return p
     }
     

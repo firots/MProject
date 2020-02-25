@@ -25,18 +25,18 @@ class DataManager: Operation {
     }
     
     func syncAll() {
-        print("###RUNDM \(self.text) \(Date().toRelative())")
+        //print("###RUNDM \(self.text) \(Date().toRelative())")
         context.performAndWait {
             self.syncTasks()
             self.syncProjects()
             LocalNotifications.shared.clearBastards(context: context)
             self.syncNotifications()
         }
-        print("###DM FINISH \(self.text) \(Date().toRelative())")
+        //print("###DM FINISH \(self.text) \(Date().toRelative())")
         
-        if text != "timer" {
+        /*if text != "timer" && text != "coredatastack" && text != "scene" && text != "app" {
             LocalNotifications.shared.createNow(id: UUID().uuidString, title: "dataManager", message: text)
-        }
+        }*/
     }
     
     func syncNotifications() {

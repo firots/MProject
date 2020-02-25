@@ -15,9 +15,21 @@ extension MNotification {
         
         guard let nextFireDate = self.nextFireDate else { return candidates }
         
+        var candidateCount: Int {
+            if wrappedRepeatMode == .hour {
+                return 36
+            } else {
+                return 3
+            }
+        }
+        
         func createSubIDs() {
+            if !subID.isEmpty, subID.count != candidateCount {
+                cleanSubIDs()
+            }
+            
             if subID.isEmpty {
-                for _ in 1...48 {
+                for _ in 1...candidateCount {
                     subID.append(UUID())
                 }
             }
@@ -30,13 +42,28 @@ extension MNotification {
             subID.removeAll()
         }
         
-        func createSubCandidates() {
+        func createSubCandidatesForHourly() {
             createSubIDs()
             var repeatNextFireDate = nextFireDate
             for sid in subID {
                 repeatNextFireDate.addHours(repeatPeriod)
 
                 if isNextFireDateValid(for: repeatNextFireDate) {
+                    let candidate = NotificationCandidate(id: sid.uuidString, title: wrappedTitle, message: wrappedMessage, date: repeatNextFireDate)
+                    candidates.append(candidate)
+                } else {
+                    LocalNotifications.shared.delete(id: sid)
+                }
+            }
+        }
+        
+        func createSubCandidatesForOther() {
+            createSubIDs()
+            var repeatNextFireDate: Date? = nextFireDate
+            for sid in subID {
+                repeatNextFireDate = getNextFireDate(skipNow: true, after: repeatNextFireDate)
+                
+                if let repeatNextFireDate = repeatNextFireDate, isNextFireDateValid(for: repeatNextFireDate) {
                     let candidate = NotificationCandidate(id: sid.uuidString, title: wrappedTitle, message: wrappedMessage, date: repeatNextFireDate)
                     candidates.append(candidate)
                 } else {
@@ -56,10 +83,12 @@ extension MNotification {
             return candidates
         } else {
             createCandidate()
-            if wrappedRepeatMode == .hour {
-                createSubCandidates()
-            } else {
+            if wrappedRepeatMode == .none {
                 cleanSubIDs()
+            } else if wrappedRepeatMode == .hour {
+                createSubCandidatesForHourly()
+            } else {
+                createSubCandidatesForOther()
             }
             return candidates
         }

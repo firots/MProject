@@ -33,6 +33,7 @@ extension MNotification {
     func createOnIOSIfNear(clearFireDate: Bool) {
         //print("###CREATE ON IOS IF NEAR \(self.message)")
         guard let nextFireDate = self.nextFireDate else { return }
+        if let mObject = mObject, (mObject.wrappedStatus == .done ||  mObject.wrappedStatus == .failed) { return }
         if isNextFireDateValid(for: nextFireDate) {
             LocalNotifications.shared.create(from: self.getCandidates())
         } else {
@@ -71,6 +72,8 @@ extension MNotification {
         if let deadline = mObject?.deadline, nextFireDate > deadline {
             return false
         } else if nextFireDate < Date() {
+            return false
+        } else if let repeatEndDate = self.repeatEndDate, nextFireDate > repeatEndDate {
             return false
         }
         return true

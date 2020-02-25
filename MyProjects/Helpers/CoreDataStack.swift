@@ -38,8 +38,6 @@ class CoreDataStack {
         
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.transactionAuthor = appTransactionAuthorName
-
-        //try? container.viewContext.setQueryGenerationFrom(.current)
         
         // Pin the viewContext to the current generation token and set it to keep itself up to date with local changes.
         container.viewContext.automaticallyMergesChangesFromParent = true

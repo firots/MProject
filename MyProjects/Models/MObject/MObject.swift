@@ -54,7 +54,7 @@ extension MObject {
         return true
     }
     
-    public func setStatus(to newStatus: MObjectStatus, context: NSManagedObjectContext) {
+    public func setStatus(to newStatus: MObjectStatus, context: NSManagedObjectContext, noResyncNotifications: Bool) {
         if (newStatus == .failed && self.wrappedStatus != MObjectStatus.failed) || (newStatus == .done && self.wrappedStatus != MObjectStatus.done) {
             self.ended = Date()
         } else {
@@ -77,7 +77,9 @@ extension MObject {
             }
             deleteNotificationsFromIOS(clearFireDate: true)
         } else {
-            resyncNotifications() 
+            if noResyncNotifications == false {
+                resyncNotifications()
+            }
         }
     }
     
